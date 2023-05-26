@@ -1,0 +1,171 @@
+{
+    "INIT": {
+        "title1": "¿Sabes lo que buscas?",
+        "info1": "Tenemos preparados para ti una gran lista de categorías con los mejores proveedores de tu ciudad a tu disposición!",
+        "btn1": "Ver Categorías",
+        "text1": "¿Necesitas Ayuda?",
+        "info2": "No te preocupes, cuéntanos cada detalle de lo que buscas, nosotros nos encargaremos de brindarte la mejor asesoría!",
+        "btn2": "Formulario de Solicitud"
+    },
+    "HOME": {
+        "title": "Categorías",
+        "search": "Plomería, Apertura de puerta...",
+        "zone": "No estas en una zona habilitada",
+        "empty": "No hay categorías habilitadas en tu ubicación"
+    },
+    "SEARCH": {
+        "title": "Buscar",
+        "search": "Plomería, Apertura de puerta...",
+        "result": "Resultado",
+        "results": "Resultados",
+        "empty": "No hay items relacionados a tu búsqueda.",
+        "miles": "millas",
+        "notdisp": "Este proveedor no está disponible por el momento."
+    },
+    "CATEGORY": {
+        "title": "Categorías",
+        "search": "Plomería, Apertura de puerta..."
+    },
+    "SUPPLIERS": {
+        "title": "Proveedores",
+        "search": "Plomería, Apertura de puerta...",
+        "result": "Resultado",
+        "results": "Resultados",
+        "empty": "No hay proveedores disponibles por el momento.",
+        "miles": "millas"
+    },
+    "DETAILSUPPLIERS": {
+        "title": "Proveedor",
+        "description": "Descripción",
+        "photo": "Fotos",
+        "ratings": "Calificaciones",
+        "services": "Otros servicios",
+        "Training": "Formación:",
+        "years": "Años de experiencia:",
+        "suitability": "Idoneidad:",
+        "language": "Idiomas:",
+        "emergencies": "Disponibilidad de atender urgencias:",
+        "invoices": "Entrega de facturas por servicios:",
+        "create": "Crear Solicitud",
+        "empty": "El Proveedor aún no tiene calificaciones.",
+        "year": "año(s)"
+    },
+    "ORDER": {
+        "title": "Crear Solicitud",
+        "for": "Para:",
+        "service": "Servicio:",
+        "observations": "Detállenos su solicitud...",
+        "accept": "Aceptar",
+        "cancel": "Cancelar",
+        "submit": "Enviar",
+        "complete": "Debe completar todos los campos para enviar su solicitud.",
+        "succesTitle": "¡Solicitud Enviada!",
+        "succesMsg": "Su solicitud de servicio ha sido enviada con éxito.",
+        "providerSend": "En breve el proveedor lo estará contactando.",
+        "info": "Mueve el pin naranja para encontrar tu ubicación exacta"
+    },
+    "LISORDER": {
+        "title": "Solicitudes",
+        "title1": "En curso",
+        "title2": "Historial",
+        "hold": "En espera",
+        "progress": "En progreso",
+        "finalized": "Finalizado",
+        "rating": "Pendiente por calificar",
+        "empty1": "Aún no tienes servicios en curso.",
+        "empty2": "Aún no tienes servicios finalizados.",
+        "swipe": "Desliza para actualizar",
+        "cancelled": "Cancelado",
+        "ordencancel": "La solicitud ha sido cancelada"
+    },
+    "PROFILE": {
+        "title": "Perfil",
+        "current": "Solicitudes en curso",
+        "finish": "Solicitudes finalizadas",
+        "support": "Ayuda en línea",
+        "privacy": "Avisos de Privacidad",
+        "terms": "Términos y Condiciones",
+        "language": "Cambiar Lenguaje",
+        "contact": "Contacto",
+        "login": "Iniciar Sesión",
+        "logout": "Cerrar Sesión",
+        "msglog": "¿Desea cerrar sesión de Service24?",
+        "required": "Debes iniciar sesión para comunicarte con nuestro soporte.",
+        "yes": "Si",
+        "user": "Usuario",
+        "tutorial": "Guía de Uso"
+    },
+    "LOGIN": {
+        "login": "Iniciar Sesión",
+        "forgot": "¿Olvidó su Constraseña?",
+        "o": "o",
+        "facebook": "Iniciar Sesión con Facebook",
+        "google": "Iniciar Sesión con Google",
+        "signin": "Registrarse"  
+    },
+    "REGISTER": {
+        "registry": "Registro",
+        "register": "Registrarse",
+        "login": "Iniciar Sesión",
+        "name": "Nombre",
+        "email": "Correo Electrónico",
+        "phone": "Teléfono",
+        "password": "Constraseña",
+        "rpassword": "Confirmar Contraseña",
+        "zona": "Elige a que Zona Perteneces"
+    },
+    "FORM": {
+        "w1": "¿Qué estas buscando?",
+        "w2": "¿Cuando lo necesitas?",
+        "w3": "¿A qué hora lo necesitas?",
+        "w4": "¿Dónde te encuentras?",
+        "w5": "¿Sabes los que Buscas?",
+        "send": "Enviar"
+    },
+    "FAVORITES": {
+        "title": "Favoritos",
+        "empty": "No tienes proveedores de servicio como favoritos.",
+        "search": "Buscar Proveedor",
+        "delete": "¿Desea eliminar el proveedor de favoritos?"
+    },
+    "TUTORIAL":{
+        "omit": "Omitir",
+        "title1": "Ten acceso a los mejores servicios",
+        "info1": "Encuentra los mejores proveedores de servicios de tu ciudad, filtra según tu ubicación y recibe respuestas al instante",
+        "title2": "Selecciona al proveedor perfecto para tí",
+        "info2": "Comprueba la experiencia y disponibilidad de los proveedores, así podrás encontrar el que se adecúe mejor a tus necesidades",
+        "title3": "Envía solicitudes desde tu móvil",
+        "info3": "Crea solicitudes de servicios a tu proveedor favorito, actualiza el estado y ten respuestas satisfactorias",
+        "title4": "Rastrea tu solicitud en tiempo real",
+        "info4": "Hazle seguimiento a tu proveedor, accede a los detalles de ubicación y tiempo en que tu servicio será entregado",
+        "title5": "Califica y guarda tus servicios para tus futuras solicitudes",
+        "info5": "Nuestros proveedores están calificados por sus servicios previos, guárdalos y crea lazos de confianza para contactarlos nuevamente"
+    },
+    "ALERT":{
+        "title": "Aviso Importante",
+        "msg": "Nuestros servicios comenzarán a prestarse a partir del 14 de Febrero del 2020."
+    },
+    "NOTIFICATIONS":{
+        "title": "Notificaciones",
+        "empty": "No tienes notificaciones pendientes"
+    },
+    "DETAILORDER":{
+        "title": "Detalle",
+        "order": "Solicitud",
+        "category": "Categoría:",
+        "description": "Descripción:",
+        "date": "Fecha:",
+        "lug": "Lugar:",
+        "obs": "Observaciones:",
+        "state": "Estado",
+        "pending": "En espera",
+        "process": "En proceso",
+        "finish": "Finalizado",
+        "chat": "chatear con el proveedor",
+        "cali": "¡Ya Calificaste!",
+        "addFav": "Agregar a Favoritos",
+        "fin": "Finalizar Solicitud",
+        "cancel": "Cancelar Solicitud",
+        "califi": "Calificar Solicitud"
+    }  
+}

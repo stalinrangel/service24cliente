@@ -1,0 +1,7 @@
+{
+  "name": "service24Clienes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

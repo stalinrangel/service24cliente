@@ -1,0 +1,171 @@
+{
+    "INIT": {
+        "title1": "Do you know what you are looking for?",
+        "info1": "We have prepared for you a great list of categories with the best providers in your city at your disposal!",
+        "btn1": "See Categories",
+        "text1": "Need help?",
+        "info2": "Do not worry, tell us every detail of what you are looking for, we will take care of giving you the best advice!",
+        "btn2": "Application form"
+    },
+    "HOME": {
+        "title": "Categories",
+        "search": "Plumbing, Door opening...",
+        "zone": "You are not in an enabled zone",
+        "empty": "There are no categories enabled in your location"
+    },
+    "SEARCH": {
+        "title": "Search",
+        "search": "Plumbing, Door opening...",
+        "result": "Result",
+        "results": "Results",
+        "empty": "There are no items related to your search.",
+        "miles": "miles",
+        "notdisp": "This provider is currently unavailable."
+    },
+    "CATEGORY": {
+        "title": "Categories",
+        "search": "Plumbing, Door opening..."
+    },
+    "SUPPLIERS": {
+        "title": "Providers",
+        "search": "Plumbing, Door opening...",
+        "result": "Result",
+        "results": "Results",
+        "empty": "There are no providers available at the moment.",
+        "miles": "miles"
+    },
+    "DETAILSUPPLIERS": {
+        "title": "Provider",
+        "description": "Description",
+        "photo": "Photos",
+        "ratings": "Ratings",
+        "services": "Other services",
+        "Training": "Training:",
+        "years": "Years of experience:",
+        "suitability": "Suitability:",
+        "language": "Languages:",
+        "emergencies":"Availability of attending emergencies:",
+        "invoices":"Delivery of invoices for services:",
+        "create":"Create Request",
+        "empty":"The Supplier does not have qualifications yet.",
+        "year": "year"
+    },
+    "ORDER": {
+        "title": "Create Request",
+        "for": "To:",
+        "service": "Service:",
+        "observations": "Detail your request...",
+        "accept": "Accept",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "complete": "You must complete all the fields to send your request.",
+        "succesTitle": "Request sent!",
+        "succesMsg": "Your service request has been sent successfully.",
+        "providerSend": "Soon the provider will be contacting you.",
+        "info": "Move the orange pin to find your exact location"
+    },
+    "LISORDER": {
+        "title": "Request",
+        "title1": "In progress",
+        "title2": "Record",
+        "hold": "On hold",
+        "progress": "In process",
+        "finalized": "Finalizado",
+        "rating": "Pending for rating",
+        "empty1": "You still do not have services in progress.",
+        "empty2": "You have not finished services yet.",
+        "swipe": "Swipe to update",
+        "cancelled": "Cancelled",
+        "ordencancel": "The request has been canceled."
+    },
+    "PROFILE": {
+        "title": "Profile",
+        "current": "Current requests",
+        "finish": "Completed requests",
+        "support": "Help online",
+        "privacy": "Privacy Notices",
+        "terms": "Terms and Conditions",
+        "language": "Change Language",
+        "contact": "Contact",
+        "login": "Log in",
+        "logout": "Log out",
+        "msglog": "Do you want to log out of Service24?",
+        "required": "You must login to communicate with our support.",
+        "yes": "Yes",
+        "user": "User",
+        "tutorial": "User Guide"
+    },
+    "LOGIN": {
+        "login": "Log In",
+        "forgot": "Forgot your password?",
+        "o": "or",
+        "facebook": "Login with Facebook",
+        "google": "Login with Google",
+        "signin": "Sign In"  
+    },
+    "REGISTER": {
+        "registry": "Registry",
+        "register": "Register",
+        "login": "Log In",
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "password": "Password",
+        "rpassword": "Confirm Password",
+        "zona": "Choose to which zone you belong"
+    },
+    "FORM": {
+        "w1": "What are you looking for?",
+        "w2": "When you need it?",
+        "w3": "What time do you need it?",
+        "w4": "Where are you?",
+        "w5": "Do you know what you are looking for?",
+        "send": "Send"
+    },
+    "FAVORITES": {
+        "title": "Favorites",
+        "empty": "You have no service providers as favorites.",
+        "search": "Search Provider",
+        "delete": "Do you want to delete the provider of favorites?"
+    },
+    "TUTORIAL":{
+        "omit": "Skip",
+        "title1": "Have access to the best services",
+        "info1": "Find the best service providers in your city, filter according to your location and receive answers instantly",
+        "title2": "Select the perfect provider for you",
+        "info2": "Check the experience and availability of suppliers, so you can find the one that best suits your needs",
+        "title3": "Send requests from your mobile",
+        "info3": "Create service requests to your favorite provider, update the status and have satisfactory answers",
+        "title4": "Track your request in real time",
+        "info4": "Track your provider, access the details of location and time when your service will be delivered",
+        "title5": "Rate and save your services for your future requests",
+        "info5": "Our suppliers are qualified for their previous services, keep them and create bonds of trust to contact them again"
+    },
+    "ALERT":{
+        "title": "Important Announcement",
+        "msg":"Our services will begin to be provided from February 14, 2020."
+    },
+     "NOTIFICATIONS":{
+        "title": "Notifications",
+        "empty": "You have not pending notifications"
+    }, 
+    "DETAILORDER":{
+        "title": "Detail",
+        "order": "Request",
+        "category": "Category:",
+        "description": "Description:",
+        "date": "Date:",
+        "lug": "Place:",
+        "obs": "Observations:",
+        "state": "State",
+        "pending": "On hold",
+        "process": "In process",
+        "finish": "Finalized",
+        "chat": "chat with the provider",
+        "cali": "¡You already qualified!",
+        "addFav": "Add to Favorites",
+        "fin": "Finish Request",
+        "cancel": "Cancel request",
+        "califi": "Rate Request"
+    }     
+}
