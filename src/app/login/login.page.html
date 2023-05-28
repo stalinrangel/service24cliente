@@ -1,7 +1,7 @@
-<ion-content>
+<ion-content class="ion-padding">
 	<ion-buttons class="icon-back" (click)="goBack()">
       <ion-button>
-        <ion-icon slot="icon-only"  md="md-arrow-back" ios="md-arrow-back"></ion-icon>
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
 	<div class="content-img">
@@ -10,13 +10,13 @@
 	</div> 
 	<form [formGroup]="loginUserForm" class="padding-space">
 		<ion-item lines="none" class="item-input">
-			<ion-input type="email" formControlName="email" placeholder="Correo electrónico"></ion-input>
+			<ion-input mode="ios" type="email" formControlName="email" placeholder="Correo electrónico"></ion-input>
 		</ion-item>
 		<ion-item lines="none" class="item-input">
-			<ion-input type="password" formControlName="password" placeholder="Contraseña"></ion-input>
+			<ion-input mode="ios" type="password" formControlName="password" placeholder="Contraseña"></ion-input>
 		</ion-item>
 		<p (click)="resetPassword()">{{ 'LOGIN.forgot' | translate }}</p>
-		<ion-button expand="block" color="secondary" class="ion-text-capitalize btn-init" (click)="login()">{{ 'LOGIN.login' | translate }}</ion-button>
+		<ion-button mode="ios" expand="block" color="secondary" class="ion-text-capitalize btn-init" (click)="login()">{{ 'LOGIN.login' | translate }}</ion-button>
 		<div class="or-spacer">
 			<div class="mask"></div>
 			<span>{{ 'LOGIN.o' | translate }}</span>
