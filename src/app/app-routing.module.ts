@@ -41,6 +41,14 @@ const routes: Routes = [
   {
     path: 'category',
     loadChildren: () => import('./category/category.module').then( m => m.CategoryPageModule)
+  },
+  {
+    path: 'subcategory',
+    loadChildren: () => import('./subcategory/subcategory.module').then( m => m.SubcategoryPageModule)
+  },
+  {
+    path: 'providers',
+    loadChildren: () => import('./providers/providers.module').then( m => m.ProvidersPageModule)
   }
 ];
 @NgModule({
