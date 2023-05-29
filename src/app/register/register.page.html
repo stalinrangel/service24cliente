@@ -28,9 +28,9 @@
 			<ion-icon slot="end" name="eye-off-outline" class="icon-eye" *ngIf="password_type2 == 'password'" (click)="togglePasswordMode2()"></ion-icon>
 			<ion-icon slot="end" name="eye-outline" class="icon-eye" *ngIf="password_type2 == 'text'" (click)="togglePasswordMode2()"></ion-icon>
 		</ion-item>
-		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.zona}">
+		<!--ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.zona}">
 			<ion-input mode="ios" type="text" formControlName="zona" placeholder="{{ 'REGISTER.zona' | translate }}" readonly (click)="selectZone()"></ion-input>
-		</ion-item>
+		</ion-item-->
 		<ion-button mode="ios" expand="block" color="secondary" class="ion-text-capitalize btn-init btn-register" (click)="register()">
 		{{ 'REGISTER.register' | translate }}</ion-button>
 		<p class="ion-text-center link-login" (click)="login()">{{ 'REGISTER.login' | translate }}</p>

@@ -6,14 +6,17 @@ import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
-
+import { IonicRatingModule } from 'ionic4-rating';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab2PageRoutingModule
+    Tab2PageRoutingModule,
+    //IonicRatingModule,
+    TranslateModule,
   ],
   declarations: [Tab2Page]
 })

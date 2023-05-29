@@ -1,0 +1,136 @@
+ion-title{
+    top: 15px;
+    position: absolute;
+}
+.content-profile{
+	text-align: center;
+	padding-top: 25px;
+	img{
+		height: 100px;
+    	width: 100px;
+    	border-radius: 50%;
+    	object-fit: cover;
+    }
+}
+.content-info{
+	position: relative;
+	p {
+		color: #000000;
+		font-family: ('Montserrat-Bold');
+		margin: 8px 0px 5px 0px;
+    	font-size: 14px; 
+	}
+}
+.item-blue{
+	border-radius: 2px;
+    font-size: 11px;
+    width: 95%;
+    margin: auto;
+    background-color: #007AFF;
+    font-family: ('Roboto');
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item-org{
+	border-radius: 2px;
+    font-size: 11px;
+    width: 95%;
+    margin: auto;
+    background-color: #f78319;
+    font-family: ('Roboto');
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.title-menu{
+	font-family: ('Roboto');
+	color: #666666;
+	display: flex;
+	font-size: 15px;
+}
+.item{
+	--background: transparent;
+}
+.item-login{
+	--background: #E6E6E6;
+	p{
+		color: #EA3C51;
+	}
+}
+.icon-star{
+  color: #cccccc;
+  font-size: 21px;
+  margin: 0px 4px;
+}
+ion-icon.filled {     
+  color: #ffeb3b;     
+}
+ion-icon {
+  &[class*="custom-"] {
+    mask-size: contain;
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    background: currentColor;
+    width: 1em;
+    height: 1em;
+  }
+  &[class*="custom-pencil"] {
+  	width: 1.3em !important;
+  	height: 1.3em !important;
+  	position: absolute;
+  	top: 0px;
+  	right: 16px;
+    mask-image: url('/assets/icon/icono-editar.svg');
+    color: #f78319;
+  }
+  &[class*="custom-comunity"] {
+  	margin-right: 15px;
+    mask-image: url('/assets/icon/icono-comunidad.svg');
+    color: #f78319;
+    width: 18px;
+    height: 18px;
+  }
+  &[class*="custom-privacity"] {
+  	margin-right: 15px;
+    mask-image: url('/assets/icon/icono-privacidad.svg');
+    color: #f78319;
+    width: 18px;
+    height: 18px;
+  }
+  &[class*="custom-terms"] {
+  	margin-right: 15px;
+    mask-image: url('/assets/icon/icono-terminos.svg');
+    color: #f78319;
+    width: 18px;
+    height: 18px;
+  }
+  &[class*="custom-contact2"] {
+  	margin-right: 15px;
+    mask-image: url('/assets/icon/icono-contacto.svg');
+    color: #f78319;
+    width: 18px;
+    height: 18px;
+  }
+  &[class*="custom-support"] {
+  	margin-right: 15px;
+    mask-image: url('/assets/icon/icono-soporte.svg');
+    color: #f78319;
+    width: 18px;
+    height: 18px;
+  }
+}
+.icon-lang{
+  font-size: 20px;
+  margin-right: 13px;
+  color: #f78319;
+}
+.info-version{
+  text-align: center;
+  color: #4d4d4d;
+  font-size: 12px;
+  font-size: 10px;
+  font-family: "Muli-Regular";
+}

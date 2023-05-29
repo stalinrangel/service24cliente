@@ -1,17 +1,93 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
+<ion-header>
+  <ion-toolbar color="secondary" mode="md">
+    <ion-title class="ion-text-capitalize ion-text-center">
+      {{ 'HOME.title' | translate }}
     </ion-title>
+    <ion-buttons slot="end" (click)="viewNotification()">
+      <ion-button>
+        <div class="icon-bagde" *ngIf="show_notify"></div>
+        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="content-search" mode="md">
+    <ion-searchbar 
+    placeholder="{{ 'HOME.search' | translate }}" 
+    color="light" 
+    searchIcon="icono-lupa"
+    mode="md"
+    (ionFocus)="setSearch()"
+    id="input"
+    ></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button class="btn-search" (click)="goFilter()">
+        <ion-icon slot="icon-only" name="arrow-dropup" class="custom-filter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="ios-arrow-down"
+      pullingText="{{ 'LISORDER.swipe' | translate }}"
+      refreshingSpinner="dots"
+      class="refresh-content">
+    </ion-refresher-content>
+  </ion-refresher>
+  <!--div [hidden]="!showZone" id="showZ">
+    <div id="toast">
+      <div id="img">
+        <ion-icon name="arrow-dropup" class="custom-map"></ion-icon>
+      </div>
+      <div id="desc">zone</div>
+    </div>
+  </div-->
+  <div *ngIf="items" style="height: 100%">
+    <div class="category-card" *ngFor="let item of items" (click)="setCategory(item)">
+      <img [src]="item.imagen" class="img-logo">
+      <div class="content-title">
+        <div class="title-1">
+          <p  *ngIf="languages == 'es'">{{item.nombre}}  <ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon></p>
+          <p  *ngIf="languages == 'en'">{{item.ingles}}  <ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon></p>
+        </div>
+        <div class="triangle"></div>
+        <div class="title-2"></div>  
+      </div>
+    </div>
+    <p *ngIf="empty" class="text-empty">{{ 'HOME.empty' | translate }}</p>
+  </div> 
+  <div *ngIf="!items" style="height: 100%">
+    <div class="category-card">
+      <ion-skeleton-text animated class="img-logo" style="height: 100%;width: 100%;    margin: 0px;"></ion-skeleton-text>
+      <div class="content-title">
+        <div class="title-1">
+        </div>
+        <div class="triangle"></div>
+        <div class="title-2"></div>  
+      </div>
+    </div>
+    <div class="category-card">
+      <ion-skeleton-text animated class="img-logo" style="height: 100%;width: 100%;    margin: 0px;"></ion-skeleton-text>
+      <div class="content-title">
+        <div class="title-1">
+        </div>
+        <div class="triangle"></div>
+        <div class="title-2"></div>  
+      </div>
+    </div>
+    <div class="category-card">
+      <ion-skeleton-text animated class="img-logo" style="height: 100%;width: 100%;    margin: 0px;"></ion-skeleton-text>
+      <div class="content-title">
+        <div class="title-1">
+        </div>
+        <div class="triangle"></div>
+        <div class="title-2"></div>  
+      </div>
+    </div>
+  </div> 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="btn-help" (click)="goForm()">
+    {{ 'INIT.text1' | translate }}
+  </ion-fab>
 </ion-content>

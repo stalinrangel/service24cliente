@@ -12,46 +12,46 @@ export class CategoriesService {
   constructor(public http: HttpClient) { }
 
   /* GET categories */
-  getCategory(id): Observable<any>{
+  getCategory(id:any): Observable<any>{
     return this.http.get(`${environment.api}catprincipales/categorias?ciudad_id=`+id);
   }
 
   /* GET services */
-  getServices(id, zona_id): Observable<any>{
+  getServices(id:any, zona_id:any): Observable<any>{
     return this.http.get(`${environment.api}subcategorias/`+id+`/productos?zona_id=`+zona_id);
   }
 
   /* GET services en curso */
-  getTracking(id,token): Observable<any>{
+  getTracking(id:any,token:any): Observable<any>{
     return this.http.get(`${environment.api}usuarios/`+id+`/pedidos/encurso?token=`+token);
   }
 
   /* GET services en historial */
-  getHistory(id,token): Observable<any>{
+  getHistory(id:any,token:any): Observable<any>{
     return this.http.get(`${environment.api}usuarios/`+id+`/pedidos/finalizados?token=`+token);
   }
 
-  getProviders(zona_id): Observable<any>{
+  getProviders(zona_id:any): Observable<any>{
     return this.http.get(`${environment.api}productos?zona_id=`+zona_id);
   }
 
-  getDetailProviders(id): Observable<any>{
+  getDetailProviders(id:any): Observable<any>{
     return this.http.get(`${environment.api}productos/`+id);
   }
 
-  getFavorites(id): Observable<any>{
+  getFavorites(id:any): Observable<any>{
     return this.http.get(`${environment.api}favoritos/`+id);
   }
 
-  deleteFavorites(id): Observable<any>{
+  deleteFavorites(id:any): Observable<any>{
     return this.http.delete(`${environment.api}favoritos/`+id);
   }
 
-  addFavorites(data,token): Observable<any>{
+  addFavorites(data:any,token:any): Observable<any>{
     return this.http.post(`${environment.api}favoritos?token=`+token,data);
   }
 
-  checkFavorites(data,token): Observable<any>{
+  checkFavorites(data:any,token:any): Observable<any>{
     return this.http.post(`${environment.api}esfavoritos?token=`+token,data);
   }
 

@@ -15,7 +15,10 @@ const ITEMS_KEY = 'recent';
 
 export class StorageService {
 
-  constructor(private storage: Storage) { }
+  private storage= new Storage();
+  constructor() {
+    this.storage.create();
+  }
 
   /*addRecent(item: Item): Promise<any> {
     return this.storage.get(ITEMS_KEY).then((items: Item[]) => {

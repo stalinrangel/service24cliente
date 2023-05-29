@@ -13,6 +13,34 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'filter',
+    loadChildren: () => import('./filter/filter.module').then( m => m.FilterPageModule)
+  },
+  {
+    path: 'tutorial',
+    loadChildren: () => import('./tutorial/tutorial.module').then( m => m.TutorialPageModule)
+  },
+  {
+    path: 'language-alert',
+    loadChildren: () => import('./language-alert/language-alert.module').then( m => m.LanguageAlertPageModule)
+  },
+  {
+    path: 'calification',
+    loadChildren: () => import('./calification/calification.module').then( m => m.CalificationPageModule)
+  },
+  {
+    path: 'service-form',
+    loadChildren: () => import('./service-form/service-form.module').then( m => m.ServiceFormPageModule)
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  },
+  {
+    path: 'category',
+    loadChildren: () => import('./category/category.module').then( m => m.CategoryPageModule)
   }
 ];
 @NgModule({

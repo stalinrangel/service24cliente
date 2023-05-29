@@ -1,0 +1,167 @@
+.category-card{
+	position: relative;
+    display: block;
+    height: 33.33%;
+    min-height: 157px;
+}
+.category-card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.content-title{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    p{
+    	margin: 0px;
+        height: 100%;
+    	display: flex;
+    	align-items: center;
+    	font-weight: bold;
+    	font-size: 16px;
+    	color: #ffffff;
+        font-family: ('Montserrat-Bold');
+    }
+}
+.sc-ion-buttons-md-s .button-clear, .sc-ion-buttons-ios-h .button-clear{
+    background-color: var(--ion-color-secondary);
+    height: 40px;
+    border-radius: 2px;
+}
+.icon-arrow{
+	margin-left: 10px;
+    font-size: 22px;
+}
+.icon-notify{
+    margin-right: 12px;
+}
+.text-zone{
+    background-color: rgba(0, 122, 255, 0.7);
+    padding: 16px;
+    text-align: center;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+ion-icon {
+  &[class*="custom-"] {
+    mask-size: contain;
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    background: currentColor;
+    width: 30px;
+    height: 1em;
+  }
+  &[class*="custom-arrow"] {
+    mask-image: url('/assets/icon/icono-adelante.svg');
+  }
+  &[class*="custom-map"] {
+    color: #fff !important;
+    mask-image: url('/assets/icon/icono-locacion.svg');
+  }
+}
+.btn-help{
+    //position: fixed;
+    background-color: rgba(0, 122, 255, 0.85);
+    //bottom: 15px;
+    //right: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #fff;
+}
+#toast {
+    visibility: hidden;
+    max-width: 50px;
+    height: 50px;
+    margin: auto;
+    background-color: rgba(0, 122, 255, 0.7);
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    z-index: 1;
+    left: 0;right:0;
+    font-size: 17px;
+    white-space: nowrap;
+}
+#toast #img{
+    width: 50px;
+    height: 50px;
+    float: left;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    box-sizing: border-box;   
+    background-color: #007AFF;
+    color: #fff;
+}
+#toast #desc{ 
+    color: #fff; 
+    padding: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: "Montserrat-Bold";
+    font-size: 14px;
+    padding-right: 22px !important;
+}
+
+#toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 2s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 4s, fadeout 0.5s 4.5s;
+}
+
+#showZ.desc {
+    -webkit-animation: fadein 0.5s;
+    animation: fadein 0.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes expand {
+    from {min-width: 50px} 
+    to {min-width: 350px}
+}
+
+@keyframes expand {
+    from {min-width: 50px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes stay {
+    from {min-width: 350px} 
+    to {min-width: 350px}
+}
+
+@keyframes stay {
+    from {min-width: 350px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes shrink {
+    from {min-width: 350px;} 
+    to {min-width: 50px;}
+}
+
+@keyframes shrink {
+    from {min-width: 350px;} 
+    to {min-width: 50px;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 60px; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 60px; opacity: 0;}
+}

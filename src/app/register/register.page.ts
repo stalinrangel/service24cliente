@@ -3,6 +3,7 @@ import { NavController, AlertController, LoadingController, ToastController, Mod
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { StorageService } from '../../services/storage/storage.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 //import { OneSignal } from '@ionic-native/onesignal/ngx';
 //import { ZonesRegisterPage } from '../zones-register/zones-register.page';
 
@@ -37,7 +38,8 @@ export class RegisterPage implements OnInit {
     public storage: StorageService,
    // public event: Events,
     //private oneSignal: OneSignal,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private router: Router
   ) {	  
 	}
 
@@ -59,9 +61,9 @@ export class RegisterPage implements OnInit {
 		  rpassword: ['', [Validators.required]],
 		  check: [false],
 		  token_notificacion: [''],
-      zona: ['', [Validators.required]],
-      zona_id: ['', [Validators.required]],
-      pais_id: ['']
+      zona: ['1', [Validators.required]],
+      zona_id: ['1', [Validators.required]],
+      pais_id: ['1']
 		});
 		this.registerUserForm.valueChanges.subscribe(data => this.onValueChanged(data));
 		this.onValueChanged();
@@ -101,10 +103,12 @@ export class RegisterPage implements OnInit {
             if (this.registerUserForm.value.password !== this.registerUserForm.value.rpassword) {
               this.presentToast("Contraseñas no coinciden.");
             } else {
+              console.log('register')
               this.presentLoading();
               this.auth.register(this.registerUserForm.value).subscribe(
                 (success: any) => {
                   if (success) {
+                    console.log('exito')
                     this.loginR();
                   } else {
                     this.presentToast("Ha ocurrido un error al crear la cuenta.");
@@ -116,6 +120,7 @@ export class RegisterPage implements OnInit {
                   this.presentToast(error.error);
                 }
               );
+
             }
           } else {
             this.validateAllFormFields(this.registerUserForm);
@@ -129,10 +134,13 @@ export class RegisterPage implements OnInit {
 	}
 
   loginR(){
+    console.log('loginr')
     this.auth.login(this.registerUserForm.value).subscribe((allowed: any) => {
       if (allowed) {
+        console.log('allowed')
         this.loading.dismiss();
         this.presentAlert();
+        
       } else {
         this.loading.dismiss();
         this.presentToast("Accesso Denegado.");

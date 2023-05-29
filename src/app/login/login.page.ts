@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StorageService } from '../../services/storage/storage.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ObjectserviceService } from '../../services/objetcservice/objectservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -45,7 +46,8 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private objService: ObjectserviceService,
     //private googlePlus: GooglePlus,
-    //public events: Events
+    //public events: Events,
+    private router: Router
   ) {
   }
 
@@ -71,8 +73,11 @@ export class LoginPage implements OnInit {
           //this.loginUserForm.patchValue({token_notificacion: ids.userId});
           this.auth.login(this.loginUserForm.value).subscribe((allowed: any) => {
             if (allowed) {
+              console.log('exito')
               this.loading.dismiss();
-              //this.events.publish('userAuthSV24', 'userSV');        
+              this.router.navigate
+              //this.events.publish('userAuthSV24', 'userSV'); 
+              this.router.navigate(['/tabs/tab1']);       
               this.nav.pop();
             } else {
               this.loading.dismiss();
