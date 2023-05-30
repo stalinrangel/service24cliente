@@ -13,7 +13,7 @@ export class RelativeTimePipe implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */
-  transform(value: string, ...args) {
+  transform(value: string, ...args: any[]) {
   	if (value.toString().indexOf(' ') >= 0) {
   		let toArray = value.split(" ");	
   		let date = toArray[0].split("-");

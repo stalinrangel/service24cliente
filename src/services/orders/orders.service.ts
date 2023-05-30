@@ -12,32 +12,32 @@ export class OrdersService {
   constructor(public http: HttpClient) { }
 
   /* Post order */
-  setOrder(order): Observable<any>{
+  setOrder(order:any): Observable<any>{
     return this.http.post(`${environment.api}pedidos`,order);
   }
 
   /* Get detalle de pedido */
-  getOrderId(id,token): Observable<any>{
+  getOrderId(id:any,token:any): Observable<any>{
     return this.http.get(`${environment.api}pedidos/`+id+'?token='+token);
   }
 
   /* Put finalizar servicios */
-  finishService(id,data,token): Observable<any>{
+  finishService(id:any,data:any,token:any): Observable<any>{
     return this.http.put(`${environment.api}notificaciones/`+id+`/finalizar/pedido?token=`+token,data);
   }
 
   /* Enviar calificacion del servicio */
-  sendCalification(data,token): Observable<any>{
+  sendCalification(data:any,token:any): Observable<any>{
     return this.http.post(`${environment.api}calificaciones?token=`+token,data);
   }
 
   /* Cancelar servicio */
-  cancelOrder(data,id,token): Observable<any>{
+  cancelOrder(data:any,id:any,token:any): Observable<any>{
     return this.http.post(`${environment.api}cancelar_pedidos/`+id+`?token=`+token,data);
   }
 
   /* Obtener ubicación */
-  getPos(id,token): Observable<any>{
+  getPos(id:any,token:any): Observable<any>{
     return this.http.get(`${environment.api}rep_pos/`+id+`?token=`+token);
   }
 
