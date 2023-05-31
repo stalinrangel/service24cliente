@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'cliente.service24.app',
   appName: 'service24Clienes',
   webDir: 'www',
   server: {
