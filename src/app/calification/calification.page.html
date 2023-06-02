@@ -1,13 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>calification</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">calification</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content padding>
+	<ion-button class="btn-close" (click)="closeModal()">
+		<ion-icon slot="icon-only" name="close"></ion-icon>
+	</ion-button>
+	<h2 class="title-modal">¿Se completó la solicitud #{{Calification.pedido_id}} de manera satisfactoria?</h2>
+	<p class="info-modal">Por favor, deje una calificación para que sepamos cómo te sientes!</p>
+	<div class="rating-calification">
+		<rating [(ngModel)]="Calification.puntaje"
+		        size="small"
+		        (ngModelChange)="onModelChange($event)">
+		</rating>
+	</div>
+	<ion-item lines="none" class="item-info">
+	  <ion-textarea placeholder="Agrega un comentario..." [(ngModel)]="Calification.comentario" class="area-info" rows="3" cols="20"></ion-textarea>
+	</ion-item>
+	<ion-button expand="block" class="ion-text-capitalize btn-init" (click)="sendCalification()">Enviar</ion-button>
 </ion-content>

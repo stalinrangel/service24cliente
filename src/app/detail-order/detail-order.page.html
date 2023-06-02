@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="secondary" mode="md">
+  	<ion-buttons slot="start" class="icon-back" default-href="tabs">
+	   <ion-back-button text="" icon="md-arrow-back" mode="md">
+        </ion-back-button>
+	</ion-buttons>
+    <ion-title class="ion-text-capitalize ion-text-center">
+      {{ 'DETAILORDER.title' | translate }}
+    </ion-title>
+    <ion-buttons slot="end" (click)="viewNotification()">
+      <ion-button>
+      	<div class="icon-bagde" *ngIf="show_notify"></div>
+        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="content-profile">
+		<img src="{{provider.imagen}}">
+		<div class="content-info">
+			<p class="title">{{provider.nombre}}</p>
+			<p class="order">{{ 'DETAILORDER.order' | translate }} #{{data}}</p>
+			<p class="address" *ngIf="provider.producto_id != '1'"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> {{provider.direccion}}</p>
+		</div>
+	</div>
+	<div class="content-infoP">
+		<div #map1 id="map1" [hidden]="estado != 3 || encamino == 0"></div>
+		<p *ngIf="provider.producto_id != '1'"><span>{{ 'ORDER.for' | translate }}</span> {{provider.nombre}}</p>
+		<p *ngIf="provider.producto_id != '1'"><span>{{ 'DETAILORDER.category' | translate }}</span> {{provider.categoria}}</p>
+		<p *ngIf="provider.producto_id != '1'"><span>{{ 'ORDER.service' | translate }}</span> {{provider.servicio}}</p>
+		<p *ngIf="provider.producto_id != '1'"><span>{{ 'DETAILORDER.description' | translate }}</span> {{provider.descripcion}}</p>
+		<p><span>{{ 'DETAILORDER.date' | translate }}</span> {{provider.tiempo}} | {{provider.hora}}</p>
+		<p><span>{{ 'DETAILORDER.lug' | translate }}</span> {{provider.direccion}}</p>
+		<p *ngIf="provider.referencia != ''"><span>{{ 'DETAILORDER.obs' | translate }}</span> {{provider.referencia}}</p>
+		<p *ngIf="estado == 2"><span>{{ 'DETAILORDER.state' | translate }}</span> {{ 'DETAILORDER.pending' | translate }}</p>
+		<p *ngIf="estado == 3"><span>{{ 'DETAILORDER.state' | translate }}</span> {{ 'DETAILORDER.process' | translate }}</p>
+		<p *ngIf="estado == 4"><span>{{ 'DETAILORDER.state' | translate }}</span> {{ 'DETAILORDER.finish' | translate }}</p>
+		 
+		<p *ngIf="estado == 2 || estado == 3" (click)="chatPedidos(id)"><span>{{ 'DETAILORDER.chat' | translate }} {{provider.nombre}}  </span><ion-icon name="chatboxes" class="icon-callP icon-callP1"></ion-icon></p>
+
+		<div *ngIf="estado == 4 && provider.califico">
+			<p class="title-cal">{{ 'DETAILORDER.cali' | translate }}</p>
+			<div class="content-start">
+				<ion-icon md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [ngClass]="{'filled': i < provider.puntaje}"></ion-icon>
+			</div>
+			<p class="comment-cal">{{provider.comentario}}</p>	
+		</div> 
+	</div>
+	<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" (click)="addFavorite()" [hidden]="select">
+		<ion-icon slot="start" md="ios-star" ios="ios-star" class="icon-cal"></ion-icon>
+		<p>{{ 'DETAILORDER.addFav' | translate }}</p>
+	</ion-button>
+	<ion-button expand="block" class="ion-text-capitalize btn-init" *ngIf="estado == 3" (click)="presentConfirm()">{{ 'DETAILORDER.fin' | translate }}</ion-button>
+	<ion-button expand="block" class="ion-text-capitalize btn-init btn-init1" (click)="presentModal1()" *ngIf="estado == 2 || estado == 3">{{ 'DETAILORDER.cancel' | translate }}</ion-button>
+	<div *ngIf="estado == 4">
+		<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" *ngIf="!provider.califico" (click)="presentModal()">
+		<ion-icon slot="start" md="ios-star" ios="ios-star" class="icon-cal"></ion-icon>
+		<p>{{ 'DETAILORDER.califi' | translate }}</p>
+		</ion-button>
+	</div>	
+</ion-content>

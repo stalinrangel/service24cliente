@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SuccessOrderPageRoutingModule } from './success-order-routing.module';
+import { FavoritesPageRoutingModule } from './favorites-routing.module';
 
-import { SuccessOrderPage } from './success-order.page';
+import { FavoritesPage } from './favorites.page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
-    SuccessOrderPageRoutingModule,
+    FavoritesPageRoutingModule,
     TranslateModule
   ],
-  declarations: [SuccessOrderPage]
+  declarations: [FavoritesPage]
 })
-export class SuccessOrderPageModule {}
+export class FavoritesPageModule {}

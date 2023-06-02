@@ -64,7 +64,8 @@ export class OrderPage{
   	this.orderForm = this.builder.group({
 		lat: [null],
 		lng: [null],
-		direccion: ['', [Validators.required]],
+		//direccion: ['', [Validators.required]],
+		direccion: ['',],
 		referencia: [''],
 		distancia: [10],
 		tiempo: [moment().format(), [Validators.required]],
@@ -440,9 +441,10 @@ export class OrderPage{
 	};*/
 
 	sendOrder(){
+		console.log(this.orderForm)
 		if (this.orderForm.valid) {
-			this.orderForm.patchValue({lat: this.myLatLng.lat});
-			this.orderForm.patchValue({lng: this.myLatLng.lng});
+			//this.orderForm.patchValue({lat: this.myLatLng.lat});
+			//this.orderForm.patchValue({lng: this.myLatLng.lng});
 			this.orderForm.patchValue({created_at: moment().format()})
 			this.storage.getObject('userSV24').then(items => {
 		      if (items != '' && items != null) {
@@ -450,13 +452,14 @@ export class OrderPage{
 		      	this.storage.get('TUSV24').then(items2 => {
 			      if (items2 != '' && items2 != null) {
 			      	this.storage.getObject('ZONESV24').then(items3 => {
-				      if (items3 != '' && items3 != null) {
-				        let zone = items3;
-				        if (zone.id == '') {
-				          zone.id = 1000;
-				        }
+				      //if (items3 != '' && items3 != null) {
+					  if (true) {	
+				        let zone:any = items3;
+				        //if (zone.id == '') {
+				          //zone.id = 1000;
+				        //}
 				        this.presentLoadingWithOptions();
-				        this.orderForm.patchValue({zona_id: zone.id});
+				        this.orderForm.patchValue({zona_id: 1000});
 				      	this.orderForm.patchValue({token: items2});
 				      	this.orderService.setOrder(this.orderForm.value).subscribe(
 					        data => {

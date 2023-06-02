@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, ModalController, LoadingController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-success-order',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuccessOrderPage implements OnInit {
 
-  constructor() { }
+  constructor(
+  	private modalCtrl:ModalController,
+  ) { }
 
   ngOnInit() {
+  }
+
+  closeModal() {
+  	this.modalCtrl.dismiss();
   }
 
 }

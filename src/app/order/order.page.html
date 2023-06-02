@@ -21,7 +21,9 @@
 		<ion-item lines="none" class="item-info">
 			<ion-input value="Readonly" readonly value="{{ 'ORDER.for' | translate }} {{data.establecimiento.usuario.nombre}}" class="input-info"></ion-input>
 			<!--ion-icon slot="end" name="arrow-dropup" class="custom-contact1"></ion-icon-->
+			
 		</ion-item>
+
 		<ion-item lines="none" class="item-info">
 			<ion-input value="Readonly" readonly value="{{ 'ORDER.service' | translate }} {{category.nombre}}" class="input-info"></ion-input>
 		</ion-item>
@@ -29,11 +31,12 @@
 		  <ion-textarea placeholder="{{ 'ORDER.observations' | translate }}" formControlName="referencia" class="area-info" rows="4" cols="20"></ion-textarea>
 		</ion-item>
 		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.tiempo}">
-		  <ion-datetime display-format="DD/MM/YYYY" mode="ios" picker-format="DD MM YYYY" formControlName="tiempo" min="{{myDate}}" class="area-info" cancelText="{{ 'ORDER.cancel' | translate }}" doneText="{{ 'ORDER.accept' | translate }}"></ion-datetime>
+		  <ion-datetime presentation="date" mode="ios" picker-format="DD MM YYYY" formControlName="tiempo" min="{{myDate}}" class="area-info" cancelText="{{ 'ORDER.cancel' | translate }}" doneText="{{ 'ORDER.accept' | translate }}"></ion-datetime>
 		  <ion-icon slot="end" name="arrow-dropup" class="custom-calendar"></ion-icon>
 		</ion-item>
 		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.tiempo}">
-		  <ion-datetime display-format="hh:mm A" mode="ios" picker-format="hh mm A" formControlName="horaAux" class="area-info" cancelText="{{ 'ORDER.cancel' | translate }}" doneText="{{ 'ORDER.accept' | translate }}"></ion-datetime>
+			
+		  <ion-datetime presentation="time" mode="ios" picker-format="hh mm A" formControlName="horaAux" class="area-info" cancelText="{{ 'ORDER.cancel' | translate }}" doneText="{{ 'ORDER.accept' | translate }}"></ion-datetime>
 		  <ion-icon slot="end" name="time" class="icon-timer"></ion-icon>
 		</ion-item>
 		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.direccion}">

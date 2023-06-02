@@ -1,0 +1,29 @@
+ion-content{
+	--padding-end: 20px;
+    --padding-start: 20px;
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+}
+img{
+	height: 150px;
+    margin: auto;
+    display: block;
+    margin-top: 20vh;
+}
+.title{
+	color: #4d4d4d;
+    text-align: center;
+    font-size: 22px;
+}
+.info{
+	color: #4d4d4d;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+.btn-init{
+	--background: #007AFF;
+	width: 100%;
+  margin: 25px auto;
+  font-family: "Montserrat-Bold";
+}

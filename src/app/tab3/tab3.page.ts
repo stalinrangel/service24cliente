@@ -373,11 +373,11 @@ export class Tab3Page {
 	}
 
 	policy(){
-		this.navCtrl.navigateForward('/tabs/tab3/privacy-policy');
+		this.navCtrl.navigateForward('/privacy-policy');
 	}
 
 	terms(){
-		this.navCtrl.navigateForward('/tabs/tab3/terms-conditions');
+		this.navCtrl.navigateForward('/terms-conditions');
 	}
 
 	goFavourites(){

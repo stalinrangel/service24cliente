@@ -1,13 +1,7 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>success-order</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">success-order</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+	<img src="assets/icon/icono-confirmacion.svg">
+	<p class="title">{{ 'ORDER.succesTitle' | translate }}</p>
+	<p class="info">{{ 'ORDER.succesMsg' | translate }}</p>
+	<br>
+	<ion-button expand="block" class="ion-text-capitalize btn-init" (click)="closeModal()">OK</ion-button>	
 </ion-content>

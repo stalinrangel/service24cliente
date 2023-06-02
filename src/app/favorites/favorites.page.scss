@@ -1,0 +1,90 @@
+.item-info{
+	h2{
+		color: #000000;
+		font-size: 13px;
+		font-family: ('Montserrat-Bold');
+		overflow: hidden;
+	    white-space: nowrap;
+	    text-overflow: ellipsis;
+	}
+	.content-address{
+		display: flex;
+		margin: 0px 0px 3px;
+		.address{
+			font-family: "Montserrat-Medium";
+		    margin: 0px 0px;
+		    color: #4D4D4D;
+		    font-size: 11px;
+		    padding: 0px 16px 0px 0px;
+		    overflow: hidden;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		    flex: 1;
+		}
+		.distance{
+			color: #4D4D4D;
+			font-family: ('Muli-Regular');
+			font-size: 10px;
+			display: flex;
+    		align-items: baseline;
+    		ion-icon {
+    			margin-right: 3px;
+    			vertical-align: middle;
+    		}
+		}
+	}
+}
+.info{
+	font-family: ('Muli-Regular');
+	color: #4D4D4D;
+	font-size: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	line-height: 13px;
+	max-height: 39px;
+	height: 39px; 
+	-webkit-line-clamp: 3;
+	margin-right: 16px;
+	text-align: left;
+	/* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+}
+ion-icon {
+  &[class*="custom1-"] {
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    width: 11px;
+    height: 10px;
+    vertical-align: baseline;
+    color: transparent !important;
+  }
+  &[class*="custom1-map"] {
+  	background: url("/assets/icon/icono-locacion.svg") no-repeat 50% 50%;
+    background-size: contain;
+  }
+}
+ion-thumbnail{
+	width: 70px;
+	height: 70px;
+	margin-inline-end: 10px;
+}
+.custom-skeleton ion-skeleton-text {
+  line-height: 13px;
+}
+
+.custom-skeleton ion-skeleton-text:last-child {
+  margin-bottom: 5px;
+}
+.list-ios{
+    padding: 8px 0px;
+}
+.icon-delete{
+	font-size: 27px;
+    color: #ccc;
+}
+.btn-delete{
+	--background: transparent;
+}

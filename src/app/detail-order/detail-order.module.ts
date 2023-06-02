@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SuccessOrderPageRoutingModule } from './success-order-routing.module';
+import { DetailOrderPageRoutingModule } from './detail-order-routing.module';
 
-import { SuccessOrderPage } from './success-order.page';
+import { DetailOrderPage } from './detail-order.page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
-    SuccessOrderPageRoutingModule,
+    DetailOrderPageRoutingModule,
     TranslateModule
   ],
-  declarations: [SuccessOrderPage]
+  declarations: [DetailOrderPage]
 })
-export class SuccessOrderPageModule {}
+export class DetailOrderPageModule {}

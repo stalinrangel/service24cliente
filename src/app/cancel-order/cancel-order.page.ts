@@ -1,32 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController, ModalController, LoadingController, ToastController } from '@ionic/angular';
+import { NavController, ModalController, LoadingController, ToastController, Platform, ActionSheetController } from '@ionic/angular';
 import { OrdersService } from '../../services/orders/orders.service';
 import { StorageService } from '../../services/storage/storage.service';
 
+
 @Component({
-  selector: 'app-calification',
-  templateUrl: './calification.page.html',
-  styleUrls: ['./calification.page.scss'],
+  selector: 'app-cancel-order',
+  templateUrl: './cancel-order.page.html',
+  styleUrls: ['./cancel-order.page.scss'],
 })
-export class CalificationPage implements OnInit {
+export class CancelOrderPage implements OnInit {
 
-  public Calification = {
-    puntaje: 0,
+  public Cancel = {
     comentario: '',
-    imagen: null,
-    usuario_id: '',
-    tipo_usuario: 2,
-    pedido_id: '',
-    producto_id: '',
-    califique_a: '',
-    token: null,
-    califico: 2
-  } 
-  
+    finalizo: 2
+  }
   loading: any;
-  pedido_id: any;
-
   @Input() value: any;
+  id: any;
 
   constructor(
     public navCtrl: NavController,
@@ -34,32 +25,26 @@ export class CalificationPage implements OnInit {
     private loadingCtrl: LoadingController, 
     private toastCtrl: ToastController, 
     public orderService: OrdersService,
-    public storage: StorageService
+    public storage: StorageService,
+    public actionSheetController: ActionSheetController,
+    private platform: Platform
   ) { }
 
   ngOnInit() {
-    this.Calification.pedido_id = this.value.id;
-    this.Calification.usuario_id = this.value.usuario_id;
-    this.Calification.producto_id = this.value.productos[0].id;
-    this.Calification.califique_a = this.value.repartidor_id;
+    this.id = this.value.id;
   }
 
-  onModelChange(ev:any){
-    this.Calification.puntaje = ev;
-  }
-
-  sendCalification(){
-    if (this.Calification.puntaje == 0) {
-      this.presentToast('Debes asignar un puntaje para enviar la calificación.')
+  sendCancel(){
+    if (this.Cancel.comentario == '') {
+      this.presentToast('Debes agregar un motivo para cancelar el pedido.')
     } else {
       this.presentLoading();
       this.storage.get('TUSV24').then(items2 => {
-        if (items2 != '' && items2 != null) {
-          this.Calification.token = items2;
-          this.orderService.sendCalification(this.Calification,items2).subscribe(
+        if (items2) {
+          this.orderService.cancelOrder(this.Cancel,this.id,items2).subscribe(
             data => {
               this.loading.dismiss();
-              this.presentToast('¡Gracias por tu Calificación!');
+              this.presentToast('¡Pedido Cancelado con éxito!');
               this.value.close = 2;
               this.modalCtrl.dismiss(this.value.close);
             },
@@ -73,7 +58,7 @@ export class CalificationPage implements OnInit {
             }
           );
         }
-      });
+      }); 
     }
   }
 

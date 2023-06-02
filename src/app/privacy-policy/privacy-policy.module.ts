@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SuccessOrderPageRoutingModule } from './success-order-routing.module';
+import { PrivacyPolicyPageRoutingModule } from './privacy-policy-routing.module';
 
-import { SuccessOrderPage } from './success-order.page';
+import { PrivacyPolicyPage } from './privacy-policy.page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
-    SuccessOrderPageRoutingModule,
+    PrivacyPolicyPageRoutingModule,
     TranslateModule
   ],
-  declarations: [SuccessOrderPage]
+  declarations: [PrivacyPolicyPage]
 })
-export class SuccessOrderPageModule {}
+export class PrivacyPolicyPageModule {}

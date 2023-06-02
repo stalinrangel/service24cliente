@@ -28,6 +28,9 @@
 .btn-init{
 	--background: #007AFF;
 }
+.btn-init2{
+    margin: 10px 0px;
+}
 .btn-close{
 	--background: transparent;
     color: #808080;
@@ -36,11 +39,23 @@
     right: 0px;
     top: 0px;
 }
-.img-modal{
-	width: 100%;
-    height: 200px;
-    margin: 0px auto 15px;
+.img-service{
+    width: 80%;
+    margin: auto;
     display: block;
+    margin-bottom: 20px;
+    border-radius: 3px;
     object-fit: cover;
-    border-radius: 4px;
+}
+.icon-cal{
+    font-size: 18px;
+    margin-right: 10px;
+    top: -2px;
+    position: relative;
+}
+.actionCamera{
+  .action-sheet-group.sc-ion-action-sheet-md:last-child{
+    background-color: #fff !important;
+    --color: #000;
+  } 
 }

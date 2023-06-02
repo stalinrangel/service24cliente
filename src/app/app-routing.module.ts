@@ -61,6 +61,30 @@ const routes: Routes = [
   {
     path: 'success-order',
     loadChildren: () => import('./success-order/success-order.module').then( m => m.SuccessOrderPageModule)
+  },
+  {
+    path: 'detail-order',
+    loadChildren: () => import('./detail-order/detail-order.module').then( m => m.DetailOrderPageModule)
+  },
+  {
+    path: 'cancel-order',
+    loadChildren: () => import('./cancel-order/cancel-order.module').then( m => m.CancelOrderPageModule)
+  },
+  {
+    path: 'privacy-policy',
+    loadChildren: () => import('./privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+  },
+  {
+    path: 'terms-conditions',
+    loadChildren: () => import('./terms-conditions/terms-conditions.module').then( m => m.TermsConditionsPageModule)
+  },
+  {
+    path: 'favorites',
+    loadChildren: () => import('./favorites/favorites.module').then( m => m.FavoritesPageModule)
+  },
+  {
+    path: 'codepassword',
+    loadChildren: () => import('./codepassword/codepassword.module').then( m => m.CodepasswordPageModule)
   }
 ];
 @NgModule({
