@@ -4,20 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ServiceFormPageRoutingModule } from './service-form-routing.module';
+import { ConfirmInfoPageRoutingModule } from './confirm-info-routing.module';
 
-import { ServiceFormPage } from './service-form.page';
-import { TranslateModule } from '@ngx-translate/core';
+import { ConfirmInfoPage } from './confirm-info.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ServiceFormPageRoutingModule,
-    TranslateModule,
+    ConfirmInfoPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [ServiceFormPage]
+  declarations: [ConfirmInfoPage]
 })
-export class ServiceFormPageModule {}
+export class ConfirmInfoPageModule {}

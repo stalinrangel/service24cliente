@@ -6,13 +6,13 @@ import { environment } from '../../environments/environment';
 import * as moment from 'moment';
 
 export class ChatMessage {
-  id: string;
-  emisor_id: number;
-  userAvatar: string;
-  receptor_id: number;
-  created_at: number | string;
-  msg: string;
-  status: number;
+  id: any;
+  emisor_id: any;
+  userAvatar: any;
+  receptor_id: any;
+  created_at: any;
+  msg: any;
+  status: any;
 }
 
 export class UserInfo {
@@ -33,7 +33,7 @@ export class ChatServiceService {
 		console.log('Hello ChatServiceProvider Provider');
 	}
 
-	mockNewMsg(msg) {
+	mockNewMsg(msg:any) {
 	    const mockMsg: ChatMessage = {
 	      id: moment().format(),
 	      emisor_id: 2329382,
@@ -45,8 +45,8 @@ export class ChatServiceService {
 	    };
 	}
 
-	getMsgList(chat_id): Observable<ChatMessage[]> {
-		return Observable.create(observer => {
+	getMsgList(chat_id:any): Observable<ChatMessage[]> {
+		return Observable.create((observer: { next: (arg0: any) => void; complete: () => void; error: (arg0: any) => void; }) => {
 			this.storage.get('TUSV24').then(items => {
 	  			if (items != '' && items != null) {
 	  				this.http.get(`${environment.api}chats/clientes/`+chat_id+`?token=`+items)
@@ -70,9 +70,9 @@ export class ChatServiceService {
  		});
 	}
 
-	getMsgListP(chat_id): Observable<ChatMessage[]> {
+	getMsgListP(chat_id:any): Observable<ChatMessage[]> {
 		console.log(chat_id); 
-		return Observable.create(observer => {
+		return Observable.create((observer: { next: (arg0: any) => void; complete: () => void; error: (arg0: any) => void; }) => {
 			this.storage.get('TUSV24').then(items => {
 	  			if (items != '' && items != null) {
 	  				this.http.get(`${environment.api}chats/pedidos/`+chat_id+`?token=`+items)
@@ -102,7 +102,7 @@ export class ChatServiceService {
 		.then(() => this.mockNewMsg(msg));
 	}
 
-	getUserInfo(usuario): Promise<UserInfo> {
+	getUserInfo(usuario:any): Promise<UserInfo> {
 		const userInfo: UserInfo = {
 		  id: usuario.id,
 		  avatar: usuario.imagen

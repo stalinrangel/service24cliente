@@ -4,20 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ServiceFormPageRoutingModule } from './service-form-routing.module';
+import { ContrasenaPageRoutingModule } from './contrasena-routing.module';
 
-import { ServiceFormPage } from './service-form.page';
-import { TranslateModule } from '@ngx-translate/core';
+import { ContrasenaPage } from './contrasena.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ServiceFormPageRoutingModule,
-    TranslateModule,
+    ContrasenaPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [ServiceFormPage]
+  declarations: [ContrasenaPage]
 })
-export class ServiceFormPageModule {}
+export class ContrasenaPageModule {}

@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="secondary" mode="md">
+  	<ion-buttons slot="start" class="icon-back" default-href="tabs">
+	   <ion-back-button text="" icon="md-arrow-back" mode="md">
+        </ion-back-button>
+	</ion-buttons>
+    <ion-title class="ion-text-capitalize ion-text-center">
+      {{ 'SEARCH.title' | translate }}
+    </ion-title>
+    <ion-buttons slot="end" (click)="viewNotification()">
+      <ion-button>
+        <div class="icon-bagde" *ngIf="show_notify"></div>
+        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="content-search" mode="md">
+    <ion-searchbar 
+    placeholder="{{ 'SEARCH.search' | translate }}" 
+    color="light" 
+    searchIcon="icono-lupa"
+    mode="md"
+    autocomplete
+    [(ngModel)]="searchTerm"
+    (ionFocus)="setSearch()"
+    (ionClear)="setSearch()"
+    (ionChange)="setFilteredItems()"
+    #textSearch>
+    </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button class="btn-search" (click)="goFilter()">
+        <ion-icon slot="icon-only" name="arrow-dropup" class="custom-filter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-list #mylist [hidden]="searching">
+    <ion-item-sliding *ngFor="let item of items" class="slide-history" no-padding>
+      <ion-item class="item-history">
+        <ion-label>
+          <p class="title-history" (click)="setHistory(item)">{{ item.title }}</p>
+          <p text-right class="date-history" (click)="setHistory(item)">{{ item.modified | date:'short'}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteItem(item)"><ion-icon md="md-close" ios="md-close" style="font-size: 20px;"></ion-icon></ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+   </ion-list>
+   <div [hidden]="!searching">
+      <p class="item-result" *ngIf="results > 1">{{results}} {{ 'SEARCH.results' | translate }}</p>
+      <p class="item-result" *ngIf="results == 1">{{results}} {{ 'SEARCH.result' | translate }}</p>
+      <ion-list>
+        <ion-item lines="full" *ngFor="let itemd of item" (click)="setProvider(itemd)" [hidden]="itemd.id == 1 || itemd.status == 4 || itemd.establecimiento.usuario == null">
+          <ion-thumbnail slot="start">
+            <img *ngIf="itemd.establecimiento.usuario != null" src="{{itemd.imagen}}">
+            <img *ngIf="itemd.establecimiento.usuario == null" src="{{itemd.imagen}}">
+          </ion-thumbnail>
+          <ion-label class="item-info">
+            <h2>{{itemd.establecimiento.nombre}}</h2>
+            <h2 style="font-size: 11px;color: #4d4d4d;">{{itemd.nombre}}</h2>
+            <ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [ngClass]="{'filled': i < itemd.promedio_calificacion}"></ion-icon>
+            <div class="content-address">
+              <p class="address"><ion-icon name="arrow-dropup" class="custom1-map"></ion-icon> {{itemd.establecimiento.direccion}}</p>
+              <p class="distance"><ion-icon md="md-locate" ios="md-locate"></ion-icon> {{itemd.distance}} km</p>
+            </div>
+            <div class="content-desp">
+              <p text-wrap class="info">{{itemd.descripcion}}</p>
+              <p *ngIf="itemd.status == 1" class="status-disp">Disponible</p>
+              <p *ngIf="itemd.status == 2" class="status-nodisp">No Disponible</p>
+            </div>
+          </ion-label>
+        </ion-item>
+        <p *ngIf="item.length == 0" class="text-empty">{{ 'SEARCH.empty' | translate }}</p>
+      </ion-list>
+   </div>
+</ion-content>

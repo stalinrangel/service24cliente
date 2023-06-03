@@ -1,0 +1,24 @@
+<ion-content>
+	<div pager="true" >
+	    <div class="slide-1">
+	    	<img src="assets/logo_color.svg" class="img-logo">
+	    	<div class="content-text ion-text-center" padding>
+	    		<h2>{{ 'INIT.title1' | translate }}</h2>
+		    	<p class="info-page">{{ 'INIT.info1' | translate }}</p>
+		      	<ion-button expand="block" color="secondary" class="ion-text-capitalize btn-init" (click)="navHome()">{{ 'INIT.btn1' | translate }}</ion-button>
+		      	<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" (click)="nextSlide()">{{ 'INIT.text1' | translate }}</ion-button>
+	    	</div>  	
+	    </div>
+
+	    <div class="slide-2">
+	    	<img src="assets/logo_color.svg" class="img-logo">
+	    	<div class="content-text ion-text-center" padding>
+	    		<h2>{{ 'INIT.text1' | translate }}</h2>
+		    	<p class="info-page">{{ 'INIT.info2' | translate }}</p>
+		      	<ion-button expand="block" color="secondary" class="ion-text-capitalize btn-init" (click)="navForm()">{{ 'INIT.btn2' | translate }}</ion-button>
+		      	<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" (click)="prevSlide()">{{ 'INIT.title1' | translate }}</ion-button>
+	    	</div>  	
+	    </div>
+	</div>
+
+</ion-content>

@@ -85,6 +85,42 @@ const routes: Routes = [
   {
     path: 'codepassword',
     loadChildren: () => import('./codepassword/codepassword.module').then( m => m.CodepasswordPageModule)
+  },
+  {
+    path: 'chat-blog',
+    loadChildren: () => import('./chat-blog/chat-blog.module').then( m => m.ChatBlogPageModule)
+  },
+  {
+    path: 'chat-pedidos',
+    loadChildren: () => import('./chat-pedidos/chat-pedidos.module').then( m => m.ChatPedidosPageModule)
+  },
+  {
+    path: 'chat-support',
+    loadChildren: () => import('./chat-support/chat-support.module').then( m => m.ChatSupportPageModule)
+  },
+  {
+    path: 'confirm-info',
+    loadChildren: () => import('./confirm-info/confirm-info.module').then( m => m.ConfirmInfoPageModule)
+  },
+  {
+    path: 'contrasena',
+    loadChildren: () => import('./contrasena/contrasena.module').then( m => m.ContrasenaPageModule)
+  },
+  {
+    path: 'list-blog',
+    loadChildren: () => import('./list-blog/list-blog.module').then( m => m.ListBlogPageModule)
+  },
+  {
+    path: 'search-filter',
+    loadChildren: () => import('./search-filter/search-filter.module').then( m => m.SearchFilterPageModule)
+  },
+  {
+    path: 'seinit-service',
+    loadChildren: () => import('./seinit-service/seinit-service.module').then( m => m.SeinitServicePageModule)
+  },
+  {
+    path: 'zones-register',
+    loadChildren: () => import('./zones-register/zones-register.module').then( m => m.ZonesRegisterPageModule)
   }
 ];
 @NgModule({

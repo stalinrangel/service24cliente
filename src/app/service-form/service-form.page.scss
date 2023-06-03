@@ -1,0 +1,135 @@
+ion-content{
+    --background: var(--ion-color-secondary);
+  }
+  .content-img{
+    text-align: center;
+    img{
+      height: 150px;
+      display: block;
+      margin: auto;
+    }
+  }
+  .content-div{
+      padding: 20px;
+  }
+  .input-info{
+      color: #4D4D4D;
+    border-radius: 4px;
+    height: 45px;
+    font-family: "Muli-Regular";
+    text-overflow: ellipsis;
+    font-size: 15px;
+  }
+  .area-info{
+      color: #4D4D4D;
+      border-radius: 4px;
+      font-family: "Muli-Regular";
+      --padding-start: 0px;
+      font-size: 15px;
+  }
+  .datetime-text{
+      color: #4D4D4D;
+      font-size: 15px;	
+  }
+  .label-select{
+    font-family: "Muli-Regular";
+    overflow: visible !important;
+    font-size: 15px;
+    opacity: 0.5;
+    color: rgb(77, 77, 77);
+    font-weight: 500;
+    position: absolute;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+  }
+  .item-info{
+      --background: #FFF;
+    --border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  #map{
+      height: 250px;
+      width: 100%;
+      opacity: 1;
+      transition: opacity 150ms ease-in;
+      display: block;
+      position: relative !important;
+    margin-bottom: 20px;
+  }
+  .btn-register{
+    --box-shadow: 0 3px 1px -2px rgba(255,255,255,0.2),0 2px 2px 0 rgba(255,255,2555,0.14),0 1px 5px 0 rgba(255,255,255,0.12) !important;
+      border-width: 1px;
+      border-color: rgba(255, 255, 255, 0.20);
+      border-style: solid;
+      border-radius: 3px;
+  }
+  .link-login{
+    margin-top: 40px;
+    font-family: 'Montserrat-Bold';
+  }
+  ion-icon {
+    &[class*="custom-"] {
+      mask-size: contain;
+      mask-position: 50% 50%;
+      mask-repeat: no-repeat;
+      background: currentColor;
+      width: 1em;
+      height: 1em;
+    }
+  
+    &[class*="custom-contact1"] {
+        font-size: 20px !important;
+        color: var(--ion-color-secondary) !important;
+      mask-image: url('/assets/icon/icono-contactos.svg');
+    }
+    &[class*="custom-calendar"] {
+        font-size: 20px !important;
+        color: var(--ion-color-secondary) !important;
+      mask-image: url('/assets/icon/icono-calendario.svg');
+    }
+    &[class*="custom-map"] {
+        font-size: 20px !important;
+        color: var(--ion-color-secondary) !important;
+      mask-image: url('/assets/icon/icono-locacion.svg');
+    }
+  }
+  .pac-container {
+    z-index: 10000;
+    pointer-events: auto;
+    box-shadow: none;
+  }
+  .danger{
+    border: 2px solid #B71C1C;
+    border-radius: 3px;
+  }
+  .content-icon{
+    background-color: #FFF;
+  }
+  .icon-timer{
+    font-size: 20px;
+    color: #d8692e;
+  }
+  .content-map{
+    position: relative;
+  }
+  .icon-location{
+    color: #fff;
+    background-color: #007AFF;
+    border-radius: 50%;
+    padding: 8px;
+    font-size: 20px;
+    position: absolute;
+    z-index: 99999;
+    right: 12px;
+    top: 15px;
+  }
+  .icon-back{
+    position: absolute;
+    top: 40px;
+    left: 10px;
+  }
+  .sc-ion-buttons-md-s .button-clear, .sc-ion-buttons-ios-s .button-clear{
+    --color: #ffffff;
+  }
