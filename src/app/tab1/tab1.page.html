@@ -14,14 +14,14 @@
     <ion-searchbar 
     placeholder="{{ 'HOME.search' | translate }}" 
     color="light" 
-    searchIcon="icono-lupa"
-    mode="md"
+    
+    mode="ios"
     (ionFocus)="setSearch()"
     id="input"
     ></ion-searchbar>
     <ion-buttons slot="end">
-      <ion-button class="btn-search" (click)="goFilter()">
-        <ion-icon slot="icon-only" name="arrow-dropup" class="custom-filter"></ion-icon>
+      <ion-button color="icons" class="btn-search" (click)="goFilter()">
+        <ion-icon slot="icon-only" name="filter"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

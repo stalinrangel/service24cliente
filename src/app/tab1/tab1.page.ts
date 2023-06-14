@@ -77,10 +77,10 @@ export class Tab1Page {
         //x.className = "show";
         var y:any = document.getElementById("showZ");
         setTimeout(()=>{ 
-          x.className = x.className.replace("show", ""); 
+          //x.className = x.className.replace("show", ""); 
           setTimeout(()=>{ 
             this.zonen.run(()=>{  
-              y.className = "desc";
+              //y.className = "desc";
               this.showZone = false; 
             })
           });  

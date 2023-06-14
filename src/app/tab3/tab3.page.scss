@@ -22,7 +22,7 @@ ion-title{
 	}
 }
 .item-blue{
-	border-radius: 2px;
+	border-radius: 50em;
     font-size: 11px;
     width: 95%;
     margin: auto;
@@ -32,9 +32,10 @@ ion-title{
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
 }
 .item-org{
-	border-radius: 2px;
+	border-radius: 50em;
     font-size: 11px;
     width: 95%;
     margin: auto;
@@ -44,6 +45,7 @@ ion-title{
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
 }
 .title-menu{
 	font-family: ('Roboto');

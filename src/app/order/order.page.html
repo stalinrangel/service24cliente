@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary" mode="md">
   	<ion-buttons slot="start" class="icon-back" default-href="tabs">
-	   <ion-back-button text="" icon="md-arrow-back" mode="md">
+	   <ion-back-button text="" icon="chevron-back-sharp" mode="md">
         </ion-back-button>
 	</ion-buttons>
     <ion-title class="ion-text-capitalize ion-text-center">
@@ -31,12 +31,11 @@
 		  <ion-textarea placeholder="{{ 'ORDER.observations' | translate }}" formControlName="referencia" class="area-info" rows="4" cols="20"></ion-textarea>
 		</ion-item>
 		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.tiempo}">
-		  <ion-datetime presentation="date" mode="ios" picker-format="DD MM YYYY" formControlName="tiempo" min="{{myDate}}" class="area-info" cancelText="{{ 'ORDER.cancel' | translate }}" doneText="{{ 'ORDER.accept' | translate }}"></ion-datetime>
-		  <ion-icon slot="end" name="arrow-dropup" class="custom-calendar"></ion-icon>
+		  <ion-datetime-button presentation="date" displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" datetime="tiempo" mode="ios" class="area-info"></ion-datetime-button>
+			<ion-icon slot="end" name="arrow-dropup" class="custom-calendar"></ion-icon>
 		</ion-item>
 		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.tiempo}">
-			
-		  <ion-datetime presentation="time" mode="ios" picker-format="hh mm A" formControlName="horaAux" class="area-info" cancelText="{{ 'ORDER.cancel' | translate }}" doneText="{{ 'ORDER.accept' | translate }}"></ion-datetime>
+			<ion-datetime-button presentation="time" displayFormat="hh:mm A" pickerFormat="hh mm A" datetime="horaAux" mode="ios" class="area-info"></ion-datetime-button>
 		  <ion-icon slot="end" name="time" class="icon-timer"></ion-icon>
 		</ion-item>
 		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.direccion}">
@@ -52,5 +51,20 @@
 			<div #map id="map"></div>
 		</div>
 		<ion-button expand="block" class="ion-text-capitalize btn-init" (click)="sendOrder()">{{ 'ORDER.submit' | translate }}</ion-button>	
+		
+		<ion-modal [keepContentsMounted]="true">
+			<ng-template>
+				<ion-datetime presentation="date" id="tiempo" displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY" formControlName="tiempo"></ion-datetime>
+			</ng-template>
+		</ion-modal>
+
+		<ion-modal [keepContentsMounted]="true">
+			<ng-template>
+				<ion-datetime presentation="time" id="horaAux" displayFormat="hh:mm A" pickerFormat="hh mm A" formControlName="horaAux"></ion-datetime>
+			</ng-template>
+		</ion-modal>
+	
 	</form>
 </ion-content>
+
+

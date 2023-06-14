@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary" mode="md">
   	<ion-buttons slot="start" class="icon-back" default-href="tabs">
-	   <ion-back-button text="" icon="md-arrow-back" mode="md">
+	   <ion-back-button text="" icon="chevron-back-sharp" mode="md">
         </ion-back-button>
 	</ion-buttons>
     <ion-title class="ion-text-capitalize ion-text-center">
@@ -18,7 +18,7 @@
     <ion-searchbar 
     placeholder="{{ 'FAVORITES.search' | translate }}" 
     color="light" 
-    searchIcon="icono-lupa"
+    
     mode="md"
     [(ngModel)]="searchTerm"
     (ionChange)="setFilteredItems()"
