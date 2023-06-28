@@ -12,6 +12,14 @@ export class UserService {
 
   constructor(public http: HttpClient, public storage: StorageService) { }
 
+  
+  /* GET direcciones desde lat y lng */
+  getDirections(lat:any,lng:any): Observable<any>{
+    const apiKey = environment.maps;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
+    return this.http.get(url);
+  }
+
   /* GET datos contacto */
   getContact(pais:any): Observable<any>{
     return this.http.get(`${environment.api}sistema/contacto?pais_id=`+pais);

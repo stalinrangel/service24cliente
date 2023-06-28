@@ -39,7 +39,7 @@
 		  <ion-icon slot="end" name="time" class="icon-timer"></ion-icon>
 		</ion-item>
 		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.direccion}">
-			<ion-input id="places" class="input-info" formControlName="direccion" ></ion-input>
+			<ion-input id="pac-input" class="input-info" formControlName="direccion"  (blur)="ver(0)"></ion-input>
 			<ion-icon slot="end" name="arrow-dropup" class="custom-map"></ion-icon>
 		</ion-item>
 		<div class="content-map">
@@ -48,7 +48,10 @@
 				<p class="ok-map" (click)="showInfoMap=!showInfoMap">OK</p>
 			</div>
 			<ion-icon md="md-locate" ios="md-locate" class="icon-location" ></ion-icon>
-			<div #map id="map"></div>
+			<!--div #map id="map"></div-->
+			<div>
+  				<capacitor-google-map #map></capacitor-google-map>
+			</div>
 		</div>
 		<ion-button expand="block" class="ion-text-capitalize btn-init" (click)="sendOrder()">{{ 'ORDER.submit' | translate }}</ion-button>	
 		
