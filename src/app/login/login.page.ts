@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
     private objService: ObjectserviceService,
     //private googlePlus: GooglePlus,
     //public events: Events,
-    private router: Router
+    private router: Router,
   ) {
   }
 
@@ -77,8 +77,9 @@ export class LoginPage implements OnInit {
               this.loading.dismiss();
               this.router.navigate
               //this.events.publish('userAuthSV24', 'userSV'); 
+              
               this.router.navigate(['/tabs/tab1']);       
-              this.nav.pop();
+              //this.nav.pop();
             } else {
               this.loading.dismiss();
               this.presentToast("Accesso Denegado.");

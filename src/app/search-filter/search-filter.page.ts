@@ -78,8 +78,21 @@ export class SearchFilterPage implements OnInit {
   }
 
   loadItems() {
+    /*this.catService.getCategory('1').subscribe(
+      resp => {
+        console.log(resp)
+       
+        //this.item = resp.catprincipales;        
+      },
+      error => {       
+        console.log(error);
+        this.item = [];
+       
+      }
+  );*/
     this.storageService.get('recent').then(items => {
       this.items = items;
+      console.log(items)
       if (this.items) {
         this.items = this.sortByKey(this.items,'modified');
       }   
@@ -94,34 +107,37 @@ export class SearchFilterPage implements OnInit {
   }
 
   initOrder(){
-    this.storage.getObject('ZONESV24').then(items => {
-      if (items != '' && items != null) {
-        this.zone = items;
+    //this.storage.getObject('ZONESV24').then(items => {
+     // if (items != '' && items != null) {
+       /* this.zone = items;
         if (this.zone.id == '') {
           this.zone.id = 1000;
-        }
-        this.presentLoading();
+        }*/
+        //this.presentLoading();
+        console.log('initOrder')
         this.item = [];
-        this.catService.getProviders(this.zone.id).subscribe(
+        this.catService.getProviders('1').subscribe(
           data => {
-            this.loading.dismiss();
-            this.datos = data;
+            //this.loading.dismiss();
+            console.log(data)
+            this.datos = data.productos;
             this.getCurrentPosition();
           },
           msg => { 
-            this.loading.dismiss();    
+            //this.loading.dismiss();    
           }
         );
-      }
-    });
+      //}
+   // });
   }
 
   setFilteredItems() {
     this.searching = true;
-    this.item = this.data;
+    this.item = this.datos;
     let val = this.searchTerm;
     if (val && val.trim() != '') {
-      if (this.data.length > 0) {
+      console.log(this.datos)
+      if (this.datos.length > 0) {
         this.zoneN.run(()=>{
           this.item = this.item.filter((item: { nombre: string; nombre1: string; descripcion: string; descripcion1: string; establecimiento: { nombre: string; nombre1: string; direccion: string; direccion1: string; }; subcategoria: { nombre: string; nombre1: string; categoria: { nombre: string; nombre1: string; }; }; }) => {
             if (item.nombre) {

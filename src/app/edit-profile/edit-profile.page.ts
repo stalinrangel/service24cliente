@@ -8,6 +8,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 //import { File } from '@ionic-native/file/ngx';
 //import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { UserService } from '../../services/user/user.service';
+import { Camera, CameraResultType } from '@capacitor/camera'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -30,7 +32,7 @@ export class EditProfilePage implements OnInit {
 		'email': ''
 	};
 	public lastImage: any = null;
-	public image_user: string = 'assets/profile-general.png';
+	public image_user: any = 'assets/profile-general.png';
 	public image_uploads = {
 		imagen: '',
 		token: ''
@@ -52,7 +54,8 @@ export class EditProfilePage implements OnInit {
 		private toastController: ToastController,
 		public loadingController: LoadingController,
 		public userService: UserService,
-		//public event: Events
+		//public event: Events,
+		private router: Router
 	) { 
 	}
 
@@ -110,18 +113,19 @@ export class EditProfilePage implements OnInit {
 	    const actionSheet = await this.actionSheetController.create({
 	      header: 'Seleccione una Imagen',
 	      buttons: [{
-	        text: 'Cargar de Librería',
+	        text: 'Cargar Imagen',
 	        icon: 'images',
 	        handler: () => {
 	         // this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+			 this.takePicture();
 	        }
-	      }, {
+	      }, /*{
 	        text: 'Usar Camara',
 	        icon: 'camera',
 	        handler: () => {
 	         // this.takePicture(this.camera.PictureSourceType.CAMERA);
 	        }
-	      }, {
+	      }, */{
 	        text: 'Cancelar',
 	        icon: 'close',
 	        role: 'cancel',
@@ -132,8 +136,49 @@ export class EditProfilePage implements OnInit {
 	    });
 	    await actionSheet.present();
 	}
+	public imagen:any='';
+	takePicture = async () => {
+		console.log('entro')
+		const image = await Camera.getPhoto({
+		quality: 70,
+		allowEditing: false,
+		resultType: CameraResultType.Uri
+		});
+		
+		var imageUrl = image.webPath;
+		this.imagen = imageUrl;
+		this.image_user=imageUrl;
+		console.log(this.imagen);
+		this.startUpload(image);
+		};
+		
+		async startUpload(file:any) {
+		let blob = await fetch(file.webPath).then(r => r.blob());
+		const formData = new FormData();
+		formData.append('file', blob, Date.now().toString() );
+		this.uploadData(formData, file);
+		}
+		
+		uploadData(formData: FormData, file:any) {
+		this.userService.subir_imagen(formData).subscribe((response:any)=>{
+		console.log(response)
+		//this.editPhoto(response);
+		}, (err:any)=>{
+		console.log(err.error.text)
+		this.userForm.patchValue({imagen: err.error.text});
+		this.storage.getObject('userSV24').then(items => {
+			if (items != '' && items != null) {
+				items.imagen=err.error.text;
+				this.storage.set('userSV24',items);
+				
+			}
+		  });
+		this.editProfile();
+		
+		});
+		}
 
-	public takePicture(sourceType: any) {
+	public takePicture2(sourceType: any) {
 	  // Create options for the Camera Dialog
 	  var options = {
 	    quality: 60,
@@ -228,6 +273,7 @@ export class EditProfilePage implements OnInit {
 	}
 
 	editProfile(){
+		
 		this.userForm.patchValue({email: this.userForm.value.email.toLowerCase()});
 	    if (this.userForm.valid) {
 			this.presentLoading();
@@ -252,7 +298,11 @@ export class EditProfilePage implements OnInit {
 						    this.loading.dismiss();
 						    //this.event.publish('userAuthSV24', 'userSV');
 						    this.presentToast('Perfil actualizado con éxito.');
-						    this.navCtrl.pop();      
+							setTimeout(() => {
+								this.objService.setUser(items);
+							  }, 2000);
+						    this.navCtrl.pop();
+							
 				        },
 				        msg => {
 				        	this.loading.dismiss();
@@ -298,6 +348,11 @@ export class EditProfilePage implements OnInit {
 		    });
 		  }
 	    });		
+	}
+
+	atras(){
+		
+		this.router.navigate(['/tabs/tab3']);         
 	}
 
 	async presentToast(text:any) {

@@ -25,8 +25,9 @@ export class PrivacyPolicyPage implements OnInit {
 
   	getInfo(){
   		this.storage.getObject('ZONESV24').then(items => {
-	      if (items != '' && items != null) {
-	        this.userService.getPolice(items.pais_id).subscribe(
+	      //if (items != '' && items != null) {
+		 if (true) {
+	        this.userService.getPolice('items.pais_id').subscribe(
 		        data => {
 		        	console.log(data);
 		        	this.datos = data;

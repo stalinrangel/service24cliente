@@ -25,8 +25,10 @@ export class TermsConditionsPage implements OnInit {
 
   	getInfo(){
 	    this.storage.getObject('ZONESV24').then(items => {
-	      if (items != '' && items != null) {
-	        this.userService.getTerminos(items.pais_id).subscribe(
+	      //if (items != '' && items != null) {
+		 if (true) {
+	        //this.userService.getTerminos(items.pais_id).subscribe(
+			this.userService.getTerminos('1').subscribe(
 		        data => {
 		        	console.log(data);
 		        	this.datos = data;

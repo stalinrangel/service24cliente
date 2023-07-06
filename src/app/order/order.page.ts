@@ -17,6 +17,8 @@ import { environment } from '../../environments/environment';
 import * as moment from 'moment';
 import { UserService } from 'src/services/user/user.service';
 
+declare var google:any;
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.page.html',
@@ -24,7 +26,7 @@ import { UserService } from 'src/services/user/user.service';
 })
 export class OrderPage{
 
-  map: any;
+  
 	markers: any[] = [];
 	waypoints: any[] = [];
 	refresh: boolean = true;
@@ -45,9 +47,7 @@ export class OrderPage{
 	public show_notify: boolean = false;
 
 
-	@ViewChild('map')
-  	mapRef:any= ElementRef<HTMLElement>;
-  	newMap:any= GoogleMap;
+	map:any;
 	autocomplete:any;
 
   constructor(
@@ -135,61 +135,12 @@ export class OrderPage{
 	}
 
 	async createMap() {
-		console.log(environment.api)
-		this.newMap = await GoogleMap.create({
-		  id: 'my-cool-map',
-		  element: this.mapRef.nativeElement,
-		  apiKey: environment.maps,
-		  config: {
-			center: {
-			  lat: environment.lat,
-			  lng: environment.lng,
-			},
-			zoom: 15,
-		  },
+		const { Map } = await google.maps.importLibrary("maps");
+
+		this.map = new Map(document.getElementById("map"), {
+		center: { lat: environment.lat, lng: environment.lng },
+		zoom: 8,
 		});
-	
-		  const center = {  lat: environment.lat, lng: environment.lng, };
-		  // Create a bounding box with sides ~10km away from the center point
-		  const defaultBounds = {
-			north: center.lat + 0.1,
-			south: center.lat - 0.1,
-			east: center.lng + 0.1,
-			west: center.lng - 0.1,
-		  };
-		  const input = document.getElementById("pac-input") as HTMLInputElement;
-		  const options = {
-			bounds: defaultBounds,
-			componentRestrictions: { country: "uy" },
-			fields: ["address_components", "geometry", "icon", "name"],
-			strictBounds: true,
-			types: ["geocode"],
-		  };
-	
-		  let hasDownBeenPressed = false;
-	
-		  this.autocomplete = new google.maps.places.Autocomplete(input, options);
-	  
-		  input.addEventListener('keydown', (e) => {
-			if (e.keyCode === 40) {
-				hasDownBeenPressed = true;
-			}
-		  });
-		  google.maps.event.addDomListener(input, 'keydown', (e:any) => {
-			  e.cancelBubble = true;
-			  if (e.keyCode === 13 || e.keyCode === 9) {
-				  if (!hasDownBeenPressed && !e.hasRanOnce) {
-					  google.maps.event.trigger(e.target, 'keydown', {
-						  keyCode: 40,
-						  hasRanOnce: true,
-					  });
-				  }
-			  }
-		  });
-		  input.addEventListener('focus', () => {
-			  hasDownBeenPressed = false;
-			  input.value = '';
-		  });
 	  }
 	
 	  ver(i:any){
@@ -215,8 +166,8 @@ export class OrderPage{
 	
 	  async geolocate(){
 		console.log('geolocate')
-	
-		const coordinates = await Geolocation.getCurrentPosition();
+		const options = { enableHighAccuracy: true };
+		const coordinates = await Geolocation.getCurrentPosition(options);
 		
 		console.log('Current position:', coordinates);
 	
@@ -230,32 +181,25 @@ export class OrderPage{
 	  }
 	
 	  async addMarker(latLng:any){
-		/*const marker = new google.maps.Marker({
+
+		this.map.panTo(latLng);
+		this.map.setZoom(15);
+		const marker = new google.maps.Marker({
 		  position: latLng,
-		  map: this.newMap,
+		  map: this.map,
 		  draggable: true,
-		});*/
-		//this.markers.push(marker)
-		let self=this;
-	
-		const markerId = await this.newMap.addMarker({
-		  coordinate: latLng,
-		  map: this.newMap,
-		  draggable: true
 		});
-		await this.newMap.setCamera({
-		  coordinate: latLng
-		});
-	
-		console.log(markerId)
-		this.newMap.setOnMarkerDragEndListener((pos: any) => {
-		  console.log(pos);
+		
+		marker.addListener('dragend',(event:any) => { 
+		  console.log(event.latLng.lat());
+		  console.log(event.latLng.lng());
 		  const latLng={
-			lat:pos.latitude,
-			lng:pos.longitude
+			lat:event.latLng.lat(),
+			lng:event.latLng.lng()
 		  };
 		  this.geocodePosition(latLng);
 		});
+		
 	  }
 	
 	  geocodePosition(latLng:any) {
@@ -264,6 +208,8 @@ export class OrderPage{
 		  console.log(data)
 		  console.log(data.results[0].formatted_address)
 		  this.orderForm.patchValue({direccion: data.results[0].formatted_address});
+		  this.orderForm.patchValue({lat: latLng.lat});
+		  this.orderForm.patchValue({lng: latLng.lng});
 		},
 		  (error: { error: any; }) => {
 		  console.log(error)

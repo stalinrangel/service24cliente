@@ -1,0 +1,11 @@
+{
+    "appId": "cliente.service24.app",
+    "appName": "service24Clienes",
+    "webDir": "www",
+    "bundledWebRuntime": false,
+    "plugins": {
+        "PushNotifications": {
+          "presentationOptions": ["badge", "sound", "alert"]
+        }
+      }
+  }

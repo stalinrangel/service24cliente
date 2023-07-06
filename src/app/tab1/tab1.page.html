@@ -19,9 +19,9 @@
     (ionFocus)="setSearch()"
     id="input"
     ></ion-searchbar>
-    <ion-buttons slot="end">
-      <ion-button color="icons" class="btn-search" (click)="goFilter()">
-        <ion-icon slot="icon-only" name="filter"></ion-icon>
+    <ion-buttons slot="end" >
+      <ion-button color="icons" class="btn-search" (click)="setSearch()">
+        <ion-icon name="search-outline" style="color:white"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -87,7 +87,7 @@
       </div>
     </div>
   </div> 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="btn-help" (click)="goForm()">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="btn-help" (click)="goForm()" *ngIf="band_chatSupport">
     {{ 'INIT.text1' | translate }}
   </ion-fab>
 </ion-content>

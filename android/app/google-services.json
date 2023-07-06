@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "233380787537",
+    "project_id": "service24-ee53f",
+    "storage_bucket": "service24-ee53f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233380787537:android:8651401de9863ec4a8cf70",
+        "android_client_info": {
+          "package_name": "cliente.service24.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233380787537-opnh4kmrlvat1mljo74opnoja10qodd4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBimtC8KvbPYXkfPUNnRJIwTHA08ehd4fA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233380787537-opnh4kmrlvat1mljo74opnoja10qodd4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

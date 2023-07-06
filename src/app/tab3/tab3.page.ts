@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LanguageAlertPage } from '../language-alert/language-alert.page';
 import { TutorialPage } from '../tutorial/tutorial.page';
 import { NotificationsComponent } from '../notifications/notifications.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -56,7 +57,8 @@ export class Tab3Page {
 		private objService: ObjectserviceService,
 		private ngZone: NgZone,
 		private translate: TranslateService,
-		public modalController: ModalController
+		public modalController: ModalController,
+		private router: Router
 	) {
 		this.translate.get('PROFILE.user').subscribe((res1: string) => {           
 			this.usuario.nombre = res1;
@@ -66,6 +68,7 @@ export class Tab3Page {
 		});
 		this.storage.getObject('userSV24').then(items => {
 	      if (items != '' && items != null) {
+			console.log('tab3')
 			this.usuario = items;
 			this.promedio_calificacion = this.usuario.promedio_calificacion;
 		  }
@@ -82,11 +85,21 @@ export class Tab3Page {
 		    });
 	    });	*/
 	    this.getContact();
+		this.objService.getUser().subscribe((data:any) => {
+			console.log(data)
+			this.storage.getObject('userSV24').then(items => {
+				if (items != '' && items != null) {
+				  console.log('tab3')
+				  this.usuario = items;
+				  this.promedio_calificacion = this.usuario.promedio_calificacion;
+				}
+			  });
+	  }); 
 	}
+	
+  
 
-	ionPageWillLeave() {
-	    //this.events.unsubscribe('userAuthSV24');
-	}
+	
 
 	ionViewWillEnter() { 
 		this.getIds();
@@ -97,6 +110,13 @@ export class Tab3Page {
 	        this.show_notify = false;
 	      }
 	    });
+		this.storage.getObject('userSV24').then(items => {
+			if (items != '' && items != null) {
+			  console.log('tab32')
+			  this.usuario = items;
+			  this.promedio_calificacion = this.usuario.promedio_calificacion;
+			}
+		  });
   	}
 
   	getContact(){
@@ -141,10 +161,12 @@ export class Tab3Page {
 			this.usuario = items;
 			this.storage.get('TUSV24').then(items2 => {
 	  			if (items2) {
-	  				this.storage.getObject('ZONESV24').then(items3 => {
-			  			if (items3) {
-			  				console.log(items3);
-			  				this.userService.getId(this.usuario.id,items2,items3.ciudad_id).subscribe(
+					console.log(items2);
+	  				//this.storage.getObject('ZONESV24').then(items3 => {
+			  		//	if (items3) {
+			  		//		console.log(items3);
+			  				//this.userService.getId(this.usuario.id,items2,items3.ciudad_id).subscribe(
+							this.userService.getId(this.usuario.id,items2,'1').subscribe(
 						        data => {
 						        	console.log(data)
 						        	this.datos = data;
@@ -177,8 +199,8 @@ export class Tab3Page {
 							        this.getCounts();
 							    }
 						    );
-			  			};
-				    });
+			  		//	};
+				    //});
 	  			};
 		    });
 		  }
@@ -273,6 +295,7 @@ export class Tab3Page {
 
 	editProfile(){
 		this.navCtrl.navigateForward('/edit-profile');
+		//this.router.navigate(['/edit-profile]);   
 	}
 
 	async presentConfirm() {
@@ -306,9 +329,10 @@ export class Tab3Page {
 	}
 
 	async presentAlert() {
-		this.storage.getObject('ZONESV24').then(items => {
-	      if (items != '' && items != null) {
-	        this.userService.getContact(items.pais_id).subscribe(
+		//this.storage.getObject('ZONESV24').then(items => {
+	      //if (items != '' && items != null) {
+	        //this.userService.getContact(items.pais_id).subscribe(
+			this.userService.getContact('1').subscribe(
 		        data => {
 		        	console.log(data)
 		          this.datos4 = data;
@@ -323,19 +347,20 @@ export class Tab3Page {
 		          console.log(msg);
 		        }
 		    );
-	      }
-	    });
+	      //}
+	   //});
 	}
 
 	async alert1(text:any){
 		let alert =  await this.alertController.create({
 		    header: text,
 		    cssClass: 'mail-contact',
-		    message: `
+		   /* message: `
 	        <p>`+this.direccion+`</p>
 	        <a class="mail-contact" href="mailto:`+this.email+`?subject=`+text+`" "contacto">`+this.email+`</a>
 	        <p class="mail-contact">`+this.telefono+`</p>
-	      `,
+	      `,*/
+			message: this.email,
 		    buttons: ['Ok']
 		  });
 		await alert.present();
@@ -381,16 +406,17 @@ export class Tab3Page {
 	}
 
 	goFavourites(){
-		this.navCtrl.navigateForward('/favorites');
+		this.navCtrl.navigateForward('/tabs/tab2');
 	}
 
 	async openTutorialPopover() {
-	    const modal = await this.modalController.create({
+	    /*const modal = await this.modalController.create({
 	      component: TutorialPage,
 	      backdropDismiss: false,
 	      cssClass: 'tutorial-modal-css'
 	    });
-	    return await modal.present();
+	    return await modal.present();*/
+		this.navCtrl.navigateForward('/tutorial');
   	}
 
   	async viewNotification() {
@@ -402,4 +428,8 @@ export class Tab3Page {
       });
       return await modal.present();  
   	}
+
+	  ngOnInit(){
+		this.objService.unsuscribe();
+	  }
 }

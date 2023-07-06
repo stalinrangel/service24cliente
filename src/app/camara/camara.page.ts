@@ -3,8 +3,12 @@ import { GoogleMap } from '@capacitor/google-maps';
 import { Geolocation } from '@capacitor/geolocation';
 import { environment } from '../../environments/environment';
 import { UserService } from 'src/services/user/user.service';
+import { Camera, CameraResultType } from '@capacitor/camera'; 
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
+import { ImagenService } from '../services/imagen.service';
+//import { File } from '@awesome-cordova-plugins/file';
 
-
+declare var google:any;
 
 @Component({
   selector: 'app-camara',
@@ -14,34 +18,173 @@ import { UserService } from 'src/services/user/user.service';
 export class CamaraPage implements OnInit {
 
   autocomplete:any;
+  map:any;
 
-  constructor(private user: UserService) { }
-
+  imagen:any='';
+  fileimagen:any='';
+  base64Data: string='';
+  constructor(private user: UserService,private transfer: FileTransfer,private imageService: ImagenService) { }
   ngOnInit() {
     let self=this;
     setTimeout(() => {
-      self.createMap();
+      //self.createMap();
+      //self.initMap();
       }, 500);
   }
 
-  @ViewChild('map')
-  mapRef:any= ElementRef<HTMLElement>;
-  newMap:any= GoogleMap;
+  takePicture2 = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.DataUrl
+    });
+  
+    // image.webPath will contain a path that can be set as an image src.
+    // You can access the original file using image.path, which can be
+    // passed to the Filesystem API to read the raw data of the image,
+    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
+    var imageUrl = image;
+    this.imagen = imageUrl;
+    console.log('takePicture');
+    console.log(imageUrl);
+    this.onConvert();
+    this.onConvert2();
+    this.onConvert3();
+    //const blob = new Blob([this.imagen], { type: 'image/jpeg' });
+    //const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+    
+    //console.log(file)
+    //this.imagen=file;
+    // Can be set to the src of an image now
+    //var imageElement.src = imageUrl;
+    //this.onFileSelected();
+  };
+
+  takePicture = async () => {
+    console.log('entro')
+    const image = await Camera.getPhoto({
+    quality: 70,
+    allowEditing: false,
+    resultType: CameraResultType.Uri
+    });
+    
+    var imageUrl = image.webPath;
+    this.imagen = imageUrl;
+    console.log(this.imagen);
+    this.startUpload(image);
+    };
+    
+    async startUpload(file:any) {
+    let blob = await fetch(file.webPath).then(r => r.blob());
+    const formData = new FormData();
+    formData.append('file', blob, Date.now().toString() );
+    this.uploadData(formData, file);
+    }
+    
+    uploadData(formData: FormData, file:any) {
+    this.user.subir_imagen(formData).subscribe((response:any)=>{
+    console.log(response)
+    //this.editPhoto(response);
+    }, (err:any)=>{
+    console.log(err)
+    });
+    }
+  
+  upload() {
+
+    const fileTransfer: FileTransferObject = this.transfer.create();
+
+    let options: FileUploadOptions = {
+       fileKey: 'file',
+       fileName: 'name.jpg',
+       headers: {}
+    }
+    console.log('upload');
+    fileTransfer.upload(this.fileimagen, 'https://service24.app/apii/public/images_uploads/upload.php', options)
+     .then((data) => {
+       console.log(data)
+       alert('success')
+     }, (err) => {
+      console.log('ahi va el error')
+       console.log(err)
+       alert(JSON.stringify(err))
+     })
+  }
+
+  uploadPhoto(file:any){
+    let self = this;
+    let formData = new FormData();
+    console.log(file);
+    console.log(JSON.stringify(file))
+    console.log('uploadPhoto2');
+    formData.append("file", file);
+    this.user.subir_imagen(formData).subscribe({
+      next(data){
+        console.log(data);
+        alert('success')
+      },error(err){
+        console.log(err);
+        alert(JSON.stringify(err))
+      }
+    })
+  }
+
+  onFileSelected() {
+    const file = this.imagen;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.base64Data = reader.result as string;
+    };
+  }
+
+  onConvert() {
+    console.log('onConvert');
+    //console.log(this.imagen.dataUrl);
+    const file = this.imageService.base64toFile(this.imagen.dataUrl, 'usuario.'+this.imagen.format);
+    console.log(file)
+    this.fileimagen=file;
+    this.uploadPhoto(file);
+  }
+
+  onConvert2() {
+    console.log('onConvert2');
+    //console.log(this.imagen.dataUrl);
+    const base64Image = this.imagen.dataUrl; // Replace with your base64 image
+    const byteCharacters = atob(base64Image.split(',')[1]);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const file = new File([byteArray], 'image2.png', { type: 'image/png' });
+    this.uploadPhoto(file);
+  }
+
+  async onConvert3() {
+    console.log('onConvert3');
+    //console.log(this.imagen.dataUrl);
+    const base64Image = this.imagen.dataUrl; // Replace with your base64 image
+    const response = await fetch(base64Image);
+    const blob = await response.blob();
+    const file = new File([blob], 'image3.png', { type: 'image/png' });
+    this.uploadPhoto(file);
+  }
+
+  async initMap() {
+    //@ts-ignore
+    const { Map } = await google.maps.importLibrary("maps");
+
+    this.map = new Map(document.getElementById("map"), {
+      center: { lat: environment.lat, lng: environment.lng },
+      zoom: 8,
+    });
+  }
+
 
   async createMap() {
     console.log(environment.api)
-    this.newMap = await GoogleMap.create({
-      id: 'my-cool-map',
-      element: this.mapRef.nativeElement,
-      apiKey: environment.maps,
-      config: {
-        center: {
-          lat: environment.lat,
-          lng: environment.lng,
-        },
-        zoom: 15,
-      },
-    });
+
 
       const center = {  lat: environment.lat, lng: environment.lng, };
       // Create a bounding box with sides ~10km away from the center point
@@ -62,7 +205,7 @@ export class CamaraPage implements OnInit {
 
       let hasDownBeenPressed = false;
 
-      this.autocomplete = new google.maps.places.Autocomplete(input, options);
+      /*this.autocomplete = new google.maps.places.Autocomplete(input, options);
   
       input.addEventListener('keydown', (e) => {
         if (e.keyCode === 40) {
@@ -83,7 +226,7 @@ export class CamaraPage implements OnInit {
       input.addEventListener('focus', () => {
           hasDownBeenPressed = false;
           input.value = '';
-      });
+      });*/
   }
 
   ver(i:any){
@@ -124,32 +267,26 @@ export class CamaraPage implements OnInit {
   }
 
   async addMarker(latLng:any){
-    /*const marker = new google.maps.Marker({
+
+    this.map.panTo(latLng);
+    this.map.setZoom(15);
+    const marker = new google.maps.Marker({
       position: latLng,
-      map: this.newMap,
+      map: this.map,
       draggable: true,
-    });*/
-    //this.markers.push(marker)
-    let self=this;
-
-    const markerId = await this.newMap.addMarker({
-      coordinate: latLng,
-      map: this.newMap,
-      draggable: true
     });
-    await this.newMap.setCamera({
-      coordinate: latLng
-    });
-
-    console.log(markerId)
-    this.newMap.setOnMarkerDragEndListener((pos: any) => {
-      console.log(pos);
+    
+    marker.addListener('dragend',(event:any) => { 
+      console.log(event.latLng.lat());
+      console.log(event.latLng.lng());
       const latLng={
-        lat:pos.latitude,
-        lng:pos.longitude
+        lat:event.latLng.lat(),
+        lng:event.latLng.lng()
       };
       this.geocodePosition(latLng);
     });
+    
+
   }
 
   geocodePosition(latLng:any) {

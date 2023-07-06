@@ -10,10 +10,21 @@
       <ion-title size="large">camara</ion-title>
     </ion-toolbar>
   </ion-header>
+  <br>
+  <button (click)="takePicture()">camaras</button><br>
 
+  <img [src]="imagen" alt="" width="300" height="300">s
+  <br><br>
+  <br><br>
+  <button (click)="onConvert()">onConvert</button><br>
+  <br><br>
+  <button (click)="upload()">Carga</button><br>
+  <br><br>
+  <br><br>
+  <button (click)="initMap()">Create Map javasc</button>
+  <!--div id="map"></div-->
   <input id="pac-input" type="text" placeholder="Enter a location" (blur)="ver(0)" />
-  
-  <capacitor-google-map #map></capacitor-google-map>
+  <br>
   <br>
   <button (click)="createMap()">Create Map</button>
   <br>

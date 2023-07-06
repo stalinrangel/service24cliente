@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, Observer, throwError } from 'rxjs';
 import { StorageService } from '../../services/storage/storage.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class AuthService {
 
   usuario: any;
 
-  constructor(public http: HttpClient, public storage: StorageService) {}
+  constructor(public http: HttpClient, public storage: StorageService, private noticationService: NotificationsService) {}
  
   public login(credentials:any) {
     if (credentials.email === null || credentials.password === null) {
@@ -27,6 +28,10 @@ export class AuthService {
             console.log(data);
             this.storage.set('TUSV24',this.usuario.token);
             this.storage.setObject('userSV24', this.usuario.user);
+            setTimeout(() => {
+              this.noticationService.registrar_token();
+            }, 6000);
+            
             observer.next(true);
             observer.complete();
           },
