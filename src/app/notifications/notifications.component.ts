@@ -34,11 +34,13 @@ export class NotificationsComponent  implements OnInit {
     /*this.events.subscribe('prov:notify', msg => {
       this.getZone();
     });*/
-    this.getZone();
+   
     this.storage.set('notifyGPROVSV24', '0');
   } 
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getZone();
+  }
 
   ionViewWillLeave() {
     //this.events.unsubscribe('prov:notify');
@@ -64,8 +66,10 @@ export class NotificationsComponent  implements OnInit {
   }
 
   getNotify(ciudad_id:any, user_id:any){
+    console.log(ciudad_id,user_id);
     this.userService.getNotifications(ciudad_id, user_id).subscribe(
       data => {
+        console.log(data)
         this.datos1 = data;
         this.notifications = this.datos1.Notificaciones_generales;
         if (this.notifications.length == 0) {

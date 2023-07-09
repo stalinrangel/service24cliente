@@ -31,7 +31,7 @@ export class FavoritesPage implements OnInit {
   	private nav: NavController,
   	private objService: ObjectserviceService,
     private catService: CategoriesService,
-    private geolocation: Geolocation,
+    //private geolocation: Geolocation,
     private platform: Platform,
     public storage: StorageService,
     private toastController: ToastController,
@@ -64,8 +64,10 @@ export class FavoritesPage implements OnInit {
     				this.catService.getFavorites(items.id).subscribe(
   			      data => {
   			        this.datos = data;
+                console.log(this.datos )  
   			        this.providers = this.datos.Favoritos; 
-  			        this.items = this.providers;    
+  			        this.items = this.providers;  
+                console.log(this.providers)  
   			      },
   			      msg => {       
   			        console.log(msg);

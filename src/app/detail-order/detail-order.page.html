@@ -20,8 +20,8 @@
 	<div class="content-profile">
 		<img src="{{provider.imagen}}">
 		<div class="content-info">
-			<p class="title">{{provider.nombre}}</p>
-			<p class="order">{{ 'DETAILORDER.order' | translate }} #{{data}}</p>
+			<p class="title" >{{provider.nombre}}</p>
+			<p class="order" >{{ 'DETAILORDER.order' | translate }} #{{data}}</p>
 			<p class="address" *ngIf="provider.producto_id != '1'"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> {{provider.direccion}}</p>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 		<p *ngIf="estado == 3"><span>{{ 'DETAILORDER.state' | translate }}</span> {{ 'DETAILORDER.process' | translate }}</p>
 		<p *ngIf="estado == 4"><span>{{ 'DETAILORDER.state' | translate }}</span> {{ 'DETAILORDER.finish' | translate }}</p>
 		 
-		<p *ngIf="estado == 2 || estado == 3" (click)="chatPedidos(id)"><span>{{ 'DETAILORDER.chat' | translate }} {{provider.nombre}}  </span><ion-icon name="chatboxes" class="icon-callP icon-callP1"></ion-icon></p>
+		<p *ngIf="estado == 2 || estado == 3" (click)="chatPedidos(id)"><span>{{ 'DETAILORDER.chat' | translate }} {{provider.nombre}}  </span><ion-icon name="mail-unread-outline"></ion-icon></p>
 
 		<div *ngIf="estado == 4 && provider.califico">
 			<p class="title-cal">{{ 'DETAILORDER.cali' | translate }}</p>

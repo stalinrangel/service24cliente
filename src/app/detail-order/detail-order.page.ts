@@ -423,12 +423,15 @@ export class DetailOrderPage implements OnInit {
     this.storage.get('TUSV24').then(items2 => {
       if (items2 != '' && items2 != null) {
         this.finishRoute.token = items2;
+        console.log(items2)
         this.storage.get('token_notificacionUSV24').then(items3 => {
-          if (items3 != '' && items3 != null) {
+          console.log(items3)
+          if (true) {
             this.presentLoading();
             this.orderService.finishService(this.datos.pedido.repartidor_id,this.finishRoute,items2).subscribe(
               data => {
                 this.estado = 4;
+                this.objService.setTab2('1');
                 clearInterval(this.intervalUbc);
                 this.loading.dismiss();
                 this.presentToast('Servicio finalizado con éxito');

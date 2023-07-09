@@ -179,18 +179,21 @@ export class OrderPage{
 		this.addMarker(latLng);
 		this.geocodePosition(latLng);
 	  }
-	
+	  marker:any=null;;
 	  async addMarker(latLng:any){
-
+		if (this.marker!=null) {
+			this.marker.setMap(null);
+		}
+		
 		this.map.panTo(latLng);
 		this.map.setZoom(15);
-		const marker = new google.maps.Marker({
+		this.marker = new google.maps.Marker({
 		  position: latLng,
 		  map: this.map,
 		  draggable: true,
 		});
 		
-		marker.addListener('dragend',(event:any) => { 
+		this.marker.addListener('dragend',(event:any) => { 
 		  console.log(event.latLng.lat());
 		  console.log(event.latLng.lng());
 		  const latLng={

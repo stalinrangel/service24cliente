@@ -400,6 +400,9 @@ export class Tab3Page {
 	policy(){
 		this.navCtrl.navigateForward('/privacy-policy');
 	}
+	favoritos(){
+		this.navCtrl.navigateForward('/favorites');
+	}
 
 	terms(){
 		this.navCtrl.navigateForward('/terms-conditions');

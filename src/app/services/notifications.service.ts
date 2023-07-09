@@ -57,14 +57,14 @@ export class NotificationsService {
     PushNotifications.addListener(
       'pushNotificationReceived',
       (notification: PushNotificationSchema) => {
-        //alert('Push received: ' + JSON.stringify(notification));
+        alert('Push received: ' + JSON.stringify(notification));
       },
     );
 
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       (notification: ActionPerformed) => {
-        //alert('Push action performed: ' + JSON.stringify(notification));
+        alert('Push action performed: ' + JSON.stringify(notification));
       },
     );
   }
@@ -77,10 +77,10 @@ export class NotificationsService {
       token_notificacionp:notifi
     }
       this.storage.getObject('userSV24').then(items => {
-        alert('Push registration 1');
+       // alert('Push registration 1');
 	      if (items != '' && items != null) {
 	      	this.storage.get('TUSV24').then(items2 => {
-            alert('Push registration 2');
+            //alert('Push registration 2');
 	  			if (items2 != '' && items2 != null) {
 	  				this.userService.setUser(items.id,items2,usuario).subscribe(
 				        data => {

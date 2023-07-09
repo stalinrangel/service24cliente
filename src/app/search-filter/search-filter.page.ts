@@ -130,7 +130,9 @@ export class SearchFilterPage implements OnInit {
       //}
    // });
   }
-
+  setFilteredItems2() {
+    console.log('2')
+   }
   setFilteredItems() {
     this.searching = true;
     this.item = this.datos;
@@ -195,8 +197,9 @@ export class SearchFilterPage implements OnInit {
   	this.searching = false;
   }
 
-  setProvider(item: { status: number; id: any; }){
-    if (item.status == 1) {
+  setProvider(item: { estado: any; id: any; }){
+    console.log(item)
+    if (item.estado == 'ON') {
       this.addHistory();
       this.objService.setExtras(item.id);
       this.objService.setCat(item);

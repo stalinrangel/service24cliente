@@ -49,7 +49,9 @@ export class CalificationPage implements OnInit {
   }
 
   sendCalification(){
-    if (this.Calification.puntaje == 0) {
+    this.Calification.puntaje=5;
+    //if (this.Calification.puntaje == 0) {
+    if (false) {
       this.presentToast('Debes asignar un puntaje para enviar la calificación.')
     } else {
       this.presentLoading();

@@ -40,4 +40,15 @@ export class ObjectserviceService {
 	getUser(): Subject<any> {
 	return this.userSubject;
 	}
+
+	private tab2 = new Subject<any>();
+
+	setTab2(data: any) {
+		console.log(data)
+		this.tab2.next(data);
+	}
+
+	getTab2(): Subject<any> {
+		return this.tab2;
+	}
 }

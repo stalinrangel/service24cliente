@@ -28,7 +28,7 @@ export class CamaraPage implements OnInit {
     let self=this;
     setTimeout(() => {
       //self.createMap();
-      //self.initMap();
+      self.initMap();
       }, 500);
   }
 
@@ -179,6 +179,7 @@ export class CamaraPage implements OnInit {
       center: { lat: environment.lat, lng: environment.lng },
       zoom: 8,
     });
+    this.createMap()
   }
 
 
@@ -205,7 +206,7 @@ export class CamaraPage implements OnInit {
 
       let hasDownBeenPressed = false;
 
-      /*this.autocomplete = new google.maps.places.Autocomplete(input, options);
+      this.autocomplete = new google.maps.places.Autocomplete(input, options);
   
       input.addEventListener('keydown', (e) => {
         if (e.keyCode === 40) {
@@ -226,7 +227,7 @@ export class CamaraPage implements OnInit {
       input.addEventListener('focus', () => {
           hasDownBeenPressed = false;
           input.value = '';
-      });*/
+      });
   }
 
   ver(i:any){

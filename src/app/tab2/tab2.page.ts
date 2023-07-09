@@ -62,6 +62,12 @@ export class Tab2Page {
 	    	this.id = userData;
 	    });*/
 	    this.initOrder();
+		this.objService.getTab2().subscribe((data:any) => {
+				console.log(data)
+			//alert('sss')
+			this.initOrder();
+			});
+
 	}
 
 	ionPageWillLeave() {

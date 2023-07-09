@@ -96,7 +96,8 @@ ion-segment-button {
 }
 .segment-button-checked{
     --indicator-color-checked: var(--ion-color-secondary) !important;
-    color: var(--ion-color-secondary) !important;
+    color: #F2F2F2;
+    background: #4d4d4d6e;
 }
 ion-segment{
 	background: #f4f5f8;

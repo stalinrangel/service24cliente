@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NavController, ModalController, LoadingController, ToastController, Platform, ActionSheetController } from '@ionic/angular';
 import { OrdersService } from '../../services/orders/orders.service';
 import { StorageService } from '../../services/storage/storage.service';
+import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class CancelOrderPage implements OnInit {
     public orderService: OrdersService,
     public storage: StorageService,
     public actionSheetController: ActionSheetController,
-    private platform: Platform
+    private platform: Platform,
+    private objService: ObjectserviceService,
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class CancelOrderPage implements OnInit {
           this.orderService.cancelOrder(this.Cancel,this.id,items2).subscribe(
             data => {
               this.loading.dismiss();
+              this.objService.setTab2('1');
               this.presentToast('¡Pedido Cancelado con éxito!');
               this.value.close = 2;
               this.modalCtrl.dismiss(this.value.close);

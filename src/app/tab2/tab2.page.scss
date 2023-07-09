@@ -18,8 +18,9 @@ ion-segment-button {
 	padding: 0px !important;
 }
 .segment-button-checked{
-    --indicator-color-checked: var(--ion-color-text-secondary) !important;
-    color: var(--ion-color-secondary) !important;
+  --indicator-color-checked: var(--ion-color-secondary) !important;
+  color: #F2F2F2 !important;
+  background: #4d4d4d2c;
 }
 ion-segment{
 	background: #f4f5f8;

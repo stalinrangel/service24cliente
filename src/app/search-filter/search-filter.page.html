@@ -24,7 +24,7 @@
     [(ngModel)]="searchTerm"
     (ionFocus)="setSearch()"
     (ionClear)="setSearch()"
-    (ionChange)="setFilteredItems()"
+    (ionInput)="setFilteredItems()"
     #textSearch>
     </ion-searchbar>
     <ion-buttons slot="end">
@@ -68,8 +68,8 @@
             </div>
             <div class="content-desp">
               <p text-wrap class="info">{{itemd.descripcion}}</p>
-              <p *ngIf="itemd.status == 1" class="status-disp">Disponible</p>
-              <p *ngIf="itemd.status == 2" class="status-nodisp">No Disponible</p>
+              <p *ngIf="itemd.estado == 'ON'" class="status-disp">Disponible</p>
+              <p *ngIf="itemd.estado == 'OFF'" class="status-nodisp">No Disponible</p>
             </div>
           </ion-label>
         </ion-item>

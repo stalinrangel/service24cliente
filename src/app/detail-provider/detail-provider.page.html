@@ -21,8 +21,8 @@
 		<ion-icon md="md-heart" ios="md-heart" class="icon-star1" [class.filled1]="(select == true)" (click)="addFavorite()" *ngIf="usuario.id != ''"></ion-icon>
 		<img src="{{imagen}}">
 		<div class="content-info">
-			<p class="title" *ngIf="data">{{data.establecimiento.nombre}}</p>
-			<p class="title" *ngIf="data">{{data.nombre}}</p>
+			<p class="title" style="color: white !important;" *ngIf="data">{{data.establecimiento.nombre}}</p>
+			<p class="title" style="color: white !important;" *ngIf="data">{{data.nombre}}</p>
 			<ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [class.filled]="(i + 1 <= promedio_calificacion)"></ion-icon>
 		</div>
 	</div>

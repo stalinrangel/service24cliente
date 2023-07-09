@@ -45,7 +45,7 @@
 		<div class="content-map">
 			<div class="content-infoMap" [hidden]="showInfoMap">
 				<p class="info-map">{{ 'ORDER.info' | translate }}</p>
-				<p class="ok-map" (click)="showInfoMap=!showInfoMap">OK</p>
+				<p class="ok-map" (click)="geolocate()"><ion-icon name="navigate-circle-outline"></ion-icon></p>
 			</div>
 			<ion-icon md="md-locate" ios="md-locate" class="icon-location" ></ion-icon>
 			<!--div #map id="map"></div-->
