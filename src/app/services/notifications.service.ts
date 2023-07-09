@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActionPerformed, PushNotificationSchema, PushNotifications, Token, } from '@capacitor/push-notifications';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
+import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 import { StorageService } from 'src/services/storage/storage.service';
 import { UserService } from 'src/services/user/user.service';
 
@@ -9,7 +10,7 @@ import { UserService } from 'src/services/user/user.service';
 })
 export class NotificationsService {
 
-  constructor(public platform: Platform,private storage: StorageService,public userService: UserService,) {
+  constructor(public platform: Platform,private storage: StorageService,public userService: UserService,public navCtrl: NavController, private objService: ObjectserviceService) {
     this.inicializar();
    }
 
@@ -58,13 +59,100 @@ export class NotificationsService {
       'pushNotificationReceived',
       (notification: PushNotificationSchema) => {
         alert('Push received: ' + JSON.stringify(notification));
+       if (notification.data.accion=='7') {
+        this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
+        setTimeout(() => {
+          this.objService.setAceptado(notification.notification.data);
+          }, 300);
+          }
+          if (notification.data.accion=='8') {
+            this.navCtrl.navigateForward('/tabs/tab2');//En Camino
+            setTimeout(() => {
+              this.objService.setEncamino(notification.data);
+              }, 300);
+          }
+          if (notification.data.accion=='3') {
+            this.navCtrl.navigateForward('/tabs/tab2'); //finalizados
+            setTimeout(() => {
+              this.objService.setfinalizados(notification.data);
+              }, 300);
+          }
+          if (notification.data.accion=='6') {
+            this.navCtrl.navigateForward('/tabs/tab2'); //cancelados
+            setTimeout(() => {
+              this.objService.setcancelado(notification.data);
+              }, 300);
+          }
+          if (notification.data.accion=='8') {
+            this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
+            setTimeout(() => {
+              this.objService.setchatpedido(notification.data);
+              }, 300);
+          }
+          if (notification.data.accion=='2') {
+            this.navCtrl.navigateForward('/chat-support');//char soporte
+            setTimeout(() => {
+              this.objService.setsoporte(notification.data);
+              }, 300);
+          }
+          if (notification.data.accion=='17') {
+            this.navCtrl.navigateForward('/tabs/tab1'); //notificaciones generales 
+            setTimeout(() => {
+              this.objService.setgenerales(notification.data);
+              }, 300);
+          }
       },
     );
 
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       (notification: ActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
+        //alert('Push action performed: ' + JSON.stringify(notification));
+        //alert(JSON.stringify(notification.notification.data.accion));
+
+        if (notification.notification.data.accion=='7') {
+          this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
+          setTimeout(() => {
+            this.objService.setAceptado(notification.notification.data);
+            }, 300);
+        }
+        if (notification.notification.data.accion=='8') {
+          this.navCtrl.navigateForward('/tabs/tab2');//En Camino
+          setTimeout(() => {
+            this.objService.setEncamino(notification.notification.data);
+            }, 300);
+        }
+        if (notification.notification.data.accion=='3') {
+          this.navCtrl.navigateForward('/tabs/tab2'); //finalizados
+          setTimeout(() => {
+            this.objService.setfinalizados(notification.notification.data);
+            }, 300);
+        }
+        if (notification.notification.data.accion=='6') {
+          this.navCtrl.navigateForward('/tabs/tab2'); //cancelados
+          setTimeout(() => {
+            this.objService.setcancelado(notification.notification.data);
+            }, 300);
+        }
+        if (notification.notification.data.accion=='8') {
+          this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
+          setTimeout(() => {
+            this.objService.setchatpedido(notification.notification.data);
+            }, 300);
+        }
+        if (notification.notification.data.accion=='2') {
+          this.navCtrl.navigateForward('/chat-support');//char soporte
+          setTimeout(() => {
+            this.objService.setsoporte(notification.notification.data);
+            }, 300);
+        }
+        if (notification.notification.data.accion=='17') {
+          this.navCtrl.navigateForward('/tabs/tab1'); //notificaciones generales 
+          setTimeout(() => {
+            this.objService.setgenerales(notification.notification.data);
+            }, 300);
+        }
+        
       },
     );
   }
