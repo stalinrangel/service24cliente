@@ -58,14 +58,14 @@ export class NotificationsService {
     PushNotifications.addListener(
       'pushNotificationReceived',
       (notification: PushNotificationSchema) => {
-        alert('Push received: ' + JSON.stringify(notification));
+       // alert('Push received: ' + JSON.stringify(notification.data));
        if (notification.data.accion=='7') {
         this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
         setTimeout(() => {
-          this.objService.setAceptado(notification.notification.data);
+          this.objService.setAceptado(notification.data);
           }, 300);
           }
-          if (notification.data.accion=='8') {
+          if (notification.data.accion=='4') {
             this.navCtrl.navigateForward('/tabs/tab2');//En Camino
             setTimeout(() => {
               this.objService.setEncamino(notification.data);
@@ -77,7 +77,7 @@ export class NotificationsService {
               this.objService.setfinalizados(notification.data);
               }, 300);
           }
-          if (notification.data.accion=='6') {
+          if (notification.data.accion=='5') {
             this.navCtrl.navigateForward('/tabs/tab2'); //cancelados
             setTimeout(() => {
               this.objService.setcancelado(notification.data);
@@ -90,7 +90,7 @@ export class NotificationsService {
               }, 300);
           }
           if (notification.data.accion=='2') {
-            this.navCtrl.navigateForward('/chat-support');//char soporte
+            this.navCtrl.navigateForward('/tabs/tab3');//char soporte
             setTimeout(() => {
               this.objService.setsoporte(notification.data);
               }, 300);
@@ -109,14 +109,14 @@ export class NotificationsService {
       (notification: ActionPerformed) => {
         //alert('Push action performed: ' + JSON.stringify(notification));
         //alert(JSON.stringify(notification.notification.data.accion));
-
+        //alert('Push received: ' + JSON.stringify(notification.notification.data));
         if (notification.notification.data.accion=='7') {
           this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
           setTimeout(() => {
             this.objService.setAceptado(notification.notification.data);
             }, 300);
         }
-        if (notification.notification.data.accion=='8') {
+        if (notification.notification.data.accion=='4') {
           this.navCtrl.navigateForward('/tabs/tab2');//En Camino
           setTimeout(() => {
             this.objService.setEncamino(notification.notification.data);
@@ -128,7 +128,7 @@ export class NotificationsService {
             this.objService.setfinalizados(notification.notification.data);
             }, 300);
         }
-        if (notification.notification.data.accion=='6') {
+        if (notification.notification.data.accion=='5') {
           this.navCtrl.navigateForward('/tabs/tab2'); //cancelados
           setTimeout(() => {
             this.objService.setcancelado(notification.notification.data);
@@ -141,7 +141,7 @@ export class NotificationsService {
             }, 300);
         }
         if (notification.notification.data.accion=='2') {
-          this.navCtrl.navigateForward('/chat-support');//char soporte
+          this.navCtrl.navigateForward('/tabs/tab3');//char soporte
           setTimeout(() => {
             this.objService.setsoporte(notification.notification.data);
             }, 300);

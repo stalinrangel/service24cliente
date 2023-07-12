@@ -63,10 +63,31 @@ export class Tab2Page {
 	    });*/
 	    this.initOrder();
 		this.objService.getTab2().subscribe((data:any) => {
-				console.log(data)
+			console.log(data)
 			//alert('sss')
 			this.initOrder();
-			});
+		});
+		this.objService.getAceptado().subscribe((data:any) => {
+			this.dataNotificacion=data;
+			this.initOrder2();
+		});
+		this.objService.getEncamino().subscribe((data:any) => {
+			this.dataNotificacion=data;
+			this.initOrder2();
+		});
+		this.objService.getfinalizados().subscribe((data:any) => {
+			this.dataNotificacion=data;
+			this.initOrder22();
+		});
+		this.objService.getcancelado().subscribe((data:any) => {
+			this.dataNotificacion=data;
+			this.initOrder22();
+		});
+		this.objService.getchatpedido().subscribe((data:any) => {
+			//alert('getchatpedido')
+			this.dataNotificacion=data;
+			this.initOrder3();
+		});
 
 	}
 
@@ -123,7 +144,144 @@ export class Tab2Page {
 		  }
 	    });
 	}
-
+	async initOrder2(){
+		console.log('ini')
+			await this.storage.getObject('userSV24').then(items => {
+			  if (items != '' && items != null) {
+				  this.storage.get('TUSV24').then(items2 => {
+					  if (items2 != '' && items2 != null) {
+						  this.catService.getTracking(items.id,items2).subscribe(
+							data => {
+								this.datos = data;
+								this.zone.run(()=>{
+									this.orders = this.datos.pedidos;
+									for (var i = 0; i < this.orders.length; ++i) {
+										this.orders[i].tiempo = moment(this.orders[i].tiempo).format('DD/MM/YYYY');
+									}
+									this.orders = this.sortByKey(this.orders,'id');
+								})
+								this.abrirDesdeNotificacion();       	
+								
+							},
+							msg => {
+								this.abrirDesdeNotificacion();       	
+								if(msg.status == 400 || msg.status == 401){
+									this.storage.set('TUSV24','');  
+									this.nav.navigateForward('login');
+								} else if (msg.status == 404){
+									this.orders = [];
+								}      
+							}
+						);
+					  }
+				});
+			  } else {
+				  this.orders = [];
+				  this.abrirDesdeNotificacion();       	
+			  }
+			});
+		}
+		async initOrder3(){
+			console.log('ini')
+			//alert('initOrder3')
+				await this.storage.getObject('userSV24').then(items => {
+				  if (items != '' && items != null) {
+					  this.storage.get('TUSV24').then(items2 => {
+						  if (items2 != '' && items2 != null) {
+							  this.catService.getTracking(items.id,items2).subscribe(
+								data => {
+									this.datos = data;
+									this.zone.run(()=>{
+										this.orders = this.datos.pedidos;
+										for (var i = 0; i < this.orders.length; ++i) {
+											this.orders[i].tiempo = moment(this.orders[i].tiempo).format('DD/MM/YYYY');
+										}
+										this.orders = this.sortByKey(this.orders,'id');
+									})
+									//this.initHistory();
+									this.abrirDesdeNotificacionConMensajes();      
+								},
+								msg => {
+									//this.initHistory();
+									if(msg.status == 400 || msg.status == 401){
+										this.storage.set('TUSV24','');  
+										this.nav.navigateForward('login');
+									} else if (msg.status == 404){
+										this.orders = [];
+									}      
+								}
+							);
+						  }
+					});
+				  } else {
+					  this.orders = [];
+					  //this.initHistory();
+				  }
+				});
+		}
+		async initOrder22(){
+			console.log('ini')
+				await this.storage.getObject('userSV24').then(items => {
+				  if (items != '' && items != null) {
+					  this.storage.get('TUSV24').then(items2 => {
+						  if (items2 != '' && items2 != null) {
+							  this.catService.getTracking(items.id,items2).subscribe(
+								data => {
+									this.datos = data;
+									this.zone.run(()=>{
+										this.orders = this.datos.pedidos;
+										for (var i = 0; i < this.orders.length; ++i) {
+											this.orders[i].tiempo = moment(this.orders[i].tiempo).format('DD/MM/YYYY');
+										}
+										this.orders = this.sortByKey(this.orders,'id');
+									})
+									this.initHistory2();
+									
+								},
+								msg => {
+									this.initHistory2();
+									if(msg.status == 400 || msg.status == 401){
+										this.storage.set('TUSV24','');  
+										this.nav.navigateForward('login');
+									} else if (msg.status == 404){
+										this.orders = [];
+									}      
+								}
+							);
+						  }
+					});
+				  } else {
+					  this.orders = [];
+					  this.initHistory2();
+				  }
+				});
+			}
+	public dataNotificacion:any;
+	abrirDesdeNotificacion(){
+		for (var i = 0; i < this.orders.length; ++i) {
+			if (this.dataNotificacion.pedido_id==this.orders[i].id) {
+				this.viewDetails(this.orders[i]);
+			}
+		}
+	}
+	abrirDesdeNotificacionhistory(){
+		for (var i = 0; i < this.history.length; ++i) {
+			if (this.dataNotificacion.pedido_id==this.history[i].id) {
+				this.viewDetails(this.history[i]);
+			}
+		}
+	}
+	abrirDesdeNotificacionConMensajes(){
+		let obj:any=JSON.parse(this.dataNotificacion.obj);
+		for (var i = 0; i < this.orders.length; ++i) {
+			if (obj.chat_id==this.orders[i].id) {
+				this.viewDetails(this.orders[i]);
+				setTimeout(() => {
+					this.objService.setopenchat(obj.chat_id);
+				}, 1200);
+			}
+		}      
+	}
 	async initHistory(){
 		await this.storage.getObject('userSV24').then(items => {
 	      if (items != '' && items != null) {
@@ -171,9 +329,58 @@ export class Tab2Page {
 		  }
 	    });
 	}
+	async initHistory2(){
+		//alert('initHistory2')
+		await this.storage.getObject('userSV24').then(items => {
+	      if (items != '' && items != null) {
+	      	this.storage.get('TUSV24').then(items2 => {
+	  			if (items2 != '' && items2 != null) {
+	  				this.catService.getHistory(items.id,items2).subscribe(
+				        data => {
+						    this.datos2 = data;
+						    this.zone.run(()=>{
+						    	this.history = this.datos2.pedidos; 
+		    					for (var i = 0; i < this.history.length; ++i) {
+							    	this.history[i].tiempo = moment(this.history[i].tiempo).format('DD/MM/YYYY');
+							    	if (this.history[i].calificacion) {
+					                  let index1 = this.history[i].calificacion.findIndex((item1:any) => item1.usuario_id === this.history[i].usuario_id);
+					                  if(index1 !== -1){
+					                    this.history[i].califico = true;
+					                    this.history[i].puntaje = this.history[i].calificacion[index1].puntaje;
+					                  } else {
+					                    this.history[i].califico = false;
+					                    if (this.history[i].id == this.id) {
+						                  this.data = this.history[i];
+						                  this.presentModal();
+						                }
+					                  }
+					                }
+					                
+							    }
+							    this.history = this.sortByKey(this.history,'id');  
+								this.abrirDesdeNotificacionhistory();
+						    }) 
+				        },
+				        msg => {
+				        	if(msg.status == 400 || msg.status == 401){ 
+				                this.history = [];
+				                this.storage.set('TUSV24','');
+				                this.nav.navigateForward('login'); 
+				            } else if (msg.status == 404){
+				            	this.history = [];
+				            }       
+					    }
+				    );
+	  			}
+		    });
+		  } else {
+		  	this.history = [];
+		  }
+	    });
+	}
 
 	viewDetails(item:any){
-		if (item.estado != 5) {
+		if (true) {
 			this.objService.setExtras(item.id);
 			this.nav.navigateForward('detail-order');
 		} else {

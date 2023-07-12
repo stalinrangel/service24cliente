@@ -86,6 +86,12 @@ export class Tab1Page {
           });  
         }, 5000);
     //});    
+
+    this.objService.getgenerales().subscribe((data:any) => {
+			console.log(data)
+      //alert('llego generales');
+      this.viewNotification();
+	  }); 
   }
 
   ngOnInit() {

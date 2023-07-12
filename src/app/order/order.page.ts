@@ -141,6 +141,47 @@ export class OrderPage{
 		center: { lat: environment.lat, lng: environment.lng },
 		zoom: 8,
 		});
+
+		const center = {  lat: environment.lat, lng: environment.lng, };
+		// Create a bounding box with sides ~10km away from the center point
+		const defaultBounds = {
+			north: center.lat + 0.1,
+			south: center.lat - 0.1,
+			east: center.lng + 0.1,
+			west: center.lng - 0.1,
+		};
+		const input = document.getElementById("pac-input") as HTMLInputElement;
+		const options = {
+			bounds: defaultBounds,
+			componentRestrictions: { country: "uy" },
+			fields: ["address_components", "geometry", "icon", "name"],
+			strictBounds: true,
+			types: ["geocode"],
+		};
+
+		let hasDownBeenPressed = false;
+
+		this.autocomplete = new google.maps.places.Autocomplete(input, options);
+		input.addEventListener('keydown', (e) => {
+			if (e.keyCode === 40) {
+				hasDownBeenPressed = true;
+			}
+		});
+		google.maps.event.addDomListener(input, 'keydown', (e:any) => {
+			e.cancelBubble = true;
+			if (e.keyCode === 13 || e.keyCode === 9) {
+				if (!hasDownBeenPressed && !e.hasRanOnce) {
+					google.maps.event.trigger(e.target, 'keydown', {
+						keyCode: 40,
+						hasRanOnce: true,
+					});
+				}
+			}
+		});
+		input.addEventListener('focus', () => {
+			hasDownBeenPressed = false;
+			input.value = '';
+		});
 	  }
 	
 	  ver(i:any){
@@ -153,7 +194,10 @@ export class OrderPage{
 		  console.log(self.autocomplete.getPlace().address_components[0].long_name)
 		  console.log(self.autocomplete.getPlace().geometry.location.lat())
 		  console.log(self.autocomplete.getPlace().geometry.location.lng())
-		
+		  self.orderForm.patchValue({direccion: self.autocomplete.getPlace().address_components[0].long_name});
+		  self.orderForm.patchValue({lat: self.autocomplete.getPlace().geometry.location.lat()});
+		  self.orderForm.patchValue({lng: self.autocomplete.getPlace().geometry.location.lng()}); 
+
 		  const latLng = {
 			lat: self.autocomplete.getPlace().geometry.location.lat(),
 			lng: self.autocomplete.getPlace().geometry.location.lng()

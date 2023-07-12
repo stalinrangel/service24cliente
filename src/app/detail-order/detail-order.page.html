@@ -38,7 +38,7 @@
 		<p *ngIf="estado == 3"><span>{{ 'DETAILORDER.state' | translate }}</span> {{ 'DETAILORDER.process' | translate }}</p>
 		<p *ngIf="estado == 4"><span>{{ 'DETAILORDER.state' | translate }}</span> {{ 'DETAILORDER.finish' | translate }}</p>
 		 
-		<p *ngIf="estado == 2 || estado == 3" (click)="chatPedidos(id)"><span>{{ 'DETAILORDER.chat' | translate }} {{provider.nombre}}  </span><ion-icon name="mail-unread-outline"></ion-icon></p>
+		<p *ngIf="estado == 2 || estado == 3" (click)="chatPedidos(id)"><span>{{ 'DETAILORDER.chat' | translate }} {{provider.nombre}}  </span><ion-icon class="mensaje" name="mail-unread-outline"></ion-icon></p>
 
 		<div *ngIf="estado == 4 && provider.califico">
 			<p class="title-cal">{{ 'DETAILORDER.cali' | translate }}</p>

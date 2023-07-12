@@ -96,7 +96,12 @@ export class DetailOrderPage implements OnInit {
     private zone: NgZone
   ) { 
   	this.data = this.objService.getExtras();	
-   
+
+    this.objService.getopenchat().subscribe((data:any) => {
+      //alert(data)
+      //alert('getopen '+data);
+			this.getOrder2(data);
+		});
     /*this.directionsService = new google.maps.DirectionsService();
     this.directionsDisplay = new google.maps.DirectionsRenderer({
         suppressMarkers: true,
@@ -177,6 +182,59 @@ export class DetailOrderPage implements OnInit {
               //this.loadMap();
             }
             this.checkFavorite();
+          })
+        },
+        msg => {
+          //this.loading.dismiss();
+          if(msg.status == 400 || msg.status == 401){ 
+            this.storage.set('TUSV24','');
+            this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
+            this.navCtrl.navigateRoot('login');
+          }
+        }); 
+      }
+    });
+  }
+  getOrder2(id:any) {
+    this.storage.get('TUSV24').then(items2 => {
+      if (items2) {
+        //this.presentLoading();
+        this.orderService.getOrderId(id,items2).subscribe(
+        data => {
+          this.zone.run(()=>{
+            this.datos = data;
+            this.estado = this.datos.pedido.estado;
+            this.encamino = this.datos.pedido.encamino;
+            if (this.datos.pedido.repartidor) {
+              this.provider.nombre = this.datos.pedido.productos[0].establecimiento.nombre;
+              this.provider.imagen = this.datos.pedido.repartidor.usuario.imagen;
+            }
+            this.provider.direccion = this.datos.pedido.productos[0].establecimiento.direccion;
+            this.provider.descripcion = this.datos.pedido.productos[0].descripcion;
+            this.provider.servicio = this.datos.pedido.productos[0].nombre;
+            this.provider.categoria = this.datos.pedido.productos[0].subcategoria.categoria.nombre +' - '+ this.datos.pedido.productos[0].subcategoria.nombre;
+            this.provider.referencia = this.datos.pedido.referencia;
+            this.provider.producto_id = this.datos.pedido.productos[0].id;
+            this.favorite.establecimiento_id = this.datos.pedido.productos[0].id;
+            this.provider.tiempo = this.datos.pedido.tiempo;
+            this.provider.hora = this.datos.pedido.hora;
+            this.provider.lugar = this.datos.pedido.direccion;
+            if (this.datos.pedido.calificacion) {
+              let index1 = this.datos.pedido.calificacion.findIndex((item1:any) => item1.usuario_id === this.datos.pedido.usuario_id);
+              if(index1 !== -1){
+                this.provider.califico = true;
+                this.provider.puntaje = this.datos.pedido.calificacion[index1].puntaje;
+                this.provider.comentario = this.datos.pedido.calificacion[index1].comentario;
+              } else {
+                this.provider.califico = false;
+              }
+            } 
+            //this.loading.dismiss();
+            if (this.datos.pedido.estado == 3 && this.datos.pedido.encamino == 1) {
+              //this.loadMap();
+            }
+            this.checkFavorite();
+            this.chatPedidos(id);
           })
         },
         msg => {

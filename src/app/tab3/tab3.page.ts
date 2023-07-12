@@ -94,7 +94,11 @@ export class Tab3Page {
 				  this.promedio_calificacion = this.usuario.promedio_calificacion;
 				}
 			  });
-	  }); 
+	 	});
+		this.objService.getsoporte().subscribe((data:any) => {
+			console.log(data)
+			this.getIds2();	
+	  	});  
 	}
 	
   
@@ -206,6 +210,60 @@ export class Tab3Page {
 		  }
 	    });
 	}
+	getIds2(){
+		this.storage.getObject('userSV24').then(items => {
+			console.log(items)
+		if (items != '' && items != null) {
+		  this.usuario = items;
+		  this.storage.get('TUSV24').then(items2 => {
+				if (items2) {
+				  console.log(items2);
+					//this.storage.getObject('ZONESV24').then(items3 => {
+					//	if (items3) {
+					//		console.log(items3);
+							//this.userService.getId(this.usuario.id,items2,items3.ciudad_id).subscribe(
+						  this.userService.getId(this.usuario.id,items2,'1').subscribe(
+							  data => {
+								  console.log(data)
+								  this.datos = data;
+								  this.chat_support.admin_id = this.datos.chat.admin_id;
+								  this.chat_support.chat_id = this.datos.chat.id;
+								  this.chat_support.token_notificacion = this.datos.admin[0].token_notificacion;
+									this.chat_support.ciudad_id = this.datos.admin[0].ciudad;
+								  this.band_chatSupport = true; 
+								  this.getCounts();
+								  this.support();	
+							  },
+							  msg => { 
+								  console.log(msg);
+									if(msg.status == 404){ 
+									   if (msg.error.admin) {
+										   if (msg.error.admin.length > 0) {
+											   this.band_chatSupport = true;
+												this.chat_support.admin_id = msg.error.admin[0].id;
+												this.chat_support.token_notificacion = msg.error.admin[0].token_notificacion;
+												this.chat_support.ciudad_id = msg.error.admin[0].ciudad;
+											}
+									   }
+								  } else if(msg.status == 409){
+									this.band_chatSupport = false;
+									this.info = msg.error.Error;
+								  }
+								  if(msg.status == 400 || msg.status == 401){ 
+									  this.storage.set('TUSV24','');
+									  this.navCtrl.navigateForward('login');
+								  }  
+								  this.getCounts();
+								  this.support();	
+							  }
+						  );
+					//	};
+				  //});
+				};
+		  });
+		}
+	  });
+  }
 
 	getCounts(){
 		this.storage.get('TUSV24').then(items => {

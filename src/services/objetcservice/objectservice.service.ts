@@ -92,6 +92,14 @@ export class ObjectserviceService {
 	getchatpedido(): Subject<any> {
 		return this.chatpedido;
 	}
+	private openchat  = new Subject<any>();
+	setopenchat(data: any) {
+		console.log(data)
+		this.openchat.next(data);
+	}
+	getopenchat(): Subject<any> {
+		return this.openchat;
+	}
 	//--trabaja con notificaciones y actualiza pedidos
 	private soporte  = new Subject<any>();
 	setsoporte(data: any) {

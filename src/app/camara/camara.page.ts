@@ -207,7 +207,6 @@ export class CamaraPage implements OnInit {
       let hasDownBeenPressed = false;
 
       this.autocomplete = new google.maps.places.Autocomplete(input, options);
-  
       input.addEventListener('keydown', (e) => {
         if (e.keyCode === 40) {
             hasDownBeenPressed = true;
