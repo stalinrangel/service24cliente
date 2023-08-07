@@ -49,7 +49,7 @@ export class CalificationPage implements OnInit {
   }
 
   sendCalification(){
-    this.Calification.puntaje=5;
+    //this.Calification.puntaje=5;
     //if (this.Calification.puntaje == 0) {
     if (false) {
       this.presentToast('Debes asignar un puntaje para enviar la calificación.')
@@ -77,6 +77,10 @@ export class CalificationPage implements OnInit {
         }
       });
     }
+  }
+  ratingChanged(e:any){
+    console.log(e)
+    this.Calification.puntaje=e;
   }
 
   async presentLoading() {

@@ -21,7 +21,7 @@ export class RegisterPage implements OnInit {
   public loading:any;
   formErrors = {
     'nombre': '',
-    'telefono': '',
+    'telefono': '+598',
     'email': '',
     'password': '',
     'rpassword': '',
@@ -50,7 +50,7 @@ export class RegisterPage implements OnInit {
 	initForm() {
 		this.registerUserForm = this.builder.group({
 		  nombre: ['', [Validators.required]],
-		  telefono: ['', [Validators.required]],
+		  telefono: ['+598'],
 		  email: ['', [Validators.required, Validators.email]],
       ciudad: [''],
       estado: [''],

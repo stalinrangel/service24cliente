@@ -23,7 +23,16 @@
 		<div class="content-info">
 			<p class="title" style="color: white !important;" *ngIf="data">{{data.establecimiento.nombre}}</p>
 			<p class="title" style="color: white !important;" *ngIf="data">{{data.nombre}}</p>
-			<ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [class.filled]="(i + 1 <= promedio_calificacion)"></ion-icon>
+			<!--ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [class.filled]="(i + 1 <= promedio_calificacion)"></ion-icon-->
+			<ion-rating-stars
+				[rating]="promedio_calificacion"
+				[color]="'darkgrey'"
+				[filledColor]="'orange'"
+				[margin]="2"
+				[size]="20"
+				[disabled]="true"
+				[opacity]="0.9">
+			</ion-rating-stars>
 		</div>
 	</div>
 	<ion-segment [(ngModel)]="type" value="track" color="light">
@@ -70,11 +79,21 @@
 			<div class="conten-item" *ngFor="let item of calificaciones;let even = even"  [style.background]="even? '#FFFFFF' : '#F2F2F2'">
 				<ion-item lines="none" no-padding>
 					<ion-thumbnail slot="start">
-						<img src="{{item.imagen}}">
+						<img src="{{item.usuario.imagen}}">
 					</ion-thumbnail>
 				    <ion-label class="label-item">
-				      <ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star2" [ngClass]="{'filled': i < item.puntaje}"></ion-icon>
-				      <p class="product-item">{{item.producto.nombre}}</p>
+				      <!--ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star2" [ngClass]="{'filled': i < item.puntaje}"></ion-icon-->
+					  	<ion-rating-stars
+							public Calification = {
+							[rating]="item.puntaje"
+							[color]="'darkgrey'"
+							[filledColor]="'orange'"
+							[margin]="2"
+							[size]="20"
+							[disabled]="true"
+							[opacity]="0.5">
+						</ion-rating-stars>
+					  <p class="product-item">{{item.producto.nombre}}</p>
 				      <p class="comment-item">{{item.usuario.nombre}} - <i>{{item.comentario}}</i></p>
 				    </ion-label>
 				    <p slot="end" class="date-item">{{item.created_at | relativeTime}}</p>

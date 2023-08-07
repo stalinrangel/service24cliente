@@ -26,6 +26,9 @@ export class LanguageAlertPage implements OnInit {
     this.languageService.setLanguage(lng);
     this.modalController.dismiss();
   }
+  close(){
+    this.modalController.dismiss();
+  }
 
 }
 

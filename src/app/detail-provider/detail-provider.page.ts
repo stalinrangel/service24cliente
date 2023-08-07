@@ -99,6 +99,7 @@ export class DetailProviderPage implements OnInit {
   getProvider(){
     this.catService.getDetailProviders(this.id).subscribe(
       data => {
+        console.log(data)
         this.datos = data;
         this.data = this.datos.producto;
         this.imagen = this.data.imagen;

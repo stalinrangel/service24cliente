@@ -48,7 +48,7 @@
 			<p class="comment-cal">{{provider.comentario}}</p>	
 		</div> 
 	</div>
-	<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" (click)="addFavorite()" [hidden]="select">
+	<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" (click)="addFavorite()" *ngIf="!select">
 		<ion-icon slot="start" md="ios-star" ios="ios-star" class="icon-cal"></ion-icon>
 		<p>{{ 'DETAILORDER.addFav' | translate }}</p>
 	</ion-button>

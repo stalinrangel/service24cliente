@@ -38,7 +38,8 @@
           <p text-wrap class="info">{{item.descripcion}}</p>
   		  </ion-label>
         <ion-button class="btn-delete" (click)="presentConfirm(item)">
-  		    <ion-icon slot="end" ios="md-close" md="md-close" class="icon-delete"></ion-icon>
+  		   
+          <ion-icon name="trash-outline" style="color: black;"></ion-icon>
         </ion-button>
   		</ion-item>
       <p *ngIf="providers.length == 0" class="text-empty">{{ 'FAVORITES.empty' | translate }}</p>

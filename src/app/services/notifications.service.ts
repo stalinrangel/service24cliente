@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActionPerformed, PushNotificationSchema, PushNotifications, Token, } from '@capacitor/push-notifications';
-import { NavController, Platform } from '@ionic/angular';
+import { AlertController, NavController, Platform } from '@ionic/angular';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 import { StorageService } from 'src/services/storage/storage.service';
 import { UserService } from 'src/services/user/user.service';
@@ -10,7 +10,7 @@ import { UserService } from 'src/services/user/user.service';
 })
 export class NotificationsService {
 
-  constructor(public platform: Platform,private storage: StorageService,public userService: UserService,public navCtrl: NavController, private objService: ObjectserviceService) {
+  constructor(public platform: Platform,private alertController: AlertController,private storage: StorageService,public userService: UserService,public navCtrl: NavController, private objService: ObjectserviceService) {
     this.inicializar();
    }
 
@@ -59,7 +59,10 @@ export class NotificationsService {
       'pushNotificationReceived',
       (notification: PushNotificationSchema) => {
        // alert('Push received: ' + JSON.stringify(notification.data));
-       if (notification.data.accion=='7') {
+       
+       this.presentConfirm(notification.data.accion,notification.data);
+
+       /*if (notification.data.accion=='7') {
         this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
         setTimeout(() => {
           this.objService.setAceptado(notification.data);
@@ -100,7 +103,7 @@ export class NotificationsService {
             setTimeout(() => {
               this.objService.setgenerales(notification.data);
               }, 300);
-          }
+          }*/
       },
     );
 
@@ -110,7 +113,10 @@ export class NotificationsService {
         //alert('Push action performed: ' + JSON.stringify(notification));
         //alert(JSON.stringify(notification.notification.data.accion));
         //alert('Push received: ' + JSON.stringify(notification.notification.data));
-        if (notification.notification.data.accion=='7') {
+        
+        this.presentConfirm(notification.notification.data.accion,notification.notification.data);
+        
+        /*if (notification.notification.data.accion=='7') {
           this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
           setTimeout(() => {
             this.objService.setAceptado(notification.notification.data);
@@ -151,10 +157,78 @@ export class NotificationsService {
           setTimeout(() => {
             this.objService.setgenerales(notification.notification.data);
             }, 300);
-        }
+        }*/
         
       },
     );
+  }
+
+  async presentConfirm(i:any,data:any) {
+    const alert = await this.alertController.create({
+    message: '¿Desea abrir la notificación?',
+    buttons: [
+          {
+            text: 'No',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Si',
+            handler: () => {
+              this.accions(i,data);
+            }
+          }
+        ]
+    });
+    await alert.present();
+  }
+
+  accions(i:any,data:any){
+    
+    if (i=='7') {
+      this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
+      setTimeout(() => {
+        this.objService.setAceptado(data);
+        }, 300);
+    }
+    if (i=='4') {
+      this.navCtrl.navigateForward('/tabs/tab2');//En Camino
+      setTimeout(() => {
+        this.objService.setEncamino(data);
+        }, 300);
+    }
+    if (i=='3') {
+      this.navCtrl.navigateForward('/tabs/tab2'); //finalizados
+      setTimeout(() => {
+        this.objService.setfinalizados(data);
+        }, 300);
+    }
+    if (i=='5') {
+      this.navCtrl.navigateForward('/tabs/tab2'); //cancelados
+      setTimeout(() => {
+        this.objService.setcancelado(data);
+        }, 300);
+    }
+    if (i=='8') {
+      this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
+      setTimeout(() => {
+        this.objService.setchatpedido(data);
+        }, 300);
+    }
+    if (i=='2') {
+      this.navCtrl.navigateForward('/tabs/tab3');//char soporte
+      setTimeout(() => {
+        this.objService.setsoporte(data);
+        }, 300);
+    }
+    if (i=='17') {
+      this.navCtrl.navigateForward('/tabs/tab1'); //notificaciones generales 
+      setTimeout(() => {
+        this.objService.setgenerales(data);
+        }, 300);
+    }
   }
 
   registrar_token(){

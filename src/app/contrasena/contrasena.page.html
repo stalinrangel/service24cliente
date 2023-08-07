@@ -6,10 +6,10 @@
     </ion-buttons>
 	<div class="content-img">
 		<img src="assets/logo_blanco.svg">
-		<h2>Recuperar contraseña</h2>
+		<h2 style="color:white !important">Recuperar contraseña</h2>
 	</div>
 	<br><br>
-	<form [formGroup]="registerUserForm" class="padding-space">
+	<form [formGroup]="registerUserForm" class="padding-space" style="margin: 0 1.5rem 0 1.5rem;">
 		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.password}">
 			<ion-input [type]="password_type1" formControlName="password" placeholder="Contraseña"></ion-input>
 			<ion-icon slot="end" md="md-eye-off" ios="md-eye-off" class="icon-eye" *ngIf="password_type1 == 'password'" (click)="togglePasswordMode1()"></ion-icon>

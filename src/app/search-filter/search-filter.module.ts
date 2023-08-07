@@ -8,6 +8,7 @@ import { SearchFilterPageRoutingModule } from './search-filter-routing.module';
 
 import { SearchFilterPage } from './search-filter.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { IonRatingStarsModule } from 'ion-rating-stars';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     SearchFilterPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    IonRatingStarsModule
   ],
   declarations: [SearchFilterPage]
 })

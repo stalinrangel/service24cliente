@@ -43,9 +43,10 @@ export class DetailOrderPage implements OnInit {
     token: '',
     finalizo: 3
   }
-  public favorite = {
+  public favorite :any= {
     usuario_id: '',
-    establecimiento_id: ''
+    establecimiento_id: '',
+    productos_id: ''
   }
   public checkFav = {
     usuario_id: '',
@@ -80,6 +81,8 @@ export class DetailOrderPage implements OnInit {
     token_notificacion: ''
   }
   public show_notify: boolean = false;
+
+  private productos_id=0;
 
   constructor(
   	public navCtrl: NavController,
@@ -117,6 +120,7 @@ export class DetailOrderPage implements OnInit {
 
   ngOnInit() {
     this.platform.ready().then(() => {
+      
       this.getOrder(this.data);
     })
   }
@@ -149,8 +153,11 @@ export class DetailOrderPage implements OnInit {
         //this.presentLoading();
         this.orderService.getOrderId(id,items2).subscribe(
         data => {
+          
           this.zone.run(()=>{
             this.datos = data;
+            this.productos_id=this.datos.pedido.productos[0].id;
+            console.log(this.productos_id)
             this.estado = this.datos.pedido.estado;
             this.encamino = this.datos.pedido.encamino;
             if (this.datos.pedido.repartidor) {
@@ -431,9 +438,12 @@ export class DetailOrderPage implements OnInit {
             this.checkFav.producto_id = this.datos.pedido.productos[0].id;
             this.catService.checkFavorites(this.checkFav,items2).subscribe(
               data => {
-                if (data == 0 && this.datos.pedido.repartidor) {
+                console.log(data);
+                if (data == '0' ) {
                   this.select = false;
-                }  
+                }else if (data == '1') {
+                  this.select= true;
+                }
               },
               msg => {      
                 console.log(msg);
@@ -452,11 +462,13 @@ export class DetailOrderPage implements OnInit {
         this.storage.get('TUSV24').then(items2 => {
           if (items2) {
             this.favorite.usuario_id = items.id;
+            this.favorite.productos_id= this.productos_id;
             this.catService.addFavorites(this.favorite,items2).subscribe(
               data => {
                 this.select = true;
                 this.loading.dismiss();
                 this.presentToast('Proveedor agregado con éxito.')    
+                this.select=true;
               },
               msg => { 
                 this.loading.dismiss();      

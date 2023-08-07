@@ -9,6 +9,7 @@ import { DetailProviderPageRoutingModule } from './detail-provider-routing.modul
 import { DetailProviderPage } from './detail-provider.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { RelativeTimePipeModule } from 'src/pipe/relative-time.pipe.module';
+import { IonRatingStarsModule } from 'ion-rating-stars';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { RelativeTimePipeModule } from 'src/pipe/relative-time.pipe.module';
     IonicModule,
     DetailProviderPageRoutingModule,
     TranslateModule,
-    RelativeTimePipeModule
+    RelativeTimePipeModule,
+    IonRatingStarsModule
   ],
   declarations: [DetailProviderPage]
 })

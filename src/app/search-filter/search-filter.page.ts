@@ -7,6 +7,7 @@ import { CategoriesService } from '../../services/categories/categories.service'
 import { FilterPage } from '../filter/filter.page';
 import { TranslateService } from '@ngx-translate/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-search-filter',
@@ -62,8 +63,25 @@ export class SearchFilterPage implements OnInit {
         this.show_notify = false;
       }
     });
+    this.geolocate();
   }
-
+  async geolocate(){
+		console.log('geolocate')
+		const options = { enableHighAccuracy: true };
+		const coordinates = await Geolocation.getCurrentPosition(options);
+		
+		console.log('Current position:', coordinates);
+	
+		const latLng = {
+		  lat: coordinates.coords.latitude,
+		  lng: coordinates.coords.longitude
+		};
+    this.myLocation.lat=latLng.lat;
+    this.myLocation.lng=latLng.lng;
+	
+    console.log(latLng)
+    //this.getServices(latLng)
+	}
   addHistory() {
     if (this.searchTerm != '') {
       this.newItem.title = this.searchTerm;
@@ -190,6 +208,12 @@ export class SearchFilterPage implements OnInit {
     if (val == '') {
       this.searching = false;
       this.item = []; 
+    }
+
+    for (let i = 0; i < this.item.length; i++) {
+      console.log(this.item)
+      this.item[i].distance = this.getDistance(this.myLocation,this.item[i].establecimiento.lat,this.item[i].establecimiento.lng);
+      
     }
   }
 

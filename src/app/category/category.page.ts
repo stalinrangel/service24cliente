@@ -39,6 +39,8 @@ export class CategoryPage implements OnInit {
     console.log(this.languages)
     this.data = this.objService.getExtras();
     this.category = this.data.categorias;
+    console.log(this.category);
+    this.category.sort((a:any, b:any) => a.nombre.localeCompare(b.nombre));
     this.storage.get('notifyGSV24').then(items => {
       if (items == '1') {
         this.show_notify = true;

@@ -49,10 +49,11 @@ export class OrderPage{
 
 	map:any;
 	autocomplete:any;
+	
 
   constructor(
   	private nav: NavController,
-  	//private geolocation: Geolocation,
+  	private Geolocation: Geolocation,
   	private platform: Platform,
   	private objService: ObjectserviceService,
   	private zone: NgZone,
@@ -145,10 +146,10 @@ export class OrderPage{
 		const center = {  lat: environment.lat, lng: environment.lng, };
 		// Create a bounding box with sides ~10km away from the center point
 		const defaultBounds = {
-			north: center.lat + 0.1,
-			south: center.lat - 0.1,
-			east: center.lng + 0.1,
-			west: center.lng - 0.1,
+			north: center.lat + 0.9,
+			south: center.lat - 0.9,
+			east: center.lng + 0.9,
+			west: center.lng - 0.9,
 		};
 		const input = document.getElementById("pac-input") as HTMLInputElement;
 		const options = {

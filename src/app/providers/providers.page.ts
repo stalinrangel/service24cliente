@@ -8,6 +8,7 @@ import { StorageService } from '../../services/storage/storage.service';
 import { LanguageService } from './../../services/language/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
+import { Geolocation } from '@capacitor/geolocation';
 
 
 @Component({
@@ -76,8 +77,25 @@ export class ProvidersPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getServices({})
+    
+    //this.getServices({})
+    this.geolocate();
   }
+  async geolocate(){
+		console.log('geolocate')
+		const options = { enableHighAccuracy: true };
+		const coordinates = await Geolocation.getCurrentPosition(options);
+		
+		console.log('Current position:', coordinates);
+	
+		const latLng = {
+		  lat: coordinates.coords.latitude,
+		  lng: coordinates.coords.longitude
+		};
+	
+    console.log(latLng)
+    this.getServices(latLng)
+	  }
 
   getServices(location:any){
     console.log('get')
@@ -99,11 +117,14 @@ export class ProvidersPage implements OnInit {
             this.loading.dismiss();
             this.datos = data;
             this.providers = this.datos.productos; 
+            console.log(this.providers)
             for (var i = 0; i < this.providers.length; ++i) {
+              console.log(location,this.providers[i].establecimiento.lat,this.providers[i].establecimiento.lng);
               this.providers[i].distance = this.getDistance(location,this.providers[i].establecimiento.lat,this.providers[i].establecimiento.lng);
               if (this.providers[i].establecimiento.usuario != null) {
                 if (this.providers[i].establecimiento.usuario.repartidor != null) {
                   this.providers[i].status = this.providers[i].establecimiento.usuario.repartidor.activo;
+                  //this.providers[i].promedio_calificacion=3;
                   if (this.providers[i].establecimiento.usuario.repartidor.activo != 4) {
                     this.items.push(this.providers[i])
                   }
@@ -144,8 +165,8 @@ export class ProvidersPage implements OnInit {
 
   mToMiles(m:any) {return (m / 1000).toFixed(2);}
 
-  getDistance = function(p1:any, p2Lat:any, p2Lng:any) {
-    /*var R = 6378137;
+  getDistance = (p1:any, p2Lat:any, p2Lng:any) => {
+    var R = 6378137;
     var dLat = this.rad(p2Lat - p1.lat);
     var dLong = this.rad(p2Lng - p1.lng);
     var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -153,7 +174,7 @@ export class ProvidersPage implements OnInit {
       Math.sin(dLong / 2) * Math.sin(dLong / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
-    return this.mToMiles(d);*/
+    return this.mToMiles(d);
   };
 
   setProvider(item:any){

@@ -124,6 +124,10 @@ const routes: Routes = [
   },  {
     path: 'camara',
     loadChildren: () => import('./camara/camara.module').then( m => m.CamaraPageModule)
+  },
+  {
+    path: 'email-password',
+    loadChildren: () => import('./email-password/email-password.module').then( m => m.EmailPasswordPageModule)
   }
 
 ];
