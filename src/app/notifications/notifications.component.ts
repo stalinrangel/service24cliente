@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, LoadingController, IonicModule} from '@ionic/angular';
+import { ModalController, LoadingController, IonicModule, NavController} from '@ionic/angular';
 import { UserService } from '../../services/user/user.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 
 
 @Component({
@@ -29,6 +30,8 @@ export class NotificationsComponent  implements OnInit {
   	public modalCtrl: ModalController,
     public userService: UserService, 
     private storage: StorageService, 
+    private objService: ObjectserviceService,
+    public navCtrl: NavController
     //public events: Events
   ) { 
     /*this.events.subscribe('prov:notify', msg => {
@@ -36,6 +39,12 @@ export class NotificationsComponent  implements OnInit {
     });*/
    
     this.storage.set('notifyGPROVSV24', '0');
+
+    this.objService.getnotificaciones().subscribe((data:any) => {
+			console.log(data)
+      //alert('nnottifi');
+      //this.getZone();
+	  }); 
   } 
 
   ngOnInit() {
@@ -75,6 +84,11 @@ export class NotificationsComponent  implements OnInit {
         if (this.notifications.length == 0) {
           this.showEmpty = true;
         }
+        this.notifications.sort((a:any, b:any) => {
+          const dateA = new Date(a.created_at);
+          const dateB = new Date(b.created_at);
+          return dateB.getTime() - dateA.getTime();
+        });
     },
     msg => {
       this.notifications = [];
@@ -84,6 +98,76 @@ export class NotificationsComponent  implements OnInit {
 
   closeModal() {
     this.modalCtrl.dismiss();
+  }
+
+  get(notifi:any){
+    let data=JSON.parse(notifi.data);
+    //data.obj=JSON.parse(data.obj)
+    console.log(notifi);
+    this.visto(notifi.id);
+    console.log(data);
+    this.accions(notifi.accion,data)
+  }
+
+  accions(i:any,data:any){
+   
+    if (i=='7') {
+      this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
+      setTimeout(() => {
+        this.objService.setAceptado(data);
+        }, 300);
+    }
+    if (i=='4') {
+      this.navCtrl.navigateForward('/tabs/tab2');//En Camino
+      setTimeout(() => {
+        this.objService.setEncamino(data);
+        }, 300);
+    }
+    if (i=='3') {
+      this.navCtrl.navigateForward('/tabs/tab2'); //finalizados
+      setTimeout(() => {
+        this.objService.setfinalizados(data);
+        }, 300);
+    }
+    if (i=='5') {
+      this.navCtrl.navigateForward('/tabs/tab2'); //cancelados
+      setTimeout(() => {
+        this.objService.setcancelado(data);
+        }, 300);
+    }
+    if (i=='8') {
+      this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
+      setTimeout(() => {
+        this.objService.setchatpedido(data);
+        }, 300);
+    }
+    if (i=='2') {
+      this.navCtrl.navigateForward('/tabs/tab3');//char soporte
+      setTimeout(() => {
+        this.objService.setsoporte(data);
+        }, 300);
+    }
+    if (i=='17') {
+      this.navCtrl.navigateForward('/tabs/tab1'); //notificaciones generales 
+      setTimeout(() => {
+        this.objService.setgenerales(data);
+        }, 300);
+    }
+    this.closeModal();
+  }
+
+  visto(id:any){
+    let data={
+      visto:1
+    };
+    this.userService.visto(id,data).subscribe(
+      data => {
+        console.log(data)
+        
+    },
+    msg => {
+      
+    });  
   }
 
 }

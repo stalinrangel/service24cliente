@@ -10,7 +10,7 @@
     </ion-title>
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
-      	<div class="icon-bagde" *ngIf="show_notify"></div>
+      	<div class="icon-bagde" *ngIf="show_notify"></div><span style="color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
         <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -88,5 +88,5 @@
 	      </ion-label>
 	    </ion-item>
 	</ion-list>
-	<p class="info-version">Service 24 <br> Version 0.5</p>
+	<p class="info-version">Service 24 <br> Version 0.15</p>
 </ion-content>

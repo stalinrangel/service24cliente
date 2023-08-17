@@ -65,35 +65,38 @@ export class LoginPage implements OnInit {
 
   //LOGIN
   login(){
-    if (this.loginUserForm.valid) {
-      this.presentLoading();
-      //this.oneSignal.getIds().then((ids:any) => {
-        //this.storage.set('token_notificacionUSV24',ids.userId);
-        //if (ids.userId != null && ids.userId != '') {
-          //this.loginUserForm.patchValue({token_notificacion: ids.userId});
-          this.auth.login(this.loginUserForm.value).subscribe((allowed: any) => {
-            if (allowed) {
-              console.log('exito')
+    localStorage.clear();
+    setTimeout(() => {
+      if (this.loginUserForm.valid) {
+        this.presentLoading();
+        //this.oneSignal.getIds().then((ids:any) => {
+          //this.storage.set('token_notificacionUSV24',ids.userId);
+          //if (ids.userId != null && ids.userId != '') {
+            //this.loginUserForm.patchValue({token_notificacion: ids.userId});
+            this.auth.login(this.loginUserForm.value).subscribe((allowed: any) => {
+              if (allowed) {
+                console.log('exito')
+                this.loading.dismiss();
+                this.router.navigate
+                //this.events.publish('userAuthSV24', 'userSV'); 
+                
+                this.router.navigate(['/tabs/tab1']);       
+                //this.nav.pop();
+              } else {
+                this.loading.dismiss();
+                this.presentToast("Accesso Denegado.");
+              }
+            },
+              (error: { error: any; }) => {
               this.loading.dismiss();
-              this.router.navigate
-              //this.events.publish('userAuthSV24', 'userSV'); 
-              
-              this.router.navigate(['/tabs/tab1']);       
-              //this.nav.pop();
-            } else {
-              this.loading.dismiss();
-              this.presentToast("Accesso Denegado.");
-            }
-          },
-            (error: { error: any; }) => {
-            this.loading.dismiss();
-            this.presentToast(error.error);
-          });
-        //};
-      //});
-    } else {
-      this.presentToast("Por favor, verifica los datos.");
-    }
+              this.presentToast(error.error);
+            });
+          //};
+        //});
+      } else {
+        this.presentToast("Por favor, verifica los datos.");
+      }
+    }, 1000);  
   }
 
   // LOGIN FACEBOOK

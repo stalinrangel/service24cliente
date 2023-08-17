@@ -10,6 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
 
 import * as moment from 'moment';
+import { NotificationsService } from '../services/notifications.service';
+import { UserService } from 'src/services/user/user.service';
 
 export interface OnEnter {
     onEnter(): Promise<void>;
@@ -45,7 +47,9 @@ export class Tab2Page {
 		public modalController: ModalController,
 		public zone: NgZone,
 		private translate: TranslateService,
-		private toastCtrl: ToastController
+		private toastCtrl: ToastController,
+		private noticationService: NotificationsService,
+		public userService: UserService,
 	){
 		/*this.events.subscribe('viewOrder', (userData: string) => {
 	    	this.type = userData;
@@ -88,7 +92,7 @@ export class Tab2Page {
 			this.dataNotificacion=data;
 			this.initOrder3();
 		});
-
+		this.getZone();
 	}
 
 	ionPageWillLeave() {
@@ -98,6 +102,8 @@ export class Tab2Page {
 	} 
  
     ionViewWillEnter(){
+		this.vistos=0;
+		this.getZone();
     	this.initOrder();
     	this.storage.get('notifyGSV24').then(items => {
 	      if (items == '1') {
@@ -109,6 +115,9 @@ export class Tab2Page {
     }
 
 	async initOrder(){
+	setTimeout(() => {
+		this.noticationService.registrar_token();
+		}, 5000);
     console.log('ini')
 		await this.storage.getObject('userSV24').then(items => {
 	      if (items != '' && items != null) {
@@ -441,5 +450,58 @@ export class Tab2Page {
       });
       return await modal.present();  
   	}
+
+	  getZone(){
+		this.storage.getObject('userSV24').then(items => {
+		  if (items) {
+			this.userService.getCity(items.id).subscribe(
+			data => {
+			  this.datos = data;
+			  this.getNotify(this.datos.ciudad_id, items.id);
+			},
+			msg => {
+			  this.notifications = [];
+			  this.showEmpty = true;
+			});
+		  } else {
+			this.notifications = [];
+			this.showEmpty = true;
+		  }
+		});  
+	  }
+	  datos1:any;
+	  notifications:any;
+	  showEmpty:any;
+	  vistos=0;
+	  getNotify(ciudad_id:any, user_id:any){
+		console.log(ciudad_id,user_id);
+		this.userService.getNotifications(ciudad_id, user_id).subscribe(
+		  data => {
+			console.log(data)
+			this.datos1 = data;
+			this.notifications = this.datos1.Notificaciones_generales;
+			if (this.notifications.length == 0) {
+			  this.showEmpty = true;
+			}
+			this.notifications.sort((a:any, b:any) => {
+			  const dateA = new Date(a.created_at);
+			  const dateB = new Date(b.created_at);
+			  return dateB.getTime() - dateA.getTime();
+			});
+			this.calcNotify();
+		},
+		msg => {
+		  this.notifications = [];
+		  this.showEmpty = true;
+		});  
+	  }
+	  calcNotify(){
+		this.vistos=0;
+		for (let i = 0; i < this.notifications.length; i++) {
+		  if (this.notifications[i].visto==0) {
+			this.vistos+=1;
+		  }
+		}
+	  }
 }
 

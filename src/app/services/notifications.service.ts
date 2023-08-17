@@ -13,8 +13,9 @@ export class NotificationsService {
   constructor(public platform: Platform,private alertController: AlertController,private storage: StorageService,public userService: UserService,public navCtrl: NavController, private objService: ObjectserviceService) {
     this.inicializar();
    }
-
+  private id:any;
   inicializar(){
+    
     if (this.platform.is('capacitor')) {
       PushNotifications.requestPermissions().then(result=>{
         console.log("PushNotifications.request.Permission()");
@@ -27,7 +28,21 @@ export class NotificationsService {
       console.log('no movil')
     }
   }
-
+  error(data:any){
+    let datos={
+      data: JSON.stringify(data)
+    }
+   
+    this.userService.error(datos).subscribe(
+      data => {
+        console.log(data)
+        
+      },
+      msg => {
+        console.log(msg)
+    })
+  }
+  tkn:any;
   addListeners(){
      // Request permission to use push notifications
     // iOS will prompt user and return if they granted permission or not
@@ -38,29 +53,42 @@ export class NotificationsService {
         PushNotifications.register();
       } else {
         // Show some error
+        this.error(result);
       }
     });
 
     PushNotifications.addListener('registration', (token: Token) => {
-      //alert('Push registration success, token: ' + token.value);
+      alert('Push registration success, token: ' + token.value);
       let guardar=token.value;
       guardar=guardar.toString();
       //alert(guardar)
-      localStorage.setItem('PushNotifications',guardar);
+      this.tkn=guardar;
+      //localStorage.setItem('PushNotifications',guardar);
+      //localStorage.setItem('notify_RPSV24',guardar);
 
 
     });
 
     PushNotifications.addListener('registrationError', (error: any) => {
-      //alert('Error on registration: ' + JSON.stringify(error));
+      alert('Error on registration: ' + JSON.stringify(error));
+      this.error(error);
+      
     });
 
     PushNotifications.addListener(
       'pushNotificationReceived',
       (notification: PushNotificationSchema) => {
-       // alert('Push received: ' + JSON.stringify(notification.data));
-       
-       this.presentConfirm(notification.data.accion,notification.data);
+        alert('Push received: ' + JSON.stringify(notification));
+        this.error(notification);
+        this.presentConfirm(notification.data.accion,notification.data);
+       let self=this;
+        this.storage.getObject('userSV24').then(items => {
+          console.log(items);
+         // alert(JSON.stringify(items))
+          self.id=items.id;
+          this.id=items.id;
+        });
+        
 
        /*if (notification.data.accion=='7') {
         this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
@@ -110,11 +138,19 @@ export class NotificationsService {
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       (notification: ActionPerformed) => {
-        //alert('Push action performed: ' + JSON.stringify(notification));
+        alert('Push action performed: ' + JSON.stringify(notification));
+        this.error(notification);
         //alert(JSON.stringify(notification.notification.data.accion));
         //alert('Push received: ' + JSON.stringify(notification.notification.data));
-        
+        //alert(JSON.stringify(notification));
         this.presentConfirm(notification.notification.data.accion,notification.notification.data);
+       let self=this;
+        this.storage.getObject('userSV24').then(items => {
+          console.log(items);
+          //alert(JSON.stringify(items))
+          self.id=items.id;
+          this.id=items.id;
+        });
         
         /*if (notification.notification.data.accion=='7') {
           this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
@@ -164,29 +200,35 @@ export class NotificationsService {
   }
 
   async presentConfirm(i:any,data:any) {
+    
     const alert = await this.alertController.create({
-    message: '¿Desea abrir la notificación?',
+    message: '¿Desea abrir la notificación? "'+data.body+'"',
     buttons: [
           {
             text: 'No',
             role: 'cancel',
             handler: () => {
+              this.siono=0;
               console.log('Cancel clicked');
+              this.registrar_notificacion(i,data.pedido_id,data);
             }
           },
           {
             text: 'Si',
             handler: () => {
+              this.siono=1;
               this.accions(i,data);
+              this.registrar_notificacion(i,data.pedido_id,data);
             }
           }
         ]
     });
     await alert.present();
   }
+  
 
   accions(i:any,data:any){
-    
+   
     if (i=='7') {
       this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
       setTimeout(() => {
@@ -229,11 +271,36 @@ export class NotificationsService {
         this.objService.setgenerales(data);
         }, 300);
     }
+    
+  }
+  siono:any=0;
+  registrar_notificacion(accion:any,id_operacion:any,data:any){
+    let enviar={
+      mensaje:data.body,
+      usuario_id:this.id,
+      id_operacion:id_operacion,
+      data:JSON.stringify(data),
+      accion:accion
+    }
+
+    this.userService.setNotificacion(enviar).subscribe(
+      data => {
+        console.log(data)
+        if (this.siono=1) {
+          this.visto(data.Notificacion.id);
+        }
+      },
+      msg => {
+        console.log(msg)
+    }
+  );
   }
 
   registrar_token(){
   
-    let notifi=localStorage.getItem('PushNotifications');
+    //let notifi=localStorage.getItem('PushNotifications');
+    localStorage.setItem('PushNotifications',this.tkn);
+    let notifi=this.tkn;
     let usuario={
       token_notificacion:notifi,
       token_notificacionp:notifi
@@ -254,5 +321,19 @@ export class NotificationsService {
 		    });
 		  }
 	    });		
+  }
+
+  visto(id:any){
+    let data={
+      visto:1
+    };
+    this.userService.visto(id,data).subscribe(
+      data => {
+        console.log(data)
+        
+    },
+    msg => {
+      
+    });  
   }
 }

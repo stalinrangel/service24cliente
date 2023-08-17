@@ -16,7 +16,7 @@ PODS:
     - Capacitor
   - CapacitorKeyboard (5.0.2):
     - Capacitor
-  - CapacitorPushNotifications (5.0.5):
+  - CapacitorPushNotifications (5.0.6):
     - Capacitor
   - CapacitorStatusBar (5.0.2):
     - Capacitor
@@ -98,7 +98,7 @@ SPEC CHECKSUMS:
   CapacitorGoogleMaps: 48b2f526741b98dde6c54b5ba66ff20e1bf5e64e
   CapacitorHaptics: 864585542a435bd41eaabf7f30d9ff5ec03024d3
   CapacitorKeyboard: e628d4e66d621c69e449945ebabded17c5b9c2e8
-  CapacitorPushNotifications: 6ec1a5d0dff2e8b2456bce633996d15fc9de92ac
+  CapacitorPushNotifications: 7eb70469f1fcc3dec07126336d4896520e4991db
   CapacitorStatusBar: 48f2899f6846cc7d8431b251ebfc58e1c10e3d58
   CordovaPlugins: 52b872a027ee7cb2377b6238c280ef679b060668
   Google-Maps-iOS-Utils: f77eab4c4326d7e6a277f8e23a0232402731913a

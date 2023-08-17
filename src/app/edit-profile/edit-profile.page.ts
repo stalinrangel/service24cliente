@@ -58,18 +58,22 @@ export class EditProfilePage implements OnInit {
 		private router: Router
 	) { 
 	}
-
+	tk:any='';
 	ngOnInit() {
+		this.tk=localStorage.getItem('PushNotifications');
 	    this.userForm = this.builder.group({
 			nombre: [this.usuario.nombre, [Validators.required]],
 			email: [this.usuario.email, [Validators.required, Validators.email]],
 			imagen: [this.usuario.imagen],
-			token: [null]
+			token: [null],
+			id: [null],
 		});
 		this.storage.getObject('userSV24').then(items => {
 	      if (items != '' && items != null) {
+			console.log(this.usuario)
 	      	this.usuario = items;
-	      	this.userForm.patchValue({nombre: items.nombre});
+	      	this.userForm.patchValue({id: items.id});
+			this.userForm.patchValue({nombre: items.nombre});
 		  	this.userForm.patchValue({email: items.email});
 		  	if (this.usuario.imagen != null) {
 		    	this.image_user = this.usuario.imagen;

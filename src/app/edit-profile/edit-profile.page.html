@@ -19,10 +19,11 @@
 	<div class="content-profile">
 		<div class="content-img" (click)="presentActionSheet()">
 			<img src="{{image_user}}">
-			<ion-icon md="ios-camera" ios="ios-camera"></ion-icon>
+			<ion-icon name="camera-outline" style="color:white"></ion-icon>
 		</div>	
 		<div class="content-info">
-			<p>{{usuario.nombre}}</p>
+			<p>ID: {{usuario.id}}-{{usuario.nombre}}</p>
+			<p>Token: {{tk}}</p>
 			<div class="start-user">
 	    		<!--rating [(ngModel)]="usuario.promedio_calificacion"
 	    				class="rating"
@@ -40,4 +41,5 @@
 			<ion-input type="email" formControlName="email" class="input-info"></ion-input>
 		</ion-item>
 	</form>
+	
 </ion-content>

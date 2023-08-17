@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar color="secondary" mode="md">
     <ion-title class="ion-text-capitalize ion-text-center" >
-      <img src="assets/logo_blancor.png" alt="" style="width: 50%;">
+      <img src="assets/logo_blancor.png" alt="" style="width: 16vh;max-height: 6vh;">
     </ion-title>
-    <ion-buttons slot="end" (click)="viewNotification()">
+    <ion-buttons slot="end" (click)="viewNotification()" style="width: 57px">
       <ion-button>
-        <div class="icon-bagde" *ngIf="show_notify"></div>
+        <div class="icon-bagde" *ngIf="show_notify"></div><span style="color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
         <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>

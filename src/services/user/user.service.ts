@@ -64,6 +64,11 @@ export class UserService {
     return this.http.get(`${environment.api}notificaciones_generales_t2?ciudad_id=`+ciudad_id+`&usuario_id=`+user_id);
   }
 
+  /* Put vistos */
+  visto(id:any,data:any): Observable<any>{
+    return this.http.put(`${environment.api}notificaciones/`+id,data);
+  }
+
   /* GET notificaciones */
   getCity(id:any): Observable<any>{
     return this.http.get(`${environment.api}usuario_zona/`+id);
@@ -77,5 +82,15 @@ export class UserService {
   /* GET avisos */
   getPolice(id:any): Observable<any>{
     return this.http.get(`${environment.api}sistema/aviso?pais_id=`+1);
+  }
+
+  /* Post nuevo notificacion */
+  setNotificacion(data:any): Observable<any>{
+    return this.http.post(`${environment.api}notificacion`, data);
+  }
+
+  /* Post nuevo notificacion */
+  error(data:any): Observable<any>{
+    return this.http.post(`${environment.api}error`, data);
   }
 }

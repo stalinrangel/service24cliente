@@ -52,20 +52,11 @@ export class SearchFilterPage implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.textSearch.setFocus();
-    },600);
-    this.loadItems();
-    this.storage.get('notifyGSV24').then(items => {
-      if (items == '1') {
-        this.show_notify = true;
-      } else {
-        this.show_notify = false;
-      }
-    });
+    
     this.geolocate();
   }
   async geolocate(){
+    this.presentLoading();
 		console.log('geolocate')
 		const options = { enableHighAccuracy: true };
 		const coordinates = await Geolocation.getCurrentPosition(options);
@@ -81,6 +72,17 @@ export class SearchFilterPage implements OnInit {
 	
     console.log(latLng)
     //this.getServices(latLng)
+    setTimeout(() => {
+      this.textSearch.setFocus();
+    },100);
+    this.loadItems();
+    this.storage.get('notifyGSV24').then(items => {
+      if (items == '1') {
+        this.show_notify = true;
+      } else {
+        this.show_notify = false;
+      }
+    });
 	}
   addHistory() {
     if (this.searchTerm != '') {
@@ -421,7 +423,7 @@ export class SearchFilterPage implements OnInit {
   async presentLoading() {
     this.loading = await this.loadingController.create({
       spinner: 'dots',
-      duration: 15000,
+      duration: 3850,
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });

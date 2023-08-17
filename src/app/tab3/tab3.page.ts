@@ -9,6 +9,7 @@ import { LanguageAlertPage } from '../language-alert/language-alert.page';
 import { TutorialPage } from '../tutorial/tutorial.page';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { Router } from '@angular/router';
+import { NotificationsService } from '../services/notifications.service';
 
 
 @Component({
@@ -58,7 +59,8 @@ export class Tab3Page {
 		private ngZone: NgZone,
 		private translate: TranslateService,
 		public modalController: ModalController,
-		private router: Router
+		private router: Router,
+		private noticationService: NotificationsService
 	) {
 		this.translate.get('PROFILE.user').subscribe((res1: string) => {           
 			this.usuario.nombre = res1;
@@ -99,6 +101,12 @@ export class Tab3Page {
 			console.log(data)
 			this.getIds2();	
 	  	});  
+
+		  setTimeout(() => {
+			this.noticationService.registrar_token();
+		  }, 5000);
+
+		  this.getZone();
 	}
 	
   
@@ -106,6 +114,8 @@ export class Tab3Page {
 	
 
 	ionViewWillEnter() { 
+		this.vistos=0;
+		this.getZone();
 		this.getIds();
 		this.storage.get('notifyGSV24').then(items => {
 	      if (items == '1') {
@@ -492,5 +502,57 @@ export class Tab3Page {
 
 	  ngOnInit(){
 		this.objService.unsuscribe();
+	  }
+
+	  getZone(){
+		this.storage.getObject('userSV24').then(items => {
+		  if (items) {
+			this.userService.getCity(items.id).subscribe(
+			data => {
+			  this.datos = data;
+			  this.getNotify(this.datos.ciudad_id, items.id);
+			},
+			msg => {
+			  this.notifications = [];
+			  this.showEmpty = true;
+			});
+		  } else {
+			this.notifications = [];
+			this.showEmpty = true;
+		  }
+		});  
+	  }
+	  notifications:any;
+	  showEmpty:any;
+	  vistos=0;
+	  getNotify(ciudad_id:any, user_id:any){
+		console.log(ciudad_id,user_id);
+		this.userService.getNotifications(ciudad_id, user_id).subscribe(
+		  data => {
+			console.log(data)
+			this.datos1 = data;
+			this.notifications = this.datos1.Notificaciones_generales;
+			if (this.notifications.length == 0) {
+			  this.showEmpty = true;
+			}
+			this.notifications.sort((a:any, b:any) => {
+			  const dateA = new Date(a.created_at);
+			  const dateB = new Date(b.created_at);
+			  return dateB.getTime() - dateA.getTime();
+			});
+			this.calcNotify();
+		},
+		msg => {
+		  this.notifications = [];
+		  this.showEmpty = true;
+		});  
+	  }
+	  calcNotify(){
+		this.vistos=0;
+		for (let i = 0; i < this.notifications.length; i++) {
+		  if (this.notifications[i].visto==0) {
+			this.vistos+=1;
+		  }
+		}
 	  }
 }

@@ -118,4 +118,22 @@ export class ObjectserviceService {
 	getgenerales(): Subject<any> {
 		return this.generales;
 	}
+
+	//--trabaja con notificaciones y actualiza pedidos
+	private notificaciones  = new Subject<any>();
+	setnotificaciones(data: any) {
+		console.log(data)
+		this.notificaciones.next(data);
+	}
+	getnotificaciones(): Subject<any> {
+		return this.notificaciones;
+	}
+	private nnotificaciones  = new Subject<any>();
+	setnnotificaciones(data: any) {
+		console.log(data)
+		this.nnotificaciones.next(data);
+	}
+	getnnotificaciones(): Subject<any> {
+		return this.nnotificaciones;
+	}
 }

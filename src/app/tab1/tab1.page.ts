@@ -13,7 +13,8 @@ import { FilterPage } from '../filter/filter.page';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from './../../services/language/language.service';
 import { NotificationsComponent } from '../notifications/notifications.component';
-
+import { Geolocation } from '@capacitor/geolocation';
+import { NotificationsService } from '../services/notifications.service';
 
 
 @Component({
@@ -61,7 +62,8 @@ export class Tab1Page {
     private zonen: NgZone,
     //public events: Events,
     private translate: TranslateService,
-    private languageService: LanguageService
+    private languageService: LanguageService, 
+    private noticationService: NotificationsService
   ) {
     this.platform.ready().then(()=>{
       //this.presentLoadingWithOptions();
@@ -92,16 +94,36 @@ export class Tab1Page {
       //alert('llego generales');
       this.viewNotification();
 	  }); 
+    this.getZone();
   }
 
   ngOnInit() {
+    this.geolocate();
+    setTimeout(() => {
+      this.noticationService.registrar_token();
+    }, 5000);
   }
+  async geolocate(){
+		console.log('geolocate')
+		const options = { enableHighAccuracy: true };
+		const coordinates = await Geolocation.getCurrentPosition(options);
+		
+		console.log('Current position:', coordinates);
+	
+		const latLng = {
+		  lat: coordinates.coords.latitude,
+		  lng: coordinates.coords.longitude
+		};
+    
+	}
 
   ionPageWillLeave() {
     //this.events.unsubscribe('changeZoneSV24');
   }
 
   ionViewWillEnter() {
+    this.vistos=0;
+    this.getZone();
     this.getIds();
     this.storage.getObject('ZONESV24').then(items => {
       if (items) {
@@ -210,6 +232,7 @@ export class Tab1Page {
         event.target.complete();
       }
     );
+    this.getZone();
   }
 
   setCategory(item:any){
@@ -420,5 +443,59 @@ export class Tab1Page {
       });
       return await modal.present();  
   }
+
+  getZone(){
+    this.storage.getObject('userSV24').then(items => {
+      if (items) {
+        this.userService.getCity(items.id).subscribe(
+        data => {
+          this.datos = data;
+          this.getNotify(this.datos.ciudad_id, items.id);
+        },
+        msg => {
+          this.notifications = [];
+          this.showEmpty = true;
+        });
+      } else {
+        this.notifications = [];
+        this.showEmpty = true;
+      }
+    });  
+  }
+  datos1:any;
+  notifications:any;
+  showEmpty:any;
+  vistos=0;
+  getNotify(ciudad_id:any, user_id:any){
+    console.log(ciudad_id,user_id);
+    this.userService.getNotifications(ciudad_id, user_id).subscribe(
+      data => {
+        console.log(data)
+        this.datos1 = data;
+        this.notifications = this.datos1.Notificaciones_generales;
+        if (this.notifications.length == 0) {
+          this.showEmpty = true;
+        }
+        this.notifications.sort((a:any, b:any) => {
+          const dateA = new Date(a.created_at);
+          const dateB = new Date(b.created_at);
+          return dateB.getTime() - dateA.getTime();
+        });
+        this.calcNotify();
+    },
+    msg => {
+      this.notifications = [];
+      this.showEmpty = true;
+    });  
+  }
+  calcNotify(){
+    this.vistos=0;
+    for (let i = 0; i < this.notifications.length; i++) {
+      if (this.notifications[i].visto==0) {
+        this.vistos+=1;
+      }
+    }
+  }
+
 }
 
