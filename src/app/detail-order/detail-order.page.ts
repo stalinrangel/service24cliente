@@ -104,6 +104,8 @@ export class DetailOrderPage implements OnInit {
       //alert(data)
       //alert('getopen '+data);
 			this.getOrder2(data);
+      console.log(data);
+      localStorage.setItem('sala',data);
 		});
     /*this.directionsService = new google.maps.DirectionsService();
     this.directionsDisplay = new google.maps.DirectionsRenderer({
@@ -122,6 +124,8 @@ export class DetailOrderPage implements OnInit {
     this.platform.ready().then(() => {
       
       this.getOrder(this.data);
+      console.log(this.data);
+      localStorage.setItem('sala',this.data);
     })
   }
 

@@ -46,6 +46,7 @@
     "ionic4-rating": "^1.0.9",
     "ionicons": "^7.0.0",
     "moment": "^2.29.4",
+    "ngx-socket-io": "^4.5.1",
     "rxjs": "~7.8.0",
     "swiper": "^10.0.3",
     "tslib": "^2.3.0",

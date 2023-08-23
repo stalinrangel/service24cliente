@@ -48,6 +48,9 @@
 			<p class="comment-cal">{{provider.comentario}}</p>	
 		</div> 
 	</div>
+	<div style="text-align: center;  margin: 0px 20px 0px 20px;" *ngIf="encamino==1">
+		<app-camino [data]="datos.pedido.id"></app-camino>
+	</div>
 	<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" (click)="addFavorite()" *ngIf="!select">
 		<ion-icon slot="start" md="ios-star" ios="ios-star" class="icon-cal"></ion-icon>
 		<p>{{ 'DETAILORDER.addFav' | translate }}</p>
