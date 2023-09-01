@@ -4,7 +4,6 @@ import { Geolocation } from '@capacitor/geolocation';
 import { environment } from '../../environments/environment';
 import { UserService } from 'src/services/user/user.service';
 import { Camera, CameraResultType } from '@capacitor/camera'; 
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 import { ImagenService } from '../services/imagen.service';
 //import { File } from '@awesome-cordova-plugins/file';
 
@@ -23,7 +22,7 @@ export class CamaraPage implements OnInit {
   imagen:any='';
   fileimagen:any='';
   base64Data: string='';
-  constructor(private user: UserService,private transfer: FileTransfer,private imageService: ImagenService) { }
+  constructor(private user: UserService,private imageService: ImagenService) { }
   ngOnInit() {
     let self=this;
     setTimeout(() => {
@@ -92,23 +91,8 @@ export class CamaraPage implements OnInit {
   
   upload() {
 
-    const fileTransfer: FileTransferObject = this.transfer.create();
-
-    let options: FileUploadOptions = {
-       fileKey: 'file',
-       fileName: 'name.jpg',
-       headers: {}
-    }
-    console.log('upload');
-    fileTransfer.upload(this.fileimagen, 'https://service24.app/apii/public/images_uploads/upload.php', options)
-     .then((data) => {
-       console.log(data)
-       alert('success')
-     }, (err) => {
-      console.log('ahi va el error')
-       console.log(err)
-       alert(JSON.stringify(err))
-     })
+    
+    
   }
 
   uploadPhoto(file:any){

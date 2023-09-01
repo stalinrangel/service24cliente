@@ -21,7 +21,6 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
-    "@awesome-cordova-plugins/file-transfer": "^6.3.0",
     "@capacitor/android": "5.0.4",
     "@capacitor/app": "5.0.2",
     "@capacitor/camera": "^5.0.5",

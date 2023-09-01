@@ -8,7 +8,6 @@ import { CamaraPageRoutingModule } from './camara-routing.module';
 
 import { CamaraPage } from './camara.page';
 
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 
 
 @NgModule({
@@ -19,7 +18,6 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-co
     CamaraPageRoutingModule,
     
   ],
-  providers: [FileTransfer],
   declarations: [CamaraPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
