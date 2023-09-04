@@ -1,7 +1,25 @@
-
+.menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 25px;
+    width: 100%;
+}
+.nuevo_tab {
+    border: 1.5px solid var(--neutral-200, #DAE2E7);
+    border-radius: 50px;
+    box-shadow: 0px 2px 4px -2px rgba(16, 24, 40, 0.10), 0px 4px 6px -1px rgba(16, 24, 40, 0.10);
+    width: 90%;
+    height: 60px;
+    max-height: 60px;
+    max-width: 90%;
+    padding-left: 12px;
+    padding-right: 12px;
+}
 .tab-selected {
-    --background: #c34f11;
-    backgroud: #c34f11;
+    --background: #ffffff;
+    backgroud: #ffffff;
   }
   ion-tab-button {
     --color: rgba(255,255,255,0.6);
@@ -18,35 +36,80 @@
       line-height: 4px;
   }
   ion-icon {
+    
+
       &[class*="custom-"] {
           vertical-align: middle;
-          $sz: 22px;
+          $sz: 48px;
           width: $sz;
           height: $sz;
           color: transparent !important;
       }
       &[class*="inicio"] {
-          background: url("/assets/icon/icono_inicio_off.svg") no-repeat 50% 50%;
+          background: url("/assets/icon/nuevo_icono_inicio_off.svg") no-repeat 50% 50%;
           background-size: contain;
       }
       .tab-selected &[class*="inicio"] {
-          background: url("/assets/icon/icono_inicio_on.svg") no-repeat 50% 50%;
+          background: url("/assets/icon/nuevo_icono_inicio_on.svg") no-repeat 50% 50%;
           background-size: contain;
+          /*position: relative;
+          top: 5px;*/
       }
       &[class*="solicitud"] {
-          background: url("/assets/icon/icono_solicitud_off.svg") no-repeat 50% 50%;
+          background: url("/assets/icon/nuevo_icono_solicitud_off.svg") no-repeat 50% 50%;
           background-size: contain;
       }
       .tab-selected &[class*="solicitud"] {
-          background: url("/assets/icon/icono_solicitud_on.svg") no-repeat 50% 50%;
+          background: url("/assets/icon/nuevo_icono_solicitud_on.svg") no-repeat 50% 50%;
+          background-size: contain;
+          /*position: relative;
+          top: 5px;*/
+      }
+      &[class*="chat"] {
+          background: url("/assets/icon/nuevo_icono_chat_off.svg") no-repeat 50% 50%;
           background-size: contain;
       }
-      &[class*="perfil"] {
-          background: url("/assets/icon/icono_perfil_off.svg") no-repeat 50% 50%;
+      .tab-selected &[class*="chat"] {
+          background: url("/assets/icon/nuevo_icono_chat_on.svg") no-repeat 50% 50%;
           background-size: contain;
+         /* position: relative;
+          top: 5px;*/
       }
-      .tab-selected &[class*="perfil"] {
-          background: url("/assets/icon/icono_perfil_on.svg") no-repeat 50% 50%;
-          background-size: contain;
-      }
+      &[class*="ayuda"] {
+        background: url("/assets/icon/nuevo_icono_ayuda_off.svg") no-repeat 50% 50%;
+        background-size: contain;
+    }
+    .tab-selected &[class*="ayuda"] {
+        background: url("/assets/icon/nuevo_icono_ayuda_on.svg") no-repeat 50% 50%;
+        background-size: contain;
+        /*position: relative;
+        top: 5px;*/
+    }
+    &[class*="perfil"] {
+        background: url("/assets/icon/nuevo_icono_perfil_off.svg") no-repeat 50% 50%;
+        background-size: contain;
+    }
+    .tab-selected &[class*="perfil"] {
+        background: url("/assets/icon/nuevo_icono_perfil_on.svg") no-repeat 50% 50%;
+        background-size: contain;
+        /*position: relative;
+        top: 5px;*/
+    }
+    &[class*="chat"] {
+        background: url("/assets/icon/nuevo_icono_chat_off.svg") no-repeat 50% 50%;
+        background-size: contain;
+    }
+    .tab-selected &[class*="chat"] {
+        background: url("/assets/icon/nuevo_icono_chat_on.svg") no-repeat 50% 50%;
+        background-size: contain;
+    }
+    &[class*="ayuda"] {
+        background: url("/assets/icon/nuevo_icono_ayuda_off.svg") no-repeat 50% 50%;
+        background-size: contain;
+    }
+    .tab-selected &[class*="ayuda"] {
+        background: url("/assets/icon/nuevo_icono_ayuda_on.svg") no-repeat 50% 50%;
+        background-size: contain;
+    }
   }
+  
