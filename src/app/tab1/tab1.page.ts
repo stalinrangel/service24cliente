@@ -15,6 +15,9 @@ import { LanguageService } from './../../services/language/language.service';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { Geolocation } from '@capacitor/geolocation';
 import { NotificationsService } from '../services/notifications.service';
+import { register } from 'swiper/element/bundle';
+
+register();
 
 
 @Component({
@@ -161,7 +164,9 @@ export class Tab1Page {
     );
   };
 
-  usuario:any;
+  usuario:any={
+    nombre:''
+  };
   datos:any;
   chat_support:any={
     admin_id:'',
@@ -175,6 +180,7 @@ export class Tab1Page {
       console.log(items)
       if (items != '' && items != null) {
     this.usuario = items;
+    console.log(this.usuario)
     this.storage.get('TUSV24').then(items2 => {
         if (items2) {
         console.log(items2);

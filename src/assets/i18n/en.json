@@ -96,6 +96,7 @@
         "tutorial": "User Guide"
     },
     "LOGIN": {
+        "start": "Log In",
         "login": "Log In",
         "forgot": "Forgot your password?",
         "o": "or",

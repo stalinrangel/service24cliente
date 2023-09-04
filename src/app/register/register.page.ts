@@ -220,4 +220,8 @@ export class RegisterPage implements OnInit {
   goBack(){
     this.navCtrl.pop();
   }
+
+  terms(){
+		this.navCtrl.navigateForward('terms-conditions');
+	}
 }

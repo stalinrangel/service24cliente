@@ -25,6 +25,36 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+
 ion-toolbar .sc-ion-searchbar-ios-h {
   padding: 0 10px;
 }
+
+*{
+  color: black;
+}
+
+@font-face {
+  font-family: 'Gilroy-Light';
+  src: url('/assets/fonts/Gilroy/Gilroy-Light.otf');
+};
+@font-face {
+  font-family: 'Gilroy-ExtraBold';
+  src: url('/assets/fonts/Gilroy/Gilroy-ExtraBold.otf');
+};
+@font-face {
+  font-family: 'Inter-Light';
+  src: url('/assets/fonts/Inter/Inter-Light.ttf');
+};
+@font-face {
+  font-family: 'Inter-Bold';
+  src: url('/assets/fonts/Inter/Inter-Bold.ttf');
+};
+@font-face {
+  font-family: 'Inter-Medium';
+  src: url('/assets/fonts/Inter/Inter-Medium.ttf');
+};
+@font-face {
+  font-family: 'Inter-SemiBold';
+  src: url('/assets/fonts/Inter/Inter-SemiBold.ttf');
+};

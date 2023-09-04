@@ -96,6 +96,7 @@
         "tutorial": "Guía de Uso"
     },
     "LOGIN": {
+        "start": "Inicio",
         "login": "Iniciar Sesión",
         "forgot": "¿Olvidó su Constraseña?",
         "o": "o",

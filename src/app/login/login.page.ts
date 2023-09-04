@@ -59,8 +59,34 @@ export class LoginPage implements OnInit {
     this.loginUserForm = this.builder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      token_notificacion: ['']
+      token_notificacion: [''],
+      recordarme: [false],
     });
+    console.log(Boolean(localStorage.getItem('recordar')));
+    if (Boolean(localStorage.getItem('recordar'))==true) {
+      console.log('true')
+      this.loginUserForm.patchValue({
+        recordarme: localStorage.getItem('recordar'),
+        email:localStorage.getItem('email'),
+        password:localStorage.getItem('password'),
+      });
+    }
+  }
+  recordarme=false;
+  recordar(){
+    if (this.loginUserForm.value.recordarme==true) {
+      console.log(this.loginUserForm.value.recordarme,'true')
+      //this.loginUserForm.value.recordarme=false;
+      localStorage.setItem('recordar','');
+      localStorage.setItem('email','');
+      localStorage.setItem('password','');
+    }else{
+      console.log(this.loginUserForm.value.recordarme,'false')
+      //this.loginUserForm.value.recordarme=true;
+      localStorage.setItem('recordar',this.recordarme.toString());
+      localStorage.setItem('email',this.loginUserForm.value.email);
+      localStorage.setItem('password',this.loginUserForm.value.password);
+    }
   }
 
   //LOGIN
@@ -235,5 +261,10 @@ export class LoginPage implements OnInit {
   goBack(){
     this.nav.pop();
   }
-
+  password_type1: string = 'password';
+  togglePasswordMode1() {   
+    this.password_type1 = this.password_type1 === 'text' ? 'password' : 'text';
+  } 
+  
+  
 }

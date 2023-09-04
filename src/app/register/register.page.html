@@ -5,34 +5,44 @@
       </ion-button>
     </ion-buttons>
 	<div class="content-img">
-		<img src="assets/logo_blanco.svg">
+		<img src="assets/service24/logo-rojo.svg">
 		<h2>{{ 'REGISTER.registry' | translate }}</h2>
 	</div> 
-	<form [formGroup]="registerUserForm" class="padding-space">
-		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.nombre}">
-			<ion-input mode="ios" type="text" formControlName="nombre" placeholder="{{ 'REGISTER.name' | translate }}"></ion-input>
+	<form [formGroup]="registerUserForm" class="padding-space" style="padding: 20px 0px 20px 0px;">
+		<ion-item lines="none" class="item-input " [ngClass]="{'danger': formErrors.nombre}">
+			<ion-input class="nuevo-input" mode="ios" type="text" formControlName="nombre" placeholder="{{ 'REGISTER.name' | translate }}"></ion-input>
 		</ion-item>
-		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.email}">
-			<ion-input mode="ios" type="email" formControlName="email" placeholder="{{ 'REGISTER.email' | translate }}" (keydown.space)="$event.preventDefault();"></ion-input>
+		<ion-item lines="none" class="item-input " >
+			<ion-input class="nuevo-input" mode="ios" type="tel" formControlName="telefono" placeholder="{{ 'REGISTER.phone' | translate }}"></ion-input>
 		</ion-item>
-		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.telefono}">
-			<ion-input mode="ios" type="tel" formControlName="telefono" placeholder="{{ 'REGISTER.phone' | translate }}"></ion-input>
+		<ion-item lines="none" class="item-input " [ngClass]="{'danger': formErrors.email}">
+			<ion-input class="nuevo-input" mode="ios" type="email" formControlName="email" placeholder="{{ 'REGISTER.email' | translate }}" (keydown.space)="$event.preventDefault();"></ion-input>
 		</ion-item>
-		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.password}">
-			<ion-input mode="ios" [type]="password_type1" formControlName="password" placeholder="{{ 'REGISTER.password' | translate }}"></ion-input>
-			<ion-icon slot="end" name="eye-off-outline" class="icon-eye" *ngIf="password_type1 == 'password'" (click)="togglePasswordMode1()"></ion-icon>
-			<ion-icon slot="end" name="eye-outline" class="icon-eye" *ngIf="password_type1 == 'text'" (click)="togglePasswordMode1()"></ion-icon>
+		
+		<ion-item lines="none" class="item-input " [ngClass]="{'danger': formErrors.password}">
+			<ion-input class="nuevo-input-password" mode="ios" [type]="password_type1" formControlName="password" placeholder="{{ 'REGISTER.password' | translate }}"></ion-input>
+			<ion-icon slot="end" class="icon-eye nuevo-input-password2" name="eye-off-outline" *ngIf="password_type1 == 'password'" (click)="togglePasswordMode1()"></ion-icon>
+			<ion-icon slot="end" class="icon-eye nuevo-input-password2" name="eye-outline" *ngIf="password_type1 == 'text'" (click)="togglePasswordMode1()"></ion-icon>
 		</ion-item>
-		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.rpassword}">
-			<ion-input mode="ios" [type]="password_type2" formControlName="rpassword" placeholder="{{ 'REGISTER.rpassword' | translate }}"></ion-input>
-			<ion-icon slot="end" name="eye-off-outline" class="icon-eye" *ngIf="password_type2 == 'password'" (click)="togglePasswordMode2()"></ion-icon>
-			<ion-icon slot="end" name="eye-outline" class="icon-eye" *ngIf="password_type2 == 'text'" (click)="togglePasswordMode2()"></ion-icon>
+		<ion-item lines="none" class="item-input " [ngClass]="{'danger': formErrors.rpassword}">
+			<ion-input class="nuevo-input-password" mode="ios" [type]="password_type2" formControlName="rpassword" placeholder="{{ 'REGISTER.rpassword' | translate }}"></ion-input>
+			<ion-icon slot="end" class="icon-eye nuevo-input-password2" name="eye-off-outline" *ngIf="password_type2 == 'password'" (click)="togglePasswordMode2()"></ion-icon>
+			<ion-icon slot="end" class="icon-eye nuevo-input-password2" name="eye-outline" *ngIf="password_type2 == 'text'" (click)="togglePasswordMode2()"></ion-icon>
 		</ion-item>
 		<!--ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.zona}">
 			<ion-input mode="ios" type="text" formControlName="zona" placeholder="{{ 'REGISTER.zona' | translate }}" readonly (click)="selectZone()"></ion-input>
 		</ion-item-->
-		<ion-button mode="ios" expand="block" color="secondary" class="ion-text-capitalize btn-init btn-register" (click)="register()">
+		<ion-button mode="ios" expand="block" color="primary" class="ion-text-capitalize btn-init btn-register" (click)="register()">
 		{{ 'REGISTER.register' | translate }}</ion-button>
-		<p class="ion-text-center link-login" (click)="login()">{{ 'REGISTER.login' | translate }}</p>
+		
+		<!--p class="ion-text-center link-login" (click)="login()">{{ 'REGISTER.login' | translate }}</p-->
+		<div style="display: flex; justify-content: center;">
+			<p class="notienes">¿Ya estás registrado?</p>
+			<p class="ion-text-center registrate" (click)="login()">{{ 'REGISTER.login' | translate }}</p>
+		</div>
+		<div style="display: flex; justify-content: center; flex-direction: column; text-align: center;" (click)="terms()">
+			<p class="acepta">Al registrarte, aceptas nuestros</p>
+			<p class="acepta2" >términos y condiciones</p>
+		</div>
 	</form>
 </ion-content>

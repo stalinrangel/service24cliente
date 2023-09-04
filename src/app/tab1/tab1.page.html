@@ -1,33 +1,34 @@
 <ion-header>
   <ion-toolbar color="secondary" mode="md">
-    <ion-title class="ion-text-capitalize ion-text-center" >
-      <img src="assets/logo_blancor.png" alt="" style="width: 16vh;max-height: 6vh;">
+    <ion-title class="ion-text-capitalize " >
+      <img src="assets/service24/logo-rojo.svg" alt="" >
     </ion-title>
     <ion-buttons slot="end" (click)="viewNotification()" style="width: 57px">
-      <ion-button>
-        <div class="icon-bagde" *ngIf="show_notify"></div><span style="color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
-        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+      <ion-button style="background: #fff;border-radius: 50%;">
+        <div class="icon-bagde" *ngIf="show_notify" ></div><span style="background-color: #F5FBFF; color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
+        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar class="content-search" mode="md">
-    <ion-searchbar 
-    placeholder="{{ 'HOME.search' | translate }}" 
-    color="light" 
-    
-    mode="ios"
-    (ionFocus)="setSearch()"
-    id="input"
-    ></ion-searchbar>
-    <ion-buttons slot="end" >
-      <ion-button color="icons" class="btn-search" (click)="setSearch()">
-        <ion-icon name="search-outline" style="color:white"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
+  <div class="presentacion">
+    <h2 class="hola">Hola {{usuario.nombre}}!</h2>
+    <p class="felices">Felices de poder ayudarte</p>
+  </div>
+  <div style="margin: 0px 20px;">
+    <ion-toolbar class=" nuevo-input" style="color: white !important;">
+      <!--ion-searchbar placeholder="{{ 'HOME.search' | translate }}" color="secundary" mode="ios"(ionFocus)="setSearch()"id="input"></ion-searchbar-->
+      <ion-input style="color: white !important;" type="text" placeholder="{{ 'HOME.search' | translate }}"  (ionFocus)="setSearch()"></ion-input>
+      <ion-buttons slot="end" >
+        <ion-button color="primary" class="btn-search" (click)="setSearch()">
+          <ion-icon name="search-outline" style="color: white !important;"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="ios-arrow-down"
@@ -44,19 +45,57 @@
       <div id="desc">zone</div>
     </div>
   </div-->
-  <div *ngIf="items" style="height: 100%">
-    <div class="category-card" *ngFor="let item of items" (click)="setCategory(item)">
-      <img [src]="item.imagen" class="img-logo">
-      <div class="content-title">
-        <div class="title-1">
-          <p  *ngIf="languages == 'es'">{{item.nombre}}  <ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon></p>
-          <p  *ngIf="languages == 'en'">{{item.ingles}}  <ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon></p>
+  
+  <div class="presentacion">
+
+    <swiper-container >
+      <swiper-slide style="padding: 10px 0;">
+        <div class="row promo">
+          <div class="col-8 promo1">
+            <p class="promo-title">¿Necesitas ayuda con arreglos del hogar?</p>
+            <p class="promo-info">Servicios de plomería</p>
+            <span class="promo-but">Solicitar ahora</span>
+          </div>
+          <div class="col-4 promo2">
+            <img class="promo-img" src="assets/service24/hombre.svg" alt="">
+          </div>
         </div>
-        <div class="triangle"></div>
-        <div class="title-2"></div>  
+      </swiper-slide>
+
+      <swiper-slide style="padding: 10px 0;">
+        <div class="row promo">
+          <div class="col-8 promo1">
+            <p class="promo-title">¿Necesitas ayuda con arreglos del hogar?</p>
+            <p class="promo-info">Servicios de plomería</p>
+            <span class="promo-but">Solicitar ahora</span>
+          </div>
+          <div class="col-4 promo2">
+            <img class="promo-img" src="assets/service24/hombre.svg" alt="">
+          </div>
+        </div>
+      </swiper-slide>
+      
+    </swiper-container>
+
+    <h2 class="porcategoria">Servicios por categoría</h2>
+  </div>
+  <div *ngIf="items" class="row" style=" margin-top: 10px; margin-left: 20px; margin-right: 20px; column-gap: 5%;">
+    <div class="col-md-4 cuadro" *ngFor="let item of items; let i = index" (click)="setCategory(item)" >
+
+        <img [src]="item.imagen" >
+        <div >
+          <div >
+            <p class="letricas" *ngIf="languages == 'es'">{{item.nombre}}  <!--ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon--></p>
+            <p class="letricas" *ngIf="languages == 'en'">{{item.ingles}}  <!--ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon--></p>
+          </div>
+          <div class="triangle"></div>
+          <div class="title-2"></div>  
       </div>
+
+      
     </div>
     <p *ngIf="empty" class="text-empty">{{ 'HOME.empty' | translate }}</p>
+    
   </div> 
   <div *ngIf="!items" style="height: 100%">
     <div class="category-card">
@@ -87,7 +126,7 @@
       </div>
     </div>
   </div> 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="btn-help" (click)="goForm()" *ngIf="band_chatSupport">
+  <!--ion-fab vertical="bottom" horizontal="end" slot="fixed" class="btn-help" (click)="goForm()" *ngIf="band_chatSupport">
     {{ 'INIT.text1' | translate }}
-  </ion-fab>
+  </ion-fab-->
 </ion-content>
