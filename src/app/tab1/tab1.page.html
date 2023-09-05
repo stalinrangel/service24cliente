@@ -45,41 +45,42 @@
       <div id="desc">zone</div>
     </div>
   </div-->
+
+
+  <swiper-container style="margin: 10px 20px;" [loop]="true" [autoplay]="true">
+    <swiper-slide style="padding: 10px 0px; ">
+      <div class="row promo">
+        <div class="col-8 promo1">
+          <p class="promo-title">¿Necesitas ayuda con arreglos del hogar?</p>
+          <p class="promo-info">Servicios de plomería</p>
+          <span class="promo-but">Solicitar ahora</span>
+        </div>
+        <div class="col-4 promo2">
+          <img class="promo-img" src="assets/service24/hombre.svg" alt="">
+        </div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide style="padding: 10px 0;">
+      <div class="row promo" style="background: #D6BBFB;">
+        <div class="col-8 promo1">
+          <p class="promo-title">¿Necesitas ayuda con arreglos del hogar?</p>
+          <p class="promo-info">Servicios de plomería</p>
+          <span class="promo-but">Solicitar ahora</span>
+        </div>
+        <div class="col-4 promo2">
+          <img class="promo-img" src="assets/service24/hombre.svg" alt="">
+        </div>
+      </div>
+    </swiper-slide>
+    
+  </swiper-container>
   
   <div class="presentacion">
 
-    <swiper-container >
-      <swiper-slide style="padding: 10px 0;">
-        <div class="row promo">
-          <div class="col-8 promo1">
-            <p class="promo-title">¿Necesitas ayuda con arreglos del hogar?</p>
-            <p class="promo-info">Servicios de plomería</p>
-            <span class="promo-but">Solicitar ahora</span>
-          </div>
-          <div class="col-4 promo2">
-            <img class="promo-img" src="assets/service24/hombre.svg" alt="">
-          </div>
-        </div>
-      </swiper-slide>
-
-      <swiper-slide style="padding: 10px 0;">
-        <div class="row promo">
-          <div class="col-8 promo1">
-            <p class="promo-title">¿Necesitas ayuda con arreglos del hogar?</p>
-            <p class="promo-info">Servicios de plomería</p>
-            <span class="promo-but">Solicitar ahora</span>
-          </div>
-          <div class="col-4 promo2">
-            <img class="promo-img" src="assets/service24/hombre.svg" alt="">
-          </div>
-        </div>
-      </swiper-slide>
-      
-    </swiper-container>
-
     <h2 class="porcategoria">Servicios por categoría</h2>
   </div>
-  <div *ngIf="items" class="row" style=" margin-top: 10px; margin-left: 20px; margin-right: 20px; column-gap: 5%;">
+  <div *ngIf="items" class="row" style=" margin-top: 0px; margin-left: 20px; margin-right: 20px; column-gap: 5%;">
     <div class="col-md-4 cuadro" *ngFor="let item of items; let i = index" (click)="setCategory(item)" >
 
         <img [src]="item.imagen" >

@@ -27,12 +27,11 @@ line-height: normal;
     font-size: 11px;
 }
 .promo{
-    width: 40vh;
     height: 140px;
     flex-shrink: 0;
     border-radius: 12px;
     background: #A3D5FF;
-    margin: 0px 0px;
+    margin: 10px 0px 0px 0px;
 }
 .promo1{
     padding: 7px;
@@ -40,10 +39,9 @@ line-height: normal;
 .promo2{
     position: absolute;
     right: 8px;
-    left: 23vh;
 }
 .promo-img{
-    position: relative;
+    position: absolute;
     top: -10px;
     height: 150px;
 }
