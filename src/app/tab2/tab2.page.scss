@@ -1,48 +1,53 @@
+.nuevo-header{
+  color:black;
+  font-family: Inter-Medium;
+}
 ion-title{
     top: 15px;
     position: absolute;
 }
 ion-segment-button {
-  background:  #F2F2F2;
+  background: #fff;
   max-width: initial !important;
+  color: #7e8389;
+  font-size: 15px;
   ion-label {
     margin: 0;
     text-transform: initial;
-    font-family: ('Roboto');
+    font-family: ('Inter-Light');
     letter-spacing: normal;
-    font-size: 15px;
-    color: var(--ion-color-text-primary);
   }
 }
 .toolbar-container{
 	padding: 0px !important;
 }
 .segment-button-checked{
-  --indicator-color-checked: var(--ion-color-secondary) !important;
-  color: #F2F2F2 !important;
-  background: #4d4d4d2c;
+  --ion-color-base: var(--ion-color-secondary) !important;
+  color: var(--ion-color-primary) !important;
 }
 ion-segment{
 	background: #f4f5f8;
+  width: 100%;
+  border-radius: 0px;
 }
 .conten-item{
 	padding: 15px 0px;
 	.title-item{
-		margin: 0px;
-	    padding: 0px 0px 0px 10px;
-	    color: #000000;
-	    font-family: "Montserrat-Bold";
-	    font-size: 15px;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
-	    white-space: nowrap;
-	}
+    margin: 0px;
+      padding: 0px 16px;
+      color: #000000;
+      font-family: "Montserrat-Bold";
+      font-size: 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
 	.status-item{
-		font-family: "Muli-Regular";
-	    font-size: 12px;
+		font-family: "Inter-Light";
+	    font-size: 11px;
 	    color: #4D4D4D;
 	    margin-top: 0px;
-	    text-align: right;
+      text-align: center;
 	}
 	.start-item{
 		position: absolute;
@@ -91,15 +96,21 @@ ion-icon {
 .custom-skeleton ion-skeleton-text:last-child {
   margin-bottom: 5px;
 }
+.content-date2{
+	background-color: #073763;
+  margin: auto;
+  font-family: "Muli-Regular";
+  margin-right: 5px;
+}
 .content-start{
-	display: flex;
-	align-items: center;
-	margin-top: 5px;
-	p{
-		color: #007AFF;
-    	font-size: 10px;
-    	font-family: "Muli-Regular";
-	}
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  p{
+    color: #007AFF;
+      font-size: 10px;
+      font-family: "Muli-Regular";
+  }
 }
 ion-icon.filled {     
   color: #ffeb3b;     
@@ -109,15 +120,9 @@ ion-icon.filled {
   margin-left: 5px;
   font-size: 15px;
 }
-.refresh-content{
-	color: #000;
-}
-.bg-red{
-	color: #D32F2F;
-}
 .subtitle-item{
   color: #4d4d4d;
-  margin: 1px 0px 0px 10px;
+  margin: 1px 0px 0px 16px;
   font-size: 13px;
   font-weight: normal;
   font-family: "Muli-Regular";
@@ -132,37 +137,76 @@ ion-icon.filled {
     border-radius: 50em;
   }
 }
-.color-yellow{
-	background-color: #FFC107;
-    color: #fff !important;
-    font-weight: bold;
-    padding: 4px 10px;
-    border-radius: 25px;
-    max-width: 80px;
-    margin: auto;
+.btn-help{
+    background-color: rgba(0, 122, 255, 1);
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #fff;
 }
 .color-green{
-	background-color: #8bc34a;
-    color: #fff !important;
-    font-weight: bold;
-    padding: 4px 10px;
-    border-radius: 25px;
-    max-width: 80px;
-    margin: auto;
+ 
+  color: #141518 !important;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 4px 10px;
+  max-width: 105px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 24px;
+  border: 0.5px solid #14151846;
+  margin-top: 5px !important;
+  margin-left: 16px;
+}
+.green{
+background-color: green;
+height: 7px;
+width: 7px;
+border-radius: 50%;
 }
 .color-red{
-	background-color: #c62828;
-    color: #fff !important;
+ 
+  color: #141518 !important;
+  font-weight: bold;
+  padding: 4px 10px;
+  font-size: 12px;
+  max-width: 105px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 24px;
+  border: 0.5px solid #14151846;
+  margin-top: 5px !important;
+  margin-left: 16px;
+}
+.red{
+  background-color: red;
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  }
+
+.color-yellow{
+ 
+    color: #141518 !important;
     font-weight: bold;
     padding: 4px 10px;
-    border-radius: 25px;
-    max-width: 80px;
+    max-width: 95px;
     margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 24px;
+    border: 0.5px solid #14151846;
+    margin-top: 5px !important;
+    margin-left: 16px;
 }
-.text-empty{
-	color: #4D4D4D;
-    text-align: center;
-    margin-top: 75px;
-    font-size: 14px;
-    font-family: "Muli-Regular";
+.circle{
+  background-color: yellow;
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
 }

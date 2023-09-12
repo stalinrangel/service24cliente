@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="secondary" mode="md">
+  <ion-toolbar class="nuevo-header" color="secondary" mode="md">
     <ion-title class="ion-text-capitalize ion-text-center">
       {{ 'LISORDER.title' | translate }}
     </ion-title>
@@ -10,8 +10,8 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar mode="md">
-	  <ion-segment [(ngModel)]="type" value="track" color="light">
+  <ion-toolbar mode="md" >
+	  <ion-segment [(ngModel)]="type" value="track">
 	    <ion-segment-button value="track" mode="md">
 	      <ion-label>{{ 'LISORDER.title1' | translate }}</ion-label>
 	    </ion-segment-button>
@@ -33,7 +33,7 @@
 	</ion-refresher>
 	<ion-list *ngIf="type === 'track'">
 		<div *ngIf="orders">
-			<div class="conten-item" *ngFor="let item of orders;let even = even" (click)="viewDetails(item)" [style.background]="even? '#FFFFFF' : '#F2F2F2'">
+			<!--div class="conten-item" *ngFor="let item of orders;let even = even" (click)="viewDetails(item)" [style.background]="even? '#FFFFFF' : '#F2F2F2'">
 				<div class="content-img">
 					<img [src]="item.repartidor.usuario.imagen">
 					<div>
@@ -49,8 +49,34 @@
 				    <p slot="end" class="status-item color-yellow" *ngIf="item.estado == 2" style="margin-left: 15px;text-align: center;">{{ 'LISORDER.hold' | translate }}</p>
 				    <p slot="end" class="status-item color-green" *ngIf="item.estado == 3" style="margin-left: 15px;text-align: center;">{{ 'LISORDER.progress' | translate }}</p>
 				</ion-item>
-			</div>
+			</div-->
 			<p *ngIf="orders.length == 0" class="text-empty">{{ 'LISORDER.empty1' | translate }}</p>
+			<div class="conten-item" *ngFor="let item of orders;let even = even" (click)="viewDetails(item)" [style.background]="even? '#F5FBFF' : '#F5FBFF'" style="border: 1.5px solid var(--secundary-blue-medium, #DAEEFF) !important; border-radius: 10px; margin-top: 10px; margin-left: 20px; margin-right: 20px;">
+				<div class="content-img">
+					<img [src]="item.repartidor.usuario.imagen">
+					<div style="display: flex; flex-direction: column; width: 100%;">
+						<div style="display: flex; justify-content: space-between;align-items: center;">
+							<p class="title-item">{{item.repartidor.usuario.nombre}}</p>
+							<img src="/assets/service24/flecha_derecha.svg" alt="" style="width: 22px;">
+						</div>
+						<p class="subtitle-item">{{item.productos[0].nombre}}</p>
+						<p class="status-item color-green" *ngIf="item.estado == 3"> <span class="green"></span> {{ 'LISORDER.progress' | translate }}</p>
+						<p class="status-item color-yellow" *ngIf="item.estado == 2"> <span class="circle"></span>{{ 'LISORDER.hold' | translate }}</p>
+					</div>
+				</div>
+			
+				<!--ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> {{item.direccion}}</p>
+				      <p class="date-item">{{item.tiempo}} | {{item.hora}}</p>
+				    </ion-label>
+				    <p slot="end" class="status-item color-green" style="margin-left: 15px;">En progreso</p>
+				</ion-item-->
+			</div>
+			<!--p *ngIf="orders.length == 0" class="text-empty">No tienes servicios en curso</p-->
+			<div *ngIf="orders.length == 0" style="width: 100%;height: 70vh; display: flex; justify-content: center; align-items: center;">
+				<img  src="..\assets\service24\no-tienes-solicitudes.svg" alt="" style="width: 60%;">
+			</div>
 		</div>
 		<div *ngIf="!orders">
 			<div class="conten-item">
@@ -107,7 +133,7 @@
 	</ion-list>
 	<ion-list *ngIf="type === 'history'">
 		<div *ngIf="history">
-			<div class="conten-item" *ngFor="let item of history;let even = even" [style.background]="even? '#FFFFFF' : '#F2F2F2'" (click)="viewDetails(item)">
+			<!--div class="conten-item" *ngFor="let item of history;let even = even" [style.background]="even? '#FFFFFF' : '#F2F2F2'" (click)="viewDetails(item)">
 				<div class="content-img">
 					<img [src]="item.repartidor.usuario.imagen">
 					<div>
@@ -133,6 +159,39 @@
 				    	<p class="status-item color-red">{{ 'LISORDER.cancelled' | translate }}</p>
 				    </div>
 				</ion-item>
+			</div-->
+			<div class="conten-item" *ngFor="let item of history;let even = even" [style.background]="even? '#F5FBFF' : '#F5FBFF'" style="border: 1.5px solid var(--secundary-blue-medium, #DAEEFF) !important; border-radius: 10px; margin-top: 10px; margin-left: 20px; margin-right: 20px;" (click)="viewDetails(item)">
+				<div class="content-img">
+					<img [src]="item.repartidor.usuario.imagen">
+					<div style="display: flex; flex-direction: column; width: 100%;">
+						<div style="display: flex; justify-content: space-between;align-items: center;">
+						  <p class="title-item">{{item.repartidor.usuario.nombre}}</p>
+						  <img src="/assets/service24/flecha_derecha.svg" alt="" style="width: 22px;">
+						</div>
+						  <p class="subtitle-item">{{item.productos[0].nombre}}</p>
+						<div slot="end" *ngIf="item.estado != 5">
+							
+							<p class="status-item color-green"><span class="red"></span>  {{ 'LISORDER.finalized' | translate }}</p>
+							<div *ngIf="item.califico" class="content-start">
+								<ion-icon slot="icon-only" name="star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [ngClass]="{'filled': i < item.puntaje}"></ion-icon>
+							</div>
+							
+							<div *ngIf="!item.califico" class="content-start">
+								<p>{{ 'LISORDER.rating' | translate }}</p>
+							</div>
+						</div>
+						<div slot="end" *ngIf="item.estado == 5">
+							<p class="status-item color-red"><span class="red"></span> {{ 'LISORDER.cancelled' | translate }}</p>
+						</div>
+					  </div>
+				</div>
+				<!--ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> {{item.direccion}}</p>
+				      <p class="date-item">{{item.tiempo}} | {{item.hora}}</p>
+				    </ion-label>
+				    
+				</ion-item-->
 			</div>
 			<p *ngIf="history.length == 0" class="text-empty">{{ 'LISORDER.empty2' | translate }}</p>
 		</div>

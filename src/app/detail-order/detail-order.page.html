@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="secondary" mode="md">
+  <ion-toolbar class="nuevo-header" color="secondary" mode="md">
   	<ion-buttons slot="start" class="icon-back" default-href="tabs">
 	   <ion-back-button text="" icon="chevron-back-sharp" mode="md">
         </ion-back-button>
@@ -17,16 +17,22 @@
 </ion-header>
 
 <ion-content>
-	<div class="content-profile">
-		<img src="{{provider.imagen}}">
-		<div class="content-info">
+	<div class="content-profile row">
+		<div class="content-info col-6">
+			<img src="{{provider.imagen}}">
 			<p class="title" >{{provider.nombre}}</p>
-			<p class="order" >{{ 'DETAILORDER.order' | translate }} #{{data}}</p>
-			<p class="address" *ngIf="provider.producto_id != '1'"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> {{provider.direccion}}</p>
+			<!--p class="order" >{{ 'DETAILORDER.order' | translate }} #{{data}}</p>
+			<p class="address" *ngIf="provider.producto_id != '1'"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> {{provider.direccion}}</p-->
+		</div>
+		<div class="content-info2 col-6">
+			<p class="order" style="color: #141518;">{{ 'DETAILORDER.order' | translate }} #{{data}}</p>
+			<p class="status-item color-yellow" *ngIf="estado == 2"> <span class="circle"></span> {{ 'LISORDER.hold' | translate }}</p>
+			<p class="status-item color-yellow" *ngIf="estado == 4"> <span class="red"></span> {{ 'LISORDER.finalized' | translate }}</p>
+			<p class="status-item color-yellow" *ngIf="estado == 3"> <span class="green"></span> {{ 'LISORDER.progress' | translate }}</p>
+			<div style="display: flex;flex-direction: row; justify-content: center;margin-top: 2px;"><p style="color: #FD682A;font-size: 14px;">4.5</p><img src="/assets/service24/star.svg" alt="" style="width: 20px; height: 20px;"></div>
 		</div>
 	</div>
-	<div class="content-infoP">
-		<!--div #map1 id="map1" [hidden]="estado != 3 || encamino == 0"></div-->
+	<!--div class="content-infoP">
 		<p *ngIf="provider.producto_id != '1'"><span>{{ 'ORDER.for' | translate }}</span> {{provider.nombre}}</p>
 		<p *ngIf="provider.producto_id != '1'"><span>{{ 'DETAILORDER.category' | translate }}</span> {{provider.categoria}}</p>
 		<p *ngIf="provider.producto_id != '1'"><span>{{ 'ORDER.service' | translate }}</span> {{provider.servicio}}</p>
@@ -47,20 +53,46 @@
 			</div>
 			<p class="comment-cal">{{provider.comentario}}</p>	
 		</div> 
+	</div-->
+	<div class="content-infoP">
+		<!--p><span>Para:</span> Mi</p-->
+		<div class="line">
+			<p class="address" style="margin: 0px;"><ion-icon name="location"></ion-icon> Ubicación </p>
+			<p style="margin: 0px;padding-left: 3vh;padding-top: 10px;">{{provider.direccion}}</p>
+		</div>
+		<!--p *ngIf="service.producto_id != '1'"><span>Categoría:</span> {{service.categoria}}</p-->
+		<div class="line">
+			<p class="address"><span><ion-icon name="briefcase"></ion-icon></span> {{provider.categoria}}/{{provider.servicio}}</p>
+		</div>
+		<!--p><span>Lugar:</span> {{user.direccion}}</p-->
+		<div class="line">
+			<p class="address"><span><ion-icon name="information-circle-outline"></ion-icon></span> {{provider.descripcion}}</p>
+		</div>
+		<div class="line">
+			<p class="address"><span><ion-icon name="calendar-outline"></ion-icon></span>&nbsp; {{provider.tiempo}} &nbsp;&nbsp;&nbsp;</p>
+		</div><!--p><span>Estado:</span> En espera</p-->
+		<div class="line">
+			<p class="address"><span><ion-icon name="time-outline"></ion-icon></span>&nbsp;{{provider.hora}}</p>
+		</div>
+		<div class="line" *ngIf="estado == 2 || estado == 3">
+			<div style="display: flex; justify-content: space-between;align-items: center;">
+				<p class="address" (click)="chatPedidos(id)"><span><img src="..\assets\service24\chat.svg" alt="" style="height: 26px;"></span>&nbsp;Ir al chat con {{provider.nombre}}<!--ion-icon name="chatbubbles-sharp" class="icon-callP icon-callP2"></ion-icon--></p>
+				<img src="/assets/service24/flecha_derecha.svg" alt="" style="width: 22px;">
+			</div>
+		</div>
+		
 	</div>
-	<div style="text-align: center;  margin: 0px 20px 0px 20px;" *ngIf="encamino==1">
+	<!--div style="text-align: center;  margin: 0px 20px 0px 20px;" *ngIf="encamino==1">
 		<app-camino [data]="datos.pedido.id"></app-camino>
-	</div>
+	</div-->
 	<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" (click)="addFavorite()" *ngIf="!select">
-		<ion-icon slot="start" md="ios-star" ios="ios-star" class="icon-cal"></ion-icon>
-		<p>{{ 'DETAILORDER.addFav' | translate }}</p>
+		{{ 'DETAILORDER.addFav' | translate }}
 	</ion-button>
 	<ion-button expand="block" class="ion-text-capitalize btn-init" *ngIf="estado == 3" (click)="presentConfirm()">{{ 'DETAILORDER.fin' | translate }}</ion-button>
 	<ion-button expand="block" class="ion-text-capitalize btn-init btn-init1" (click)="presentModal1()" *ngIf="estado == 2 || estado == 3">{{ 'DETAILORDER.cancel' | translate }}</ion-button>
 	<div *ngIf="estado == 4">
 		<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" *ngIf="!provider.califico" (click)="presentModal()">
-		<ion-icon slot="start" md="ios-star" ios="ios-star" class="icon-cal"></ion-icon>
-		<p>{{ 'DETAILORDER.califi' | translate }}</p>
+		{{ 'DETAILORDER.califi' | translate }}
 		</ion-button>
 	</div>	
 </ion-content>
