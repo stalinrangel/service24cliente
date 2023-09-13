@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { NotificationsService } from '../services/notifications.service';
 
 
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -46,7 +47,8 @@ export class Tab3Page {
 	public itemsInCart: any;
 	public info: string = 'Debes iniciar sesión para comunicarte con nuestro soporte.';
 	public show_notify: boolean = false;
-	
+	pedidos=0;
+	public type: string = "track";
 	constructor(
 		public navCtrl: NavController, 
 		private alertController: AlertController,  
@@ -184,6 +186,7 @@ export class Tab3Page {
 						        data => {
 						        	console.log(data)
 						        	this.datos = data;
+									this.pedidos=this.datos.pedidos;
 							        this.chat_support.admin_id = this.datos.chat.admin_id;
 							        this.chat_support.chat_id = this.datos.chat.id;
 							        this.chat_support.token_notificacion = this.datos.admin[0].token_notificacion;

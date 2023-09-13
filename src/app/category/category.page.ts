@@ -21,6 +21,7 @@ export class CategoryPage implements OnInit {
 	public item: any = [];
   public languages: any = 'es';
   public show_notify: boolean = false;
+  searchText: string = "";
 
   constructor(
     private nav: NavController,
@@ -89,5 +90,10 @@ export class CategoryPage implements OnInit {
         this.show_notify = false;  
       });
       return await modal.present();  
+  }
+
+  get filteredItems() {
+    //return this.chats;
+    return this.category.filter((item:any) => item.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
   }
 }

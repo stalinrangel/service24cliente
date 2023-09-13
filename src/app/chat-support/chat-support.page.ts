@@ -135,7 +135,7 @@ export class ChatSupportPage implements OnInit {
 		  receptor_id: parseInt(this.toUser.id),
 		  created_at: moment().format(),
 		  msg: this.editorMsg,
-		  status: 1
+		  status: 1,
 		};
 
 		this.pushNewMsg(newMsg);

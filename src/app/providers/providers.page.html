@@ -14,31 +14,20 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar class="content-search" mode="md">
-    <ion-searchbar 
-    placeholder="{{ 'HOME.search' | translate }}" 
-    color="light" 
-    
-    mode="ios"
-    (ionFocus)="setSearch()"
-    id="input"
-    ></ion-searchbar>
-    <ion-buttons slot="end">
-      <ion-button color="icons" class="btn-search" (click)="goFilter()">
-        <ion-icon slot="icon-only" name="filter"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  <div class="header" id="search">
+    <input type="text" class="nuevo-input nuevo-input-password" type="text" [(ngModel)]="searchText" >
+    <ion-icon name="search" class="icon-eye nuevo-input-password2"></ion-icon>
+  </div>
 </ion-header>
 
 <ion-content>
   <div *ngIf="providers">
-    <p class="item-result" *ngIf="results > 1">{{results}} {{ 'SUPPLIERS.results' | translate }}</p>
+    <!--p class="item-result" *ngIf="results > 1">{{results}} {{ 'SUPPLIERS.results' | translate }}</p>
     <p class="item-result" *ngIf="results == 1">{{results}} {{ 'SUPPLIERS.result' | translate }}</p>
     <div class="content-zone" (click)="goFilter()">
       <p><ion-icon name="arrow-dropup" class="custom1-map"></ion-icon> {{zone.nombre}}
       </p>
-    </div>
+    </div-->
   	<ion-list>
   		<ion-item lines="full" *ngFor="let item of items" (click)="setProvider(item)">
   		  <ion-thumbnail slot="start">

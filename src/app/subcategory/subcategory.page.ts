@@ -5,6 +5,7 @@ import { FilterPage } from '../filter/filter.page';
 import { StorageService } from '../../services/storage/storage.service';
 import { LanguageService } from './../../services/language/language.service';
 import { NotificationsComponent } from '../notifications/notifications.component';
+import { CategoriesService } from 'src/services/categories/categories.service';
 
 @Component({
   selector: 'app-subcategory',
@@ -24,7 +25,8 @@ export class SubcategoryPage implements OnInit {
   	private objService: ObjectserviceService,
     public modalController: ModalController,
     public storage: StorageService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private catService: CategoriesService,
   ) { 
     this.languages = this.languageService.getLan();
     if (this.languages == 'undefined' || this.languages == '') {
@@ -33,6 +35,15 @@ export class SubcategoryPage implements OnInit {
     this.data = this.objService.getExtras();
     this.catInfo = this.objService.getCat();
     this.category = this.data.subcategorias;
+    console.log(this.category)
+    setTimeout(() => {
+      for (let i = 0; i < this.category.length; i++) {
+        this.category[i].tam=0;
+         this.proveedores(this.category[i].id,i);
+      }
+    }, 1000);
+    
+
     this.storage.get('notifyGSV24').then(items => {
       if (items == '1') {
         this.show_notify = true;
@@ -43,6 +54,19 @@ export class SubcategoryPage implements OnInit {
   }
 
   ngOnInit() {  	
+  }
+
+  proveedores(id:any,i:any){
+    let tam=0;
+    this.catService.getServices(id, '1').subscribe(
+      data => {
+        console.log(data.productos.length)
+        this.category[i].tam=data.productos.length;
+      },
+      msg => {      
+        console.log(msg);
+      }
+    );
   }
 
   setSearch(){
@@ -84,4 +108,9 @@ export class SubcategoryPage implements OnInit {
       return await modal.present();  
   }
 
+  searchText: string = "";
+  get filteredItems() {
+    //return this.chats;
+    return this.category.filter((item:any) => item.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
+  }
 }

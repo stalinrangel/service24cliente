@@ -1,0 +1,116 @@
+.nuevo-header{
+    color:black;
+    font-family: Inter-Medium;
+  }
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: 25px 1px;
+    min-height: 145vh
+}
+.header{
+    width: 100%;
+    padding: 0px 0px;
+    display: flex;
+    margin-top: 0px;
+}
+.nuevo-input{
+    width: 100%;
+	
+}
+.icon-eye{
+	color: var(--neutral-300, #7E8389);
+	z-index: 999;
+	font-size: 22px;
+}
+.nuevo-input-password{
+    border-top: 1.5px solid #DAE2E7 !important;
+    border-bottom: 1.5px solid #DAE2E7 !important;
+    border-left: 1.5px solid #DAE2E7 !important;
+    border-right: 0px;
+    padding: 0px 10px 0px 10px !important;
+    height: 52px;
+    border-top-left-radius: 12px; 
+    border-bottom-left-radius: 12px;  
+  }
+.nuevo-input-password2{
+    border-top: 1.5px solid #DAE2E7 !important;
+    border-bottom: 1.5px solid #DAE2E7 !important;
+    border-right: 1.5px solid #DAE2E7 !important;
+    border-left: 0px;
+    padding: 0px 10px 0px 10px !important;
+    height: 52px;
+    border-top-right-radius: 12px; 
+    border-bottom-right-radius: 12px;  
+  }
+.en-x{
+    display: flex;
+    overflow-x: scroll;
+  white-space: nowrap;
+  margin-top: 15px;
+}
+.en-y{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.person{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80px;
+    margin: 3px 10px;
+}
+
+img{
+    width: 54px;
+    height: 54px;
+    border-radius: 50%; overflow: hidden;
+}
+p{
+    font-family: Inter-Medium;
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+}
+span{
+    font-family: Inter-Light;
+    font-size: 11px;
+}
+.nombre{
+    margin-top: 6px;
+    font-family: Inter-SemiBold;
+    font-size: 14px;
+}
+.texto{
+    margin-top: 4px;
+    font-family: Inter-Light;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.pre-chat{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1.5px solid #DAE2E7 !important;
+    margin-top: 4px;
+}
+.img2{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; overflow: hidden;
+    margin-top: 6px;
+}
+.col-2{
+    text-align: start;
+    width: 40%;
+}
+.col-9{
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+}
+.col-1{
+    text-align: end;
+}

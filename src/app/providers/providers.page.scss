@@ -150,3 +150,40 @@ ion-icon.filled {
   display: flex;
   align-items: flex-end;
 }
+
+
+
+.header{
+  padding: 0px 0px;
+  display: flex;
+  margin: 5px 20px;
+}
+.nuevo-input{
+  width: 100%;
+
+}
+.icon-eye{
+color: var(--neutral-300, #7E8389);
+z-index: 999;
+font-size: 22px;
+}
+.nuevo-input-password{
+  border-top: 1.5px solid #DAE2E7 !important;
+  border-bottom: 1.5px solid #DAE2E7 !important;
+  border-left: 1.5px solid #DAE2E7 !important;
+  border-right: 0px;
+  padding: 0px 10px 0px 10px !important;
+  height: 52px;
+  border-top-left-radius: 12px; 
+  border-bottom-left-radius: 12px;  
+}
+.nuevo-input-password2{
+  border-top: 1.5px solid #DAE2E7 !important;
+  border-bottom: 1.5px solid #DAE2E7 !important;
+  border-right: 1.5px solid #DAE2E7 !important;
+  border-left: 0px;
+  padding: 0px 10px 0px 10px !important;
+  height: 52px;
+  border-top-right-radius: 12px; 
+  border-bottom-right-radius: 12px;  
+}

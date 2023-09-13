@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { IonRatingStarsModule } from 'ion-rating-stars';
 @NgModule({
   imports: [
     IonicModule,
@@ -14,7 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     ExploreContainerComponentModule,
     Tab3PageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    IonRatingStarsModule
   ],
   declarations: [Tab3Page]
 })

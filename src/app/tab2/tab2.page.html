@@ -6,7 +6,7 @@
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
       	<div class="icon-bagde" *ngIf="show_notify"></div><span style="color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
-        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -31,6 +31,8 @@
 	    class="refresh-content">
 	  </ion-refresher-content> 
 	</ion-refresher>
+
+	
 	<ion-list *ngIf="type === 'track'">
 		<div *ngIf="orders">
 			<!--div class="conten-item" *ngFor="let item of orders;let even = even" (click)="viewDetails(item)" [style.background]="even? '#FFFFFF' : '#F2F2F2'">

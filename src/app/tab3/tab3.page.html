@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="secondary" mode="md">
+  <ion-toolbar class="nuevo-header" color="secondary" mode="md">
   	<ion-buttons slot="start" class="icon-notify" (click)="goFavourites()">
       <ion-button>
         <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
@@ -11,82 +11,108 @@
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
       	<div class="icon-bagde" *ngIf="show_notify"></div><span style="color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
-        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-	<div class="content-profile">
-		<img src="{{usuario.imagen}}">
-		<div class="content-info">
-			<p>{{usuario.nombre}}</p>
-			<ion-icon name="create-sharp" class="custom-pencil" *ngIf="usuario.id != ''" (click)="editProfile()"></ion-icon>
-			<ion-icon slot="icon-only" name="star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [class.filled]="(i + 1 <= promedio_calificacion)"></ion-icon>
+	<br>
+	<div class="content-profile" >
+		<!--div class="content-profile" [ngStyle]="{'background': 'linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(' + usuario.imagen + ') center center / cover no-repeat'}" -->
+			<div style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center;margin: auto;">
+				<img src="{{usuario.imagen}}">
+				<div class="content-info">
+					<p class="title">{{usuario.nombre}}</p>
+					<!--ion-icon slot="icon-only" name="star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [class.filled]="(i + 1 <= promedio_calificacion)"></ion-icon-->
+					<ion-rating-stars
+					[rating]="promedio_calificacion"
+					[color]="'darkgrey'"
+					[filledColor]="'orange'"
+					[margin]="2"
+					[size]="20"
+					[disabled]="true"
+					[opacity]="0.5"></ion-rating-stars>
+				</div>
+			</div>
+			<div style="text-align: center; display: flex; flex-direction: column;justify-content: center; align-items: center;margin: auto;">
+				
+				<p class="status-item color-yellow" > <span class="green"></span>{{encurso}} {{ 'PROFILE.current' | translate }}</p>
+				<p class="status-item color-yellow" > <span class="red"></span>{{finalizado}} {{ 'PROFILE.finish' | translate }}</p>
+				
+			</div>
 		</div>
-		<ion-grid style="padding-top: 0px">
-			<ion-row>
-				<ion-col col-6 (click)="viewOrder('track')">
-					<p class="item-blue">{{encurso}} {{ 'PROFILE.current' | translate }}</p>
-				</ion-col>
-				<ion-col col-6 (click)="viewOrder('history')">
-					<p class="item-org">{{finalizado}} {{ 'PROFILE.finish' | translate }}</p>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-	</div>
-	<ion-list>
-	    <!--ion-item lines="full" (click)="blog()">
-	      <ion-label>
-	        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-comunity"></ion-icon> Comunidad</p>
-	      </ion-label>
-	    </ion-item-->
-		<ion-item lines="full" (click)="favoritos()">
-			<ion-label>
-			  <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-comunity"></ion-icon> {{ 'FAVORITES.title' | translate }}</p>
-			</ion-label>
-		  </ion-item>
-	   	<ion-item lines="full" (click)="support()">
-	      <ion-label>
-	        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-support"></ion-icon> {{ 'PROFILE.support' | translate }}</p>
-	      </ion-label>
-	    </ion-item>
-	    <ion-item lines="full" (click)="openLang()">
-	      <ion-label>
-	        <p class="title-menu"><ion-icon name="sync" class="icon-lang"></ion-icon> {{ 'PROFILE.language' | translate }}</p>
-	      </ion-label>
-	    </ion-item>
-	    <ion-item lines="full" (click)="policy()">
-	      <ion-label>
-	        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-privacity"></ion-icon> {{ 'PROFILE.privacy' | translate }}</p>
-	      </ion-label>
-	    </ion-item>
-	    <ion-item lines="full" (click)="terms()">
-	      <ion-label>
-	        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-terms"></ion-icon> {{ 'PROFILE.terms' | translate }}</p>
-	      </ion-label>
-	    </ion-item>
-	    <ion-item lines="full" (click)="presentAlert()">
-	      <ion-label>
-	        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-contact2"></ion-icon> {{ 'PROFILE.contact' | translate }}</p>
-	      </ion-label>
-	    </ion-item>
-	    <ion-item lines="full" (click)="openTutorialPopover()">
-	      <ion-label>
-	        <p class="title-menu"><ion-icon name="book-outline" class="icon-lang"></ion-icon> {{ 'PROFILE.tutorial' | translate }}</p>
-	      </ion-label>
-	    </ion-item>
-	    <ion-item lines="none" class="ion-text-center item-login" *ngIf="usuario.id == ''" (click)="login()">
-	      <ion-label>
-	        <p>{{ 'PROFILE.login' | translate }}</p>
-	      </ion-label>
-	    </ion-item>
-	    <ion-item lines="none" class="ion-text-center item-login" *ngIf="usuario.id != ''" (click)="presentConfirm()">
-	      <ion-label>
-	        <p>{{ 'PROFILE.logout' | translate }}</p>
-	      </ion-label>
-	    </ion-item>
-	</ion-list>
+		<!--div style="margin: 0px 20px 0px 20px;">
+			<ion-segment [(ngModel)]="type" value="track"  >
+				<ion-segment-button value="track" mode="md">
+				  <ion-label>Descripción</ion-label>
+				</ion-segment-button>
+				<ion-segment-button value="start" mode="md">
+				  <ion-label>Calificaciones</ion-label>
+				</ion-segment-button>
+			</ion-segment>
+		</div-->
+		<div *ngIf="type == 'track'" style="margin: 10px 20px;">
+			<ion-list class="list-menu">
+				<!--ion-item lines="full" (click)="blog()">
+				<ion-label>
+					<p class="title-menu"><ion-icon name="arrow-dropup" class="custom-comunity"></ion-icon> Comunidad</p>
+				</ion-label>
+				</ion-item-->
+				<ion-item lines="full" (click)="favoritos()">
+					<ion-label class="nuevo-label">
+						<p class="title-menu"><ion-icon name="heart" class="icon-lang"></ion-icon> {{ 'FAVORITES.title' | translate }}</p>
+						<img src="..\assets\service24\derecha.svg" alt="">
+					</ion-label>
+				</ion-item>
+				<ion-item lines="full" (click)="support()">
+					<ion-label class="nuevo-label">
+						<p class="title-menu"><ion-icon name="arrow-dropup" class="custom-support"></ion-icon> {{ 'PROFILE.support' | translate }}</p>
+						<img src="..\assets\service24\derecha.svg" alt="">
+					</ion-label>
+				</ion-item>
+				<ion-item lines="full" (click)="openLang()">
+					<ion-label class="nuevo-label">
+						<p class="title-menu"><ion-icon name="globe-outline" class="icon-lang"></ion-icon> {{ 'PROFILE.language' | translate }}</p>
+						<img src="..\assets\service24\derecha.svg" alt="">
+					</ion-label>
+				</ion-item>
+				<ion-item lines="full" (click)="policy()">
+					<ion-label class="nuevo-label">
+						<p class="title-menu"><ion-icon name="arrow-dropup" class="custom-privacity"></ion-icon> {{ 'PROFILE.privacy' | translate }}</p>
+						<img src="..\assets\service24\derecha.svg" alt="">
+					</ion-label>
+				</ion-item>
+				<ion-item lines="full" (click)="terms()">
+					<ion-label class="nuevo-label">
+						<p class="title-menu"><ion-icon name="arrow-dropup" class="custom-terms"></ion-icon> {{ 'PROFILE.terms' | translate }}</p>
+						<img src="..\assets\service24\derecha.svg" alt="">
+					</ion-label>
+				</ion-item>
+				<ion-item lines="full" (click)="presentAlert()">
+					<ion-label class="nuevo-label">
+						<p class="title-menu"><ion-icon name="arrow-dropup" class="custom-contact2"></ion-icon> {{ 'PROFILE.contact' | translate }}</p>
+						<img src="..\assets\service24\derecha.svg" alt="">
+					</ion-label>
+				</ion-item>
+				<ion-item lines="full" (click)="openTutorialPopover()">
+					<ion-label class="nuevo-label">
+						<p class="title-menu"><ion-icon name="book" class="icon-lang"></ion-icon> {{ 'PROFILE.tutorial' | translate }}</p>
+						<img src="..\assets\service24\derecha.svg" alt="">
+					</ion-label>
+				</ion-item>
+				<ion-item lines="none" *ngIf="usuario.id == ''" (click)="login()">
+					<ion-label >
+						<p class="logout">{{ 'PROFILE.login' | translate }}</p>
+					</ion-label>
+				</ion-item>
+				<ion-item lines="none"  *ngIf="usuario.id != ''" (click)="presentConfirm()">
+					<ion-label >
+						<p class="logout">{{ 'PROFILE.logout' | translate }}</p>
+					</ion-label>
+				</ion-item>
+			</ion-list>
+		</div>
 	<p class="info-version">Service 24 <br> Version 0.15</p>
 </ion-content>

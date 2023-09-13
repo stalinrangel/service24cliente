@@ -21,11 +21,11 @@ const routes: Routes = [
       },
       {
         path: 'tab4',
-        loadComponent: () => import('../tab4/tab4.module').then((m) => m.Tab4PageModule),
+        loadChildren: () => import('../tab4/tab4.module').then((m) => m.Tab4PageModule),
       },
       {
         path: 'tab5',
-        loadComponent: () => import('../tab5/tab5.module').then((m) => m.Tab5PageModule),
+        loadChildren: () => import('../tab5/tab5.module').then((m) => m.Tab5PageModule),
       },
       {
         path: '',

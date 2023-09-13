@@ -80,8 +80,8 @@
     },
     "PROFILE": {
         "title": "Perfil",
-        "current": "Solicitudes en curso",
-        "finish": "Solicitudes finalizadas",
+        "current": " en curso",
+        "finish": " finalizadas",
         "support": "Ayuda en línea",
         "privacy": "Avisos de Privacidad",
         "terms": "Términos y Condiciones",

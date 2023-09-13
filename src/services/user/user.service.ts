@@ -93,4 +93,8 @@ export class UserService {
   error(data:any): Observable<any>{
     return this.http.post(`${environment.api}error`, data);
   }
+
+  getChats(id:any): Observable<any>{
+    return this.http.get(`${environment.api}chats/pedidos/cliente/`+id);
+  }
 }

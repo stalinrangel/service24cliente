@@ -10,28 +10,34 @@
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
         <div class="icon-bagde" *ngIf="show_notify"></div>
-        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar class="content-search" mode="md">
-    <ion-searchbar 
-    placeholder="{{ 'HOME.search' | translate }}" 
-    color="light" 
-    
-    mode="ios"
-    (ionFocus)="setSearch()"
-    id="input"
-    ></ion-searchbar>
-    <ion-buttons slot="end">
-      <ion-button color="icons" class="btn-search" (click)="goFilter()">
-        <ion-icon slot="icon-only" name="filter"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  <div class="header" id="search">
+    <input type="text" class="nuevo-input nuevo-input-password" type="text" [(ngModel)]="searchText" >
+    <ion-icon name="search" class="icon-eye nuevo-input-password2"></ion-icon>
+  </div>
 </ion-header>
 
 <ion-content>
+  
+  <ion-list class="list-menu">
+    <ion-item lines="full" *ngFor="let cat of filteredItems" (click)="setProduct(cat)">
+      <ion-label class="nuevo-label">
+        <div class="into-title">
+          <p class="title-menu" *ngIf="languages == 'es'"> {{cat.nombre}}</p>
+          <p class="sub-title">{{cat.tam}} Companies</p>
+        </div>
+        <p class="title-menu" *ngIf="languages == 'en'"> {{cat.ingles}}</p>
+        <img src="..\assets\service24\derecha.svg" alt="">
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<!--ion-content>
   <div class="category-content">
     <img [src]="catInfo.imagen" class="img-category">
     <div class="content-title">
@@ -55,4 +61,4 @@
       </ion-label>
     </ion-item>
   </ion-list>	
-</ion-content>
+</ion-content-->

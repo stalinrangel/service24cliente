@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonTabs, Platform, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/services/storage/storage.service';
+import { UserService } from 'src/services/user/user.service';
+import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 
 @Component({
   selector: 'app-tabs',
@@ -13,7 +16,10 @@ export class TabsPage {
 	@ViewChild(IonTabs) public tabs: any;
 	public subscription: any;
 
-	constructor(private platform: Platform,public navCtrl: NavController, public router: Router){}
+	constructor(private platform: Platform,public navCtrl: NavController, public router: Router,private userService: UserService,private objService: ObjectserviceService,private storage: StorageService){
+
+
+	}
 	
 	setTab(evt:any) {
     	this.currentTab = this.tabs.getSelected();
@@ -26,6 +32,7 @@ export class TabsPage {
 			    //navigator['app'].exitApp();
 		    }   
 	    });
+		this.initStatus();
 	}
 
 	ionViewWillLeave(){
@@ -39,6 +46,69 @@ export class TabsPage {
 		    ? this.navCtrl.navigateRoot(this.tabs.outlet.tabsPrefix + '/' + tab)
 		    : this.tabs.select(tab);
 	    }   
+	}
+
+	public chat_support = {
+		admin_id: '',
+		chat_id: '',
+		token_notificacion: '',
+		ciudad_id: ''
+	};
+	usuario:any;
+	datos:any;
+	band_chatSupport=false;
+	initStatus(){ 
+
+		
+		this.storage.getObject('userSV24').then(items => {
+			console.log(items)
+			if (items != '' && items != null) {
+				this.usuario = items;
+				this.storage.get('TUSV24').then(items2 => {
+					console.log(items2)
+					if (items2) {
+						this.userService.getId(this.usuario.id,items2,'1').subscribe(
+							data => {
+								console.log(data)
+								this.datos = data;
+								this.chat_support.admin_id = this.datos.chat.admin_id;
+								this.chat_support.chat_id = this.datos.chat.id;
+								this.chat_support.token_notificacion = this.datos.admin[0].token_notificacion;
+								  this.chat_support.ciudad_id = this.datos.admin[0].ciudad;
+								this.band_chatSupport = true; 
+								this.objService.setExtras(this.chat_support); 
+							},
+							msg => { 
+								console.log(msg);
+								  if(msg.status == 404){ 
+									 if (msg.error.admin) {
+										 if (msg.error.admin.length > 0) {
+											 this.band_chatSupport = true;
+											  this.chat_support.admin_id = msg.error.admin[0].id;
+											  this.chat_support.token_notificacion = msg.error.admin[0].token_notificacion;
+											  this.chat_support.ciudad_id = msg.error.admin[0].ciudad;
+											  this.objService.setExtras(this.chat_support); 
+										  }
+									 }
+								} else if(msg.status == 409){
+								  this.band_chatSupport = false;
+								}
+								if(msg.status == 400 || msg.status == 401){ 
+									this.storage.set('TUSV24','');
+									this.navCtrl.navigateForward('login');
+								}  
+
+					}
+					);
+					}
+				});
+			} 
+		});
+	  }
+	support(){
+		/*this.navCtrl.navigateForward('/tabs/tab5');*/
+		//this.objService.setsoporte({});
+		console.log('support')
 	}
 
 }
