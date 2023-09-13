@@ -75,7 +75,7 @@ export class DetailProviderPage implements OnInit {
       if (items) {
         this.storage.get('TUSV24').then(items2 => {
           if (items2) {
-            this.presentLoading();
+            //this.presentLoading();
             this.checkFav.usuario_id = items.id;
             this.checkFav.producto_id = this.id;
             this.catService.checkFavorites(this.checkFav,items2).subscribe(
@@ -148,7 +148,7 @@ export class DetailProviderPage implements OnInit {
         if (items) {
           this.storage.get('TUSV24').then(items2 => {
             if (items2) {
-              this.presentLoading();
+              //this.presentLoading();
               this.favorite.usuario_id = items.id;
               this.catService.addFavorites(this.favorite,items2).subscribe(
                 data => {

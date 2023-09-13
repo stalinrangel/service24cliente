@@ -10,20 +10,21 @@
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
       	<div class="icon-bagde" *ngIf="show_notify"></div>
-        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-	<div class="content-profile" [ngStyle]="{'background': 'linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(' + imagen + ') center center / cover no-repeat'}">
+	
+	<!--div class="content-profile" [ngStyle]="{'background': 'linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(' + imagen + ') center center / cover no-repeat'}">
 		<ion-icon md="md-heart" ios="md-heart" class="icon-star1" [class.filled1]="(select == true)" (click)="addFavorite()" *ngIf="usuario.id != ''"></ion-icon>
-		<img src="{{imagen}}">
+		<img src="{{imagen}}" >
 		<div class="content-info">
 			<p class="title" style="color: white !important;" *ngIf="data">{{data.establecimiento.nombre}}</p>
 			<p class="title" style="color: white !important;" *ngIf="data">{{data.nombre}}</p>
-			<!--ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [class.filled]="(i + 1 <= promedio_calificacion)"></ion-icon-->
+			<!--ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [class.filled]="(i + 1 <= promedio_calificacion)"></ion-icon>
 			<ion-rating-stars
 				[rating]="promedio_calificacion"
 				[color]="'darkgrey'"
@@ -34,27 +35,56 @@
 				[opacity]="0.9">
 			</ion-rating-stars>
 		</div>
+	</div-->
+	<div  class="cuadro-azul">
+		<div class="label0" >
+			<ion-icon name="heart-outline" class="fav1" style="color: white;"></ion-icon>
+			<img class="portada" src="{{imagen}}">
+			
+		</div>
+        <div class="label1">
+          <div class="nuevo-label">
+            <p class="title-menu" *ngIf="data">{{data.establecimiento.nombre}}</p>
+            <p class="sub-title" *ngIf="data">{{data.nombre}}</p>
+            
+          </div>
+          <img src="{{imagen}}" class="imagen">
+        </div>
+        <div class="label2">
+          <p class="status-item color-yellow" > <span class="green"></span>Disponible</p>
+          <div class="label22">
+            <div style="display: flex;flex-direction: row; justify-content: center;margin-right: 5px;"><p style="color: #FD682A;font-size: 14px;">4.5</p><img src="/assets/service24/star.svg" alt="" style="width: 20px; height: 20px;"></div>
+            <p style="margin-top: 0px;">(16)</p>
+          </div>
+        </div>
+        <div class="label3">
+          <p class="new-address" *ngIf="data"> {{data.establecimiento.direccion}}</p>
+        </div>
+  	</div>
+	<div style="margin: 0px 20px; width: 100%; text-align: center;">
+		<ion-segment [(ngModel)]="type" value="track" >
+			<ion-segment-button value="track" mode="md">
+			<ion-label>{{ 'DETAILSUPPLIERS.description' | translate }}</ion-label>
+			</ion-segment-button>
+			<ion-segment-button value="photo" mode="md">
+			<ion-label>{{ 'DETAILSUPPLIERS.photo' | translate }}</ion-label>
+			</ion-segment-button>
+			<ion-segment-button value="history" mode="md">
+			<ion-label>{{ 'DETAILSUPPLIERS.ratings' | translate }}</ion-label>
+			</ion-segment-button>
+		</ion-segment>
 	</div>
-	<ion-segment [(ngModel)]="type" value="track" color="light">
-	    <ion-segment-button value="track" mode="md">
-	      <ion-label>{{ 'DETAILSUPPLIERS.description' | translate }}</ion-label>
-	    </ion-segment-button>
-	    <ion-segment-button value="photo" mode="md">
-	      <ion-label>{{ 'DETAILSUPPLIERS.photo' | translate }}</ion-label>
-	    </ion-segment-button>
-	    <ion-segment-button value="history" mode="md">
-	      <ion-label>{{ 'DETAILSUPPLIERS.ratings' | translate }}</ion-label>
-	    </ion-segment-button>
-	</ion-segment>
 	<div class="content-infoP" *ngIf="type == 'track'">
-		<div *ngIf="data">
-			<p class="address"><ion-icon name="arrow-dropup" class="custom1-map"></ion-icon> {{data.establecimiento.direccion}}</p>
+		<div *ngIf="data" style="margin: 0px 10px;">
+			<!--p class="address"><ion-icon name="arrow-dropup" class="custom1-map"></ion-icon> {{data.establecimiento.direccion}}</p>
 			<p>{{data.descripcion}}</p>
 			<hr>
 			<p class="title-service">{{ 'DETAILSUPPLIERS.services' | translate }}</p>
 			<div class="info-service">
 				<p *ngFor="let item of servicios">- {{item.nombre}} - {{item.subcategoria.nombre}}</p>
 			</div>
+			<hr style="margin-top: 15px;"-->
+			<p > {{data.descripcion}}</p>
 			<hr style="margin-top: 15px;">
 			<p [hidden]="data.establecimiento.usuario.repartidor.registro.tipo == 2"><span>{{ 'DETAILSUPPLIERS.Training' | translate }}</span> {{data.establecimiento.usuario.repartidor.registro.formacion}}</p>
 			<p><span>{{ 'DETAILSUPPLIERS.years' | translate }}</span> {{data.anos_experiencia}} {{ 'DETAILSUPPLIERS.year' | translate }}</p>
@@ -70,7 +100,7 @@
 	<div class="content-infoP" *ngIf="type == 'photo'">
 		<div *ngIf="data">
 			<div *ngFor="let item of fotos" class="content-imgP">
-				<img src="{{item.url}}">
+				<img src="{{item.url}}" class="fotos">
 			</div>
 		</div>
 	</div>

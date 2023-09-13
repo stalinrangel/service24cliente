@@ -10,7 +10,7 @@
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
         <div class="icon-bagde" *ngIf="show_notify"></div>
-        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -22,13 +22,38 @@
 
 <ion-content>
   <div *ngIf="providers">
+    <ion-list>
+  		<div *ngFor="let item of filteredItems" (click)="setProvider(item)" class="cuadro-azul">
+        <div class="label1">
+          <div class="nuevo-label">
+            <p class="title-menu">{{item.establecimiento.nombre}}</p>
+            <p class="sub-title">{{item.nombre}}</p>
+            
+          </div>
+          <img *ngIf="item.establecimiento.usuario != null" src="{{item.imagen}}" class="imagen">
+          <img *ngIf="item.establecimiento.usuario == null" src="{{item.imagen}}" class="imagen">
+        </div>
+        <div class="label2">
+          <p class="status-item color-yellow" > <span class="green"></span>Disponible</p>
+          <div class="label22">
+            <div style="display: flex;flex-direction: row; justify-content: center;margin-right: 5px;"><p style="color: #FD682A;font-size: 14px;">4.5</p><img src="/assets/service24/star.svg" alt="" style="width: 20px; height: 20px;"></div>
+            <p style="margin-top: 0px;">(16)</p>
+            <ion-icon name="heart-outline" class="fav"></ion-icon>
+          </div>
+        </div>
+        <div>
+          <p class="new-address"> {{item.establecimiento.direccion}}</p>
+        </div>
+  		</div>
+      <p *ngIf="showItem" class="text-empty">{{ 'SUPPLIERS.empty' | translate }}</p>
+  	</ion-list>
     <!--p class="item-result" *ngIf="results > 1">{{results}} {{ 'SUPPLIERS.results' | translate }}</p>
     <p class="item-result" *ngIf="results == 1">{{results}} {{ 'SUPPLIERS.result' | translate }}</p>
     <div class="content-zone" (click)="goFilter()">
       <p><ion-icon name="arrow-dropup" class="custom1-map"></ion-icon> {{zone.nombre}}
       </p>
     </div-->
-  	<ion-list>
+  	<!--ion-list>
   		<ion-item lines="full" *ngFor="let item of items" (click)="setProvider(item)">
   		  <ion-thumbnail slot="start">
   		    <img *ngIf="item.establecimiento.usuario != null" src="{{item.imagen}}">
@@ -50,7 +75,7 @@
   		  </ion-label>
   		</ion-item>
       <p *ngIf="showItem" class="text-empty">{{ 'SUPPLIERS.empty' | translate }}</p>
-  	</ion-list>
+  	</ion-list-->
   </div>
   <!-- Skeleton screen -->
   <div *ngIf="!providers">

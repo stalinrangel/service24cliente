@@ -10,26 +10,33 @@
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
       	<div class="icon-bagde" *ngIf="show_notify"></div>
-        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+	<div class="label1">
+		<div class="nuevo-label">
+		  <p class="title-menu">{{data.establecimiento.usuario.nombre}}</p>
+		  <p class="sub-title">{{category.nombre}}</p>
+		  
+		</div>
+		<img  src="{{data.establecimiento.usuario.imagen}}" class="imagen">
+	</div>
 	<form [formGroup]="orderForm" class="content-div">
-		<ion-item lines="none" class="item-info">
+		<!--ion-item lines="none" class="item-info">
 			<ion-input value="Readonly" readonly value="{{ 'ORDER.for' | translate }} {{data.establecimiento.usuario.nombre}}" class="input-info"></ion-input>
-			<!--ion-icon slot="end" name="arrow-dropup" class="custom-contact1"></ion-icon-->
+			<!--ion-icon slot="end" name="arrow-dropup" class="custom-contact1"></ion-icon>
 			
 		</ion-item>
 
 		<ion-item lines="none" class="item-info">
 			<ion-input value="Readonly" readonly value="{{ 'ORDER.service' | translate }} {{category.nombre}}" class="input-info"></ion-input>
-		</ion-item>
-		<ion-item lines="none" class="item-info">
-		  <ion-textarea placeholder="{{ 'ORDER.observations' | translate }}" formControlName="referencia" class="area-info" rows="4" cols="20"></ion-textarea>
-		</ion-item>
+		</ion-item-->
+		
 		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.tiempo}">
 		  <ion-datetime-button presentation="date" displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" datetime="tiempo" mode="ios" class="area-info"></ion-datetime-button>
 			<ion-icon slot="end" name="arrow-dropup" class="custom-calendar"></ion-icon>
@@ -38,23 +45,32 @@
 			<ion-datetime-button presentation="time" displayFormat="hh:mm A" pickerFormat="hh mm A" datetime="horaAux" mode="ios" class="area-info"></ion-datetime-button>
 		  <ion-icon slot="end" name="time" class="icon-timer"></ion-icon>
 		</ion-item>
+		
+
+		<div lines="none" class="item-info" style="height: 100% !important; padding: 14px !important;">
+			<div class="content-map">
+				<div class="content-infoMap" [hidden]="showInfoMap">
+					<p class="info-map" >{{ 'ORDER.info' | translate }}</p>
+					<p class="ok-map" (click)="geolocate()"><ion-icon name="navigate-circle-outline"></ion-icon></p>
+				</div>
+				<ion-icon md="md-locate" ios="md-locate" class="icon-location" ></ion-icon>
+				<!--div #map id="map"></div-->
+				<div>
+					<div id="map" style="border-radius: 12px;"></div>
+				</div>
+			</div>
+		</div>
+
 		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.direccion}">
 			<input id="pac-input" class="input-info" style="width: 100%; border: 0px;" formControlName="direccion" type="text" placeholder="Enter a location" (blur)="ver(0)" />
 			<!--ion-input  class="input-info" formControlName="direccion"  (blur)="ver(0)"></ion-input-->
 			
 			<ion-icon slot="end" name="arrow-dropup" class="custom-map" (click)="geolocate()"></ion-icon>
 		</ion-item>
-		<div class="content-map">
-			<div class="content-infoMap" [hidden]="showInfoMap">
-				<p class="info-map" >{{ 'ORDER.info' | translate }}</p>
-				<p class="ok-map" (click)="geolocate()"><ion-icon name="navigate-circle-outline"></ion-icon></p>
-			</div>
-			<ion-icon md="md-locate" ios="md-locate" class="icon-location" ></ion-icon>
-			<!--div #map id="map"></div-->
-			<div>
-				<div id="map"></div>
-			</div>
-		</div>
+
+		<ion-item lines="none" class="item-info" style="height: 120px !important;">
+			<ion-textarea placeholder="{{ 'ORDER.observations' | translate }}" formControlName="referencia" class="area-info" rows="4" cols="20"></ion-textarea>
+		  </ion-item>
 		<ion-button expand="block" class="ion-text-capitalize btn-init" (click)="sendOrder()">{{ 'ORDER.submit' | translate }}</ion-button>	
 		
 		<ion-modal [keepContentsMounted]="true">

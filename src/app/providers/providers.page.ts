@@ -79,7 +79,8 @@ export class ProvidersPage implements OnInit {
   ngOnInit() {
     
     //this.getServices({})
-    this.geolocate();
+    //this.geolocate();
+    this.getServices({})
   }
   async geolocate(){
 		console.log('geolocate')
@@ -261,7 +262,7 @@ export class ProvidersPage implements OnInit {
   searchText: string = "";
   get filteredItems() {
     //return this.chats;
-    return this.providers.filter((item:any) => item.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
+    return this.providers.filter((item:{establecimiento:any}) => item.establecimiento.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
   }
 
 }
