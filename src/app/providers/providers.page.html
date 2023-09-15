@@ -40,9 +40,11 @@
             <p style="margin-top: 0px;">(16)</p>
             <ion-icon name="heart-outline" class="fav"></ion-icon>
           </div>
+          
         </div>
-        <div>
-          <p class="new-address"> {{item.establecimiento.direccion}}</p>
+        <div style="display: flex;">
+          <!--p class="new-address"> {{item.establecimiento.direccion}}</p-->
+          <ion-icon name="locate" style="margin-right: 3px;"></ion-icon><p class="new-address">{{item.distance}} km</p>
         </div>
   		</div>
       <p *ngIf="showItem" class="text-empty">{{ 'SUPPLIERS.empty' | translate }}</p>

@@ -79,8 +79,8 @@ export class ProvidersPage implements OnInit {
   ngOnInit() {
     
     //this.getServices({})
-    //this.geolocate();
-    this.getServices({})
+    this.geolocate();
+    //this.getServices({})
   }
   async geolocate(){
 		console.log('geolocate')
@@ -110,12 +110,12 @@ export class ProvidersPage implements OnInit {
         }
         this.items = []; 
         this.providers = []; 
-        this.presentLoadingWithOptions();    
+        //this.presentLoadingWithOptions();    
         console.log('cat') 
         this.catService.getServices(this.data.id, this.zone.id).subscribe(
           data => {
             console.log('data')
-            this.loading.dismiss();
+          //  this.loading.dismiss();
             this.datos = data;
             this.providers = this.datos.productos; 
             console.log(this.providers)
@@ -167,6 +167,8 @@ export class ProvidersPage implements OnInit {
   mToMiles(m:any) {return (m / 1000).toFixed(2);}
 
   getDistance = (p1:any, p2Lat:any, p2Lng:any) => {
+
+    console.log(p1, p2Lat, p2Lng);
     var R = 6378137;
     var dLat = this.rad(p2Lat - p1.lat);
     var dLong = this.rad(p2Lng - p1.lng);

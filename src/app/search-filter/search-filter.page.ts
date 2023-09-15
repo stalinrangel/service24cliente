@@ -20,7 +20,7 @@ export class SearchFilterPage implements OnInit {
 	public item: any = [];
 	public items: any = [];
   public data: any = [];
-  public datos: any;
+  public datos: any=false;
   public searching: boolean = false;
   newItem: Item = <Item>{};
   @ViewChild('mylist')mylist: any;
@@ -71,9 +71,10 @@ export class SearchFilterPage implements OnInit {
     this.myLocation.lng=latLng.lng;
 	
     console.log(latLng)
+    this.initOrder();
     //this.getServices(latLng)
     setTimeout(() => {
-      this.textSearch.setFocus();
+      //this.textSearch.setFocus();
     },100);
     this.loadItems();
     this.storage.get('notifyGSV24').then(items => {
@@ -85,8 +86,8 @@ export class SearchFilterPage implements OnInit {
     });
 	}
   addHistory() {
-    if (this.searchTerm != '') {
-      this.newItem.title = this.searchTerm;
+    if (this.searchText != '') {
+      this.newItem.title = this.searchText;
       this.newItem.modified = Date.now();
       this.newItem.id = Date.now();
 
@@ -136,15 +137,21 @@ export class SearchFilterPage implements OnInit {
         //this.presentLoading();
         console.log('initOrder')
         this.item = [];
+        let self=this;
         this.catService.getProviders('1').subscribe(
           data => {
-            //this.loading.dismiss();
+            //self.loading.dismiss();
             console.log(data)
             this.datos = data.productos;
+            for (let i = 0; i < this.datos.length; i++) {
+              console.log(this.datos)
+              this.datos[i].distance = this.getDistance(this.myLocation,this.datos[i].establecimiento.lat,this.datos[i].establecimiento.lng);
+              
+            }
             this.getCurrentPosition();
           },
           msg => { 
-            //this.loading.dismiss();    
+            //self.loading.dismiss();    
           }
         );
       //}
@@ -423,7 +430,7 @@ export class SearchFilterPage implements OnInit {
   async presentLoading() {
     this.loading = await this.loadingController.create({
       spinner: 'dots',
-      duration: 3850,
+      duration: 1850,
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });
@@ -446,6 +453,20 @@ export class SearchFilterPage implements OnInit {
         this.show_notify = false;     
       });
       return await modal.present();  
+  }
+
+  searchText: string = "";
+  get filteredItems() {
+    //return this.chats;
+    //console.log(this.datos);
+    if (this.datos==false) {
+      return [];
+    }else if(this.searchText==""){
+      return [];
+    }else{
+      return this.datos.filter((item:any) => item.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
+    }
+    
   }
 
 }

@@ -10,33 +10,44 @@
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
         <div class="icon-bagde" *ngIf="show_notify"></div>
-        <ion-icon name="notifications" style="font-size: 25px;"></ion-icon>
+        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar class="content-search" mode="md">
-    <ion-searchbar 
-    placeholder="{{ 'SEARCH.search' | translate }}" 
-    color="light" 
-    
-    mode="md"
-    autocomplete
-    [(ngModel)]="searchTerm"
-    (ionFocus)="setSearch()"
-    (ionClear)="setSearch()"
-    (ionInput)="setFilteredItems()"
-    #textSearch>
-    </ion-searchbar>
-    <ion-buttons slot="end">
-      <ion-button class="btn-search" (click)="setFilteredItems()">
-        <ion-icon name="search-outline" style="color:white"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  
+  <div class="header" id="search">
+    <input type="text" class="nuevo-input nuevo-input-password" type="text" placeholder="{{ 'SEARCH.search' | translate }}"  [(ngModel)]="searchText" >
+    <ion-icon name="search" class="icon-eye nuevo-input-password2" ></ion-icon>
+  </div>
 </ion-header>
 
 <ion-content>
-   <ion-list #mylist [hidden]="searching">
+  <ion-list>
+    <div *ngFor="let item of filteredItems" (click)="setProvider(item)" class="cuadro-azul">
+      <div class="label1">
+        <div class="nuevo-label">
+          <p class="title-menu">{{item.establecimiento.nombre}}</p>
+          <p class="sub-title">{{item.nombre}}</p>
+          
+        </div>
+        <img *ngIf="item.establecimiento.usuario != null" src="{{item.imagen}}" class="imagen">
+        <img *ngIf="item.establecimiento.usuario == null" src="{{item.imagen}}" class="imagen">
+      </div>
+      <div class="label2">
+        <p class="status-item color-yellow" > <span class="green"></span>Disponible</p>
+        <div class="label22">
+          <div style="display: flex;flex-direction: row; justify-content: center;margin-right: 5px;"><p style="color: #FD682A;font-size: 14px;">{{item.promedio_calificacion}}</p><img src="/assets/service24/star.svg" alt="" style="width: 20px; height: 20px;"></div>
+          <p style="margin-top: 0px;">({{item.calificaciones.length}})</p>
+          <ion-icon name="heart-outline" class="fav"></ion-icon>
+        </div>
+      </div>
+      <div style="display: flex;">
+        <!--p class="new-address"> {{item.establecimiento.direccion}}</p-->
+        <ion-icon name="locate" style="margin-right: 3px;"></ion-icon><p class="new-address">{{item.distance}} km</p>
+      </div>
+    </div>
+  </ion-list>
+   <ion-list #mylist [hidden]="searchText!=''">
     <ion-item-sliding *ngFor="let item of items" class="slide-history" no-padding>
       <ion-item class="item-history">
         <ion-label style="display: flex;justify-content: space-between;">
@@ -49,7 +60,7 @@
       </ion-item-options>
     </ion-item-sliding>
    </ion-list>
-   <div [hidden]="!searching">
+   <!--div [hidden]="!searching">
       <p class="item-result" *ngIf="results > 1">{{results}} {{ 'SEARCH.results' | translate }}</p>
       <p class="item-result" *ngIf="results == 1">{{results}} {{ 'SEARCH.result' | translate }}</p>
       <ion-list>
@@ -61,7 +72,7 @@
           <ion-label class="item-info">
             <h2>{{itemd.establecimiento.nombre}}</h2>
             <h2 style="font-size: 11px;color: #4d4d4d;">{{itemd.nombre}}</h2>
-            <!--ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [ngClass]="{'filled': i < itemd.promedio_calificacion}"></ion-icon-->
+            <!--ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [ngClass]="{'filled': i < itemd.promedio_calificacion}"></ion-icon>
             <ion-rating-stars
               [rating]="itemd.promedio_calificacion"
               [color]="'darkgrey'"
@@ -84,5 +95,5 @@
         </ion-item>
         <p *ngIf="item.length == 0" class="text-empty">{{ 'SEARCH.empty' | translate }}</p>
       </ion-list>
-   </div>
+   </div-->
 </ion-content>

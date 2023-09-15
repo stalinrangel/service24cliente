@@ -10,6 +10,7 @@ import { TutorialPage } from '../tutorial/tutorial.page';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { Router } from '@angular/router';
 import { NotificationsService } from '../services/notifications.service';
+import { Browser } from '@capacitor/browser';
 
 
 
@@ -423,6 +424,7 @@ export class Tab3Page {
 	}
 
 	async alert1(text:any){
+		
 		let alert =  await this.alertController.create({
 		    header: text,
 		    cssClass: 'mail-contact',
@@ -450,13 +452,15 @@ export class Tab3Page {
 		this.navCtrl.navigateForward('/tabs/tab2');
 	}
 
-	support(){
-		if (this.band_chatSupport) {		
+	async support(){
+		let url ='https://service24.app';
+		await Browser.open({ url: url});
+		/*if (this.band_chatSupport) {		
 			this.objService.setExtras(this.chat_support);
 			this.navCtrl.navigateForward('chat-support');
 		} else {
 			this.presentToast(this.info);
-		}
+		}*/
 	} 
 	
 	login(){

@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { StorageService } from 'src/services/storage/storage.service';
 import { UserService } from 'src/services/user/user.service';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
+//import { Clipboard } from '@capacitor/clipboard';
 
 @Component({
   selector: 'app-tab4',
@@ -69,7 +70,7 @@ export class Tab4Page implements OnInit {
 
   get filteredItems() {
     //return this.chats;
-    return this.chats.filter((item: { usuario: any; }) => item.usuario.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
+    return this.chats.filter((item: { repartidor: any; }) => item.repartidor.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
   }
 
   getChat(chat:any){

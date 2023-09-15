@@ -19,7 +19,9 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [AppComponent],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot({
+      sanitizerEnabled: false
+    }), 
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),

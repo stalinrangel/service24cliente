@@ -101,6 +101,13 @@
 		<div *ngIf="data">
 			<div *ngFor="let item of fotos" class="content-imgP">
 				<img src="{{item.url}}" class="fotos">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+					  <div class="swiper-slide">
+						<img src="{{item.url}}">
+					  </div>
+					</div>
+				  </div>
 			</div>
 		</div>
 	</div>

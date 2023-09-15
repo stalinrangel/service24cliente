@@ -4,6 +4,9 @@ import { ObjectserviceService } from '../../services/objetcservice/objectservice
 import { CategoriesService } from '../../services/categories/categories.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { NotificationsComponent } from '../notifications/notifications.component';
+import { register } from 'swiper/element/bundle';
+import { Swiper } from 'swiper';
+register();
 
 @Component({
   selector: 'app-detail-provider',
@@ -40,6 +43,8 @@ export class DetailProviderPage implements OnInit {
   }
   public fotos: any = [];
   public show_notify: boolean = false;
+
+  sw:any;
   
   constructor(
   	private nav: NavController,
@@ -63,6 +68,10 @@ export class DetailProviderPage implements OnInit {
       } else {
         this.show_notify = false;
       }
+    });
+
+    const mySwiper = new Swiper('.swiper-container', {
+      zoom: true
     });
   }
 

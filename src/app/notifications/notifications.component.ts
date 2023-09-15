@@ -101,10 +101,10 @@ export class NotificationsComponent  implements OnInit {
   }
 
   get(notifi:any){
+    this.visto(notifi.id);
     let data=JSON.parse(notifi.data);
     //data.obj=JSON.parse(data.obj)
     console.log(notifi);
-    this.visto(notifi.id);
     console.log(data);
     this.accions(notifi.accion,data)
   }
