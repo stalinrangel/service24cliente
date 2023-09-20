@@ -24,7 +24,12 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+@import "swiper/css/bundle";
 
+
+.modal-contents {
+  --background: rgba(44,39,45,0.2);
+}
 
 ion-toolbar .sc-ion-searchbar-ios-h {
   padding: 0 10px;

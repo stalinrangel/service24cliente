@@ -136,4 +136,23 @@ export class ObjectserviceService {
 	getnnotificaciones(): Subject<any> {
 		return this.nnotificaciones;
 	}
+
+	private ruta  = new Subject<any>();
+	setruta(data: any) {
+		console.log(data)
+		this.ruta.next(data);
+	}
+	getruta(): Subject<any> {
+		return this.ruta;
+	}
+
+	private reload_chats_pedido  = new Subject<any>();
+	set_reload_chats_pedido(data: any) {
+		console.log(data)
+		this.reload_chats_pedido.next(data);
+	}
+	get_reload_chats_pedido(): Subject<any> {
+		return this.reload_chats_pedido;
+	}
+
 }

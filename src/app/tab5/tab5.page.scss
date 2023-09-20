@@ -113,7 +113,7 @@ ion-footer {
   }
   .message-wrap .message.right .user-img {
     background-color: #fd682a !important;
-    color: white;
+    color: white !important;
     right: 0; 
   }
   .message-wrap .message.right ion-spinner {
@@ -124,7 +124,7 @@ ion-footer {
   .message-wrap .message.right .msg-detail .msg-content {
     float: right; 
     background-color: #fd682a !important;
-    color: white;
+    color: white !important;
   }
   .message-wrap .message.right .msg-detail .msg-content span.triangle {
     border-bottom-width: 0;

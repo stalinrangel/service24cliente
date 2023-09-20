@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'cliente.service24.app',
-  appName: 'service24Clienes',
+  appName: 'Service24',
   webDir: 'www',
   server: {
     androidScheme: 'https'

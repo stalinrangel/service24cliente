@@ -51,6 +51,8 @@ export class Tab2Page {
 		private noticationService: NotificationsService,
 		public userService: UserService,
 	){
+		console.log(this.router.url);
+		this.objService.setruta(this.router.url);
 		/*this.events.subscribe('viewOrder', (userData: string) => {
 	    	this.type = userData;
 	    	this.initOrder();

@@ -39,7 +39,7 @@
 	<div  class="cuadro-azul">
 		<div class="label0" >
 			<ion-icon name="heart-outline" class="fav1" style="color: white;"></ion-icon>
-			<img class="portada" src="{{imagen}}">
+			<img class="portada" src="{{imagen}}" (click)="openPreview(imagen)">
 			
 		</div>
         <div class="label1">
@@ -100,14 +100,8 @@
 	<div class="content-infoP" *ngIf="type == 'photo'">
 		<div *ngIf="data">
 			<div *ngFor="let item of fotos" class="content-imgP">
-				<img src="{{item.url}}" class="fotos">
-				<div class="swiper-container">
-					<div class="swiper-wrapper">
-					  <div class="swiper-slide">
-						<img src="{{item.url}}">
-					  </div>
-					</div>
-				  </div>
+				<img src="{{item.imagen}}" class="fotos" (click)="openPreview(item.imagen)">
+				
 			</div>
 		</div>
 	</div>

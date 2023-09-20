@@ -58,7 +58,7 @@ export class NotificationsService {
     });
 
     PushNotifications.addListener('registration', (token: Token) => {
-      alert('Push registration success, token: ' + token.value);
+      //alert('Push registration success, token: ' + token.value);
       let guardar=token.value;
       guardar=guardar.toString();
       //alert(guardar)
@@ -70,7 +70,7 @@ export class NotificationsService {
     });
 
     PushNotifications.addListener('registrationError', (error: any) => {
-      alert('Error on registration: ' + JSON.stringify(error));
+      //alert('Error on registration: ' + JSON.stringify(error));
       this.error(error);
       
     });
@@ -78,7 +78,7 @@ export class NotificationsService {
     PushNotifications.addListener(
       'pushNotificationReceived',
       (notification: PushNotificationSchema) => {
-        alert('Push received: ' + JSON.stringify(notification));
+        //alert('Push received: ' + JSON.stringify(notification));
         this.error(notification);
         this.presentConfirm(notification.data.accion,notification.data);
        let self=this;
@@ -254,10 +254,19 @@ export class NotificationsService {
         }, 300);
     }
     if (i=='8') {
-      this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
-      setTimeout(() => {
-        this.objService.setchatpedido(data);
-        }, 300);
+      this.objService.getruta().subscribe((data:any) => {
+        if (data=='/chat-pedidos') {
+          this.objService.set_reload_chats_pedido(data);
+        }else{
+          this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
+          setTimeout(() => {
+            this.objService.setchatpedido(data);
+            }, 300);
+        }
+      }); 
+      
+
+      
     }
     if (i=='2') {
       this.navCtrl.navigateForward('/tabs/tab3');//char soporte

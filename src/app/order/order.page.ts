@@ -16,6 +16,7 @@ import { environment } from '../../environments/environment';
 
 import * as moment from 'moment';
 import { UserService } from 'src/services/user/user.service';
+import { Router } from '@angular/router';
 
 declare var google:any;
 
@@ -68,9 +69,11 @@ export class OrderPage{
 	private translate: TranslateService,
 	//private event: Events,
 	public modalController: ModalController,
-	private user: UserService
+	private user: UserService,
+	private router: Router
   ) { 
-	
+	console.log(this.router.url);
+	this.objService.setruta(this.router.url);
 	let self=this;
 	setTimeout(() => {
 		self.createMap();

@@ -286,3 +286,9 @@ ion-icon {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 60px; opacity: 0;}
 }
+
+.transparent-modal {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}

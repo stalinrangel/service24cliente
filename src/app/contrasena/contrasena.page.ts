@@ -72,7 +72,7 @@ export class ContrasenaPage implements OnInit {
 			    msg => {
 		      		let err = msg.error;
     				this.loading.dismiss();
-    				this.presentToast(err.error);
+    				this.presentToast(err.error.error);
 			    });
 		    }
 	    } else {

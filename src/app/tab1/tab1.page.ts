@@ -16,6 +16,8 @@ import { NotificationsComponent } from '../notifications/notifications.component
 import { Geolocation } from '@capacitor/geolocation';
 import { NotificationsService } from '../services/notifications.service';
 import { register } from 'swiper/element/bundle';
+import { ImageModalPage } from '../image-modal/image-modal.page';
+import { Router } from '@angular/router';
 
 register();
 
@@ -66,8 +68,14 @@ export class Tab1Page {
     //public events: Events,
     private translate: TranslateService,
     private languageService: LanguageService, 
-    private noticationService: NotificationsService
+    private noticationService: NotificationsService,
+    private router: Router
+
   ) {
+
+    console.log(this.router.url);
+    this.objService.setruta(this.router.url);
+
     this.platform.ready().then(()=>{
       //this.presentLoadingWithOptions();
       //this.tryGeolocation();
@@ -501,6 +509,17 @@ export class Tab1Page {
         this.vistos+=1;
       }
     }
+  }
+
+  async openPreview(img:any){
+    const modal=await this.modalController.create({
+      component: ImageModalPage,
+      componentProps:{
+        img
+      },
+      cssClass:'modal-contents'
+    });
+    modal.present();
   }
 
 }

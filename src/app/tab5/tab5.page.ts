@@ -8,6 +8,7 @@ import { StorageService } from 'src/services/storage/storage.service';
 import { ObjectserviceService } from '../../services/objetcservice/objectservice.service';
 import { ChatServiceService, ChatMessage, UserInfo } from "../../services/chat-service/chat-service.service";
 import { RefreshService } from '../services/refresh.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab5',
@@ -35,7 +36,7 @@ export class Tab5Page {
 		emisor_id: 0,
 	  	receptor_id: 0,
 	  	msg: '',
-	  	emisor: 'repartidor',
+	  	emisor: 'cliente',
 	  	token_notificacion: '',
 	  	token: '',
 	  	chat_id: '',
@@ -53,25 +54,33 @@ export class Tab5Page {
 	public cdr: ChangeDetectorRef,
 	public loadingController: LoadingController,
 	public http: HttpClient,
-	public zone: NgZone
+	public zone: NgZone,
+	private router: Router
 	) { 
+		console.log(this.router.url);
+		this.objService.setruta(this.router.url);
+
 		this.data = this.objService.getExtras();
 		this.admin_id = this.data.admin_id;
 		this.chat_id = this.data.chat_id;
 		this.token_notificacion = this.data.token_notificacion;  
-    console.log(this.admin_id,this.chat_id,this.token_notificacion);
-		let items:any=this.storage.getObject('userRPSV24');
+    	console.log(this.admin_id,this.chat_id,this.token_notificacion);
+		this.storage.getObject('userSV24').then(items => {
 			if (items != '' && items != null) {
 				this.usuario = items;
+				console.log(this.usuario)
 				this.chatService.getUserInfo(this.usuario)
 			    .then((res: UserInfo | undefined) => {
 			      this.user = res
+				  console.log(this.user)
 			    });
-			} 
+			}
+		});
+		
 		this.toUser = {
 		  id: this.admin_id
 		};
-
+		console.log(this.toUser)
     
 	}
 
@@ -95,7 +104,7 @@ export class Tab5Page {
           id: moment().format(),
           emisor_id: parseInt(this.toUser.id),
           userAvatar: msg.userAvatar,
-          receptor_id: parseInt(this.user.id),
+          receptor_id: parseInt(this.usuario.id),
           created_at: moment().format(),
           msg: msg.msg,
           status: 2,
@@ -107,10 +116,10 @@ export class Tab5Page {
 
 	getMsg() {
 	    return this.chatService.getMsgList(this.chat_id
-	    	).subscribe((res: ChatMessage[]) => {
+	    	).subscribe(res => {
 	        this.msgList = res;
 	        this.scrollToBottom();
-	        //this.loading.dismiss();
+	        this.loading.dismiss();
 	    });
 	}
 
@@ -123,7 +132,7 @@ export class Tab5Page {
 		
 		let newMsg: ChatMessage = {
 		  id: moment().format(),
-		  emisor_id: parseInt(this.user.id),
+		  emisor_id: parseInt(this.usuario.id),
 		  userAvatar: this.user.avatar,
 		  receptor_id: parseInt(this.toUser.id),
 		  created_at: moment().format(),
@@ -146,31 +155,31 @@ export class Tab5Page {
 		this.send_msg.ciudad_id = this.data.ciudad_id;
 		this.send_msg.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
 
-		let items:any=this.storage.get('TRPSV24');
-  			if (items != '' && items != null) {
-  				this.send_msg.token = items;
-  				console.log(this.send_msg)
-  				this.http.post(`${environment.api}chats/repartidores/mensaje`, this.send_msg)
-			    .toPromise()
-			    .then(
-				data => {
-					this.datos = data;
-					this.chat_id = this.datos.chat.id;
-					this.admin_id = this.datos.chat.admin_id;
-					this.token_notificacion = this.datos.msg.token_notificacion;	
-					let index = this.getMsgIndexById(id);
-					if (index !== -1) {
-					  this.msgList[index].status = 2;
-					}
-				},
-				msg => {
-					console.log(msg);
-					let index = this.getMsgIndexById(id);
-					if (index !== -1) {
-					  this.msgList[index].status = 2;
-					}
-				}); 
-		  	};
+		this.storage.get('TUSV24').then(items => {
+			if (items != '' && items != null) {
+				this.send_msg.token = items;
+				this.http.post(`${environment.api}chats/clientes/mensaje`, this.send_msg)
+			  .toPromise()
+			  .then(
+			  data => {
+				  this.datos = data;
+				  this.chat_id = this.datos.chat.id;
+				  this.admin_id = this.datos.chat.admin_id;
+				  this.token_notificacion = this.datos.msg.token_notificacion;	
+				  let index = this.getMsgIndexById(id);
+				  if (index !== -1) {
+					this.msgList[index].status = 2;
+				  }
+			  },
+			  msg => {
+				  console.log(msg);
+				  let index = this.getMsgIndexById(id);
+				  if (index !== -1) {
+					this.msgList[index].status = 2;
+				  }
+			  }); 
+			};
+	  	});
 	}
 
 	pushNewMsg(msg: ChatMessage) {

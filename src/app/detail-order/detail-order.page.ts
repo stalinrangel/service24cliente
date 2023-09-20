@@ -7,6 +7,7 @@ import { CalificationPage } from '../calification/calification.page';
 import { CategoriesService } from '../../services/categories/categories.service';
 import { CancelOrderPage } from '../cancel-order/cancel-order.page';
 import { NotificationsComponent } from '../notifications/notifications.component';
+import { Router } from '@angular/router';
 
 //declare var google;
 
@@ -96,8 +97,12 @@ export class DetailOrderPage implements OnInit {
     private catService: CategoriesService,
     //public events: Events,
     private platform: Platform,
-    private zone: NgZone
+    private zone: NgZone,
+    private router: Router
   ) { 
+
+    console.log(this.router.url);
+    this.objService.setruta(this.router.url);
   	this.data = this.objService.getExtras();	
 
     this.objService.getopenchat().subscribe((data:any) => {

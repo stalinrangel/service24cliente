@@ -1,0 +1,18 @@
+
+
+
+  <ion-header >
+    <div style="display: flex;justify-content: end;padding: 10px; ">
+      <p (click)="close()" style="color: white;font-size: 24px;">x</p>
+    </div>
+  </ion-header>
+
+  <swiper-container [zoom]="true" [config]="config">
+    <swiper-slide style="display: flex;justify-content: center; align-items: center;min-height: 80vh;">
+      <div class="swiper-zoom-container">
+        <img src="{{img}}" alt="">
+      </div>
+    </swiper-slide>
+  </swiper-container>
+
+

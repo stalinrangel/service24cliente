@@ -6,6 +6,7 @@ import { StorageService } from '../../services/storage/storage.service';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { register } from 'swiper/element/bundle';
 import { Swiper } from 'swiper';
+import { ImageModalPage } from '../image-modal/image-modal.page';
 register();
 
 @Component({
@@ -128,13 +129,15 @@ export class DetailProviderPage implements OnInit {
           }
         }
         this.calificaciones = this.sortByKey(this.data.calificaciones,'id');
-        for (var i = 0; i < this.data.servicios.length; ++i) {
+        this.fotos = this.data.fotos;
+        console.log(this.data.fotos);
+       /* for (var i = 0; i < this.data.servicios.length; ++i) {
           if (this.data.servicios[i].id == this.data.id) {
             if (this.data.servicios[i].fotos) {
               this.fotos = JSON.parse(this.data.servicios[i].fotos);
             }
           }
-        }      
+        }   */   
         this.servicios = this.data.servicios;
         this.servicios = this.servicios.filter((thing:any, index:any, self:any) =>
           index === self.findIndex((t:any) => (t.nombre === thing.nombre))
@@ -211,6 +214,17 @@ export class DetailProviderPage implements OnInit {
         this.show_notify = false;   
       });
       return await modal.present();  
+  }
+
+  async openPreview(img:any){
+    const modal=await this.modalController.create({
+      component: ImageModalPage,
+      componentProps:{
+        img
+      },
+      cssClass:'modal-contents'
+    });
+    modal.present();
   }
 
 }

@@ -54,7 +54,7 @@ export class EmailPasswordPage implements OnInit {
 	        error => {
 	        	console.log(error);
 	          this.loading.dismiss();
-	          this.presentToast(error.error);
+	          this.presentToast(error.error.error);
 	        });
 	    } else {
 	      this.validateAllFormFields(this.registerUserForm);

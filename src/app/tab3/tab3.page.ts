@@ -11,6 +11,7 @@ import { NotificationsComponent } from '../notifications/notifications.component
 import { Router } from '@angular/router';
 import { NotificationsService } from '../services/notifications.service';
 import { Browser } from '@capacitor/browser';
+import { ContactModalPage } from '../contact-modal/contact-modal.page';
 
 
 
@@ -65,6 +66,9 @@ export class Tab3Page {
 		private router: Router,
 		private noticationService: NotificationsService
 	) {
+		console.log(this.router.url);
+		this.objService.setruta(this.router.url);	
+
 		this.translate.get('PROFILE.user').subscribe((res1: string) => {           
 			this.usuario.nombre = res1;
 		});
@@ -411,8 +415,10 @@ export class Tab3Page {
 			        this.direccion = this.datos4.contacto.direccion;
 			        this.email = this.datos4.contacto.correo;
 			        this.telefono = this.datos4.contacto.telefono; 
+					this.alert1(this.datos4.contacto);
 			        this.translate.get('PROFILE.contact').subscribe((res: string) => {           
-						this.alert1(res)
+						
+						
 					});       
 		        },
 		        msg => {       
@@ -424,19 +430,29 @@ export class Tab3Page {
 	}
 
 	async alert1(text:any){
-		
-		let alert =  await this.alertController.create({
+		console.log(text)
+		/*let alert =  await this.alertController.create({
 		    header: text,
 		    cssClass: 'mail-contact',
-		   /* message: `
+		   message: `
 	        <p>`+this.direccion+`</p>
 	        <a class="mail-contact" href="mailto:`+this.email+`?subject=`+text+`" "contacto">`+this.email+`</a>
 	        <p class="mail-contact">`+this.telefono+`</p>
-	      `,*/
+	      `,
 			message: this.email,
 		    buttons: ['Ok']
 		  });
-		await alert.present();
+		await alert.present();*/
+		  	
+			const modal=await this.modalController.create({
+			  component: ContactModalPage,
+			  componentProps:{
+				text
+			  },
+			  cssClass:'modal-contents'
+			});
+			modal.present();
+
 	}
 
 	async presentToast(text:any) {

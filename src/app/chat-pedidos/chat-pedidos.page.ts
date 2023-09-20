@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { NotificationsComponent } from '../notifications/notifications.component';
 
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-chat-pedidos',
   templateUrl: './chat-pedidos.page.html',
@@ -55,8 +56,18 @@ export class ChatPedidosPage implements OnInit {
 	public loadingController: LoadingController,
 	public http: HttpClient,
 	public zone: NgZone,
-	public modalController: ModalController
+	public modalController: ModalController,
+	private router: Router
   ) { 
+	console.log(this.router.url);
+	this.objService.setruta(this.router.url);
+
+	this.objService.get_reload_chats_pedido().subscribe((data:any) => {
+		console.log(data)
+		this.msgList = [];
+		this.showLoading('Cargando conversación');
+		this.getMsg();
+	}); 
   	this.data = this.objService.getExtras();
   	this.admin_id = this.data.usuario_id;
   	this.chat_id = this.data.id;

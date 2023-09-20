@@ -1,6 +1,6 @@
 {
     "appId": "cliente.service24.app",
-    "appName": "service24Clienes",
+    "appName": "Service24",
     "webDir": "www",
     "bundledWebRuntime": false,
     "plugins": {

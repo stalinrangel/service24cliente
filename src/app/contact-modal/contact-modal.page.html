@@ -1,0 +1,17 @@
+
+
+  <div style="display: flex;justify-content: center; align-items: center;min-height: 90vh;">
+    <div class="container">
+      <h2>Contacto</h2>
+      <br>
+      <p (click)="callClient(text.correo)">{{text.correo}}</p>
+      <div style="display: flex; justify-content: center;" (click)="whatsapp()">
+        <p >Escribenos al Whatsapp </p> <ion-icon name="logo-whatsapp" style="padding-bottom: 17px; padding-left: 4px;"></ion-icon>
+      </div>
+      <div style="border-top: 1px solid;padding-top: 10px;" (click)="close()">
+        <p>Cerrar</p>
+      </div>
+      
+    </div>
+  </div>
+
