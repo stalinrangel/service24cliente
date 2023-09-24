@@ -22,7 +22,7 @@
 	<div class="content-profile" >
 		<!--div class="content-profile" [ngStyle]="{'background': 'linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(' + usuario.imagen + ') center center / cover no-repeat'}" -->
 			<div style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center;margin: auto;">
-				<img src="{{usuario.imagen}}">
+				<img src="{{usuario.imagen}}" (click)="editProfile()">
 				<div class="content-info">
 					<p class="title">{{usuario.nombre}}</p>
 					<!--ion-icon slot="icon-only" name="star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [class.filled]="(i + 1 <= promedio_calificacion)"></ion-icon-->
@@ -64,6 +64,12 @@
 					<ion-label class="nuevo-label">
 						<p class="title-menu"><ion-icon name="heart" class="icon-lang"></ion-icon> {{ 'FAVORITES.title' | translate }}</p>
 						<img src="..\assets\service24\derecha.svg" alt="">
+					</ion-label>
+				</ion-item>
+				<ion-item lines="full" (click)="editProfile()">
+					<ion-label class="nuevo-label">
+					  <p class="title-menu"><ion-icon name="person" class="icon-lang"></ion-icon> {{ 'PROFILE.title' | translate }}</p>
+					  <img src="..\assets\service24\derecha.svg" alt="">
 					</ion-label>
 				</ion-item>
 				<ion-item lines="full" (click)="support()">
@@ -114,5 +120,6 @@
 				</ion-item>
 			</ion-list>
 		</div>
-	<p class="info-version">Service 24 <br> Version 0.0.4</p>
+	<p class="info-version">Service 24 <br> Version 0.0.6</p>
+	<br><br><br>
 </ion-content>

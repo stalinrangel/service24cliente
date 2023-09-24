@@ -60,6 +60,14 @@ export class Tab5Page {
 		console.log(this.router.url);
 		this.objService.setruta(this.router.url);
 
+		this.objService.get_reload_chats_pedido().subscribe((data:any) => {
+			console.log(data)
+			//alert('Cargando conversación');
+			this.msgList = [];
+			//this.showLoading('Cargando conversación');
+			this.getMsg();
+		}); 
+
 		this.data = this.objService.getExtras();
 		this.admin_id = this.data.admin_id;
 		this.chat_id = this.data.chat_id;

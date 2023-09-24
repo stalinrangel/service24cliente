@@ -1,8 +1,28 @@
+
+.no-border ion-item {
+    --border-style: none;
+  }
+  ion-item {
+    --border-style: none;
+  }
+ion-icon {
+	font-size: 20px;
+  }
+span{
+	color:black;
+	font-family: Inter-SemiBold;
+}
+p{
+	font-family: Inter-Medium;
+}
+.nuevo-header{
+	color:black;
+	font-family: Inter-Medium;
+  }
 .text-date{
 	text-align: right;
     font-size: 10px;
-    font-family: 'Muli';
-    font-weight: bold;
+    font-family: 'Muli-SemiBold';
 }
 .text-msg{
 	font-family: 'Muli';
@@ -10,7 +30,7 @@
     ion-icon{
 		font-size: 15px;
 	    margin-right: 5px;
-	    color: var(--ion-color-secondary);
+	    color: #073763;
 	}
 }
 ion-list{

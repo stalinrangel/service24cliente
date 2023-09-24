@@ -64,6 +64,7 @@ export class ChatPedidosPage implements OnInit {
 
 	this.objService.get_reload_chats_pedido().subscribe((data:any) => {
 		console.log(data)
+		//alert('Cargando conversación');
 		this.msgList = [];
 		this.showLoading('Cargando conversación');
 		this.getMsg();

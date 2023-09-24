@@ -97,4 +97,8 @@ export class UserService {
   getChats(id:any): Observable<any>{
     return this.http.get(`${environment.api}chats/pedidos/cliente/`+id);
   }
+
+  getZona(data:any): Observable<any>{
+    return this.http.get(`${environment.api}zonas/detectar`,data);
+  }
 }

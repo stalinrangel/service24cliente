@@ -4,6 +4,7 @@ import { AlertController, NavController, Platform } from '@ionic/angular';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 import { StorageService } from 'src/services/storage/storage.service';
 import { UserService } from 'src/services/user/user.service';
+import { App } from '@capacitor/app';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,7 @@ export class NotificationsService {
       'pushNotificationReceived',
       (notification: PushNotificationSchema) => {
         //alert('Push received: ' + JSON.stringify(notification));
+        //alert('0');
         this.error(notification);
         this.presentConfirm(notification.data.accion,notification.data);
        let self=this;
@@ -143,6 +145,7 @@ export class NotificationsService {
         //alert(JSON.stringify(notification.notification.data.accion));
         //alert('Push received: ' + JSON.stringify(notification.notification.data));
         //alert(JSON.stringify(notification));
+       // alert('1');
         this.presentConfirm(notification.notification.data.accion,notification.notification.data);
        let self=this;
         this.storage.getObject('userSV24').then(items => {
@@ -200,7 +203,7 @@ export class NotificationsService {
   }
 
   async presentConfirm(i:any,data:any) {
-    
+    //this.registrar_notificacion(i,data.pedido_id,data);
     const alert = await this.alertController.create({
     message: '¿Desea abrir la notificación? "'+data.body+'"',
     buttons: [
@@ -211,6 +214,7 @@ export class NotificationsService {
               this.siono=0;
               console.log('Cancel clicked');
               this.registrar_notificacion(i,data.pedido_id,data);
+              this.no(i,data);
             }
           },
           {
@@ -254,31 +258,59 @@ export class NotificationsService {
         }, 300);
     }
     if (i=='8') {
-      this.objService.getruta().subscribe((data:any) => {
+      let data:any=this.objService.getruta();
+        //alert(data);
         if (data=='/chat-pedidos') {
+         // alert('data');
           this.objService.set_reload_chats_pedido(data);
         }else{
+          //alert('data2');
           this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
           setTimeout(() => {
             this.objService.setchatpedido(data);
             }, 300);
         }
-      }); 
-      
-
-      
+     
     }
     if (i=='2') {
-      this.navCtrl.navigateForward('/tabs/tab3');//char soporte
-      setTimeout(() => {
-        this.objService.setsoporte(data);
-        }, 300);
+      let data:any=this.objService.getruta();
+        //alert(data);
+        if (data=='/tabs/tab5') {
+         // alert('data');
+          this.objService.set_reload_chats_pedido(data);
+        }else{
+          this.navCtrl.navigateForward('/tabs/tab5');//char soporte
+          setTimeout(() => {
+            this.objService.setsoporte(data);
+            }, 300);
+        }
     }
     if (i=='17') {
       this.navCtrl.navigateForward('/tabs/tab1'); //notificaciones generales 
       setTimeout(() => {
         this.objService.setgenerales(data);
         }, 300);
+    }
+    
+  }
+  no(i:any,data:any){
+   
+    if (i=='8') {
+      let data:any=this.objService.getruta();
+        //alert(data);
+        if (data=='/chat-pedidos') {
+         // alert('data');
+          this.objService.set_reload_chats_pedido(data);
+        }  
+    }
+    if (i=='2') {
+
+      let data:any=this.objService.getruta();
+        //alert(data);
+        if (data=='/tabs/tab5') {
+         // alert('data');
+          this.objService.set_reload_chats_pedido(data);
+        }
     }
     
   }
@@ -292,17 +324,20 @@ export class NotificationsService {
       accion:accion
     }
 
-    this.userService.setNotificacion(enviar).subscribe(
-      data => {
-        console.log(data)
-        if (this.siono=1) {
-          this.visto(data.Notificacion.id);
-        }
-      },
-      msg => {
-        console.log(msg)
+    if(accion==17){
+
+    }else{
+      this.userService.setNotificacion(enviar).subscribe(
+        data => {
+          console.log(data)
+          if (this.siono=1) {
+            this.visto(data.Notificacion.id);
+          }
+        },
+        msg => {
+          console.log(msg)
+      });
     }
-  );
   }
 
   registrar_token(){

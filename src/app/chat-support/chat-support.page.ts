@@ -57,6 +57,15 @@ export class ChatSupportPage implements OnInit {
 	public zone: NgZone,
 	public modalController: ModalController
   ) { 
+
+	this.objService.get_reload_chats_pedido().subscribe((data:any) => {
+		console.log(data)
+		//alert('Cargando conversación');
+		this.msgList = [];
+		this.showLoading('Cargando conversación');
+		this.getMsg();
+	}); 
+
   	this.data = this.objService.getExtras();
   	this.admin_id = this.data.admin_id;
   	this.chat_id = this.data.chat_id;
@@ -84,6 +93,7 @@ export class ChatSupportPage implements OnInit {
   }
 
   ngOnInit() {
+	
   }
 
     ionViewWillLeave() {

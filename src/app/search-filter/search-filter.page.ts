@@ -8,6 +8,7 @@ import { FilterPage } from '../filter/filter.page';
 import { TranslateService } from '@ngx-translate/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { Geolocation } from '@capacitor/geolocation';
+import { GeneralService } from '../services/general.service';
 
 @Component({
   selector: 'app-search-filter',
@@ -46,7 +47,8 @@ export class SearchFilterPage implements OnInit {
     private loadingController: LoadingController,
     private toastCtrl: ToastController,
     private translate: TranslateService,
-    private zoneN: NgZone
+    private zoneN: NgZone,
+    private funciones_generales: GeneralService
   ) {
     this.initOrder();
   }
@@ -135,10 +137,11 @@ export class SearchFilterPage implements OnInit {
           this.zone.id = 1000;
         }*/
         //this.presentLoading();
-        console.log('initOrder')
+        let zona = this.funciones_generales.getZone();
+        console.log(zona)
         this.item = [];
         let self=this;
-        this.catService.getProviders('1').subscribe(
+        this.catService.getProviders(zona.id).subscribe(
           data => {
             //self.loading.dismiss();
             console.log(data)

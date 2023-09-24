@@ -58,7 +58,7 @@ export class EditProfilePage implements OnInit {
 		private router: Router
 	) { 
 	}
-	tk:any='';
+	tk:any=undefined;
 	ngOnInit() {
 		this.tk=localStorage.getItem('PushNotifications');
 	    this.userForm = this.builder.group({

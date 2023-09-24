@@ -137,21 +137,21 @@ export class ObjectserviceService {
 		return this.nnotificaciones;
 	}
 
-	private ruta  = new Subject<any>();
+	private ruta  :any= '';
 	setruta(data: any) {
-		console.log(data)
-		this.ruta.next(data);
+		//alert(data)
+		this.ruta=data;
 	}
-	getruta(): Subject<any> {
+	getruta(){
 		return this.ruta;
 	}
 
-	private reload_chats_pedido  = new Subject<any>();
+	private reload_chats_pedido =new Subject<any>();
 	set_reload_chats_pedido(data: any) {
 		console.log(data)
 		this.reload_chats_pedido.next(data);
 	}
-	get_reload_chats_pedido(): Subject<any> {
+	get_reload_chats_pedido() {
 		return this.reload_chats_pedido;
 	}
 
