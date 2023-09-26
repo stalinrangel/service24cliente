@@ -68,10 +68,16 @@ export class GeneralService {
   }
   
   getZone(){
+    if (this.zona==undefined) {
+      this.zona=localStorage.getItem('zona');
+    }
     return this.zona;
   }
+  
+    
   setZone(zona:any){
     this.zona=zona;
+    localStorage.setItem('zona',this.zona);
   }
 
   async presentToast(text:any) {

@@ -151,7 +151,7 @@ export class SearchFilterPage implements OnInit {
               this.datos[i].categoria = this.datos[i].subcategoria.categoria.nombre;
               this.datos[i].subcategoria = this.datos[i].subcategoria.nombre;
               this.datos[i].distance = this.getDistance(this.myLocation,this.datos[i].establecimiento.lat,this.datos[i].establecimiento.lng);
-              
+              this.datos[i].plan = JSON.parse(this.datos[i].establecimiento.usuario.repartidor.plan);
             }
             this.getCurrentPosition();
           },
@@ -469,7 +469,10 @@ export class SearchFilterPage implements OnInit {
     }else if(this.searchText==""){
       return [];
     }else{
-      return this.datos.filter((item:any) => item.nombre.toLowerCase().includes(this.searchText.toLowerCase()) || item.categoria.toLowerCase().includes(this.searchText.toLowerCase()) || item.subcategoria.toLowerCase().includes(this.searchText.toLowerCase()) );
+      return this.datos.filter((item:any) => (item.nombre.toLowerCase().includes(this.searchText.toLowerCase()) || item.categoria.toLowerCase().includes(this.searchText.toLowerCase()) || item.subcategoria.toLowerCase().includes(this.searchText.toLowerCase())))
+      .sort((a:any, b:any) => {
+        return a.distance - b.distance;
+      });
     }
     
   }

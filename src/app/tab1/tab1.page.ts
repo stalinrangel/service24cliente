@@ -114,7 +114,7 @@ export class Tab1Page {
   }
 
   ngOnInit() {
-    
+    this.funciones_generales.iniciar();
     this.geolocate();
     setTimeout(() => {
       this.zone=this.funciones_generales.getZone();
@@ -126,7 +126,9 @@ export class Tab1Page {
       this.zone=data;
 	  	});  
   }
-  
+  iniciar(){
+    this.funciones_generales.iniciar();
+  }
 
   async geolocate(){
 		console.log('geolocate')
@@ -250,6 +252,7 @@ export class Tab1Page {
   }
 
   doRefresh(event:any) {
+    this.funciones_generales.iniciar();
     this.catService.getCategory('1').subscribe(
       resp => {
         this.items = resp.catprincipales;

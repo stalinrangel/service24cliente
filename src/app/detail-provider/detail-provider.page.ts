@@ -90,7 +90,7 @@ export class DetailProviderPage implements OnInit {
             this.checkFav.producto_id = this.id;
             this.catService.checkFavorites(this.checkFav,items2).subscribe(
               data => {
-                this.loading.dismiss();
+                //this.loading.dismiss();
                 if (data == 1) {
                   this.select = true;
                 }  
@@ -105,7 +105,7 @@ export class DetailProviderPage implements OnInit {
       }
     });
   }
-
+  tipo_registro:any;
   getProvider(){
     this.catService.getDetailProviders(this.id).subscribe(
       data => {
@@ -116,6 +116,7 @@ export class DetailProviderPage implements OnInit {
         this.favorite.establecimiento_id = this.datos.producto.id;
         this.promedio_calificacion = this.data.promedio_calificacion;
         let idioma = JSON.parse(this.data.establecimiento.usuario.repartidor.registro.idiomas);
+        this.tipo_registro=this.data.establecimiento.usuario.repartidor.registro.tipo;
         for (var i = 0; i < idioma.length; ++i) {
           if (i == idioma.length - 1) {
             this.idiomas += idioma[i].nombre;
@@ -129,7 +130,7 @@ export class DetailProviderPage implements OnInit {
           }
         }
         this.calificaciones = this.sortByKey(this.data.calificaciones,'id');
-        this.fotos = this.data.fotos;
+        this.fotos = JSON.parse(this.data.fotos);
         console.log(this.data.fotos);
        /* for (var i = 0; i < this.data.servicios.length; ++i) {
           if (this.data.servicios[i].id == this.data.id) {

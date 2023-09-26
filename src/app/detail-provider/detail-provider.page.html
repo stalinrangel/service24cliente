@@ -57,7 +57,7 @@
             <p style="margin-top: 0px;">(16)</p>
           </div>
         </div>
-        <div class="label3">
+        <div class="label3" *ngIf="tipo_registro!=1">
           <p class="new-address" *ngIf="data"> {{data.establecimiento.direccion}}</p>
         </div>
   	</div>
@@ -100,7 +100,7 @@
 	<div class="content-infoP" *ngIf="type == 'photo'">
 		<div *ngIf="data">
 			<div *ngFor="let item of fotos" class="content-imgP">
-				<img src="{{item.imagen}}" class="fotos" (click)="openPreview(item.imagen)">
+				<img src="{{item.url}}" class="fotos" (click)="openPreview(item.url)">
 				
 			</div>
 		</div>

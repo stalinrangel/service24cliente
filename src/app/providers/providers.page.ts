@@ -9,6 +9,7 @@ import { LanguageService } from './../../services/language/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { Geolocation } from '@capacitor/geolocation';
+import { GeneralService } from '../services/general.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class ProvidersPage implements OnInit {
   public searchTerm: string = '';
   public items: any = [];
   public languages: any = 'es';
+  zona:any;
   public zone: any = {
     nombre: '',
     id: 1000,
@@ -50,7 +52,8 @@ export class ProvidersPage implements OnInit {
     private toastCtrl: ToastController,
     private translate: TranslateService,
     //private events: Events,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private generales: GeneralService
   ) { 
     this.languages = this.languageService.getLan();
   	this.data = this.objService.getCat();
@@ -106,13 +109,14 @@ export class ProvidersPage implements OnInit {
         //this.zone = items;
         //if (this.zone.id == '') {
         if (true) {
-          this.zone.id = 1;
+          this.zona=this.generales.getZone();
+          console.log(this.zona);
         }
         this.items = []; 
         this.providers = []; 
         //this.presentLoadingWithOptions();    
         console.log('cat') 
-        this.catService.getServices(this.data.id, this.zone.id).subscribe(
+        this.catService.getServices(this.data.id, this.zona.id).subscribe(
           data => {
             console.log('data')
           //  this.loading.dismiss();
@@ -125,6 +129,7 @@ export class ProvidersPage implements OnInit {
               if (this.providers[i].establecimiento.usuario != null) {
                 if (this.providers[i].establecimiento.usuario.repartidor != null) {
                   this.providers[i].status = this.providers[i].establecimiento.usuario.repartidor.activo;
+                  this.providers[i].plan = JSON.parse(this.providers[i].establecimiento.usuario.repartidor.plan);
                   //this.providers[i].promedio_calificacion=3;
                   if (this.providers[i].establecimiento.usuario.repartidor.activo != 4) {
                     this.items.push(this.providers[i])
@@ -132,7 +137,9 @@ export class ProvidersPage implements OnInit {
                 }
               }        
             } 
-            this.items = this.sortByKey1(this.items,'distance');
+            //this.items = this.sortByKey1(this.items,'distance');
+            //this.sort();
+            console.log(this.items)
             this.results = this.items.length; 
             if (this.results == 0) {
               this.showItem = true;
@@ -255,16 +262,33 @@ export class ProvidersPage implements OnInit {
   }
 
   public sortByKey1(array:any, key:any) {
+    console.log(array,key)
     return array.sort(function (a:any, b:any) {
         var x = parseFloat(a[key]); var y = parseFloat(b[key]);
         return ((x < y) ? -1 : ((x > y) ? 0 : 1));
     });
   }
 
+  sort(){
+    /*this.items.sort((a:any, b:any) => {
+      if (a.title.distance > b.title.distance) {
+        return -1;
+      }
+      if (a.title.distance < b.title.distance) {
+        return 1;
+      }
+      return 0;
+    });*/
+  }
+
   searchText: string = "";
   get filteredItems() {
     //return this.chats;
-    return this.providers.filter((item:{establecimiento:any}) => item.establecimiento.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
+    return this.providers
+    .filter((item:{establecimiento:any}) => item.establecimiento.nombre.toLowerCase().includes(this.searchText.toLowerCase()))
+    .sort((a:any, b:any) => {
+      return a.distance - b.distance;
+    });
   }
 
 }

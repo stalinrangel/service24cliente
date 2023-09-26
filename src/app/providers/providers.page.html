@@ -23,7 +23,7 @@
 <ion-content>
   <div *ngIf="providers">
     <ion-list>
-  		<div *ngFor="let item of filteredItems" (click)="setProvider(item)" class="cuadro-azul">
+  		<div *ngFor="let item of filteredItems" (click)="setProvider(item)" class="cuadro-azul" [ngStyle]="{'background': item.plan.tipo_plan === 'PREMIUM' ? '#ffd1be' : ''}">
         <div class="label1">
           <div class="nuevo-label">
             <p class="title-menu">{{item.establecimiento.nombre}}</p>
