@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CategoriesService } from '../../services/categories/categories.service';
-import { NavController, ModalController, LoadingController } from '@ionic/angular';
+import { NavController, ModalController, LoadingController, ToastController } from '@ionic/angular';
 import { StorageService } from '../../services/storage/storage.service';
 import { ObjectserviceService } from '../../services/objetcservice/objectservice.service';
-
+import { GeneralService } from '../services/general.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-filter',
@@ -27,14 +28,17 @@ export class FilterPage implements OnInit {
     public storage: StorageService,
    // public events: Events,
     private loadingController: LoadingController, 
-    private objService: ObjectserviceService
+    private objService: ObjectserviceService,
+    private funciones_generales: GeneralService,
+    private UserService: UserService,
+    private toastController: ToastController
   ) {
   	this.getCountries();
   }
 
   ngOnInit() {
-   // this.myZone = this.value.nombre;
-   this.myZone = '1';
+    this.myZone = this.value.nombre;
+   //this.myZone = '1';
   }
 
   /*getZones(){
@@ -58,16 +62,16 @@ export class FilterPage implements OnInit {
   }*/
 
   getCountries(){
-   this.presentLoading();
+   //this.presentLoading();
    this.catService.getCountries().subscribe(
       resp => {
-        this.loading.dismiss();
+        //this.loading.dismiss();
         this.datos = resp;
         this.countries = this.datos.coordenadas;
         this.countries = this.sortByKey(this.countries,'nombre');
       },
       error => {  
-        this.loading.dismiss();     
+        //this.loading.dismiss();     
         console.log(error);
       }
     ); 
@@ -84,10 +88,45 @@ export class FilterPage implements OnInit {
 
 
   setZone(zone:any){
+    console.log(zone);
+    this.funciones_generales.setZone(zone);
+    this.objService.set_zona(zone);
     this.objService.setExtras(zone);
     this.storage.setObject('ZONESV24', zone);
     //this.events.publish('changeZoneSV24', 'zoneSV');
+    let items:any='';
+    let items2:any='';
+    this.storage.getObject('userSV24').then(data => {
+      items=data;
+      this.storage.get('TUSV24').then(data => {
+        items2=data;
+        console.log(items.id,items2,zone.id)
+        let dataw={
+          zona_id:zone.id
+        }
+        this.UserService.setUsuario(items.id,items2,dataw).subscribe(
+          data => {
+            console.log(data);
+            this.presentToast('Se ha cambiado de zona a: '+zone.nombre);
+          },
+          msg => {
+            
+          });
+      },msg => {
+                    
+      }); 
+    });
+    
+    
+			
     this.modalCtrl.dismiss();
+  }
+  async presentToast(text:any) {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 4000
+    });
+    toast.present();
   }
 
   closeModal() {

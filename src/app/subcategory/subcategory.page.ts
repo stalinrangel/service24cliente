@@ -6,6 +6,7 @@ import { StorageService } from '../../services/storage/storage.service';
 import { LanguageService } from './../../services/language/language.service';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { CategoriesService } from 'src/services/categories/categories.service';
+import { GeneralService } from '../services/general.service';
 
 @Component({
   selector: 'app-subcategory',
@@ -15,6 +16,7 @@ import { CategoriesService } from 'src/services/categories/categories.service';
 export class SubcategoryPage implements OnInit {
 
   public data: any;
+  public zona: any;
 	public category: any = [];
   public catInfo: any;
   public languages: any = 'es';
@@ -27,6 +29,7 @@ export class SubcategoryPage implements OnInit {
     public storage: StorageService,
     private languageService: LanguageService,
     private catService: CategoriesService,
+    private generales: GeneralService
   ) { 
     this.languages = this.languageService.getLan();
     if (this.languages == 'undefined' || this.languages == '') {
@@ -36,6 +39,8 @@ export class SubcategoryPage implements OnInit {
     this.catInfo = this.objService.getCat();
     this.category = this.data.subcategorias;
     console.log(this.category)
+    this.zona=this.generales.getZone();
+    console.log(this.zona);
     setTimeout(() => {
       for (let i = 0; i < this.category.length; i++) {
         this.category[i].tam=0;
@@ -58,7 +63,7 @@ export class SubcategoryPage implements OnInit {
 
   proveedores(id:any,i:any){
     let tam=0;
-    this.catService.getServices(id, '1').subscribe(
+    this.catService.getServices(id,this.zona.id ).subscribe(
       data => {
         console.log(data.productos.length)
         this.category[i].tam=data.productos.length;

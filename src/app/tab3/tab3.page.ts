@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 import { NotificationsService } from '../services/notifications.service';
 import { Browser } from '@capacitor/browser';
 import { ContactModalPage } from '../contact-modal/contact-modal.page';
-
+import { GeneralService } from '../services/general.service';
+import { FilterPage } from '../filter/filter.page';
 
 
 @Component({
@@ -64,7 +65,8 @@ export class Tab3Page {
 		private translate: TranslateService,
 		public modalController: ModalController,
 		private router: Router,
-		private noticationService: NotificationsService
+		private noticationService: NotificationsService,
+		private funciones_generales: GeneralService
 	) {
 		console.log(this.router.url);
 		this.objService.setruta(this.router.url);	
@@ -139,6 +141,19 @@ export class Tab3Page {
 			}
 		  });
   	}
+
+	zone:any=this.funciones_generales.getZone();
+	async goFilter() {
+		console.log(this.zone);
+		const modal = await this.modalController.create({
+		  component: FilterPage,
+		  componentProps: { value: this.zone }
+		});
+		modal.onDidDismiss().then((close)=> {
+			  
+		});
+		return await modal.present();
+	}
 
   	getContact(){
   		this.storage.getObject('ZONESV24').then(items => {

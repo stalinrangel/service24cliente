@@ -18,6 +18,7 @@ import { NotificationsService } from '../services/notifications.service';
 import { register } from 'swiper/element/bundle';
 import { ImageModalPage } from '../image-modal/image-modal.page';
 import { Router } from '@angular/router';
+import { GeneralService } from '../services/general.service';
 
 register();
 
@@ -69,7 +70,8 @@ export class Tab1Page {
     private translate: TranslateService,
     private languageService: LanguageService, 
     private noticationService: NotificationsService,
-    private router: Router
+    private router: Router,
+    private funciones_generales: GeneralService
 
   ) {
 
@@ -82,7 +84,8 @@ export class Tab1Page {
     });
 
     //this.events.subscribe('changeZoneSV24', (userData: any) => {
-        this.zone = this.objService.getExtras();
+        //this.zone = this.objService.getExtras();
+        
         this.items = [];
         this.initCategory(1);
         this.showZone = true;
@@ -91,6 +94,8 @@ export class Tab1Page {
         var y:any = document.getElementById("showZ");
         setTimeout(()=>{ 
           //x.className = x.className.replace("show", ""); 
+
+          console.log(this.zone);
           setTimeout(()=>{ 
             this.zonen.run(()=>{  
               //y.className = "desc";
@@ -109,11 +114,20 @@ export class Tab1Page {
   }
 
   ngOnInit() {
+    
     this.geolocate();
     setTimeout(() => {
+      this.zone=this.funciones_generales.getZone();
       this.noticationService.registrar_token();
     }, 5000);
+
+    this.objService.get_zona().subscribe((data:any) => {
+			console.log(data)
+      this.zone=data;
+	  	});  
   }
+  
+
   async geolocate(){
 		console.log('geolocate')
 		const options = { enableHighAccuracy: true };
@@ -428,6 +442,7 @@ export class Tab1Page {
   }*/
 
   async goFilter() {
+    console.log(this.zone);
     const modal = await this.modalController.create({
       component: FilterPage,
       componentProps: { value: this.zone }

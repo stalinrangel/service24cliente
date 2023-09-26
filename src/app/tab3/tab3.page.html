@@ -60,6 +60,13 @@
 					<p class="title-menu"><ion-icon name="arrow-dropup" class="custom-comunity"></ion-icon> Comunidad</p>
 				</ion-label>
 				</ion-item-->
+				<ion-item lines="full" (click)="goFilter()">
+					<ion-label class="nuevo-label">
+						
+						<p class="title-menu"><ion-icon name="filter-circle-outline" class="icon-lang"></ion-icon> {{ 'FAVORITES.zonas' | translate }}</p>
+						<img src="..\assets\service24\derecha.svg" alt="">
+					</ion-label>
+				</ion-item>
 				<ion-item lines="full" (click)="favoritos()">
 					<ion-label class="nuevo-label">
 						<p class="title-menu"><ion-icon name="heart" class="icon-lang"></ion-icon> {{ 'FAVORITES.title' | translate }}</p>

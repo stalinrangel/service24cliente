@@ -155,4 +155,13 @@ export class ObjectserviceService {
 		return this.reload_chats_pedido;
 	}
 
+	private reload_zona =new Subject<any>();
+	set_zona(data: any) {
+		console.log(data)
+		this.reload_zona.next(data);
+	}
+	get_zona() {
+		return this.reload_zona;
+	}
+
 }

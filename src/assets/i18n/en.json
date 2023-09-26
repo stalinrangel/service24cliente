@@ -127,7 +127,8 @@
         "title": "Favorites",
         "empty": "You have no service providers as favorites.",
         "search": "Search Provider",
-        "delete": "Do you want to delete the provider of favorites?"
+        "delete": "Do you want to delete the provider of favorites?",
+        "zonas": "Change zone"
     },
     "TUTORIAL":{
         "omit": "Skip",

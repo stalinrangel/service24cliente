@@ -5,19 +5,19 @@
 	<br>
 	<div class="or-spacer">
 	  <div class="mask"></div>
-	  <span>Ubicación</span>
+	  <span class="xspan">Ubicación</span>
 	</div>
 	<div>
 		<p class="text-dir" *ngIf="myZone != ''"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> {{myZone}}</p>
 	</div>
-	<div padding>
+	<div padding style="margin: 0px 20px;">
 		<p class="text-dir2">Selecciona otra ubicación</p>
 		<div>
 			<ion-select [(ngModel)]="country_id" class="select-input" cancelText="Cancelar" placeholder="Selecciona tu país" interface="action-sheet" mode="md" (ionChange)="setCountry(country_id)">
 			  <ion-select-option [value]="item" *ngFor="let item of countries">{{item.nombre}}</ion-select-option>
 			</ion-select>
 		</div>
-	  	<ion-grid no-padding>
+	  	<ion-grid no-padding >
 		  <ion-row>
 		    <ion-col size="12" *ngFor="let zone of zones">
 		    	<div class="content-colonia">

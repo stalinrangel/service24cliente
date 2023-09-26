@@ -14,11 +14,17 @@
 </ion-header>
 
 <ion-content>
+  
   <div class="presentacion">
+    
     <h2 class="hola">Hola {{usuario.nombre}}!</h2>
     <p class="felices">Felices de poder ayudarte</p>
+      
   </div>
   <div style="margin: 0px 20px;">
+    <div class="zona">
+      <p class="pzona" (click)="goFilter()">{{zone.nombre}} <ion-icon name="filter-circle-outline"></ion-icon></p>
+    </div>
     <ion-toolbar class=" nuevo-input" style="color: white !important;">
       <!--ion-searchbar placeholder="{{ 'HOME.search' | translate }}" color="secundary" mode="ios"(ionFocus)="setSearch()"id="input"></ion-searchbar-->
       <ion-input style="color: white !important;" type="text" placeholder="{{ 'HOME.search' | translate }}"  (ionFocus)="setSearch()"></ion-input>

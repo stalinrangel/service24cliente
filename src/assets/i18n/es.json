@@ -127,7 +127,8 @@
         "title": "Favoritos",
         "empty": "No tienes proveedores de servicio como favoritos.",
         "search": "Buscar Proveedor",
-        "delete": "¿Desea eliminar el proveedor de favoritos?"
+        "delete": "¿Desea eliminar el proveedor de favoritos?",
+        "zonas": "Cambiar de zona"
     },
     "TUTORIAL":{
         "omit": "Omitir",
