@@ -703,7 +703,8 @@ export class OrderPage{
 	async presentToast(text:any) {
 		const toast = await this.toastController.create({
 		  message: text,
-		  duration: 2500
+		  duration: 2500,
+      cssClass: 'toast-scheme'
 		});
 		toast.present();
 	}

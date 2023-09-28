@@ -362,7 +362,8 @@ export class EditProfilePage implements OnInit {
 	async presentToast(text:any) {
 		const toast = await this.toastController.create({
 		  message: text,
-		  duration: 2000
+		  duration: 2000,
+		  cssClass: 'toast-scheme'
 		});
 		toast.present();
 	}

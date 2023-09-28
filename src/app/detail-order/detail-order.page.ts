@@ -35,7 +35,8 @@ export class DetailOrderPage implements OnInit {
     califico: false,
     tiempo: '',
     hora: '',
-    lugar: ''
+    lugar: '',
+    promedio: ''
   }
 
   public finishRoute = {
@@ -165,6 +166,7 @@ export class DetailOrderPage implements OnInit {
           
           this.zone.run(()=>{
             this.datos = data;
+            console.log(this.datos)
             this.productos_id=this.datos.pedido.productos[0].id;
             console.log(this.productos_id)
             this.estado = this.datos.pedido.estado;
@@ -173,6 +175,7 @@ export class DetailOrderPage implements OnInit {
               this.provider.nombre = this.datos.pedido.productos[0].establecimiento.nombre;
               this.provider.imagen = this.datos.pedido.repartidor.usuario.imagen;
             }
+            this.provider.promedio = this.datos.pedido.usuario.promedio;
             this.provider.direccion = this.datos.pedido.productos[0].establecimiento.direccion;
             this.provider.descripcion = this.datos.pedido.productos[0].descripcion;
             this.provider.servicio = this.datos.pedido.productos[0].nombre;
@@ -658,7 +661,8 @@ export class DetailOrderPage implements OnInit {
   async presentToast(text:any) {
     const toast = await this.toastCtrl.create({
       message: text,
-      duration: 2000
+      duration: 2000,
+      cssClass: 'toast-scheme'
     });
     toast.present();
   } 

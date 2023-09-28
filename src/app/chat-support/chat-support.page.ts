@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { NotificationsComponent } from '../notifications/notifications.component';
 
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-support',
@@ -55,9 +56,11 @@ export class ChatSupportPage implements OnInit {
 	public loadingController: LoadingController,
 	public http: HttpClient,
 	public zone: NgZone,
-	public modalController: ModalController
+	public modalController: ModalController,
+	private router: Router
   ) { 
-
+	console.log(this.router.url);
+    this.objService.setruta(this.router.url);
 	this.objService.get_reload_chats_pedido().subscribe((data:any) => {
 		console.log(data)
 		//alert('Cargando conversación');
@@ -96,9 +99,9 @@ export class ChatSupportPage implements OnInit {
 	
   }
 
-    ionViewWillLeave() {
-		//this.events.unsubscribe('chat:received');
-	}
+  ionPageWillLeave() {
+	this.objService.setruta('detail-order');
+  }
 
 	ionViewDidEnter() {
 		if (this.chat_id != '') {

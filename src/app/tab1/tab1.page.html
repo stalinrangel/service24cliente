@@ -88,8 +88,8 @@
   </div>
   <div *ngIf="items" class="row" style=" margin-top: 0px; margin-left: 20px; margin-right: 20px; column-gap: 5%;">
     <div class="col-md-4 cuadro" *ngFor="let item of items; let i = index" (click)="setCategory(item)" >
-     
-        <img [src]="item.imagen" >
+      <div class="cuadrando">
+        <img class="img_categ" [src]="item.imagen" >
         <div >
           <div >
             <p class="letricas" *ngIf="languages == 'es'">{{item.nombre}}  <!--ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon--></p>
@@ -97,6 +97,7 @@
           </div>
           <div class="triangle"></div>
           <div class="title-2"></div>  
+      </div>
       </div>
 
       

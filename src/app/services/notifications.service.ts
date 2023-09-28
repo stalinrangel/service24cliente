@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActionPerformed, PushNotificationSchema, PushNotifications, Token, } from '@capacitor/push-notifications';
-import { AlertController, NavController, Platform } from '@ionic/angular';
+import { AlertController, NavController, Platform, ToastController } from '@ionic/angular';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 import { StorageService } from 'src/services/storage/storage.service';
 import { UserService } from 'src/services/user/user.service';
@@ -11,7 +11,7 @@ import { App } from '@capacitor/app';
 })
 export class NotificationsService {
 
-  constructor(public platform: Platform,private alertController: AlertController,private storage: StorageService,public userService: UserService,public navCtrl: NavController, private objService: ObjectserviceService) {
+  constructor(public platform: Platform,private toastController: ToastController,private alertController: AlertController,private storage: StorageService,public userService: UserService,public navCtrl: NavController, private objService: ObjectserviceService) {
     this.inicializar();
    }
   private id:any;
@@ -82,7 +82,7 @@ export class NotificationsService {
         //alert('Push received: ' + JSON.stringify(notification));
         //alert('0');
         this.error(notification);
-        this.presentConfirm(notification.data.accion,notification.data);
+        
        let self=this;
         this.storage.getObject('userSV24').then(items => {
           console.log(items);
@@ -90,8 +90,15 @@ export class NotificationsService {
           self.id=items.id;
           this.id=items.id;
         });
-        
 
+        if (notification.data.accion=='8' || notification.data.accion=='2') {
+
+          this.no(notification.data.accion,notification.data);
+          this.registrar_notificacion(notification.data.accion,notification.data.pedido_id,notification.data);
+          this.presentToast('Has recibido un mensaje '+notification.data.body);
+        }else{
+          this.presentConfirm(notification.data.accion,notification.data);
+        }
        /*if (notification.data.accion=='7') {
         this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
         setTimeout(() => {
@@ -145,16 +152,22 @@ export class NotificationsService {
         //alert(JSON.stringify(notification.notification.data.accion));
         //alert('Push received: ' + JSON.stringify(notification.notification.data));
         //alert(JSON.stringify(notification));
-       // alert('1');
-        this.presentConfirm(notification.notification.data.accion,notification.notification.data);
-       let self=this;
-        this.storage.getObject('userSV24').then(items => {
-          console.log(items);
-          //alert(JSON.stringify(items))
-          self.id=items.id;
-          this.id=items.id;
-        });
-        
+       //alert('segundo plano');
+       if (notification.notification.data.accion=='8' || notification.notification.data.accion=='2') {
+        //alert('12');
+          this.no(notification.notification.data.accion,notification.notification.data);
+          this.registrar_notificacion(notification.notification.data.accion,notification.notification.data.pedido_id,notification.notification.data);
+          this.presentToast('Has recibido un mensaje '+notification.notification.data.body);
+        }else{
+          this.presentConfirm(notification.notification.data.accion,notification.notification.data);
+        let self=this;
+          this.storage.getObject('userSV24').then(items => {
+            console.log(items);
+            //alert(JSON.stringify(items))
+            self.id=items.id;
+            this.id=items.id;
+          });
+        }
         /*if (notification.notification.data.accion=='7') {
           this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
           setTimeout(() => {
@@ -258,9 +271,9 @@ export class NotificationsService {
         }, 300);
     }
     if (i=='8') {
-      let data:any=this.objService.getruta();
+      let getruta:any=this.objService.getruta();
         //alert(data);
-        if (data=='/chat-pedidos') {
+        if (getruta=='/chat-pedidos') {
          // alert('data');
           this.objService.set_reload_chats_pedido(data);
         }else{
@@ -296,18 +309,18 @@ export class NotificationsService {
   no(i:any,data:any){
    
     if (i=='8') {
-      let data:any=this.objService.getruta();
+      let getruta:any=this.objService.getruta();
         //alert(data);
-        if (data=='/chat-pedidos') {
+        if (getruta=='/chat-pedidos') {
          // alert('data');
           this.objService.set_reload_chats_pedido(data);
         }  
     }
     if (i=='2') {
 
-      let data:any=this.objService.getruta();
+      let getruta:any=this.objService.getruta();
         //alert(data);
-        if (data=='/tabs/tab5') {
+        if (getruta=='/tabs/tab5') {
          // alert('data');
           this.objService.set_reload_chats_pedido(data);
         }
@@ -379,5 +392,13 @@ export class NotificationsService {
     msg => {
       
     });  
+  }
+  async presentToast(text:any) {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 4000,
+      cssClass: 'toast-scheme'
+    });
+    toast.present();
   }
 }

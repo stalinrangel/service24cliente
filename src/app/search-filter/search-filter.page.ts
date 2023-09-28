@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { Geolocation } from '@capacitor/geolocation';
 import { GeneralService } from '../services/general.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-filter',
@@ -48,8 +49,11 @@ export class SearchFilterPage implements OnInit {
     private toastCtrl: ToastController,
     private translate: TranslateService,
     private zoneN: NgZone,
+    private router: Router,
     private funciones_generales: GeneralService
   ) {
+    console.log(this.router.url);
+		this.objService.setruta(this.router.url);
     this.initOrder();
   }
 
@@ -445,7 +449,8 @@ export class SearchFilterPage implements OnInit {
   async presentToast(text:any) {
       const toast = await this.toastCtrl.create({
         message: text,
-        duration: 2000
+        duration: 2000,
+        cssClass: 'toast-scheme'
       });
       toast.present();
   }

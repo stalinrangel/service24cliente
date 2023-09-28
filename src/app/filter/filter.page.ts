@@ -69,6 +69,7 @@ export class FilterPage implements OnInit {
         this.datos = resp;
         this.countries = this.datos.coordenadas;
         this.countries = this.sortByKey(this.countries,'nombre');
+        this.setCountry(this.countries[0]);
       },
       error => {  
         //this.loading.dismiss();     
@@ -124,7 +125,8 @@ export class FilterPage implements OnInit {
   async presentToast(text:any) {
     const toast = await this.toastController.create({
       message: text,
-      duration: 4000
+      duration: 4000,
+      cssClass: 'toast-scheme'
     });
     toast.present();
   }

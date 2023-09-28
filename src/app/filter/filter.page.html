@@ -22,9 +22,9 @@
 		    <ion-col size="12" *ngFor="let zone of zones">
 		    	<div class="content-colonia">
 		    		<p class="text-dir3" (click)="zone.show=!zone.show">{{zone.nombre}}</p>
-		    		<ion-icon class="icon-arrow" name="arrow-round-forward" *ngIf="zone.show" (click)="zone.show=!zone.show"></ion-icon><ion-icon name="arrow-round-down" class="icon-arrow" *ngIf="!zone.show" (click)="zone.show=!zone.show"></ion-icon>
+		    		<ion-icon class="icon-arrow" name="arrow-round-forward"  (click)="zone.show=!zone.show"></ion-icon><ion-icon name="arrow-round-down" class="icon-arrow"  (click)="zone.show=!zone.show"></ion-icon>
 		    	</div>
-		      	<div class="box-cat" [hidden]="zone.show" *ngFor="let item of zone.zonas" (click)="setZone(item)">
+		      	<div class="box-cat"  *ngFor="let item of zone.zonas" (click)="setZone(item)">
 		        	{{item.nombre}}
 		      	</div>
 		    </ion-col>

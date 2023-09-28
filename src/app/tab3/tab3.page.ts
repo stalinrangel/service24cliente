@@ -473,7 +473,8 @@ export class Tab3Page {
 	async presentToast(text:any) {
 		const toast = await this.toastCtrl.create({
 		  message: text,
-		  duration: 2000
+		  duration: 2000,
+		  cssClass: 'toast-scheme'
 		});
 		toast.present();
 	}

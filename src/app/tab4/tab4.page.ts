@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { StorageService } from 'src/services/storage/storage.service';
 import { UserService } from 'src/services/user/user.service';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
+import { Router } from '@angular/router';
 //import { Clipboard } from '@capacitor/clipboard';
 
 @Component({
@@ -31,8 +32,11 @@ export class Tab4Page implements OnInit {
     private toastController: ToastController, 
     public userService: UserService, 
     public storage: StorageService, 
-    private objService: ObjectserviceService
+    private objService: ObjectserviceService,
+    private router: Router,
   ) {	  
+    console.log(this.router.url);
+    this.objService.setruta(this.router.url);
   }
 
   ngOnInit() {
@@ -43,6 +47,9 @@ export class Tab4Page implements OnInit {
     console.log(this.altura)
     this.initForm();
   }
+  ionPageWillLeave() {
+    this.objService.setruta('detail-order');
+    }
   usuario:any;
   chats:any=[];
   initForm() {

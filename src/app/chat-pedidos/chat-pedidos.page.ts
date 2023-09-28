@@ -107,12 +107,15 @@ export class ChatPedidosPage implements OnInit {
     });
   }
 
+  
+
   ngOnInit() {
   }
 
-    ionViewWillLeave() {
-		//this.events.unsubscribe('chatPedido:received');
-	}
+  ionPageWillLeave() {
+    console.log(this.router.url);
+	this.objService.setruta('detail-order');
+  }
 
 	ionViewDidEnter() {
 		if (this.chat_id != '') {
