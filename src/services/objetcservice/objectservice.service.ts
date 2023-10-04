@@ -164,4 +164,14 @@ export class ObjectserviceService {
 		return this.reload_zona;
 	}
 
+	//--trabaja con notificaciones 
+	private notify = new Subject<any>();
+	setNotify(data: any) {
+		console.log(data)
+		this.notify.next(data);
+	}
+	getNotify(): Subject<any> {
+		return this.notify;
+	}
+
 }

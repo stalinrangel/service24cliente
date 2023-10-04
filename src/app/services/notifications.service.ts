@@ -286,9 +286,9 @@ export class NotificationsService {
      
     }
     if (i=='2') {
-      let data:any=this.objService.getruta();
+      let getruta:any=this.objService.getruta();
         //alert(data);
-        if (data=='/tabs/tab5') {
+        if (getruta=='/tabs/tab5') {
          // alert('data');
           this.objService.set_reload_chats_pedido(data);
         }else{

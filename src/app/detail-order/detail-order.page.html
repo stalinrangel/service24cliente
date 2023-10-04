@@ -32,6 +32,9 @@
 			<div style="display: flex;flex-direction: row; justify-content: center;margin-top: 2px;"><p style="color: #FD682A;font-size: 14px;">{{provider.promedio}}</p><img src="/assets/service24/star.svg" alt="" style="width: 20px; height: 20px;"></div>
 		</div>
 	</div>
+	<div style="text-align: center;  margin: 0px 20px 0px 20px;" *ngIf="encamino==1">
+		<app-camino [data]="datos.pedido.repartidor.usuario.id"></app-camino>
+	</div>
 	<!--div class="content-infoP">
 		<p *ngIf="provider.producto_id != '1'"><span>{{ 'ORDER.for' | translate }}</span> {{provider.nombre}}</p>
 		<p *ngIf="provider.producto_id != '1'"><span>{{ 'DETAILORDER.category' | translate }}</span> {{provider.categoria}}</p>

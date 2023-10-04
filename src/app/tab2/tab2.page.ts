@@ -53,6 +53,13 @@ export class Tab2Page {
 	){
 		console.log(this.router.url);
 		this.objService.setruta(this.router.url);
+
+		
+
+		this.objService.getNotify().subscribe((data:any) => {
+			let items:any=this.storage.getObject('userRPSV24');
+			this.getNotify(this.datos.ciudad_id,items.id);
+		  });
 		/*this.events.subscribe('viewOrder', (userData: string) => {
 	    	this.type = userData;
 	    	this.initOrder();

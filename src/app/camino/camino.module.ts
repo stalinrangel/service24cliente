@@ -9,8 +9,9 @@ import { CaminoComponent } from './camino.component';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
-
+const config: SocketIoConfig = { url: 'https://service24es.com:3001', options: {} };
+//const config: SocketIoConfig = { url: 'http://18.218.250.127:3001', options: {} };
+//const config: SocketIoConfig = { url: 'http://service24.app/SocketServer/', options: {} };
 
 const routes: Routes = [
   {

@@ -150,6 +150,7 @@ export class DetailOrderPage implements OnInit {
         this.show_notify = false;
       }
     });
+    
   }
 
   ionViewWillLeave(){

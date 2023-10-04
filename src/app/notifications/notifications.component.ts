@@ -97,6 +97,7 @@ export class NotificationsComponent  implements OnInit {
   }
 
   closeModal() {
+    this.objService.setNotify({});
     this.modalCtrl.dismiss();
   }
 
@@ -107,6 +108,8 @@ export class NotificationsComponent  implements OnInit {
     console.log(notifi);
     console.log(data);
     this.accions(notifi.accion,data)
+
+    this.objService.setNotify(notifi);
   }
 
   accions(i:any,data:any){
