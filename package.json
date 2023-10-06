@@ -45,7 +45,7 @@
     "cordova-plugin-file": "^7.0.0",
     "cordova-plugin-file-transfer": "github:apache/cordova-plugin-file-transfer",
     "date-fns": "^1.30.1",
-    "ion-rating-stars": "^1.2.1",
+    "ion-rating-stars": "^1.2.5",
     "ionic4-rating": "^1.0.9",
     "ionicons": "^7.0.0",
     "moment": "^2.29.4",
