@@ -49,3 +49,18 @@
     --border-radius: 4px;
     margin-bottom: 20px;
 }
+.btn-init2{
+	--background: #fd682a;
+	background-color: #fd682a;
+	color: #fff;
+	width: 90%;
+    margin: auto;
+	box-shadow: 0px 2px 4px -2px rgba(16, 24, 40, 0.10), 0px 4px 6px -1px rgba(16, 24, 40, 0.10);
+}
+.btn-init{
+	--background: #F2F2F2;
+	color: black;
+	width: 90%;
+    margin: auto;
+	box-shadow: 0px 2px 4px -2px rgba(16, 24, 40, 0.10), 0px 4px 6px -1px rgba(16, 24, 40, 0.10);
+}

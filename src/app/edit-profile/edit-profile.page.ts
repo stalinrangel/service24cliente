@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { UserService } from '../../services/user/user.service';
 import { Camera, CameraResultType } from '@capacitor/camera'; 
 import { Router } from '@angular/router';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-edit-profile',
@@ -376,5 +377,13 @@ export class EditProfilePage implements OnInit {
 		  cssClass: 'custom-class custom-loading'
 		});
 		return await this.loading.present();
+	}
+
+	async eliminar(){
+
+			let url ='https://service24.app/solicitudes/';
+			await Browser.open({ url: url});
+
+
 	}
 }
