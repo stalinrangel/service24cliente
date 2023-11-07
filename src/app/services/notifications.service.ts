@@ -59,7 +59,8 @@ export class NotificationsService {
     });
 
     PushNotifications.addListener('registration', (token: Token) => {
-      //alert('Push registration success, token: ' + token.value);
+      alert('Push registration success, token: ' + token.value);
+      console.log(token);
       let guardar=token.value;
       guardar=guardar.toString();
       //alert(guardar)
@@ -71,7 +72,7 @@ export class NotificationsService {
     });
 
     PushNotifications.addListener('registrationError', (error: any) => {
-      //alert('Error on registration: ' + JSON.stringify(error));
+      alert('Error on registration: ' + JSON.stringify(error));
       this.error(error);
       
     });
@@ -79,7 +80,7 @@ export class NotificationsService {
     PushNotifications.addListener(
       'pushNotificationReceived',
       (notification: PushNotificationSchema) => {
-        //alert('Push received: ' + JSON.stringify(notification));
+        alert('Push received: ' + JSON.stringify(notification));
         //alert('0');
         this.error(notification);
         
@@ -147,7 +148,7 @@ export class NotificationsService {
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       (notification: ActionPerformed) => {
-        //alert('Push action performed: ' + JSON.stringify(notification));
+        alert('Push action performed: ' + JSON.stringify(notification));
         this.error(notification);
         //alert(JSON.stringify(notification.notification.data.accion));
         //alert('Push received: ' + JSON.stringify(notification.notification.data));
