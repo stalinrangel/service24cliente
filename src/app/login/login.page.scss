@@ -32,11 +32,14 @@ ion-content{
 }
 .nuevo-recordar{
   display: flex;
-  flex-direction: row;
-  color: black;
-  font-family: Inter-Medium;
-  font-size: 13px;
-  padding-left: 20px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: Inter-Medium;
+    font-size: 13px;
+    padding-left: 20px;
+    margin: 0;
 }
 .nuevo-olvido{
   color: black;

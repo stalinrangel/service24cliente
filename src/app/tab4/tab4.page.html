@@ -11,6 +11,9 @@
       <ion-icon name="search" class="icon-eye nuevo-input-password2"></ion-icon>
   </div>
   <div class="en-x" id="enx">
+    <div class="notiene">
+        <p>Aún no tienes chats en tus pedidos.</p>
+    </div>
       <div *ngFor="let chat of filteredItems; let i = index" class="person" (click)="getChat(chat)">
           <img [src]="chat.repartidor.imagen" alt="">
           <span>Pedido ID: {{chat.pedido_id}}</span>
