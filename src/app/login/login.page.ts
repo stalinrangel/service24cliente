@@ -102,12 +102,13 @@ export class LoginPage implements OnInit {
             this.auth.login(this.loginUserForm.value).subscribe((allowed: any) => {
               if (allowed) {
                 console.log('exito')
-                this.loading.dismiss();
+               
                 this.router.navigate
                 //this.events.publish('userAuthSV24', 'userSV'); 
                 
                 this.router.navigate(['/tabs/tab1']);       
                 //this.nav.pop();
+                this.loading.dismiss();
               } else {
                 this.loading.dismiss();
                 this.presentToast("Accesso Denegado.");

@@ -176,7 +176,7 @@ export class DetailOrderPage implements OnInit {
               this.provider.nombre = this.datos.pedido.productos[0].establecimiento.nombre;
               this.provider.imagen = this.datos.pedido.repartidor.usuario.imagen;
             }
-            this.provider.promedio = this.datos.pedido.usuario.promedio;
+            this.provider.promedio = this.datos.pedido.usuario.promedio.toFixed(2);
             this.provider.direccion = this.datos.pedido.productos[0].establecimiento.direccion;
             this.provider.descripcion = this.datos.pedido.productos[0].descripcion;
             this.provider.servicio = this.datos.pedido.productos[0].nombre;

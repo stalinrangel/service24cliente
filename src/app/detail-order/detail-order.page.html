@@ -29,7 +29,7 @@
 			<p class="status-item color-yellow" *ngIf="estado == 2"> <span class="circle"></span> {{ 'LISORDER.hold' | translate }}</p>
 			<p class="status-item color-yellow" *ngIf="estado == 4"> <span class="red"></span> {{ 'LISORDER.finalized' | translate }}</p>
 			<p class="status-item color-yellow" *ngIf="estado == 3"> <span class="green"></span> {{ 'LISORDER.progress' | translate }}</p>
-			<div style="display: flex;flex-direction: row; justify-content: center;margin-top: 2px;"><p style="color: #FD682A;font-size: 14px;">{{provider.promedio}}</p><img src="../../assets/service24/star.svg" alt="" style="width: 20px; height: 20px;"></div>
+			<div style="display: flex;flex-direction: row; justify-content: center;margin-top: 2px;"><p style="color: #FD682A;font-size: 14px;">{{provider.promedio }}</p><img src="../../assets/service24/star.svg" alt="" style="width: 20px; height: 20px;"></div>
 		</div>
 	</div>
 	<div style="text-align: center;  margin: 0px 20px 0px 20px;" *ngIf="encamino==1">
