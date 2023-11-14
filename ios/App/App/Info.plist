@@ -29,9 +29,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Necesitamos acceso a la camara para que tomes las foto para tu servicio.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Necesitamos información de tu ubicación para tener todas las funciones.</string>
+	<string>Activar los servicios de ubicación nos permite mostrarte los proveedores de servicios más cercanos.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Necesitamos información de tu ubicación para tener todas las funciones.</string>
+	<string>Activar los servicios de ubicación nos permite mostrarte los proveedores de servicios más cercanos.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Necesitamos acceso a la camara para que tomes las foto para tu servicio.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
