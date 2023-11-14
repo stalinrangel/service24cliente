@@ -42,7 +42,8 @@ export class ChatSupportPage implements OnInit {
 	  	token: '',
 	  	chat_id: '',
 	  	ciudad_id: '',
-	  	created_at: ''
+	  	created_at: '',
+		updated_at:'',
 	}
 	public show_notify: boolean = false;
 
@@ -147,6 +148,7 @@ export class ChatSupportPage implements OnInit {
 		  userAvatar: this.user.avatar,
 		  receptor_id: parseInt(this.toUser.id),
 		  created_at: moment().format(),
+		  updated_at:'',
 		  msg: this.editorMsg,
 		  status: 1,
 		};

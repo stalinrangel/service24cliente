@@ -130,7 +130,7 @@ export class ProvidersPage implements OnInit {
                 if (this.providers[i].establecimiento.usuario.repartidor != null) {
                   this.providers[i].status = this.providers[i].establecimiento.usuario.repartidor.activo;
                   this.providers[i].plan = JSON.parse(this.providers[i].establecimiento.usuario.repartidor.plan);
-                  //this.providers[i].promedio_calificacion=3;
+                  this.providers[i].promedio_calificacion=this.cal_promedio(this.providers[i].calificaciones);
                   if (this.providers[i].establecimiento.usuario.repartidor.activo != 4) {
                     this.items.push(this.providers[i])
                   }
@@ -152,6 +152,23 @@ export class ProvidersPage implements OnInit {
         );
       //}
     });
+  }
+
+  cal_promedio(calificaciones:any){
+    let count=0;
+    let puntaje=0;
+    for (let i = 0; i < calificaciones.length; i++) {
+     //if (calificaciones[i].usuario_id!=this.mi_id) {
+      count++;
+      puntaje=puntaje+calificaciones[i].puntaje;
+     //}
+   
+    }
+    console.log(count);
+    if (puntaje!=0) {
+      return (puntaje/count).toFixed(2);
+    }
+    return 0;
   }
 
   getCurrentPosition(){
@@ -189,6 +206,7 @@ export class ProvidersPage implements OnInit {
 
   setProvider(item:any){
     if (item.status == 1) {
+
       this.objService.setExtras(item.id);
       this.objService.setCat(this.data);
       this.nav.navigateForward('detail-provider');

@@ -11,6 +11,7 @@ export class ChatMessage {
   userAvatar: any;
   receptor_id: any;
   created_at: any;
+  updated_at:any;
   msg: any;
   status: any;
 }
@@ -40,6 +41,7 @@ export class ChatServiceService {
 	      userAvatar: msg.toUserAvatar,
 	      receptor_id: 232323,
 	      created_at: moment().format(),
+		  updated_at:'',
 	      msg: msg.message,
 	      status: 1
 	    };

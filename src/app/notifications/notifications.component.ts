@@ -145,7 +145,7 @@ export class NotificationsComponent  implements OnInit {
         }, 300);
     }
     if (i=='2') {
-      this.navCtrl.navigateForward('/tabs/tab3');//char soporte
+      this.navCtrl.navigateForward('/tabs/tab5');//char soporte
       setTimeout(() => {
         this.objService.setsoporte(data);
         }, 300);

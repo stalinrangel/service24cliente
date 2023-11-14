@@ -114,6 +114,7 @@ export class Tab5Page {
           userAvatar: msg.userAvatar,
           receptor_id: parseInt(this.usuario.id),
           created_at: moment().format(),
+		  updated_at:'',
           msg: msg.msg,
           status: 2,
         };
@@ -144,6 +145,7 @@ export class Tab5Page {
 		  userAvatar: this.user.avatar,
 		  receptor_id: parseInt(this.toUser.id),
 		  created_at: moment().format(),
+		  updated_at:'',
 		  msg: this.editorMsg,
 		  status: 1,
 		};

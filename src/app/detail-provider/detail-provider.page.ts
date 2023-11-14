@@ -106,6 +106,8 @@ export class DetailProviderPage implements OnInit {
     });
   }
   tipo_registro:any;
+  num_calificaciones:any;
+  mi_id:any;
   getProvider(){
     this.catService.getDetailProviders(this.id).subscribe(
       data => {
@@ -113,7 +115,9 @@ export class DetailProviderPage implements OnInit {
         this.datos = data;
         this.data = this.datos.producto;
         this.imagen = this.data.imagen;
+        this.mi_id=this.data.establecimiento.usuario_id;
         this.favorite.establecimiento_id = this.datos.producto.id;
+        this.num_calificaciones=this.cal_calificaciones(this.data.calificaciones);
         this.promedio_calificacion = this.data.promedio_calificacion;
         let idioma = JSON.parse(this.data.establecimiento.usuario.repartidor.registro.idiomas);
         this.tipo_registro=this.data.establecimiento.usuario.repartidor.registro.tipo;
@@ -148,6 +152,29 @@ export class DetailProviderPage implements OnInit {
         console.log(msg);
       }
     );
+  }
+
+  promedio:any=0;
+  cal_calificaciones(calificaciones:any){
+    let count=0
+    let puntaje=0;
+    for (let i = 0; i < calificaciones.length; i++) {
+     //if (calificaciones[i].usuario_id!=this.mi_id) {
+      count++;
+      puntaje=puntaje+calificaciones[i].puntaje;
+     //}
+   
+    }
+    if (puntaje!=0) {
+      this.promedio=(puntaje/count).toFixed(2);
+    }
+   
+    console.log(count);
+    if (count!=0) {
+      return count;
+    }
+    return 0;
+
   }
 
   setOrder(){

@@ -43,7 +43,8 @@ export class ChatPedidosPage implements OnInit {
 	  	token: '',
 	  	pedido_id: '',
 	  	ciudad_id: '',
-	  	created_at: ''
+	  	created_at: '',
+		updated_at:'',
 	}
 
   constructor(
@@ -153,6 +154,7 @@ export class ChatPedidosPage implements OnInit {
 		  userAvatar: this.user.avatar,
 		  receptor_id: parseInt(this.toUser.id),
 		  created_at: moment().format(),
+		  updated_at:'',
 		  msg: this.editorMsg,
 		  status: 1
 		};
