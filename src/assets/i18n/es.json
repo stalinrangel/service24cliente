@@ -98,7 +98,7 @@
     "LOGIN": {
         "start": "Inicio",
         "login": "Iniciar Sesión",
-        "forgot": "¿Olvidó su Constraseña?",
+        "forgot": "¿Olvidó su Contraseña?",
         "o": "o",
         "facebook": "Iniciar Sesión con Facebook",
         "google": "Iniciar Sesión con Google",
@@ -111,7 +111,7 @@
         "name": "Nombre",
         "email": "Correo Electrónico",
         "phone": "Teléfono",
-        "password": "Constraseña",
+        "password": "Contraseña",
         "rpassword": "Confirmar Contraseña",
         "zona": "Elige a que Zona Perteneces"
     },
@@ -166,7 +166,7 @@
         "chat": "chatear con el proveedor",
         "cali": "¡Ya Calificaste!",
         "addFav": "Agregar a Favoritos",
-        "fin": "Finalizar Solicitud",
+        "fin": "Trabajo finalizado",
         "cancel": "Cancelar Solicitud",
         "califi": "Calificar Solicitud"
     }  

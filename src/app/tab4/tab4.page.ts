@@ -45,9 +45,14 @@ export class Tab4Page implements OnInit {
     this.alturaX = 91;
     this.altura=this.alturaPantalla-this.alturaSearch-this.alturaX-230;
     console.log(this.altura)
+    this.initForm(); 
+  }
+  
+  ionViewWillEnter() { 
     this.initForm();
   }
   ionPageWillLeave() {
+    this.initForm();
     this.objService.setruta('detail-order');
     }
   usuario:any;
@@ -65,6 +70,10 @@ export class Tab4Page implements OnInit {
             self.chats=data.chat;
            
             //alert(JSON.stringify(data))
+            for (let i = 0; i < self.chats.length; i++) {
+              self.chats[i].tam=self.chats[i].mensajes.length;
+            
+            }
             console.log(self.chats)
           },error(err: any){
               console.log(err)

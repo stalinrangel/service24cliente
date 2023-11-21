@@ -81,6 +81,19 @@ export class NotificationsComponent  implements OnInit {
         console.log(data)
         this.datos1 = data;
         this.notifications = this.datos1.Notificaciones_generales;
+        for (let i = 0; i < this.notifications.length; i++) {
+          if (this.notifications[i].data) {
+            this.notifications[i].data=JSON.parse(this.notifications[i].data);
+            if (this.notifications[i].data.obj) {
+              this.notifications[i].data.obj=JSON.parse(this.notifications[i].data.obj);
+              this.notifications[i].obj= this.notifications[i].data.obj;
+            }
+           
+          }
+          
+          
+        }
+        console.log(this.notifications)
         if (this.notifications.length == 0) {
           this.showEmpty = true;
         }

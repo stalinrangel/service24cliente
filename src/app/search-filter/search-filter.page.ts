@@ -254,7 +254,7 @@ export class SearchFilterPage implements OnInit {
   }
 
   setHistory(item: { title: string; }){
-    this.searchTerm = item.title;
+    this.searchText = item.title;
     this.setFilteredItems();
   }
 

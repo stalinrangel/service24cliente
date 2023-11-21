@@ -49,10 +49,10 @@
   </ion-list>
    <ion-list #mylist [hidden]="searchText!=''">
     <ion-item-sliding *ngFor="let item of items" class="slide-history" no-padding>
-      <ion-item class="item-history">
+      <ion-item class="item-history" (click)="setHistory(item)">
         <ion-label style="display: flex;justify-content: space-between;">
-          <p class="title-history" (click)="setHistory(item)">{{ item.title }}</p>
-          <p text-right class="date-history" (click)="setHistory(item)">{{ item.modified | date:'short'}}</p>
+          <p class="title-history" >{{ item.title }}</p>
+          <p text-right class="date-history" >{{ item.modified | date:'short'}}</p>
         </ion-label>
       </ion-item>
       <ion-item-options side="end">

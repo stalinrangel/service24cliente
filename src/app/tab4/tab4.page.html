@@ -30,10 +30,10 @@
               <div style="display: flex;">
               <span>Pedido ID: {{chat.pedido_id}}</span> &nbsp; <span *ngIf="chat.pedido.estado==2" style="color: #f0f058;">Por aceptar</span><span *ngIf="chat.pedido.estado==3" style="color: #fd682a;">En curso</span><span *ngIf="chat.pedido.estado==4" style="color: #2afd46;">Finalizado</span><span *ngIf="chat.pedido.estado==5" style="color: #ff0000;">Cancelado</span>
               </div>
-              <span class="texto">{{chat.mensajes[0].msg}}</span>
+              <span class="texto">{{chat.mensajes[chat.tam-1].msg}}</span>
           </div>
           <div class="col-3 nuevo-input" style="display: flex;">
-              <span>{{chat.mensajes[0].updated_at}}</span>
+              <span>{{chat.mensajes[chat.tam-1].updated_at}}</span>
           </div>
           
           
