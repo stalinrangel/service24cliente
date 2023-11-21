@@ -148,7 +148,7 @@ export class NotificationsService {
     PushNotifications.addListener(
       'pushNotificationActionPerformed',
       (notification: ActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
+       // alert('Push action performed: ' + JSON.stringify(notification));
         this.error(notification);
         //alert(JSON.stringify(notification.notification.data.accion));
         //alert('Push received: ' + JSON.stringify(notification.notification.data));
