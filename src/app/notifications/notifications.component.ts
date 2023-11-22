@@ -83,10 +83,10 @@ export class NotificationsComponent  implements OnInit {
         this.notifications = this.datos1.Notificaciones_generales;
         for (let i = 0; i < this.notifications.length; i++) {
           if (this.notifications[i].data) {
-            this.notifications[i].data=JSON.parse(this.notifications[i].data);
-            if (this.notifications[i].data.obj) {
-              this.notifications[i].data.obj=JSON.parse(this.notifications[i].data.obj);
-              this.notifications[i].obj= this.notifications[i].data.obj;
+            this.notifications[i].data2=JSON.parse(this.notifications[i].data);
+            if (this.notifications[i].data2.obj) {
+              this.notifications[i].data2.obj=JSON.parse(this.notifications[i].data2.obj);
+              this.notifications[i].obj= this.notifications[i].data2.obj;
             }
            
           }

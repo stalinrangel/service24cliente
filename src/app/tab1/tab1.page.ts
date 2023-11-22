@@ -116,6 +116,9 @@ export class Tab1Page {
       this.viewNotification();
 	  }); 
     this.getZone();
+    this.objService.get_reload_chats_pedido().subscribe((data:any) => {
+      this.getZone();
+    });
   }
 
   ngOnInit() {

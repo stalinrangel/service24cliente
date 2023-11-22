@@ -282,6 +282,7 @@ export class NotificationsService {
           this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
           setTimeout(() => {
             this.objService.setchatpedido(data);
+            this.objService.set_reload_chats_pedido(data);
             }, 300);
         }
      
@@ -296,6 +297,7 @@ export class NotificationsService {
           this.navCtrl.navigateForward('/tabs/tab5');//char soporte
           setTimeout(() => {
             this.objService.setsoporte(data);
+            this.objService.set_reload_chats_pedido(data);
             }, 300);
         }
     }
@@ -344,9 +346,10 @@ export class NotificationsService {
       this.userService.setNotificacion(enviar).subscribe(
         data => {
           console.log(data)
-          if (this.siono=1) {
+          if (this.siono==1) {
             this.visto(data.Notificacion.id);
           }
+          this.objService.set_reload_chats_pedido(data);
         },
         msg => {
           console.log(msg)

@@ -101,6 +101,9 @@ export class Tab2Page {
 			this.dataNotificacion=data;
 			this.initOrder3();
 		});
+		this.objService.get_reload_chats_pedido().subscribe((data:any) => {
+			this.getZone();
+		  });
 		this.getZone();
 	}
 
@@ -290,6 +293,7 @@ export class Tab2Page {
 		}
 	}
 	abrirDesdeNotificacionConMensajes(){
+		console.log(this.dataNotificacion);
 		let obj:any=JSON.parse(this.dataNotificacion.obj);
 		for (var i = 0; i < this.orders.length; ++i) {
 			if (obj.chat_id==this.orders[i].id) {

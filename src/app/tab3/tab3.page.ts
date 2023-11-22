@@ -115,6 +115,9 @@ export class Tab3Page {
 			console.log(data)
 			this.getIds2();	
 	  	});  
+		this.objService.get_reload_chats_pedido().subscribe((data:any) => {
+			this.getZone();
+		});
 
 		  setTimeout(() => {
 			this.noticationService.registrar_token();
