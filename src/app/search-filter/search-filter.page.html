@@ -26,8 +26,10 @@
     <div *ngFor="let item of filteredItems" (click)="setProvider(item)" class="cuadro-azul" [ngStyle]="{'background': item.plan.tipo_plan === 'PREMIUM' ? '#ffd1be' : ''}">
       <div class="label1">
         <div class="nuevo-label">
-          <p class="title-menu">{{item.establecimiento.nombre}}</p>
-          <p class="sub-title">{{item.nombre}}</p>
+          <p class="title-menu">{{item.nombre}}</p>
+          <p class="sub-title" style="font-weight: bold;">{{item.categoria}}-{{item.subcategoria}}</p>
+          <p class="sub-title">Proveedor: {{item.establecimiento.nombre}}</p>
+         
           
         </div>
         <img *ngIf="item.establecimiento.usuario != null" src="{{item.imagen}}" class="imagen">

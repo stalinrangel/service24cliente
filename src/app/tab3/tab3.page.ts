@@ -493,7 +493,7 @@ export class Tab3Page {
 	}
 
 	async support(){
-		let url ='https://service24.app';
+		let url ='https://service24.app/FAQ/';
 		await Browser.open({ url: url});
 		/*if (this.band_chatSupport) {		
 			this.objService.setExtras(this.chat_support);

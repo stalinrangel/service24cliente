@@ -68,12 +68,19 @@ export class Tab4Page implements OnInit {
           next(data: any){
             console.log(data);
             self.chats=data.chat;
-           
+            let tam=0;
             //alert(JSON.stringify(data))
             for (let i = 0; i < self.chats.length; i++) {
               self.chats[i].tam=self.chats[i].mensajes.length;
-            
+              tam=self.chats[i].mensajes.length;
+              self.chats[i].ultimo_mensaje=self.chats[i].mensajes[tam-1].created_at;
             }
+
+            self.chats.sort(function(a:any, b:any) {
+              a = new Date(a.ultimo_mensaje);
+              b = new Date(b.ultimo_mensaje);
+              return a > b ? -1 : a < b ? 1 : 0;
+            });
             console.log(self.chats)
           },error(err: any){
               console.log(err)

@@ -91,7 +91,7 @@
 	<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" (click)="addFavorite()" *ngIf="!select">
 		{{ 'DETAILORDER.addFav' | translate }}
 	</ion-button>
-	<ion-button expand="block" class="ion-text-capitalize btn-init" *ngIf="estado == 3" (click)="presentConfirm()">{{ 'DETAILORDER.fin' | translate }}</ion-button>
+	<!--ion-button expand="block" class="ion-text-capitalize btn-init" *ngIf="estado == 3" (click)="presentConfirm()">{{ 'DETAILORDER.fin' | translate }}</ion-button-->
 	<ion-button expand="block" class="ion-text-capitalize btn-init btn-init1" (click)="presentModal1()" *ngIf="estado == 2 || estado == 3">{{ 'DETAILORDER.cancel' | translate }}</ion-button>
 	<div *ngIf="estado == 4">
 		<ion-button expand="block" fill="outline" class="ion-text-capitalize btn-init2" *ngIf="!provider.califico" (click)="presentModal()">

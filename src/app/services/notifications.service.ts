@@ -95,6 +95,7 @@ export class NotificationsService {
         if (notification.data.accion=='8' || notification.data.accion=='2') {
 
           this.no(notification.data.accion,notification.data);
+          this.accions(notification.data.accion,notification.data);
           this.registrar_notificacion(notification.data.accion,notification.data.pedido_id,notification.data);
           this.presentToast('Has recibido un mensaje '+notification.data.body);
         }else{
@@ -157,6 +158,7 @@ export class NotificationsService {
        if (notification.notification.data.accion=='8' || notification.notification.data.accion=='2') {
         //alert('12');
           this.no(notification.notification.data.accion,notification.notification.data);
+          this.accions(notification.notification.data.accion,notification.notification.data);
           this.registrar_notificacion(notification.notification.data.accion,notification.notification.data.pedido_id,notification.notification.data);
           this.presentToast('Has recibido un mensaje '+notification.notification.data.body);
         }else{

@@ -67,7 +67,7 @@ export class ChatPedidosPage implements OnInit {
 		console.log(data)
 		//alert('Cargando conversación');
 		this.msgList = [];
-		this.showLoading('Cargando conversación');
+		//this.showLoading('Cargando conversación');
 		this.getMsg();
 	}); 
   	this.data = this.objService.getExtras();
@@ -121,7 +121,7 @@ export class ChatPedidosPage implements OnInit {
 	ionViewDidEnter() {
 		if (this.chat_id != '') {
 			this.msgList = [];
-			this.showLoading('Cargando conversación');
+			//this.showLoading('Cargando conversación');
 			this.getMsg();
 		}		
 	}
@@ -131,13 +131,13 @@ export class ChatPedidosPage implements OnInit {
 	    	).subscribe(res => {
 	        this.msgList = res;
 	        this.scrollToBottom();
-	        this.loading.dismiss();
+	        //this.loading.dismiss();
 	        let index1 = this.msgList.findIndex((item1) => item1.emisor_id === this.toUser.id);
 			if(index1 !== -1){
 				this.avatarRecep = this.msgList[index1].userAvatar;
 			}
 	    },(error)=>{
-	    	this.loading.dismiss();
+	    	//this.loading.dismiss();
 	    });
 	}
 
