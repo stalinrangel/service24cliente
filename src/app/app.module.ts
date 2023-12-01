@@ -11,12 +11,17 @@ import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
+import { ModalComponent } from './modal.componet';
+import { FormsModule } from '@angular/forms';
+
+
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,ModalComponent],
   imports: [
     BrowserModule, 
     IonicModule.forRoot({
@@ -24,6 +29,7 @@ export function createTranslateLoader(http: HttpClient) {
     }), 
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

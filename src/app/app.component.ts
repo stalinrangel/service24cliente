@@ -5,6 +5,8 @@ import { GeneralService } from './services/general.service';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { App, AppState } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
+import { ModalController } from '@ionic/angular';
+import { ModalComponent } from './modal.componet';
 
 @Component({
   selector: 'app-root',
@@ -13,16 +15,20 @@ import { Capacitor } from '@capacitor/core';
 })
 export class AppComponent {
 
+  message = 'This modal example uses the modalController to present and dismiss modals.';
   
   constructor(private translate: TranslateService,
               private noticationService: NotificationsService,
-              private funciones_generales: GeneralService        
+              private funciones_generales: GeneralService,
+              private modalCtrl: ModalController,
+                    
     ) {
     translate.setDefaultLang('es');
     translate.use('es');
     this.splash();
+    this.openModal();
   }
-
+  
   async splash(){
     /*App.addListener('appStateChange',() => {
       (state: AppState) => {
@@ -40,6 +46,27 @@ export class AppComponent {
       setTimeout(async () => {
         await SplashScreen.hide();
       }, 2500);  
+
+      
+      
   }
+
+  async openModal() {
+    setTimeout(async () => {
+      const modal = await this.modalCtrl.create({
+        component: ModalComponent,
+      });
+      modal.present();
+
+      const { data, role } = await modal.onWillDismiss();
+
+      if (role === 'confirm') {
+        this.message = `Hello, ${data}!`;
+      }
+    }, 1000);  
+
+  }
+
+  
   
 }
