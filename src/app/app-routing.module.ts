@@ -51,7 +51,7 @@ const routes: Routes = [
     loadChildren: () => import('./providers/providers.module').then( m => m.ProvidersPageModule)
   },
   {
-    path: 'detail-provider',
+    path: 'detail-provider/:id',
     loadChildren: () => import('./detail-provider/detail-provider.module').then( m => m.DetailProviderPageModule)
   },
   {
@@ -121,7 +121,8 @@ const routes: Routes = [
   {
     path: 'zones-register',
     loadChildren: () => import('./zones-register/zones-register.module').then( m => m.ZonesRegisterPageModule)
-  },  {
+  },
+  {
     path: 'camara',
     loadChildren: () => import('./camara/camara.module').then( m => m.CamaraPageModule)
   },

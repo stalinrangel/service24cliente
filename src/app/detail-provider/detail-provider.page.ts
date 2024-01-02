@@ -7,6 +7,7 @@ import { NotificationsComponent } from '../notifications/notifications.component
 import { register } from 'swiper/element/bundle';
 import { Swiper } from 'swiper';
 import { ImageModalPage } from '../image-modal/image-modal.page';
+import { ActivatedRoute, Router } from '@angular/router';
 register();
 
 @Component({
@@ -25,7 +26,8 @@ export class DetailProviderPage implements OnInit {
   public idiomas: string = '';
   public calificaciones: any = [];
   public servicios: any = [];
-  public imagen: string = 'https://service24.app/alinstanteAPI/public/images_uploads/app/imagen-proveedor.png';
+  //public imagen: string = 'https://service24.app/alinstanteAPI/public/images_uploads/app/imagen-proveedor.png';
+  public imagen: string = '';
   public select: boolean = false;
   public loading:any;
   public favorite = {
@@ -54,10 +56,11 @@ export class DetailProviderPage implements OnInit {
     private storage: StorageService,
     private loadingController: LoadingController,
     private toastController: ToastController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private activatedRoute: ActivatedRoute
   ) { 
-    this.id = this.objService.getExtras();
-    this.getProvider();
+    //this.id = this.objService.getExtras();
+    //this.getProvider();
     this.storage.getObject('userSV24').then(items => {
       if (items != '' && items != null) {
         this.usuario = items;
@@ -78,6 +81,14 @@ export class DetailProviderPage implements OnInit {
 
   ngOnInit() { 
     this.checkFavorite(); 
+
+    this.activatedRoute.paramMap
+    .subscribe((params) => {
+      this.id = params.get('id');
+      console.log(this.id);
+     // this.getDatos();
+     this.getProvider();
+    });
   }
 
   checkFavorite(){
