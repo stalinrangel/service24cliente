@@ -82,7 +82,9 @@ export class OrderPage{
 		self.geolocate();
 	}, 1500);
   	this.data = this.objService.getExtras();
-  	this.category = this.objService.getCat();
+	this.category = this.objService.getExtras();
+  	//this.category = this.objService.getCat();
+	console.log(this.category);
   	this.myDate = moment().format();
   	this.orderForm = this.builder.group({
 		lat: [null],

@@ -47,6 +47,7 @@
         "emergencies": "Disponibilidad de atender urgencias:",
         "invoices": "Entrega de facturas por servicios:",
         "create": "Solicitar servicio",
+        "home": "Ir al inicio",
         "empty": "El Proveedor aún no tiene calificaciones.",
         "year": "año(s)"
     },

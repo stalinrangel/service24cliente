@@ -48,6 +48,7 @@ export class CategoriesService {
   }
 
   addFavorites(data:any,token:any): Observable<any>{
+    console.log(data);
     return this.http.post(`${environment.api}favoritos?token=`+token,data);
   }
 

@@ -245,7 +245,7 @@ export class SearchFilterPage implements OnInit {
       this.addHistory();
       this.objService.setExtras(item.id);
       this.objService.setCat(item);
-      this.nav.navigateForward('detail-provider');
+      this.nav.navigateForward('detail-provider/'+item.id);
     } else {
       this.translate.get('SEARCH.notdisp').subscribe((res1: string) => {           
         this.presentToast(res1);

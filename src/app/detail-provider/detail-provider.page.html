@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary" mode="md">
   	<ion-buttons slot="start" class="icon-back" default-href="tabs">
-	   <ion-back-button text="" icon="chevron-back-sharp" mode="md">
+	   <ion-back-button default-href="/providers" text="" icon="chevron-back-sharp" mode="md" >
         </ion-back-button>
 	</ion-buttons>
     <ion-title class="ion-text-capitalize ion-text-center">
@@ -38,7 +38,8 @@
 	</div-->
 	<div  class="cuadro-azul">
 		<div class="label0" >
-			<ion-icon name="heart-outline" class="fav1" style="color: white;"></ion-icon>
+			<ion-icon *ngIf="!this.select" name="heart-outline" class="fav1" style="color: white;" (click)="addFavorite()"></ion-icon>
+			<ion-icon *ngIf="this.select" name="heart" class="fav1" style="color: white;" (click)="addFavorite()"></ion-icon>
 			<img class="portada" src="{{imagen}}" (click)="openPreview(imagen)">
 			
 		</div>
@@ -95,6 +96,8 @@
 			<p><span>{{ 'DETAILSUPPLIERS.emergencies' | translate }}</span> {{data.establecimiento.usuario.repartidor.registro.urgencias}}</p>
 			<p><span>{{ 'DETAILSUPPLIERS.invoices' | translate }}</span> {{data.establecimiento.usuario.repartidor.registro.factura}}</p>
 			<ion-button expand="block" class="ion-text-capitalize btn-init" (click)="setOrder()">{{ 'DETAILSUPPLIERS.create' | translate }}</ion-button>
+			<ion-button expand="block" class=" btn-init2" (click)="home()">{{ 'DETAILSUPPLIERS.home' | translate }}</ion-button>
+			<br>
 		</div>
 	</div>
 	<div class="content-infoP" *ngIf="type == 'photo'">

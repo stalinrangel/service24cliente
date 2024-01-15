@@ -32,7 +32,8 @@ export class DetailProviderPage implements OnInit {
   public loading:any;
   public favorite = {
     usuario_id: '',
-    establecimiento_id: ''
+    establecimiento_id: '',
+    productos_id:''
   }
   public usuario = {
     id: '',
@@ -90,6 +91,9 @@ export class DetailProviderPage implements OnInit {
      this.getProvider();
     });
   }
+  back(){
+    this.nav.navigateBack('providers');
+  }
 
   checkFavorite(){
     this.storage.getObject('userSV24').then(items => {
@@ -102,6 +106,7 @@ export class DetailProviderPage implements OnInit {
             this.catService.checkFavorites(this.checkFav,items2).subscribe(
               data => {
                 //this.loading.dismiss();
+                console.log('favorito: ',data);
                 if (data == 1) {
                   this.select = true;
                 }  
@@ -189,11 +194,17 @@ export class DetailProviderPage implements OnInit {
   }
 
   setOrder(){
+    console.log(this.data)
     this.objService.setExtras(this.data);
     this.nav.navigateForward('order');
   }
 
+  home(){
+    this.nav.navigateForward('/tabs/tab1');
+  }
+
   addFavorite(){
+    console.log('addFavorite');
     if (!this.select) {
       this.storage.getObject('userSV24').then(items => {
         if (items) {
@@ -201,9 +212,10 @@ export class DetailProviderPage implements OnInit {
             if (items2) {
               //this.presentLoading();
               this.favorite.usuario_id = items.id;
+              this.favorite.productos_id = this.id;
               this.catService.addFavorites(this.favorite,items2).subscribe(
                 data => {
-                  this.loading.dismiss();
+                 // this.loading.dismiss();
                   this.select = true;
                   console.log(data); 
                   this.presentToast('Proveedor agregado con éxito.')  

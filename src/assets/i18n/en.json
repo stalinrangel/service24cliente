@@ -47,6 +47,7 @@
         "emergencies":"Availability of attending emergencies:",
         "invoices":"Delivery of invoices for services:",
         "create":"Create Request",
+        "home":"Go to home",
         "empty":"The Supplier does not have qualifications yet.",
         "year": "year"
     },
