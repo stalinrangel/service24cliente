@@ -466,20 +466,51 @@ export class SearchFilterPage implements OnInit {
   }
 
   searchText: string = "";
+  tipo="normal";
   get filteredItems() {
     //return this.chats;
     //console.log(this.datos);
-    if (this.datos==false) {
-      return [];
-    }else if(this.searchText==""){
-      return [];
-    }else{
+    if(this.tipo=="normal"){
+      if (this.datos==false) {
+        return [];
+      }else if(this.searchText==""){
+        return [];
+      }else{
+        return this.datos.filter((item:any) => (item.nombre.toLowerCase().includes(this.searchText.toLowerCase()) || item.categoria.toLowerCase().includes(this.searchText.toLowerCase()) || item.subcategoria.toLowerCase().includes(this.searchText.toLowerCase())))
+        .sort((a:any, b:any) => {
+          //return a.distance - b.distance;
+        });
+      }
+    }else if(this.tipo=="cercano"){
       return this.datos.filter((item:any) => (item.nombre.toLowerCase().includes(this.searchText.toLowerCase()) || item.categoria.toLowerCase().includes(this.searchText.toLowerCase()) || item.subcategoria.toLowerCase().includes(this.searchText.toLowerCase())))
-      .sort((a:any, b:any) => {
-        return a.distance - b.distance;
-      });
+        .sort((a:any, b:any) => {
+          return a.distance - b.distance;
+        });
+    }else if(this.tipo=="calificaciones"){
+      return this.datos.filter((item:any) => (item.nombre.toLowerCase().includes(this.searchText.toLowerCase()) || item.categoria.toLowerCase().includes(this.searchText.toLowerCase()) || item.subcategoria.toLowerCase().includes(this.searchText.toLowerCase())))
+        .sort((a:any, b:any) => {
+          return b.promedio_calificacion - a.promedio_calificacion;
+        });
     }
     
+    
+  }
+
+  cercanos(){
+    this.tipo="cercano";
+    //this.filteredItems();
+  }
+  calificaciones(){
+    this.tipo="calificaciones";
+    //this.filteredItems();
+  }
+
+  
+
+  isModalOpen = false;
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
   }
 
 }

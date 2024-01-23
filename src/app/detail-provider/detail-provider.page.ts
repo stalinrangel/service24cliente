@@ -8,6 +8,8 @@ import { register } from 'swiper/element/bundle';
 import { Swiper } from 'swiper';
 import { ImageModalPage } from '../image-modal/image-modal.page';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Clipboard } from '@capacitor/clipboard';
+
 register();
 
 @Component({
@@ -191,6 +193,13 @@ export class DetailProviderPage implements OnInit {
     }
     return 0;
 
+  }
+
+  async shared(){
+    await Clipboard.write({
+      string: "https://service24.app/detail-provider/"+this.id,
+    });
+    alert("Se ha copiado el perfil del proveedor")
   }
 
   setOrder(){

@@ -1,5 +1,0 @@
-[{
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target" : { "namespace": "android_app", "package_name": "cliente.service24.app",
-                    "sha256_cert_fingerprints": ["D0:0F:F8:7F:73:42:19:91:7C:30:BC:87:10:C0:3B:51:1B:DE:A4:7D:4F:DD:72:04:D7:42:5A:D3:65:72:83:87"] }
-}]

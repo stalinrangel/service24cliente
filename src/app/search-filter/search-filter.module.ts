@@ -17,7 +17,8 @@ import { IonRatingStarsModule } from 'ion-rating-stars';
     IonicModule,
     SearchFilterPageRoutingModule,
     TranslateModule,
-    IonRatingStarsModule
+    IonRatingStarsModule,
+    
   ],
   declarations: [SearchFilterPage]
 })

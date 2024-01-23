@@ -7,12 +7,11 @@
     <ion-title class="ion-text-capitalize ion-text-center">
       {{ 'DETAILSUPPLIERS.title' | translate }}
     </ion-title>
-    <ion-buttons slot="end" (click)="viewNotification()">
-      <ion-button>
-      	<div class="icon-bagde" *ngIf="show_notify"></div>
-        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+	<ion-buttons slot="end" (click)="shared()">
+		<ion-button>
+			<ion-icon name="share-social-outline" style="font-size: 25px;"></ion-icon>
+		</ion-button>
+	</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
