@@ -22,13 +22,13 @@ export class ModalComponent {
 
   async ir(){
     if (this.platform.is('android')) {
-      let url ='https://apps.apple.com/ve/app/service24-proveedores/id6471127999';
-      await Browser.open({ url: url});
-      //https://service24.app/links/
-    } else if (this.platform.is('ios')) {
       let url ='https://play.google.com/store/apps/details?id=proveedores.service24.app';
       await Browser.open({ url: url});
-      //https://service24.app/links/
+
+    } else if (this.platform.is('ios')) {
+      let url ='https://apps.apple.com/ve/app/service24-proveedores/id6471127999';
+      await Browser.open({ url: url});
+
     }
 
     
