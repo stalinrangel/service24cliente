@@ -53,7 +53,14 @@
   </div-->
 
 
-  <!--swiper-container style="margin: 10px 20px;" [loop]="true" [autoplay]="true">
+  <swiper-container  style="margin: 10px 20px 0px 20px;" [loop]="true" [autoplay]="true">
+
+    <swiper-slide style="padding: 10px 0px; " *ngFor="let p of publicidad; let i = index" >
+      <div class="container" (click)="proveedor(p.productos.id)">
+        <img class="" [src]="p.productos.imagen" alt="">
+      </div>
+    </swiper-slide>
+
     <swiper-slide style="padding: 10px 0px; ">
       <div class="row promo">
         <div class="col-8 promo1">
@@ -66,21 +73,8 @@
         </div>
       </div>
     </swiper-slide>
-
-    <swiper-slide style="padding: 10px 0;">
-      <div class="row promo" style="background: #D6BBFB;">
-        <div class="col-8 promo1">
-          <p class="promo-title">¿Necesitas ayuda con arreglos del hogar?</p>
-          <p class="promo-info">Servicios de plomería</p>
-          <span class="promo-but">Solicitar ahora</span>
-        </div>
-        <div class="col-4 promo2">
-          <img class="promo-img" src="assets/service24/hombre.svg" alt="">
-        </div>
-      </div>
-    </swiper-slide>
     
-  </swiper-container-->
+  </swiper-container>
   
   <div class="presentacion">
 

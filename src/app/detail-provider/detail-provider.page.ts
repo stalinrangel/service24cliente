@@ -170,6 +170,15 @@ export class DetailProviderPage implements OnInit {
         console.log(msg);
       }
     );
+    this.catService.getHorario(this.id).subscribe(
+      data => {
+        console.log(data);
+        this.horario=data.Horarios[0];
+      },
+      msg => {       
+        console.log(msg);
+      }
+    );
   }
 
   promedio:any=0;
@@ -287,6 +296,83 @@ export class DetailProviderPage implements OnInit {
     });
     modal.present();
   }
+
+  public horario = {
+		lunes: true,
+		lunes_i: '08:00',
+		lunes_f: '18:00',
+		martes: true,
+		martes_i: '08:00',
+		martes_f: '18:00',
+		miercoles: true,
+		miercoles_i: '08:00',
+		miercoles_f: '18:00',
+		jueves: true,
+		jueves_i: '08:00',
+		jueves_f: '18:00',
+		viernes: true,
+		viernes_i: '08:00',
+		viernes_f: '18:00',
+		sabado: true,
+		sabado_i: '08:00',
+		sabado_f: '18:00',
+		domingo: true,
+		domingo_i: '08:00',
+		domingo_f: '18:00',
+		producto_id:'0',
+		id:0
+	};
+
+	setDay(dia:any){
+
+	}
+	availableDay(day:any){
+		if (day == 'lunes') {
+			this.horario.lunes=true;
+		}
+		if (day == 'martes') {
+			this.horario.martes=true;
+		}
+		if (day == 'miercoles') {
+			this.horario.miercoles=true;
+		}
+		if (day == 'jueves') {
+			this.horario.jueves=true;
+		}
+		if (day == 'viernes') {
+			this.horario.viernes=true;
+		}
+		if (day == 'sabado') {
+			this.horario.sabado=true;
+		}
+		if (day == 'domingo') {
+			this.horario.domingo=true;
+		}
+	}
+
+	disabledDay(day:any){
+		if (day == 'lunes') {
+			this.horario.lunes=false;
+		}
+		if (day == 'martes') {
+			this.horario.martes=false;
+		}
+		if (day == 'miercoles') {
+			this.horario.miercoles=false;
+		}
+		if (day == 'jueves') {
+			this.horario.jueves=false;
+		}
+		if (day == 'viernes') {
+			this.horario.viernes=false;
+		}
+		if (day == 'sabado') {
+			this.horario.sabado=false;
+		}
+		if (day == 'domingo') {
+			this.horario.domingo=false;
+		}
+	}
 
 }
 

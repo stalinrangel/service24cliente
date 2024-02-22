@@ -68,4 +68,8 @@ export class CategoriesService {
     return this.http.get(`${environment.api}pais`);
   }
 
+  getHorario(id:any): Observable<any>{
+    return this.http.get(`${environment.api}horarios/`+id);
+  }
+
 }

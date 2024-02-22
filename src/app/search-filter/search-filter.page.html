@@ -51,6 +51,37 @@
       </div>
     </div>
   </ion-list>
+  <div style="text-align: center; margin: 10px;" *ngIf="searchText!=''">
+    <hr style="border-top: 1px solid #000;">
+    <b>Resultados fuera de tu zona busqueda:</b>
+  </div>
+  <ion-list>
+    <div *ngFor="let item of filteredItems2" (click)="setProvider(item)" class="cuadro-azul" [ngStyle]="{'background': item.plan.tipo_plan === 'PREMIUM' ? '#ffd1be' : ''}">
+      <div class="label1">
+        <div class="nuevo-label">
+          <p class="title-menu">{{item.nombre}}</p>
+          <p class="sub-title" style="font-weight: bold;">{{item.categoria}}-{{item.subcategoria}}</p>
+          <p class="sub-title">Proveedor: {{item.establecimiento.nombre}}</p>
+         
+          
+        </div>
+        <img *ngIf="item.establecimiento.usuario != null" src="{{item.imagen}}" class="imagen">
+        <img *ngIf="item.establecimiento.usuario == null" src="{{item.imagen}}" class="imagen">
+      </div>
+      <div class="label2">
+        <p class="status-item color-yellow" > <span class="green"></span>Disponible</p>
+        <div class="label22">
+          <div style="display: flex;flex-direction: row; justify-content: center;margin-right: 5px;"><p style="color: #FD682A;font-size: 14px;">{{item.promedio_calificacion}}</p><img src="../../assets/service24/star.svg" alt="" style="width: 20px; height: 20px;"></div>
+          <p style="margin-top: 0px;">({{item.calificaciones.length}})</p>
+          <ion-icon name="heart-outline" class="fav"></ion-icon>
+        </div>
+      </div>
+      <div style="display: flex;">
+        <!--p class="new-address"> {{item.establecimiento.direccion}}</p-->
+        <ion-icon name="locate" style="margin-right: 3px;"></ion-icon><p class="new-address">{{item.distance}} km</p>
+      </div>
+    </div>
+  </ion-list>
    <ion-list #mylist [hidden]="searchText!=''">
     <ion-item-sliding *ngFor="let item of items" class="slide-history" no-padding>
       <ion-item class="item-history" (click)="setHistory(item)">

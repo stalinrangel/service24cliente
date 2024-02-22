@@ -49,7 +49,8 @@
         "create": "Solicitar servicio",
         "home": "Ir al inicio",
         "empty": "El Proveedor aún no tiene calificaciones.",
-        "year": "año(s)"
+        "year": "año(s)",
+        "history":"Horario"
     },
     "ORDER": {
         "title": "Crear Solicitud",

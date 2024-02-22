@@ -149,6 +149,8 @@ export class Tab1Page {
 		  lat: coordinates.coords.latitude,
 		  lng: coordinates.coords.longitude
 		};
+    let geo=JSON.stringify(latLng);
+    localStorage.setItem('geo',geo);
     
 	}
 
@@ -172,6 +174,7 @@ export class Tab1Page {
         this.show_notify = false;
       }
     });
+    this.geolocate();
   }
 
   ionViewDidLoad(){
@@ -180,13 +183,14 @@ export class Tab1Page {
       this.languages = 'es';
     } 
   }
-
+  publicidad:any;
   initCategory(id:any){
     this.catService.getCategory(id).subscribe(
         resp => {
           console.log(resp)
           this.empty = false;
-          this.items = resp.catprincipales;        
+          this.items = resp.catprincipales;       
+          this.publicidad = resp.publicidad;    
         },
         error => {       
           console.log(error);
@@ -260,6 +264,7 @@ export class Tab1Page {
   }
 
   doRefresh(event:any) {
+    this.geolocate();
     this.funciones_generales.iniciar();
     this.catService.getCategory('1').subscribe(
       resp => {
@@ -546,6 +551,11 @@ export class Tab1Page {
       cssClass:'modal-contents'
     });
     modal.present();
+  }
+
+  proveedor(id:any){
+    let ruta='detail-provider/'+id;
+    this.nav.navigateForward(ruta);
   }
 
 }

@@ -23,6 +23,7 @@ export class SearchFilterPage implements OnInit {
 	public items: any = [];
   public data: any = [];
   public datos: any=false;
+  public datos2: any=false;
   public searching: boolean = false;
   newItem: Item = <Item>{};
   @ViewChild('mylist')mylist: any;
@@ -63,7 +64,7 @@ export class SearchFilterPage implements OnInit {
   }
   async geolocate(){
     this.presentLoading();
-		console.log('geolocate')
+		/*console.log('geolocate')
 		const options = { enableHighAccuracy: true };
 		const coordinates = await Geolocation.getCurrentPosition(options);
 		
@@ -75,7 +76,9 @@ export class SearchFilterPage implements OnInit {
 		};
     this.myLocation.lat=latLng.lat;
     this.myLocation.lng=latLng.lng;
-	
+	  */
+    let geo:any=localStorage.getItem('geo');
+    const latLng = JSON.parse(geo);
     console.log(latLng)
     this.initOrder();
     //this.getServices(latLng)
@@ -150,17 +153,37 @@ export class SearchFilterPage implements OnInit {
             //self.loading.dismiss();
             console.log(data)
             this.datos = data.productos;
+            this.datos2 = data.otros;
             console.log(this.datos)
             for (let i = 0; i < this.datos.length; i++) {
               this.datos[i].categoria = this.datos[i].subcategoria.categoria.nombre;
               this.datos[i].subcategoria = this.datos[i].subcategoria.nombre;
               this.datos[i].distance = this.getDistance(this.myLocation,this.datos[i].establecimiento.lat,this.datos[i].establecimiento.lng);
-              this.datos[i].plan = JSON.parse(this.datos[i].establecimiento.usuario.repartidor.plan);
+              try {
+                this.datos[i].plan = JSON.parse(this.datos[i].establecimiento.usuario.repartidor.plan);
+              } catch (error) {
+                console.log(this.datos[i])
+              }
+              
+
+            }
+            for (let i = 0; i < this.datos2.length; i++) {
+              this.datos2[i].categoria = this.datos2[i].subcategoria.categoria.nombre;
+              this.datos2[i].subcategoria = this.datos2[i].subcategoria.nombre;
+              this.datos2[i].distance = this.getDistance(this.myLocation,this.datos2[i].establecimiento.lat,this.datos2[i].establecimiento.lng);
+              try {
+                this.datos2[i].plan = JSON.parse(this.datos[i].establecimiento.usuario.repartidor.plan);
+              } catch (error) {
+                console.log(this.datos2[i])
+              }
+              
+
             }
             this.getCurrentPosition();
+            self.loading.dismiss();   
           },
           msg => { 
-            //self.loading.dismiss();    
+            self.loading.dismiss();    
           }
         );
       //}
@@ -439,7 +462,6 @@ export class SearchFilterPage implements OnInit {
   async presentLoading() {
     this.loading = await this.loadingController.create({
       spinner: 'dots',
-      duration: 1850,
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });
@@ -476,18 +498,51 @@ export class SearchFilterPage implements OnInit {
       }else if(this.searchText==""){
         return [];
       }else{
-        return this.datos.filter((item:any) => (item.nombre.toLowerCase().includes(this.searchText.toLowerCase()) || item.categoria.toLowerCase().includes(this.searchText.toLowerCase()) || item.subcategoria.toLowerCase().includes(this.searchText.toLowerCase())))
+        const searchTextNormalized = this.normalizeText(this.searchText);
+        return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
         .sort((a:any, b:any) => {
           //return a.distance - b.distance;
         });
       }
     }else if(this.tipo=="cercano"){
-      return this.datos.filter((item:any) => (item.nombre.toLowerCase().includes(this.searchText.toLowerCase()) || item.categoria.toLowerCase().includes(this.searchText.toLowerCase()) || item.subcategoria.toLowerCase().includes(this.searchText.toLowerCase())))
+      return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
         .sort((a:any, b:any) => {
           return a.distance - b.distance;
         });
     }else if(this.tipo=="calificaciones"){
-      return this.datos.filter((item:any) => (item.nombre.toLowerCase().includes(this.searchText.toLowerCase()) || item.categoria.toLowerCase().includes(this.searchText.toLowerCase()) || item.subcategoria.toLowerCase().includes(this.searchText.toLowerCase())))
+      return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
+        .sort((a:any, b:any) => {
+          return b.promedio_calificacion - a.promedio_calificacion;
+        });
+    }
+    
+    
+  }
+
+  normalizeText(text: string) {
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  }
+  get filteredItems2() {
+    //return this.chats;
+    //console.log(this.datos);
+    if(this.tipo=="normal"){
+      if (this.datos2==false) {
+        return [];
+      }else if(this.searchText==""){
+        return [];
+      }else{
+        return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
+        .sort((a:any, b:any) => {
+          //return a.distance - b.distance;
+        });
+      }
+    }else if(this.tipo=="cercano"){
+      return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
+        .sort((a:any, b:any) => {
+          return a.distance - b.distance;
+        });
+    }else if(this.tipo=="calificaciones"){
+      return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
         .sort((a:any, b:any) => {
           return b.promedio_calificacion - a.promedio_calificacion;
         });

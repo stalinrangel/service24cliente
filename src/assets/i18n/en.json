@@ -49,7 +49,8 @@
         "create":"Create Request",
         "home":"Go to home",
         "empty":"The Supplier does not have qualifications yet.",
-        "year": "year"
+        "year": "year",
+        "history":"History"
     },
     "ORDER": {
         "title": "Create Request",

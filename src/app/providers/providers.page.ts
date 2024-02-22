@@ -86,7 +86,7 @@ export class ProvidersPage implements OnInit {
     //this.getServices({})
   }
   async geolocate(){
-		console.log('geolocate')
+		/*console.log('geolocate')
 		const options = { enableHighAccuracy: true };
 		const coordinates = await Geolocation.getCurrentPosition(options);
 		
@@ -95,8 +95,9 @@ export class ProvidersPage implements OnInit {
 		const latLng = {
 		  lat: coordinates.coords.latitude,
 		  lng: coordinates.coords.longitude
-		};
-	
+		};*/
+    let geo:any=localStorage.getItem('geo');
+    const latLng = JSON.parse(geo);
     console.log(latLng)
     this.getServices(latLng)
 	  }
