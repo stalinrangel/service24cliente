@@ -78,7 +78,8 @@ export class SearchFilterPage implements OnInit {
     this.myLocation.lng=latLng.lng;
 	  */
     let geo:any=localStorage.getItem('geo');
-    const latLng = JSON.parse(geo);
+    let latLng = JSON.parse(geo);
+    this.myLocation=latLng;
     console.log(latLng)
     this.initOrder();
     //this.getServices(latLng)
@@ -158,6 +159,7 @@ export class SearchFilterPage implements OnInit {
             for (let i = 0; i < this.datos.length; i++) {
               this.datos[i].categoria = this.datos[i].subcategoria.categoria.nombre;
               this.datos[i].subcategoria = this.datos[i].subcategoria.nombre;
+              //console.log(this.myLocation,this.datos[i].establecimiento.lat,this.datos[i].establecimiento.lng);
               this.datos[i].distance = this.getDistance(this.myLocation,this.datos[i].establecimiento.lat,this.datos[i].establecimiento.lng);
               try {
                 this.datos[i].plan = JSON.parse(this.datos[i].establecimiento.usuario.repartidor.plan);
@@ -499,10 +501,27 @@ export class SearchFilterPage implements OnInit {
         return [];
       }else{
         const searchTextNormalized = this.normalizeText(this.searchText);
-        return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
+        return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase() === this.searchText.toLowerCase() || this.normalizeText(item.categoria).toLowerCase() === this.searchText.toLowerCase() || this.normalizeText(item.subcategoria).toLowerCase() === this.searchText.toLowerCase()))
+        .concat(this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())) && !((this.normalizeText(item.nombre).toLowerCase() === this.searchText.toLowerCase()) || (this.normalizeText(item.categoria).toLowerCase() === this.searchText.toLowerCase()) || (this.normalizeText(item.subcategoria).toLowerCase() === this.searchText.toLowerCase()))))
         .sort((a:any, b:any) => {
-          //return a.distance - b.distance;
-        });
+          const nameA = this.normalizeText(a.nombre).toLowerCase();
+          const nameB = this.normalizeText(b.nombre).toLowerCase();
+          const categoryA = this.normalizeText(a.categoria).toLowerCase();
+          const categoryB = this.normalizeText(b.categoria).toLowerCase();
+          const subcategoryA = this.normalizeText(a.subcategoria).toLowerCase();
+          const subcategoryB = this.normalizeText(b.subcategoria).toLowerCase();
+
+          const exactMatchA = (nameA === this.searchText.toLowerCase() || categoryA === this.searchText.toLowerCase() || subcategoryA === this.searchText.toLowerCase());
+          const exactMatchB = (nameB === this.searchText.toLowerCase() || categoryB === this.searchText.toLowerCase() || subcategoryB === this.searchText.toLowerCase());
+
+          if (exactMatchA && !exactMatchB) {
+              return -1;
+          } else if (!exactMatchA && exactMatchB) {
+              return 1;
+          } else {
+              return nameA.includes(this.searchText.toLowerCase()) || categoryA.includes(this.searchText.toLowerCase()) || subcategoryA.includes(this.searchText.toLowerCase()) ? -1 : 1;
+          }
+      });
       }
     }else if(this.tipo=="cercano"){
       return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
@@ -531,10 +550,27 @@ export class SearchFilterPage implements OnInit {
       }else if(this.searchText==""){
         return [];
       }else{
-        return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
+        return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase() === this.searchText.toLowerCase() || this.normalizeText(item.categoria).toLowerCase() === this.searchText.toLowerCase() || this.normalizeText(item.subcategoria).toLowerCase() === this.searchText.toLowerCase()))
+        .concat(this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())) && !((this.normalizeText(item.nombre).toLowerCase() === this.searchText.toLowerCase()) || (this.normalizeText(item.categoria).toLowerCase() === this.searchText.toLowerCase()) || (this.normalizeText(item.subcategoria).toLowerCase() === this.searchText.toLowerCase()))))
         .sort((a:any, b:any) => {
-          //return a.distance - b.distance;
-        });
+          const nameA = this.normalizeText(a.nombre).toLowerCase();
+          const nameB = this.normalizeText(b.nombre).toLowerCase();
+          const categoryA = this.normalizeText(a.categoria).toLowerCase();
+          const categoryB = this.normalizeText(b.categoria).toLowerCase();
+          const subcategoryA = this.normalizeText(a.subcategoria).toLowerCase();
+          const subcategoryB = this.normalizeText(b.subcategoria).toLowerCase();
+
+          const exactMatchA = (nameA === this.searchText.toLowerCase() || categoryA === this.searchText.toLowerCase() || subcategoryA === this.searchText.toLowerCase());
+          const exactMatchB = (nameB === this.searchText.toLowerCase() || categoryB === this.searchText.toLowerCase() || subcategoryB === this.searchText.toLowerCase());
+
+          if (exactMatchA && !exactMatchB) {
+              return -1;
+          } else if (!exactMatchA && exactMatchB) {
+              return 1;
+          } else {
+              return nameA.includes(this.searchText.toLowerCase()) || categoryA.includes(this.searchText.toLowerCase()) || subcategoryA.includes(this.searchText.toLowerCase()) ? -1 : 1;
+          }
+      });
       }
     }else if(this.tipo=="cercano"){
       return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
