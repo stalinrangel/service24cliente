@@ -19,6 +19,8 @@ import { register } from 'swiper/element/bundle';
 import { ImageModalPage } from '../image-modal/image-modal.page';
 import { Router } from '@angular/router';
 import { GeneralService } from '../services/general.service';
+import { Swiper } from 'swiper';
+import { SwiperOptions } from 'swiper/types';
 
 register();
 
@@ -29,6 +31,12 @@ register();
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+
+  public config: SwiperOptions={
+    zoom: {
+      maxRatio: 5,
+    },
+  };
 
   public items: any;
   public loading: any;
@@ -118,6 +126,10 @@ export class Tab1Page {
     this.getZone();
     this.objService.get_reload_chats_pedido().subscribe((data:any) => {
       this.getZone();
+    });
+
+    const mySwiper = new Swiper('.swiper-container', {
+      zoom: true
     });
   }
 

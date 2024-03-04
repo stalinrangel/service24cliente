@@ -165,6 +165,8 @@ export class SearchFilterPage implements OnInit {
                 this.datos[i].plan = JSON.parse(this.datos[i].establecimiento.usuario.repartidor.plan);
               } catch (error) {
                 console.log(this.datos[i])
+                //alert(this.datos[i])
+
               }
               
 
@@ -174,9 +176,10 @@ export class SearchFilterPage implements OnInit {
               this.datos2[i].subcategoria = this.datos2[i].subcategoria.nombre;
               this.datos2[i].distance = this.getDistance(this.myLocation,this.datos2[i].establecimiento.lat,this.datos2[i].establecimiento.lng);
               try {
-                this.datos2[i].plan = JSON.parse(this.datos[i].establecimiento.usuario.repartidor.plan);
+                this.datos2[i].plan = JSON.parse(this.datos2[i].establecimiento.usuario.repartidor.plan);
               } catch (error) {
                 console.log(this.datos2[i])
+                //alert(this.datos2[i])
               }
               
 

@@ -53,7 +53,7 @@
   </div-->
 
 
-  <swiper-container  style="margin: 10px 20px 0px 20px;" [loop]="true" [autoplay]="true">
+  <swiper-container  style="margin: 10px 20px 0px 20px;" [loop]="true" [autoplay]="true" [config]="config">
 
     <swiper-slide style="padding: 10px 0px; " *ngFor="let p of publicidad; let i = index" >
       <div class="container" (click)="proveedor(p.productos.id)">
