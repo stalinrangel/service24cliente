@@ -52,8 +52,15 @@
     </div>
   </div-->
 
+  <div class="slider" style="   height: 20vh;">
+    <img class="container"  src="assets/service24/hombrehogar.svg" />
+    <img class="container"  src="assets/service24/mascota.svg"/>
+    <img class="container"  *ngFor="let image of publicidad" [src]="image.productos.imagen" />
+  </div>
+    
 
-  <swiper-container  style="margin: 10px 20px 0px 20px;" [loop]="true" [autoplay]="true" [config]="config">
+
+  <!--swiper-container  style="margin: 10px 20px 0px 20px;" [loop]="true" [autoplay]="true" [config]="config">
 
     <swiper-slide style="padding: 10px 0px; " *ngFor="let p of publicidad; let i = index" >
       <div class="container" (click)="proveedor(p.productos.id)">
@@ -74,7 +81,7 @@
       </div>
     </swiper-slide>
     
-  </swiper-container>
+  </swiper-container-->
   
   <div class="presentacion">
 
