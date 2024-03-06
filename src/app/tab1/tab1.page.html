@@ -55,7 +55,7 @@
   <div class="slider" style="   height: 20vh;">
     <img class="container"  src="assets/service24/hombrehogar.svg" />
     <img class="container"  src="assets/service24/mascota.svg"/>
-    <img class="container"  *ngFor="let image of publicidad" [src]="image.productos.imagen" />
+    <img class="container"  *ngFor="let image of publicidad" [src]="image.productos.imagen" (click)="proveedor(image.productos.id)"/>
   </div>
     
 
