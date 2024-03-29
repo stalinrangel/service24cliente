@@ -570,5 +570,21 @@ export class Tab1Page {
     this.nav.navigateForward(ruta);
   }
 
+
+
+  public isCliente:any=true;
+	public cliente:any='Modo Cliente';
+  changeRol(e:any){
+    this.isCliente=!e.detail.checked;
+		if (this.isCliente) {
+			this.isCliente=false;
+			this.cliente='Modo proveedor';
+      this.objService.setTab(this.isCliente);
+		}else{
+			this.isCliente=true;
+			this.cliente='Modo cliente';
+      this.objService.setTab(this.isCliente);
+		}
+	}
 }
 

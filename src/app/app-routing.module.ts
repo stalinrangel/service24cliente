@@ -146,7 +146,12 @@ const routes: Routes = [
   {
     path: 'contact-modal',
     loadChildren: () => import('./contact-modal/contact-modal.module').then( m => m.ContactModalPageModule)
+  },
+  {
+    path: 'login-proveedor',
+    loadChildren: () => import('./login-proveedor/login-proveedor.module').then( m => m.LoginProveedorPageModule)
   }
+
 
 ];
 @NgModule({

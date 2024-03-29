@@ -15,10 +15,27 @@ export class TabsPage {
   public currentTab: string = "tab1";
 	@ViewChild(IonTabs) public tabs: any;
 	public subscription: any;
-
+	public isCliente:any=true;
+	public cliente:any='Modo Cliente';
 	constructor(private platform: Platform,public navCtrl: NavController, public router: Router,private userService: UserService,private objService: ObjectserviceService,private storage: StorageService){
 
+	this.isCliente=localStorage.getItem('isCliente');
 
+	this.objService.getTab().subscribe((data:any) => {
+		console.log(data)
+		this.isCliente=data;
+	});
+
+	}
+
+	changeRol(){
+		if (this.isCliente) {
+			this.isCliente=false;
+			this.cliente='Modo proveedor';
+		}else{
+			this.isCliente=true;
+			this.cliente='Modo cliente';
+		}
 	}
 	
 	setTab(evt:any) {

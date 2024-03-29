@@ -1,0 +1,240 @@
+<ion-header>
+  <ion-toolbar class="nuevo-header" color="secondary" mode="md">
+    <ion-title class="ion-text-capitalize">
+      Solicitudes
+    </ion-title>
+    <ion-buttons slot="end" (click)="viewNotification()">
+      <ion-button>
+      	<div class="icon-bagde" *ngIf="show_notify"></div><span style="color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
+		  <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div style="margin: 0px 20px 0px 20px;">
+	<ion-toolbar class="tool-segment">
+		<ion-segment [(ngModel)]="type" value="track">
+		  <ion-segment-button value="track" mode="md">
+			<ion-label>En curso</ion-label>
+		  </ion-segment-button>
+		  <ion-segment-button value="histories" mode="md">
+			<ion-label>Historial</ion-label>
+		  </ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+  </div>
+  
+</ion-header>
+
+<ion-content>
+	<div *ngIf="orders">
+		<!--ion-fab vertical="bottom" horizontal="end" slot="fixed" class="btn-help" (click)="stopGeo()" *ngIf="orders.length == 0">
+    		Desactivar Ubicación
+  		</ion-fab-->
+	</div>
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+	  <ion-refresher-content
+	    pullingIcon="ios-arrow-down"
+	    pullingText="Desliza para actualizar"
+	    refreshingSpinner="dots"
+	    class="refresh-content">
+	  </ion-refresher-content>
+	</ion-refresher>
+	<ion-list *ngIf="type === 'track'">
+		<div *ngIf="orders">
+			<div class="conten-item" *ngFor="let item of orders;let even = even" (click)="viewDetails(item)" [style.background]="even? '#F5FBFF' : '#F5FBFF'" style="border: 1.5px solid var(--secundary-blue-medium, #DAEEFF) !important; border-radius: 10px; margin-top: 10px; margin-left: 20px; margin-right: 20px;">
+				<div class="content-img">
+					<img [src]="item.usuario.imagen">
+					<div style="display: flex; flex-direction: column; width: 100%;">
+						<div style="display: flex; justify-content: space-between;align-items: center;">
+							<p class="title-item">{{item.usuario.nombre}}</p>
+							<img src="../../assets/service24/flecha_derecha.svg" alt="" style="width: 22px;">
+						</div>
+						<p class="subtitle-item">{{item.productos[0].nombre}}</p>
+						<p class="subtitle-item" style="font-weight: bold;">Fecha: {{item.created_at | date: "dd-MM-yyyy"}}</p>
+						<div class="subtitle-item" style="display: flex;flex-direction: row;justify-content: space-between;">	
+							<div><p>Pedido ID: {{item.id}}</p></div>			
+							<div><p class="status-item color-green" > <span class="green"></span> En progreso</p></div>
+							
+						</div>
+						
+					</div>
+				</div>
+			
+				<!--ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> {{item.direccion}}</p>
+				      <p class="date-item">{{item.tiempo}} | {{item.hora}}</p>
+				    </ion-label>
+				    <p slot="end" class="status-item color-green" style="margin-left: 15px;">En progreso</p>
+				</ion-item-->
+			</div>
+			<!--p *ngIf="orders.length == 0" class="text-empty">No tienes servicios en curso</p-->
+			<div *ngIf="orders.length == 0" style="width: 100%;height: 70vh; display: flex; justify-content: center; align-items: center;">
+				<img  src="../../assets/service24/no-tienes-solicitudes-encurso.svg" alt="" style="width: 60%;">
+			</div>
+		</div>
+		<div *ngIf="!orders">
+			<div class="conten-item">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				</ion-item>
+			</div>
+			<div class="conten-item" style="background-color: #f2f2f2f2;">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				</ion-item>
+			</div>
+			<div class="conten-item">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				</ion-item>
+			</div>
+			<div class="conten-item" style="background-color: #f2f2f2f2;">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				</ion-item>
+			</div>
+			<div class="conten-item">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				</ion-item>
+			</div>
+		</div>
+	</ion-list>
+	<ion-list *ngIf="type == 'histories'">
+		<ion-grid>
+			<!--ion-row>
+			    <ion-col size="6">
+			     	<ion-item class="content-date1" lines="none">
+						<ion-datetime displayFormat="MM" [(ngModel)]="myDate" (ionChange)="setDateP1($event)" picker-format="MM" class="area-info" cancelText="Cancelar" doneText="Aceptar" mode="ios"></ion-datetime>
+						<ion-icon slot="end" name="arrow-dropup" class="custom-selector1"></ion-icon>
+					</ion-item>
+			    </ion-col>
+			    <ion-col size="6">
+			    	<ion-item class="content-date2" lines="none">
+						<ion-datetime displayFormat="YYYY" [(ngModel)]="myDate1" (ionChange)="setDateP2($event)" picker-format="YYYY" class="area-info" cancelText="Cancelar" doneText="Aceptar" mode="ios"></ion-datetime>
+						<ion-icon slot="end" name="arrow-dropup" class="custom-selector2"></ion-icon>
+					</ion-item>
+			    </ion-col>
+			</ion-row-->
+		</ion-grid>
+		<div *ngIf="history">
+			<div class="conten-item" *ngFor="let item of history;let even = even" [style.background]="even? '#F5FBFF' : '#F5FBFF'" style="border: 1.5px solid var(--secundary-blue-medium, #DAEEFF) !important; border-radius: 10px; margin-top: 10px; margin-left: 20px; margin-right: 20px;" (click)="viewDetails(item)">
+				<div class="content-img">
+					<img [src]="item.usuario.imagen">
+					<div style="display: flex; flex-direction: column; width: 100%;">
+						<div style="display: flex; justify-content: space-between;align-items: center;">
+						  <p class="title-item">{{item.usuario.nombre}}</p>
+						  <img src="../../assets/service24/flecha_derecha.svg" alt="" style="width: 22px;">
+						</div>
+						  <p class="subtitle-item">{{item.productos[0].nombre}}</p>
+						<div slot="end" *ngIf="item.estado != 5">
+							
+							<p class="status-item color-green"><span class="red"></span>  Finalizado</p>
+							<div *ngIf="item.califico" class="content-start">
+								<ion-icon slot="icon-only" name="star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star" [ngClass]="{'filled': i < item.puntaje}"></ion-icon>
+							</div>
+							<div *ngIf="!item.califico" class="content-start">
+								<p>Pendiente por calificar</p>
+							</div>
+						</div>
+						<div slot="end" *ngIf="item.estado == 5">
+							<p class="status-item color-red"><span class="red"></span> Cancelado</p>
+						</div>
+					  </div>
+				</div>
+				<!--ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> {{item.direccion}}</p>
+				      <p class="date-item">{{item.tiempo}} | {{item.hora}}</p>
+				    </ion-label>
+				    
+				</ion-item-->
+			</div>
+			<p *ngIf="history.length == 0" class="text-empty">No tienes servicios finalizados</p>
+		</div>
+		<div *ngIf="!history">
+			<div class="conten-item">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				    <div style="position: absolute;bottom: -8px;margin: 0px;right: 17px;"><p><ion-skeleton-text style="width: 75px" animated></ion-skeleton-text></p></div>
+				</ion-item>
+			</div>
+			<div class="conten-item" style="background-color: #f2f2f2f2;">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				    <div style="position: absolute;bottom: -8px;margin: 0px;right: 17px;"><p><ion-skeleton-text style="width: 75px" animated></ion-skeleton-text></p></div>
+				</ion-item>
+			</div>
+			<div class="conten-item">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				    <div style="position: absolute;bottom: -8px;margin: 0px;right: 17px;"><p><ion-skeleton-text style="width: 75px" animated></ion-skeleton-text></p></div>
+				</ion-item>
+			</div>
+			<div class="conten-item" style="background-color: #f2f2f2f2;">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				    <div style="position: absolute;bottom: -8px;margin: 0px;right: 17px;"><p><ion-skeleton-text style="width: 75px" animated></ion-skeleton-text></p></div>
+				</ion-item>
+			</div>
+			<div class="conten-item">
+				<p class="title-item"><ion-skeleton-text animated></ion-skeleton-text></p>
+				<ion-item lines="none">
+				    <ion-label class="label-item">
+				      <p class="dir-item"><ion-icon name="arrow-dropup" class="custom-map"></ion-icon> <ion-skeleton-text animated style="display: inline-block;margin-left: 5px;"></ion-skeleton-text></p>
+				      <p class="date-item"><ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text> | <ion-skeleton-text animated style="width: 20%;display: inline-block;"></ion-skeleton-text></p>
+				    </ion-label>
+				    <p slot="end" class="status-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+				   <div style="position: absolute;bottom: -8px;margin: 0px;right: 17px;"><p><ion-skeleton-text style="width: 75px" animated></ion-skeleton-text></p></div>
+				</ion-item>
+			</div>
+		</div>
+	</ion-list>
+	<a href="#" class="btn-flotante" *ngIf="estado" (click)="detener()">Detener localización <ion-icon class="parpadeo" name="locate-outline"></ion-icon></a>
+</ion-content>

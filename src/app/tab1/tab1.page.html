@@ -3,6 +3,7 @@
     <ion-title class="ion-text-capitalize " >
       <img src="../../assets/service24/logo-rojo.svg" alt="" >
     </ion-title>
+    <ion-toggle [(ngModel)]="isCliente" (ionChange)="changeRol($event)">{{cliente}}</ion-toggle>
     <ion-buttons slot="end" (click)="viewNotification()" style="width: 57px">
       <ion-button style="background: #fff;border-radius: 50%;">
         <div class="icon-bagde" *ngIf="show_notify" ></div><span style="background-color: #F5FBFF; color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>

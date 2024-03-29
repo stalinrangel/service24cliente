@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar class="nuevo-header" color="secondary" mode="md">
+     <ion-title class="ion-text-capitalize ion-text-center" mode="md">
+      Chats
+     </ion-title>
+  </ion-toolbar>
+</ion-header>
+<div class="container">
+  <div class="header" id="search">
+      <input type="text" class="nuevo-input nuevo-input-password" type="text" [(ngModel)]="searchText" >
+      <ion-icon name="search" class="icon-eye nuevo-input-password2"></ion-icon>
+  </div>
+  <div class="en-x" id="enx">
+      <div class="notiene" *ngIf="filteredItems.length == 0">
+          <p>Aún no tienes chats en tus pedidos.</p>
+      </div>
+      <div *ngFor="let chat of filteredItems; let i = index" class="person" (click)="getChat(chat)">
+          <img [src]="chat.usuario.imagen" alt="">
+          <span>Pedido ID: {{chat.pedido_id}}</span>
+          <p>{{chat.usuario.nombre}}</p>
+      </div>
+  </div>
+  <div class="en-y" [style.height]="altura + 'px !important' ">
+      <div *ngFor="let chat of filteredItems; let i = index" class="row pre-chat" (click)="getChat(chat)">
+          <div class="col-2 nuevo-input">
+              <img [src]="chat.usuario.imagen" alt="" class="img2">
+          </div>
+          <div class="col-7 nuevo-input">
+              <p class="nombre">{{chat.usuario.nombre}}</p>
+              <div style="display: flex;">
+              <span>Pedido ID: {{chat.pedido_id}}</span> &nbsp; <span *ngIf="chat.pedido.estado==2" style="color: #f0f058;">Por aceptar</span><span *ngIf="chat.pedido.estado==3" style="color: #fd682a;">En curso</span><span *ngIf="chat.pedido.estado==4" style="color: #2afd46;">Finalizado</span><span *ngIf="chat.pedido.estado==5" style="color: #ff0000;">Cancelado</span>
+              </div>
+              <span class="texto">{{chat.mensajes[chat.tam-1].msg}}</span>
+          </div>
+          <div class="col-3 nuevo-input" style="display: flex;">
+              <span>{{chat.mensajes[chat.tam-1].created_at}}</span>
+          </div>
+          
+          
+      </div>
+  </div>
+</div>

@@ -164,6 +164,15 @@ export class ObjectserviceService {
 		return this.reload_zona;
 	}
 
+	private tab = new Subject<any>();
+	setTab(data: any) {
+		console.log(data)
+		this.tab.next(data);
+	}
+	getTab(): Subject<any> {
+		return this.tab;
+	}
+
 	//--trabaja con notificaciones 
 	private notify = new Subject<any>();
 	setNotify(data: any) {
