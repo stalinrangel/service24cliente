@@ -29,7 +29,7 @@ export class AppComponent {
     translate.setDefaultLang('es');
     translate.use('es');
     this.splash();
-    this.openModal();
+    //this.openModal();
     this.initializeApp();
   }
   

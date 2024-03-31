@@ -70,6 +70,7 @@ export class Tab10Page {
 		}); 
 
 		this.data = this.objService.getExtras();
+		console.log(this.data)
 		this.admin_id = this.data.admin_id;
 		this.chat_id = this.data.chat_id;
 		this.token_notificacion = this.data.token_notificacion;  

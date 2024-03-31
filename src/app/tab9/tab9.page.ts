@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { NavController, AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ObjetcserviceService } from '../services/objetcservice.service';
+import { ObjetcserviceService } from '../servicesproveedor/objetcservice.service';
 import { AuthService } from '../servicesproveedor/auth.service';
 import { UserService } from '../servicesproveedor/user.service';
 import { StorageService } from '../servicesproveedor/storage.service';
@@ -106,7 +106,7 @@ export class Tab9Page {
         }, 100);*/
         alert('Tienes que aceptarlo para ver los mensajes');
     }else if (chat.pedido.estado==3) {
-      this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
+      this.navCtrl.navigateForward('/tabs/tab7'); //chat pedido
       setTimeout(() => {
         this.objService.setchatpedido(data);
         }, 100);

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { IonTabs, Platform, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/services/storage/storage.service';
@@ -17,14 +17,15 @@ export class TabsPage {
 	public subscription: any;
 	public isCliente:any=true;
 	public cliente:any='Modo Cliente';
-	constructor(private platform: Platform,public navCtrl: NavController, public router: Router,private userService: UserService,private objService: ObjectserviceService,private storage: StorageService){
+	constructor(private changeDetector: ChangeDetectorRef,private platform: Platform,public navCtrl: NavController, public router: Router,private userService: UserService,private objService: ObjectserviceService,private storage: StorageService){
 
 	this.isCliente=localStorage.getItem('isCliente');
-
-	this.objService.getTab().subscribe((data:any) => {
-		console.log(data)
-		this.isCliente=data;
-	});
+	this.objService.isCliente$.subscribe((isClienteValue: boolean) => {
+		console.log(isClienteValue)
+		this.isCliente = isClienteValue;
+		this.changeDetector.detectChanges();
+	  });
+	
 
 	}
 
@@ -32,9 +33,11 @@ export class TabsPage {
 		if (this.isCliente) {
 			this.isCliente=false;
 			this.cliente='Modo proveedor';
+			this.navCtrl.navigateRoot('/tabs/tab6');
 		}else{
 			this.isCliente=true;
 			this.cliente='Modo cliente';
+			this.navCtrl.navigateRoot('/tabs/tab1');
 		}
 	}
 	
@@ -78,7 +81,7 @@ export class TabsPage {
 
 		
 		this.storage.getObject('userSV24').then(items => {
-			console.log(items)
+			//console.log(items)
 			if (items != '' && items != null) {
 				this.usuario = items;
 				this.storage.get('TUSV24').then(items2 => {
@@ -86,7 +89,7 @@ export class TabsPage {
 					if (items2) {
 						this.userService.getId(this.usuario.id,items2,'1').subscribe(
 							data => {
-								console.log(data)
+								//console.log(data)
 								this.datos = data;
 								this.chat_support.admin_id = this.datos.chat.admin_id;
 								this.chat_support.chat_id = this.datos.chat.id;
@@ -96,7 +99,7 @@ export class TabsPage {
 								this.objService.setExtras(this.chat_support); 
 							},
 							msg => { 
-								console.log(msg);
+								//console.log(msg);
 								  if(msg.status == 404){ 
 									 if (msg.error.admin) {
 										 if (msg.error.admin.length > 0) {
@@ -125,7 +128,7 @@ export class TabsPage {
 	support(){
 		/*this.navCtrl.navigateForward('/tabs/tab5');*/
 		//this.objService.setsoporte({});
-		console.log('support')
+		//console.log('support')
 	}
 
 }

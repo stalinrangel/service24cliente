@@ -167,34 +167,34 @@ export class NotificationsService {
   accions(i:any,data:any){
    
     if (i=='6') {
-      this.navCtrl.navigateForward('/tabs/tab1');//creado
+      this.navCtrl.navigateForward('/tabs/tab6');//creado
       setTimeout(() => {
         this.objService.setCreado(data);
         
         }, 300);
     }
     if (i=='7') {
-      this.navCtrl.navigateForward('/tabs/tab2');//Aceptado
+      this.navCtrl.navigateForward('/tabs/tab7');//Aceptado
       setTimeout(() => {
         this.objService.setAceptado(data);
         
         }, 300);
     }
     if (i=='4') {
-      this.navCtrl.navigateForward('/tabs/tab2');//En Camino
+      this.navCtrl.navigateForward('/tabs/tab7');//En Camino
       setTimeout(() => {
         this.objService.setEncamino(data);
         
         }, 300);
     }
     if (i=='3') {
-      this.navCtrl.navigateForward('/tabs/tab2'); //finalizados
+      this.navCtrl.navigateForward('/tabs/tab7'); //finalizados
       setTimeout(() => {
         this.objService.setfinalizados(data);
         }, 300);
     }
     if (i=='5') {
-      this.navCtrl.navigateForward('/tabs/tab2'); //cancelados
+      this.navCtrl.navigateForward('/tabs/tab7'); //cancelados
       setTimeout(() => {
         this.objService.setcancelado(data);
         }, 300);
@@ -207,7 +207,7 @@ export class NotificationsService {
           this.objService.set_reload_chats_pedido(data);
         }else{
           
-          this.navCtrl.navigateForward('/tabs/tab2'); //chat pedido
+          this.navCtrl.navigateForward('/tabs/tab7'); //chat pedido
           setTimeout(() => {
             this.objService.setchatpedido(data);
             this.objService.set_reload_chats_pedido(data);
@@ -221,7 +221,7 @@ export class NotificationsService {
          // alert('data');
           this.objService.set_reload_chats_pedido(data);
         }else{
-          this.navCtrl.navigateForward('/tabs/tab5');//char soporte
+          this.navCtrl.navigateForward('/tabs/tab10');//char soporte
           setTimeout(() => {
             this.objService.setsoporte(data);
             this.objService.set_reload_chats_pedido(data);
@@ -229,7 +229,7 @@ export class NotificationsService {
         }
     }
     if (i=='17') {
-      this.navCtrl.navigateForward('/tabs/tab1'); //notificaciones generales 
+      this.navCtrl.navigateForward('/tabs/tab6'); //notificaciones generales 
       setTimeout(() => {
         this.objService.setgenerales(data);
         }, 300);
@@ -240,7 +240,7 @@ export class NotificationsService {
     if (i=='8') {
       let getruta:any=this.objService.getruta();
         //alert(data);
-        if (getruta=='/chat-pedidos') {
+        if (getruta=='chat-pedidos') {
          // alert('data');
           this.objService.set_reload_chats_pedido(data);
         }  
@@ -249,7 +249,7 @@ export class NotificationsService {
 
       let getruta:any=this.objService.getruta();
         //alert(data);
-        if (getruta=='/tabs/tab5') {
+        if (getruta=='/tabs/tab10') {
          // alert('data');
           this.objService.set_reload_chats_pedido(data);
         }

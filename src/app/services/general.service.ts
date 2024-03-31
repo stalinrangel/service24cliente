@@ -26,11 +26,11 @@ export class GeneralService {
   }
 
   async geolocate(){
-		console.log('geolocate')
+		//console.log('geolocate')
 		const options = { enableHighAccuracy: true };
 		const coordinates = await Geolocation.getCurrentPosition(options);
 		
-		console.log('Current position in general:', coordinates);
+		//console.log('Current position in general:', coordinates);
 	
 		this.latLng = {
 		  lat: coordinates.coords.latitude,
@@ -44,10 +44,10 @@ export class GeneralService {
       lat: coordinates.coords.latitude,
 		  lng: coordinates.coords.longitude
     }
-    console.log(datos);
+    //console.log(datos);
     this.userService.getZona(datos).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
         if(data==-1){
           this.presentToast('Estas fuera del rango de alcance de Service24.');
           this.zona={
@@ -63,7 +63,7 @@ export class GeneralService {
         
       },
       msg => {
-        console.log(msg)
+        //console.log(msg)
     })
   }
   

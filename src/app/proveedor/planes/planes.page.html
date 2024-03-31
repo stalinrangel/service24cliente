@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar class="nuevo-header" color="secondary" mode="md">
+      <ion-buttons slot="start" class="icon-back" default-href="/tabs/tab3">
+       <ion-back-button text="" name="md-arrow-back" mode="md">
+        </ion-back-button>
+       </ion-buttons>
+     <ion-title class="ion-text-capitalize ion-text-center" mode="md">
+      Planes
+     </ion-title>
+     <ion-buttons slot="end" class="icon-notify">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-dropup" class="custom-notify"></ion-icon>
+      </ion-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="padding-space2">
+  <p class="text-slide">Planes de servicios:</p>
+
+  <div class="content-target">
+      <ion-card class="target-plan" *ngFor="let plan of plans" [ngClass]="{'select-target': select_plan == plan.id}" (click)="selectPlan(plan)">
+          <p class="item-recom" *ngIf="plan.recomendado == 1"><ion-icon name="ribbon"></ion-icon> Recomendado</p>
+          <div (click)="selectPlan(plan)">
+              <p class="name-plan">{{plan.tipo_plan}}</p>
+              <p class="price-plan" [ngClass]="{'discount': plan.descuento != 0}">${{plan.costo}}</p>
+              <p class="price-plan" *ngIf="plan.descuento != 0">{{plan.descuento}}</p>
+          </div>
+          <div class="icon-target" (click)="plan.show = !plan.show">
+              <ion-icon name="chevron-down-outline" class="icon-price" [hidden]="plan.show"></ion-icon>
+              <ion-icon name="chevron-up-outline" class="icon-price" [hidden]="!plan.show"></ion-icon>
+          </div>
+          <div [ngClass]="{'hiddenDes': !plan.show}" class="content-desplan">
+              <div class="overlay" *ngIf="!plan.show" (click)="plan.show = !plan.show"></div>
+              <div class="item-descP" *ngFor="let item of plan.descripcion" (click)="plan.show = !plan.show">
+                  <ion-icon name="checkmark" class="icon-checkP"></ion-icon>
+                  <p>
+                      {{item.descripcion}}
+                  </p>
+              </div>
+              <ion-button expand="block" color="primary" class="ion-text-capitalize btn-init" style="margin-top: 20px;width: 70%;" (click)="selectPlan(plan)">
+              Seleccionar</ion-button>
+          </div>
+      </ion-card>
+  </div>
+  <br><br>
+  <!--ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" style="margin-right: 15px" (click)="back1()">Atras</ion-button-->
+  <div style="display: flex;">
+      <ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1()">Seleccionar plan</ion-button>
+  </div>
+  <br><br> <br><br>
+  </div>
+</ion-content>

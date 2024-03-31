@@ -1,0 +1,179 @@
+<ion-header>
+  <ion-toolbar class="nuevo-header" color="secondary" mode="md">
+  	<ion-buttons slot="start" class="icon-back" default-href="tabs">
+	   <ion-back-button text="" name="arrow-back" mode="md">
+        </ion-back-button>
+	</ion-buttons>
+    <ion-title class="ion-text-capitalize ion-text-center">
+      Editar Servicio
+    </ion-title>
+    <ion-buttons slot="end" class="icon-notify">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-dropup" class="custom-notify"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="content-profile">
+		<div class="content-img" (click)="presentActionSheet('1')">
+			<img src="{{image_user}}">
+			<ion-icon name="camera"></ion-icon>
+		</div>	
+	</div>
+	<form [formGroup]="registerServiceForm" class="content-div">
+		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.categoria_id}">
+			<ion-label slot="start" class="label-select " [hidden]="registerServiceForm.value.categoria_id != ''">Seleccione una categoría</ion-label>
+			<ion-select formControlName="categoria_id" class="select-input" cancelText="Cancelar" [interfaceOptions]="customActionSheetOptions1" interface="action-sheet">
+			  <ion-select-option [value]="item.id" *ngFor="let item of categories">{{item.nombre}}</ion-select-option>
+			</ion-select>
+		</ion-item>
+		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.subcategoria_id}">
+			<ion-label slot="start" class="label-select" [hidden]="registerServiceForm.value.subcategoria_id != ''">Seleccione una sub categoría</ion-label>
+			<ion-select formControlName="subcategoria_id" class="select-input " cancelText="Cancelar" [interfaceOptions]="customActionSheetOptions2" interface="action-sheet">
+			  <ion-select-option [value]="item.id" *ngFor="let item of subcategories">{{item.nombre}}</ion-select-option>
+			</ion-select>
+		</ion-item>
+		<ion-item lines="none" class="item-info" [ngClass]="{'danger': formErrors.nombre}">
+			<input type="text" formControlName="nombre" placeholder="Nombre del servicio" class="nuevo-input">
+		</ion-item>
+		<ion-item lines="none" class="item-info2 " [ngClass]="{'danger': formErrors.descripcion}">
+			<ion-textarea type="text" placeholder="Descripción del servicio" formControlName="descripcion" class="area-info2 " rows="4" cols="20"></ion-textarea>
+		</ion-item>
+
+		<ion-list-header no-padding>
+	      	<ion-label class="text-slide" style="margin: 5% 0% 3%;text-align: left;">
+	      		<span>Seleccione las zonas en la que quiere ofrecer su servicio</span>
+	  		</ion-label>
+	    </ion-list-header>
+	    <ion-item lines="none" class="item-info"  >
+			<ion-label slot="start" class="label-select" [hidden]="registerServiceForm.value.ciudad != ''">Seleccione una ciudad</ion-label>
+			<ion-select formControlName="ciudad" mode="md" class="select-input" cancelText="Cancelar" interface="action-sheet">
+			  <ion-select-option [value]="item" *ngFor="let item of cities">{{item.nombre}}</ion-select-option>
+			</ion-select>
+		</ion-item>
+		<ion-item lines="none" class="item-info"   >
+			<ion-label slot="start" class="label-select" [hidden]="registerServiceForm.value.zona != ''">Seleccione las zonas</ion-label>
+			<ion-select formControlName="zona" mode="md" class="select-input" cancelText="Cancelar" interface="action-sheet" multiple="true" (ngModelChange)="selectZone()">
+					  <ion-select-option [value]="item" *ngFor="let item of zones">{{item.nombre}}</ion-select-option>
+			</ion-select>
+		</ion-item>
+		<div class="content-chip" *ngIf="selecZones.length > 0">
+			<div class="chip-item" *ngFor="let item of selecZones">
+				<p>{{item.nombre}}</p>
+				<ion-icon name="close" (click)="deleteLanguage(item)"></ion-icon>
+			</div>
+		</div>
+		<div class="content-chip" *ngIf="selecZones.length == 0">
+			<div class="chip-item" style="background-color: red; !important">
+				<p>Sin zonas!!</p>
+			</div>
+		</div>
+
+		<ion-grid class="grid-item">
+		  <ion-row>
+		    <ion-col size="6" class="col-item" *ngFor="let img of images_upload">
+		        <div class="content-img" #square [ngStyle]="{'height.px': square.offsetWidth - (square.offsetWidth*0.15)}">
+		          <ion-icon name="close-circle" class="icon-delete" (click)="presentConfirmDelete(img)"></ion-icon>
+		          <img src="{{img.url}}" (click)="presentConfirmDelete(img)" style="border-radius: 5px;">
+		        </div>
+		    </ion-col>
+		    <ion-col size="6" class="col-item" *ngIf="images_upload.length < 10">
+		        <div class="content-img" #square [ngStyle]="{'height.px': square.offsetWidth - (square.offsetWidth*0.15)}">
+		          <img src="assets/imagen-servicio.png" (click)="presentActionSheet('2')" style="border-radius: 5px;">
+		        </div>
+		    </ion-col>
+		  </ion-row>
+		</ion-grid>
+
+		
+
+		
+	</form>
+	<div style="margin: 5px;">
+		<p class="text-slide">Disponibilidad:</p>
+			<ion-item class="item-days"  style="border: 1px solid var(--secondary-violet-medium, #D6BBFB);border-top-left-radius:10px;border-top-right-radius:10px">
+				<!--ion-toggle color="primary" mode="md" formControlName="lunes" (click)="changeDay('lunes')"></ion-toggle-->
+				
+				<button class="day-active" *ngIf="horario.lunes" (click)="disabledDay('lunes')">Lunes</button>
+				<button class="day-desactive" *ngIf="!horario.lunes" (click)="availableDay('lunes')">Lunes</button>
+				<div style="flex: 1; text-align: center;">
+					<p class="text-g" style="margin-bottom: 10px;">Horario:</p>
+					<div class="content-fhour">					
+						<ion-input  mode="ios" [(ngModel)]="horario.lunes_i" class="area-info ddd" (ionBlur)="setDay('lunes')"></ion-input>
+						<span class="text-g"> a </span>
+						<ion-input  mode="ios" [(ngModel)]="horario.lunes_f" class="area-info ddd" (ionBlur)="setDay('lunes')"></ion-input>
+					</div>
+				</div>
+			</ion-item>
+			<ion-item class="item-days" style="padding-top: 10px;    border-bottom: 1px solid var(--secondary-violet-medium, #D6BBFB);border-left: 1px solid var(--secondary-violet-medium, #D6BBFB); border-right: 1px solid var(--secondary-violet-medium, #D6BBFB);" >
+
+				<button class="day-active" *ngIf="horario.martes" (click)="disabledDay('martes')">Martes</button>
+				<button class="day-desactive" *ngIf="!horario.martes" (click)="availableDay('martes')">Martes</button>
+				<div class="align-hour">
+					<ion-input  mode="ios" [(ngModel)]="horario.martes_i" class="area-info ddd" (ionBlur)="setDay('martes')"></ion-input>
+					<span class="text-g"> a </span>
+					<ion-input  mode="ios" [(ngModel)]="horario.martes_f" class="area-info ddd" (ionBlur)="setDay('martes')"></ion-input>
+				</div>
+			</ion-item>
+			<ion-item class="item-days" style=" padding-top: 10px;   border-bottom: 1px solid var(--secondary-violet-medium, #D6BBFB);border-left: 1px solid var(--secondary-violet-medium, #D6BBFB); border-right: 1px solid var(--secondary-violet-medium, #D6BBFB);">
+
+				<button class="day-active" *ngIf="horario.miercoles" (click)="disabledDay('miercoles')">Miércoles</button>
+				<button class="day-desactive" *ngIf="!horario.miercoles" (click)="availableDay('miercoles')">Miércoles</button>
+				<div class="align-hour">
+					<ion-input  mode="ios" [(ngModel)]="horario.miercoles_i" class="area-info ddd" (ionBlur)="setDay('miercoles')"></ion-input>
+					<span class="text-g"> a </span>
+					<ion-input  mode="ios" [(ngModel)]="horario.miercoles_f" class="area-info ddd" (ionBlur)="setDay('miercoles')"></ion-input>
+				</div>
+			</ion-item>
+			<ion-item class="item-days" style=" padding-top: 10px;   border-bottom: 1px solid var(--secondary-violet-medium, #D6BBFB);border-left: 1px solid var(--secondary-violet-medium, #D6BBFB); border-right: 1px solid var(--secondary-violet-medium, #D6BBFB);">
+				
+				<button class="day-active" *ngIf="horario.jueves" (click)="disabledDay('jueves')">Jueves</button>
+				<button class="day-desactive" *ngIf="!horario.jueves" (click)="availableDay('jueves')">Jueves</button>
+				<div class="align-hour">
+					<ion-input  mode="ios" [(ngModel)]="horario.jueves_i" class="area-info ddd" (ionBlur)="setDay('jueves')"></ion-input>
+					<span class="text-g"> a </span>
+					<ion-input  mode="ios" [(ngModel)]="horario.jueves_f" class="area-info ddd" (ionBlur)="setDay('jueves')"></ion-input>
+				</div>
+			</ion-item>
+			<ion-item class="item-days" style=" padding-top: 10px;   border-bottom: 1px solid var(--secondary-violet-medium, #D6BBFB);border-left: 1px solid var(--secondary-violet-medium, #D6BBFB); border-right: 1px solid var(--secondary-violet-medium, #D6BBFB);">
+				
+				<button class="day-active" *ngIf="horario.viernes" (click)="disabledDay('viernes')">Viernes</button>
+				<button class="day-desactive" *ngIf="!horario.viernes" (click)="availableDay('viernes')">Viernes</button>
+				<div class="align-hour">
+					<ion-input  mode="ios" [(ngModel)]="horario.viernes_i" class="area-info ddd" (ionBlur)="setDay('viernes')"></ion-input>
+					<span class="text-g"> a </span>
+					<ion-input  mode="ios" [(ngModel)]="horario.viernes_f" class="area-info ddd" (ionBlur)="setDay('viernes')"></ion-input>
+				</div>
+			</ion-item>
+			<ion-item class="item-days" style="padding-top: 10px;border-left: 1px solid var(--secondary-violet-medium, #D6BBFB); border-right: 1px solid var(--secondary-violet-medium, #D6BBFB);">
+			
+				<button class="day-active" *ngIf="horario.sabado" (click)="disabledDay('sabado')">Sábado</button>
+				<button class="day-desactive" *ngIf="!horario.sabado" (click)="availableDay('sabado')">Sábado</button>
+				<div class="align-hour">
+					<ion-input  mode="ios" [(ngModel)]="horario.sabado_i" class="area-info ddd" (ionBlur)="setDay('sabado')"></ion-input>
+					<span class="text-g"> a </span>
+					<ion-input  mode="ios" [(ngModel)]="horario.sabado_f" class="area-info ddd" (ionBlur)="setDay('sabado')"></ion-input>
+				</div>
+			</ion-item>
+			<ion-item class="item-days" style="padding-top: 10px;border: 1px solid var(--secondary-violet-medium, #D6BBFB);border-bottom-left-radius:10px;border-bottom-right-radius:10px">
+				
+				<button class="day-active" *ngIf="horario.domingo" (click)="disabledDay('domingo')">Domingo</button>
+				<button class="day-desactive" *ngIf="!horario.domingo" (click)="availableDay('domingo')">Domingo</button>
+				<div class="align-hour">
+					<ion-input  mode="ios" [(ngModel)]="horario.domingo_i" class="area-info ddd" (ionBlur)="setDay('domingo')"></ion-input>
+					<span class="text-g"> a </span>
+					<ion-input  mode="ios" [(ngModel)]="horario.domingo_f" class="area-info ddd" (ionBlur)="setDay('domingo')"></ion-input>
+				</div>
+			</ion-item>	
+
+			
+		</div>
+		<!--ion-button expand="block" color="primary" class="ion-text-capitalize btn-init btn-register" (click)="enviarHorario()">
+			Guardar hroarios</ion-button-->
+		<ion-button expand="block" color="primary" class="ion-text-capitalize btn-init btn-register" (click)="register();enviarHorario()">
+			Guardar cambios</ion-button>
+
+		<br><br>
+</ion-content>

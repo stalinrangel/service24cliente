@@ -6,7 +6,7 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 import { NavController, LoadingController, ToastController, ModalController } from '@ionic/angular';
 import { StorageService } from '../servicesproveedor/storage.service';
 import { OrdersService } from '../servicesproveedor/orders.service';
-import { ObjetcserviceService } from '../services/objetcservice.service';
+import { ObjetcserviceService } from '../servicesproveedor/objetcservice.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { CalificationPage } from '../calification/calification.page';
 import { LocationTrackerService } from '../servicesproveedor/location-tracker.service';
@@ -239,7 +239,7 @@ export class Tab7Page {
                 this.initHistory(this.month,this.year);
                 if(msg.status == 400 || msg.status == 401){ 
                     this.storage.set('TRPSV24',''); 
-                    this.navCtrl.navigateForward('login');
+                    this.navCtrl.navigateForward('login-proveedor');
                 } else if (msg.status == 404){
                   this.orders = [];
                 }   
@@ -274,7 +274,7 @@ export class Tab7Page {
                 this.initHistory2(this.month,this.year);
                 if(msg.status == 400 || msg.status == 401){ 
                     this.storage.set('TRPSV24',''); 
-                    this.navCtrl.navigateForward('login');
+                    this.navCtrl.navigateForward('login-proveedor');
                 } else if (msg.status == 404){
                   this.orders = [];
                 }      
@@ -309,7 +309,7 @@ export class Tab7Page {
                 this.initHistory(this.month,this.year);
                 if(msg.status == 400 || msg.status == 401){ 
                     this.storage.set('TRPSV24',''); 
-                    this.navCtrl.navigateForward('login');
+                    this.navCtrl.navigateForward('login-proveedor');
                 } else if (msg.status == 404){
                   this.orders = [];
                 }      
@@ -382,7 +382,7 @@ export class Tab7Page {
   			      if(msg.status == 400 || msg.status == 401){
                 this.storage.set('TRPSV24',''); 
   			        this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-  			        this.navCtrl.navigateRoot('login');
+  			        this.navCtrl.navigateRoot('login-proveedor');
   			      } else if (msg.status == 404) {
   			      	this.history = [];
   			      }
@@ -426,7 +426,7 @@ export class Tab7Page {
   			      if(msg.status == 400 || msg.status == 401){
                 this.storage.set('TRPSV24',''); 
   			        this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-  			        this.navCtrl.navigateRoot('login');
+  			        this.navCtrl.navigateRoot('login-proveedor');
   			      } else if (msg.status == 404) {
   			      	this.history = [];
   			      }
@@ -470,7 +470,7 @@ export class Tab7Page {
 				      if(msg.status == 400 || msg.status == 401){ 
 				        this.storage.set('TRPSV24','');
                 this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-				        this.navCtrl.navigateRoot('login');
+				        this.navCtrl.navigateRoot('login-proveedor');
 				      } else if (msg.status == 404) {
                 this.presentToast(msg.error.error);
 				      	this.history = [];
@@ -513,7 +513,7 @@ export class Tab7Page {
               if(msg.status == 400 || msg.status == 401){ 
                 this.storage.set('TRPSV24','');
                 this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-                this.navCtrl.navigateRoot('login');
+                this.navCtrl.navigateRoot('login-proveedor');
               } else if (msg.status == 404) {
                 this.presentToast(msg.error.error);
                 this.history = [];
@@ -534,7 +534,7 @@ export class Tab7Page {
 
   viewDetails(item:any){
     this.objService.setExtras(item);
-    this.navCtrl.navigateForward('detail-tracking');
+    this.navCtrl.navigateForward('proveedor/detail-tracking');
   }
 
   async presentLoading() {

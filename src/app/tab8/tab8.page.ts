@@ -9,7 +9,7 @@ import { UserService } from '../servicesproveedor/user.service';
 //import { Facebook } from '@ionic-native/facebook/ngx';
 import { ObjetcserviceService } from '../servicesproveedor/objetcservice.service';
 import { OrdersService } from '../servicesproveedor/orders.service';
-import { NotificationsComponent } from '../notifications/notifications.component';
+import { NotificationsPage } from '../proveedor/notifications/notifications.page';
 import { RefreshService } from '../servicesproveedor/refresh.service';
 import { Subscription } from 'rxjs';
 import { LocationTrackerService } from '../servicesproveedor/location-tracker.service';
@@ -228,7 +228,7 @@ export class Tab8Page  {
 			        if(msg.status == 400 || msg.status == 401){ 
 			        	this.storage.set('TRPSV24','');
 			        	this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-		                this.navCtrl.navigateForward('login');
+		                this.navCtrl.navigateForward('login-proveedor');
 		            }  
 			    }
 		    	);
@@ -303,7 +303,7 @@ export class Tab8Page  {
 					  if(msg.status == 400 || msg.status == 401){ 
 						  this.storage.set('TRPSV24','');
 						  this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-						  this.navCtrl.navigateForward('login');
+						  this.navCtrl.navigateForward('login-proveedor');
 					  }  
 				  }
 				  );
@@ -345,7 +345,7 @@ export class Tab8Page  {
 					      if(msg.status == 400 || msg.status == 401){ 
 					      	this.storage.set('TRPSV24','');
 					        this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-					        this.navCtrl.navigateRoot('login');
+					        this.navCtrl.navigateRoot('login-proveedor');
 					      }
 					    });
 		  			}
@@ -375,7 +375,7 @@ export class Tab8Page  {
 	}
 
 	logout(){
-		this.navCtrl.navigateRoot('login');
+		this.navCtrl.navigateRoot('login-proveedor');
 		let items:any=this.storage.getObject('userRPSV24');
 			if (items) {
 				let items2:any=this.storage.get('TRPSV24');
@@ -393,7 +393,7 @@ export class Tab8Page  {
 					      this.promedio_calificacion = 0;
 					      this.storage.remove('formLocalRSV24');
 					      this.locationTracker.stopT();
-					      this.navCtrl.navigateRoot('login');
+					      this.navCtrl.navigateRoot('login-proveedor');
 					    },
 					    msg => {
 					      if(msg.status == 400 || msg.status == 401){ 
@@ -407,7 +407,7 @@ export class Tab8Page  {
 						      this.promedio_calificacion = 0;
 						      this.storage.remove('formLocalRSV24');
 						      this.locationTracker.stopT();
-						      this.navCtrl.navigateRoot('login');
+						      this.navCtrl.navigateRoot('login-proveedor');
 					      }
 					    });
 		  			}
@@ -415,7 +415,7 @@ export class Tab8Page  {
 	}
 
 	editProfile(){
-		this.navCtrl.navigateForward('edit-profile');
+		this.navCtrl.navigateForward('proveedor/edit-profile');
 	}
 
 	async presentConfirm() {
@@ -493,7 +493,7 @@ export class Tab8Page  {
 	}
 
 	planes(){
-		this.navCtrl.navigateForward('planes');
+		this.navCtrl.navigateForward('proveedor/planes');
 	}
 
 	async support(){
@@ -509,7 +509,7 @@ export class Tab8Page  {
 
 	async viewNotification() {
 	    const modal = await this.modalController.create({
-	      component: NotificationsComponent
+	      component: NotificationsPage
 	    });
 	    modal.onDidDismiss().then((close)=> {
 	    	this.show_notify = false;    
@@ -518,10 +518,10 @@ export class Tab8Page  {
 	}
 
 	listService(){
-		this.navCtrl.navigateForward('list-services');
+		this.navCtrl.navigateForward('proveedor/list-services');
 	}
 	registro(){
-		this.navCtrl.navigateForward('complete-register');
+		this.navCtrl.navigateForward('proveedor/complete-register');
 	}
 
 	blog(){
@@ -529,7 +529,7 @@ export class Tab8Page  {
 	}
 
 	policy(){
-		this.navCtrl.navigateForward('privacy-policy');
+		this.navCtrl.navigateForward('proveedor/privacy-policy');
 	}
 
 	terms(){
@@ -537,15 +537,15 @@ export class Tab8Page  {
 	}
 
 	completeRegister(){
-    	this.navCtrl.navigateForward('complete-register');
+    	this.navCtrl.navigateForward('proveedor/complete-register');
   	}
 
   	contrat(){
-  		this.navCtrl.navigateForward('view-contrat');
+  		this.navCtrl.navigateForward('proveedor/view-contrat');
   	}
 
   	payment(){
-  		this.navCtrl.navigateForward('payments');
+  		this.navCtrl.navigateForward('proveedor/payments');
   	}
 
   	public sortByKey(array:any, key:any) {

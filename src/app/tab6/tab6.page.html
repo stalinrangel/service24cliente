@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toggle [(ngModel)]="isCliente" (ionChange)="changeRol($event)">{{cliente}}</ion-toggle>
+  <ion-toggle [checked]="isCliente"  (ionChange)="changeRol($event)">{{cliente}}</ion-toggle>
   <ion-toolbar class="nuevo-header" mode="md">
     <ion-title *ngIf="status == 0" class="ion-text-capitalize ion-text-center">
       Inactivo

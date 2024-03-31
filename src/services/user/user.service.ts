@@ -99,13 +99,13 @@ export class UserService {
   }
 
   getZona(data:any): Observable<any>{
-    console.log(data)
+    //console.log(data)
     return this.http.post(`${environment.api}zonas/detectar`,data);
   }
 
   /* PUT datos de usuario */
   setUsuario(id:any,token:any,data:any): Observable<any>{
-    console.log(data)
+    //console.log(data)
     return this.http.put(`${environment.api}usuarios/`+id+'?token='+token, data);
   }
 }

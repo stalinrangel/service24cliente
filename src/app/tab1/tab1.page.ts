@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
 import { NavController, LoadingController, ModalController, Platform } from '@ionic/angular';
 import { CategoriesService } from '../../services/categories/categories.service';
 import { ObjectserviceService } from '../../services/objetcservice/objectservice.service';
@@ -79,16 +79,23 @@ export class Tab1Page {
     private languageService: LanguageService, 
     private noticationService: NotificationsService,
     private router: Router,
-    private funciones_generales: GeneralService
+    private funciones_generales: GeneralService,
+    private changeDetector: ChangeDetectorRef
 
   ) {
+
+    
+    
+   
+  
+  
 
     this.objService.getNotify().subscribe((data:any) => {
       let items:any=this.storage.getObject('userRPSV24');
       this.getNotify(this.datos.ciudad_id,items.id);
     });
 
-    console.log(this.router.url);
+    //console.log(this.router.url);
     this.objService.setruta(this.router.url);
 
     this.platform.ready().then(()=>{
@@ -108,7 +115,7 @@ export class Tab1Page {
         setTimeout(()=>{ 
           //x.className = x.className.replace("show", ""); 
 
-          console.log(this.zone);
+          //console.log(this.zone);
           setTimeout(()=>{ 
             this.zonen.run(()=>{  
               //y.className = "desc";
@@ -119,7 +126,7 @@ export class Tab1Page {
     //});    
 
     this.objService.getgenerales().subscribe((data:any) => {
-			console.log(data)
+			//console.log(data)
       //alert('llego generales');
       this.viewNotification();
 	  }); 
@@ -133,6 +140,8 @@ export class Tab1Page {
     });
   }
 
+  
+
   ngOnInit() {
     this.funciones_generales.iniciar();
     this.geolocate();
@@ -142,20 +151,26 @@ export class Tab1Page {
     }, 5000);
 
     this.objService.get_zona().subscribe((data:any) => {
-			console.log(data)
+			//console.log(data)
       this.zone=data;
 	  	});  
+
+    this.objService.isCliente$.subscribe((isClienteValue: boolean) => {
+      console.log(isClienteValue)
+      this.isCliente = isClienteValue;
+      this.changeDetector.detectChanges();
+    });
   }
   iniciar(){
     this.funciones_generales.iniciar();
   }
 
   async geolocate(){
-		console.log('geolocate')
+		//console.log('geolocate')
 		const options = { enableHighAccuracy: true };
 		const coordinates = await Geolocation.getCurrentPosition(options);
 		
-		console.log('Current position:', coordinates);
+		//console.log('Current position:', coordinates);
 	
 		const latLng = {
 		  lat: coordinates.coords.latitude,
@@ -168,9 +183,12 @@ export class Tab1Page {
 
   ionPageWillLeave() {
     //this.events.unsubscribe('changeZoneSV24');
+    //this.isCliente=true;
+    //this.isCliente=true;
   }
 
   ionViewWillEnter() {
+    //this.isCliente=true;
     this.vistos=0;
     this.getZone();
     this.getIds();
@@ -199,7 +217,7 @@ export class Tab1Page {
   initCategory(id:any){
     this.catService.getCategory(id).subscribe(
         resp => {
-          console.log(resp)
+          //console.log(resp)
           this.empty = false;
           this.items = resp.catprincipales;       
           this.publicidad = resp.publicidad;    
@@ -225,13 +243,13 @@ export class Tab1Page {
   public band_chatSupport: boolean = false;
   getIds(){
     this.storage.getObject('userSV24').then(items => {
-      console.log(items)
+      //console.log(items)
       if (items != '' && items != null) {
     this.usuario = items;
-    console.log(this.usuario)
+   // console.log(this.usuario)
     this.storage.get('TUSV24').then(items2 => {
         if (items2) {
-        console.log(items2);
+        //console.log(items2);
           //this.storage.getObject('ZONESV24').then(items3 => {
           //	if (items3) {
           //		console.log(items3);
@@ -247,7 +265,7 @@ export class Tab1Page {
                     this.band_chatSupport = true; 
                   },
                   msg => { 
-                    console.log(msg);
+                   // console.log(msg);
                     if(msg.status == 404){ 
                    if (msg.error.admin) {
                      if (msg.error.admin.length > 0) {
@@ -470,7 +488,7 @@ export class Tab1Page {
   }*/
 
   async goFilter() {
-    console.log(this.zone);
+    //console.log(this.zone);
     const modal = await this.modalController.create({
       component: FilterPage,
       componentProps: { value: this.zone }
@@ -524,10 +542,10 @@ export class Tab1Page {
   showEmpty:any;
   vistos=0;
   getNotify(ciudad_id:any, user_id:any){
-    console.log(ciudad_id,user_id);
+    //console.log(ciudad_id,user_id);
     this.userService.getNotifications(ciudad_id, user_id).subscribe(
       data => {
-        console.log(data)
+        //console.log(data)
         this.datos1 = data;
         this.notifications = this.datos1.Notificaciones_generales;
         if (this.notifications.length == 0) {
@@ -573,18 +591,15 @@ export class Tab1Page {
 
 
   public isCliente:any=true;
-	public cliente:any='Modo Cliente';
+	public cliente:any='Modo cliente';
   changeRol(e:any){
-    this.isCliente=!e.detail.checked;
-		if (this.isCliente) {
-			this.isCliente=false;
-			this.cliente='Modo proveedor';
-      this.objService.setTab(this.isCliente);
-		}else{
-			this.isCliente=true;
-			this.cliente='Modo cliente';
-      this.objService.setTab(this.isCliente);
-		}
+    
+    this.isCliente=e.detail.checked;
+
+    this.objService.updateIsCliente(this.isCliente);
+    this.nav.navigateRoot('/tabs/tab6');
+    console.log(this.isCliente)
+		
 	}
 }
 

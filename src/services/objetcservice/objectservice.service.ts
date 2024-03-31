@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -169,8 +169,18 @@ export class ObjectserviceService {
 		console.log(data)
 		this.tab.next(data);
 	}
-	getTab(): Subject<any> {
+	getTabf(): Subject<any> {
 		return this.tab;
+	}
+
+	private isClienteSubject = new BehaviorSubject<boolean>(false);
+	isCliente$ = this.isClienteSubject.asObservable();
+
+	updateIsCliente(isClienteValue: boolean) {
+		// Lógica para obtener los datos y luego emitir el valor
+		// Supongamos que obtienes el valor de isCliente de alguna manera
+		
+		this.isClienteSubject.next(isClienteValue);
 	}
 
 	//--trabaja con notificaciones 

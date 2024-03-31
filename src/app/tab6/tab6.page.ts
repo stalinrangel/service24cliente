@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common';
+
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ExploreContainerComponent } from '../explore-container-proveedor/explore-container.component';
 import { AlertController, IonicModule, LoadingController, ModalController, NavController, ToastController } from '@ionic/angular';
 import { RefreshService } from '../servicesproveedor/refresh.service';
 import { StorageService } from '../servicesproveedor/storage.service';
@@ -13,7 +11,7 @@ import { GeneralService } from '../servicesproveedor/general.service';
 import { ObjetcserviceService } from '../servicesproveedor/objetcservice.service';
 import * as moment from 'moment';
 import { Geolocation } from '@capacitor/geolocation';
-import { NotificationsComponent } from '../notifications/notifications.component';
+import { NotificationsPage } from '../proveedor/notifications/notifications.page';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 
 @Component({
@@ -53,7 +51,8 @@ export class Tab6Page implements OnInit {
     public modalController: ModalController,
     private router: Router,
     private noticationService: NotificationsService,
-    private fuciones_generales: GeneralService
+    private fuciones_generales: GeneralService,
+    private changeDetector: ChangeDetectorRef
     //private subscription1: Subscription,
     //private subscription2: Subscription,
     //private subscription3: Subscription,
@@ -65,7 +64,7 @@ export class Tab6Page implements OnInit {
       this.objService.setruta(this.router.url);
 
       this.objService.getTab2().subscribe((data:any) => {
-        console.log(data)
+  
         //alert('sss')
         this.getOrders();
       });
@@ -102,7 +101,7 @@ export class Tab6Page implements OnInit {
     let repartidor:any=this.storage.get('idRPSV24');
     let isSesion:any=this.storage.get('idRPSV24');
     if (isSesion==''||isSesion==null) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login-proveedor']);
     }
     
     setTimeout(() => {
@@ -110,16 +109,23 @@ export class Tab6Page implements OnInit {
       this.noticationService.registrar_token();
       //this.initStatus();
     }, 5000);
+
+    this.objService2.isCliente$.subscribe((isClienteValue: boolean) => {
+      console.log(isClienteValue)
+      this.isCliente = isClienteValue;
+      this.changeDetector.detectChanges();
+    });
+  
   }
   iniciar(){
      this.fuciones_generales.iniciar();
   }
   async geolocate(usuario_id:any){
-		console.log('geolocate')
+		//console.log('geolocate')
 		const options = { enableHighAccuracy: true };
 		const coordinates = await Geolocation.getCurrentPosition(options);
 		
-		console.log('Current position:', coordinates);
+		//console.log('Current position:', coordinates);
 	
 		const latLng = {
 		  lat: coordinates.coords.latitude,
@@ -128,10 +134,10 @@ export class Tab6Page implements OnInit {
     
     setTimeout(() => { 
       
-      console.log(usuario_id.repartidor.usuario_id,latLng)
+      //console.log(usuario_id.repartidor.usuario_id,latLng)
       this.userService.setPosition(usuario_id.repartidor.usuario_id,latLng).subscribe(
         data => {
-          console.log(data);
+          //console.log(data);
         },
         msg => {
         });
@@ -144,9 +150,11 @@ export class Tab6Page implements OnInit {
     //this.subscription2.unsubscribe();
     //this.subscription3.unsubscribe();
     //this.subscription4.unsubscribe();
+    //this.isCliente=true;
   }
 
   ionViewWillEnter() { 
+    //
     this.vistos=0;
     this.getZone();
     this.initStatus();
@@ -218,7 +226,7 @@ export class Tab6Page implements OnInit {
               if(msg.status == 400 || msg.status == 401){ 
                 this.storage.set('TRPSV24','');
                 this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-                this.navCtrl.navigateRoot('login');
+                this.navCtrl.navigateRoot('login-proveedor');
               }
             });
           }
@@ -262,7 +270,7 @@ export class Tab6Page implements OnInit {
                 if(msg.status == 400 || msg.status == 401){ 
                   this.storage.set('TRPSV24','');
                   this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-                  this.navCtrl.navigateRoot('login');
+                  this.navCtrl.navigateRoot('login-proveedor');
                 }
               });
             }
@@ -290,7 +298,7 @@ export class Tab6Page implements OnInit {
               if(msg.status == 400 || msg.status == 401){ 
                 this.storage.set('TRPSV24','');
                 this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-                this.navCtrl.navigateRoot('login');
+                this.navCtrl.navigateRoot('login-proveedor');
               } else if(msg.status == 404){
                 this.orders = [];
               }
@@ -317,7 +325,7 @@ export class Tab6Page implements OnInit {
               if(msg.status == 400 || msg.status == 401){ 
                 this.storage.set('TRPSV24','');
                 this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-                this.navCtrl.navigateRoot('login');
+                this.navCtrl.navigateRoot('login-proveedor');
               } else if(msg.status == 404){
                 this.orders = [];
               }
@@ -355,7 +363,7 @@ export class Tab6Page implements OnInit {
               if(msg.status == 400 || msg.status == 401){ 
                 this.storage.set('TRPSV24','');
                 this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
-                this.navCtrl.navigateRoot('login');
+                this.navCtrl.navigateRoot('login-proveedor');
               } else if(msg.status == 404){
                 this.orders = [];
               }
@@ -368,16 +376,16 @@ export class Tab6Page implements OnInit {
 
   viewDetails(item:any){
     this.objService.setExtras(item.id);
-    this.navCtrl.navigateForward('detail-order');
+    this.navCtrl.navigateForward('proveedor/detail-order');
   }
 
   completeRegister(){
-    this.navCtrl.navigateForward('complete-register');
+    this.navCtrl.navigateForward('/proveedor/complete-register');
   }
 
   async viewNotification() {
     const modal = await this.modalController.create({
-      component: NotificationsComponent
+      component: NotificationsPage
     });
     modal.onDidDismiss().then((close)=> { 
       this.show_notify = false;   
@@ -473,17 +481,11 @@ export class Tab6Page implements OnInit {
   }
 
   public isCliente:any=true;
-	public cliente:any='Modo Cliente';
+	public cliente:any='Modo proveedor';
   changeRol(e:any){
-    this.isCliente=!e.detail.checked;
-		if (this.isCliente) {
-			this.isCliente=false;
-			this.cliente='Modo proveedor';
-      this.objService2.setTab(this.isCliente);
-		}else{
-			this.isCliente=true;
-			this.cliente='Modo cliente';
-      this.objService2.setTab(this.isCliente);
-		}
+    this.isCliente=e.detail.checked;
+    this.objService2.updateIsCliente(this.isCliente);
+    this.navCtrl.navigateRoot('/tabs/tab1');
+		
 	}
 }

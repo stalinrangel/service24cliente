@@ -246,13 +246,15 @@ export class LoginProveedorPage implements OnInit {
     }
   }
   
-
+  home(){
+    this.nav.navigateRoot('/tabs/tab1');
+  }
   register(){
   	this.nav.navigateForward('register');
   }
 
   resetPassword(){
-    this.nav.navigateForward('email-password');
+    this.nav.navigateForward('proveedor/email-password');
   }
 
   goBack(){
