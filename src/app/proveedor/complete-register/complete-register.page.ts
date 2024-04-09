@@ -657,6 +657,7 @@ export class CompleteRegisterPage implements OnInit {
 			this.loadMap({lat:-34.460429,lng:-57.836462});
 		});
 		//this.slides.lockSwipes(true);
+		console.log('getplans');
 		this.getPlans();
 		this.setUIBackButtonAction();
 		//this.backgroundMode.setDefaults({ silent: true });
@@ -2728,12 +2729,13 @@ export class CompleteRegisterPage implements OnInit {
 	}
 
 	getPlans(){
+		
 		let items1:any= this.storage.getObject('userRPSV24');
-  			if (items1) {
+  			if (true) {
   				let items:any=this.storage.get('TRPSV24');
-		  			if (items) {
+		  			if (true) {
 						
-		  				this.userService.getPlans(items, items1.pais_id,this.tipo_registro2).subscribe(
+		  				this.userService.getPlans(items, items1,this.tipo_registro2).subscribe(
 					        data => {
 					        	console.log(data);
 					       		this.data2 = data;

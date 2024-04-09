@@ -13,6 +13,12 @@
         "zone": "You are not in an enabled zone",
         "empty": "There are no categories enabled in your location"
     },
+    "TAB": {
+        "inicio": "Home",
+        "servicios": "Services",
+        "mensaje": "Messages",
+        "perfil": "Profile"
+    },
     "SEARCH": {
         "title": "Search",
         "search": "Plumbing, Door opening...",

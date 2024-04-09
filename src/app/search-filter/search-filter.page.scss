@@ -172,7 +172,7 @@ ion-thumbnail{
     border-right: 1.5px solid #DAE2E7 !important;
     border-left: 0px;
     padding: 0px 10px 0px 10px !important;
-    height: 50px;
+    height: 49px;
     border-top-right-radius: 12px; 
     border-bottom-right-radius: 12px;  
   }
@@ -279,7 +279,8 @@ ion-thumbnail{
     --background: white;
     width: 100%;
     margin: 25px auto;
-    color: #FD682A;
-    border: 2px solid #FD682A;
-    border-radius: 10px;
+    color: #7E8389;
+    border: 2px solid #DAE2E7;
+    border-radius: 5px;
+    font-family: Inter-Medium;
   }

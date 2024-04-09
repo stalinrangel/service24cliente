@@ -13,6 +13,12 @@
         "zone": "No estas en una zona habilitada",
         "empty": "No hay categorías habilitadas en tu ubicación"
     },
+    "TAB": {
+        "inicio": "Inicio",
+        "servicios": "Servicios",
+        "mensaje": "Mensaje",
+        "perfil": "Perfil"
+    },
     "SEARCH": {
         "title": "Buscar",
         "search": "Plomería, Apertura de puerta...",
@@ -100,7 +106,7 @@
     "LOGIN": {
         "start": "Inicio",
         "login": "Iniciar Sesión",
-        "forgot": "¿Olvidó su Contraseña?",
+        "forgot": "Olvidaste la contraseña?",
         "o": "o",
         "facebook": "Iniciar Sesión con Facebook",
         "google": "Iniciar Sesión con Google",

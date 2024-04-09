@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 import { FilterPage } from '../filter/filter.page';
 import { GeneralService } from '../servicesproveedor/general.service';
 import { ContactModalPage } from '../contact-modal/contact-modal.page';
+import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 
 @Component({
   selector: 'app-tab8',
@@ -76,6 +77,7 @@ export class Tab8Page  {
 		private toastCtrl: ToastController,
 		public refresh: RefreshService,
 		private objService: ObjetcserviceService,
+		private objService2: ObjectserviceService,
 		public orderService: OrdersService,
 		public cdr: ChangeDetectorRef,
 		public modalController: ModalController,
@@ -387,6 +389,10 @@ export class Tab8Page  {
 					      this.storage.setObject('userRPSV24', '');
 					      this.storage.set('idRPSV24', '');
 					      this.storage.set('notify_RPSV24','');
+						  this.storage.set('TUSV24','');
+							this.funciones_generales.setObject('userSV24', '');
+							this.funciones_generales.set('pedido_idTHLP', '');
+							this.funciones_generales.set('token_notificacionUSV24','');
 					      this.usuario.id = '';
 					      this.usuario.imagen = 'assets/profile-general.png';
 					      this.usuario.nombre = 'Usuario';
@@ -394,6 +400,7 @@ export class Tab8Page  {
 					      this.storage.remove('formLocalRSV24');
 					      this.locationTracker.stopT();
 					      this.navCtrl.navigateRoot('login-proveedor');
+						  this.objService2.setcerrarSesion(true);
 					    },
 					    msg => {
 					      if(msg.status == 400 || msg.status == 401){ 
@@ -408,6 +415,7 @@ export class Tab8Page  {
 						      this.storage.remove('formLocalRSV24');
 						      this.locationTracker.stopT();
 						      this.navCtrl.navigateRoot('login-proveedor');
+							  this.objService2.setcerrarSesion(true);
 					      }
 					    });
 		  			}

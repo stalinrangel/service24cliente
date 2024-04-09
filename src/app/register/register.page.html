@@ -1,11 +1,16 @@
+
+<ion-header [translucent]="true" collapse="fade" class="ion-no-border header-border">
+	<ion-toolbar>
+	  <ion-buttons mode="ios" slot="start" (click)="goBack()">
+		<ion-back-button  text="" defaultHref="" icon="chevron-back-outline"></ion-back-button>
+	  </ion-buttons>
+
+	</ion-toolbar>
+</ion-header>
 <ion-content class="ion-padding">
-	<ion-buttons class="icon-back" (click)="goBack()">
-      <ion-button>
-        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+	
 	<div class="content-img">
-		<img src="../../assets/service24/logo-rojo.svg">
+		<!--img src="../../assets/service24/logo-rojo.svg"-->
 		<h2>{{ 'REGISTER.registry' | translate }}</h2>
 	</div> 
 	<form [formGroup]="registerUserForm" class="padding-space" style="padding: 20px 0px 20px 0px;">

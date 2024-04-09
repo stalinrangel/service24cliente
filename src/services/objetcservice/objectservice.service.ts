@@ -183,6 +183,16 @@ export class ObjectserviceService {
 		this.isClienteSubject.next(isClienteValue);
 	}
 
+	private cerrarSesion = new Subject<any>();
+	setcerrarSesion(data: any) {
+		console.log(data)
+		this.cerrarSesion.next(data);
+	}
+	getcerrarSesion(): Subject<any> {
+		return this.cerrarSesion;
+	}
+	
+
 	//--trabaja con notificaciones 
 	private notify = new Subject<any>();
 	setNotify(data: any) {

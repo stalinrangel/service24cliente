@@ -11,17 +11,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list *ngIf="notifications">
-    <ion-item *ngFor="let item of notifications" (click)="get(item)" style="margin-bottom: 10px;">
-      <div [ngStyle]="{ 'background-color': item.visto == 0 ? '#F5FBFF' : null }" style=" width: 100%; height: 100%;border: 1.5px solid var(--secundary-blue-medium, #DAEEFF) !important;margin-bottom: 5px; border-radius: 8px; padding: 10px;">
+<ion-content class="ion-no-padding">
+  <ion-list *ngIf="notifications" class="no-border">
+    <br>
+    <ion-item class="no-border" *ngFor="let item of notifications" (click)="get(item)" style="margin-bottom: 18px;border-bottom: 1px solid #DAE2E7;">
+      <div [ngStyle]="{ 'background-color': item.visto == 0 ? '#F9EECE' : null }" style=" width: 100%; height: 100%;margin-bottom: 5px; border-radius: 8px; padding: 10px;">
       <ion-label>
-        <p class="text-date">{{item.created_at | date: 'dd-MM-yyyy hh:mm:ss'}}</p>
-        <p class="ion-text-wrap text-msg"><ion-icon name="megaphone"></ion-icon> <span *ngIf="item.accion==2">Soporte: </span><span *ngIf="item.accion==8">Pedido-{{item.obj.chat_id}}: </span>{{item.mensaje}}</p>
+        <div style="display: flex; justify-content: space-between;">
+          <span *ngIf="item.accion==2">Soporte: </span>
+          <span *ngIf="item.accion==8">Pedido-{{item.obj.chat_id}}: </span>
+          <span *ngIf="item.accion!=8||item.accion==2">Notificación: </span>
+          <p class="text-date">{{item.fechaf}}</p>
+        </div>
+        
+        <p class="ion-text-wrap text-msg"><!--ion-icon name="megaphone"></ion-icon-->  {{item.mensaje}}</p>
         </ion-label>
       </div>
     </ion-item>
   </ion-list>
+
+
   <p class="text-empty" *ngIf="showEmpty">No tienes notificaciones pendientes</p>
   <ion-list *ngIf="!notifications">
     <ion-item>

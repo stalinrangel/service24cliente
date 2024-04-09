@@ -8,6 +8,7 @@ import { StorageService } from '../../servicesproveedor/storage.service';
 import { RefreshService } from '../../servicesproveedor/refresh.service';
 import { Subscription } from 'rxjs';
 import { ObjetcserviceService } from '../../servicesproveedor/objetcservice.service';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-notifications',
@@ -75,7 +76,7 @@ export class NotificationsPage implements OnInit {
       if (items2) {
         this.userService.getNotifications(ciudad_id,items2, user_id).subscribe(
         data => {
-          
+          let fecha;
           this.datos1 = data;
           this.notifications = this.datos1.Notificaciones_generales;
           for (let i = 0; i < this.notifications.length; i++) {
@@ -87,7 +88,8 @@ export class NotificationsPage implements OnInit {
               }
              
             }
-            
+            fecha=new Date(this.notifications[i].created_at);
+            this.notifications[i].fechaf=format(fecha, 'DD/MM/YYYY');
             
           }
           console.log(this.notifications)

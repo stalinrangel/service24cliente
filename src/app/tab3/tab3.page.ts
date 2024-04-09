@@ -379,6 +379,15 @@ export class Tab3Page {
 		    this.finalizado = 0;
 		});*/
 
+		localStorage.setItem('TRPSV24','');
+		localStorage.setItem('userRPSV24', '');
+		localStorage.setItem('idRPSV24', '');
+		localStorage.setItem('notify_RPSV24','');
+		localStorage.setItem('TUSV24','');
+		localStorage.setItem('userSV24','');
+		localStorage.setItem('token_notificacionUSV24','');
+		localStorage.setItem('pedido_idTHLP','');
+		
     this.storage.set('TUSV24','');
     this.storage.setObject('userSV24', '');
     this.storage.set('pedido_idTHLP', '');
@@ -390,6 +399,16 @@ export class Tab3Page {
     this.encurso = 0;
     this.finalizado = 0;
 		this.band_chatSupport = false;	
+	
+	setTimeout(() => {
+		this.objService.setcerrarSesion(true);
+		this.storage.getObject('userSV24').then(items => {
+			let user:any=items;
+			console.log(user)
+			
+		  });
+	}, 500);
+	
 	}
 
 	editProfile(){

@@ -3,22 +3,27 @@
     <ion-title class="ion-text-capitalize " >
       <img src="../../assets/service24/logo-rojo.svg" alt="" >
     </ion-title>
-    <ion-toggle [(ngModel)]="isCliente" (ionChange)="changeRol($event)">{{cliente}}</ion-toggle>
+    
     <ion-buttons slot="end" (click)="viewNotification()" style="width: 57px">
       <ion-button style="background: #fff;border-radius: 50%;">
-        <div class="icon-bagde" *ngIf="show_notify" ></div><span style="background-color: #F5FBFF; color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
-        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
+        <div class="icon-bagde" *ngIf="show_notify" ></div><span style="background-color: #F5FBFF; color: white; padding: 1px 3px 1px 3px; font-size: 11px; background-color: red; border-radius: 100px; position: relative; left: 36px; top: -10px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
+        <img src="../../assets/service24/notification.svg" alt="">
+        <!--ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon-->
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
   
 </ion-header>
+<div class="modo">
+  <ion-toggle [(ngModel)]="isCliente" (ionChange)="changeRol($event)"></ion-toggle>
+  <p style="margin: 0 0px 0 9px;">Modo proveedor</p>
+</div>
 
-<ion-content>
+<ion-content >
   
   <div class="presentacion">
     
-    <h2 class="hola">Hola {{usuario.nombre}}!</h2>
+    <h2 class="hola" style="margin-top: 15px;">Hola 👋 {{usuario.nombre}}!</h2>
     <p class="felices">Felices de poder ayudarte</p>
       
   </div>
@@ -54,6 +59,7 @@
   </div-->
 
   <div class="slider" style="   height: 20vh;">
+    <img *ngIf="!isLogin" class="container" (click)="tipousuario()"  src="assets/service24/iniciarsesion.svg" />
     <img class="container"  src="assets/service24/hombrehogar.svg" />
     <img class="container"  src="assets/service24/mascota.svg"/>
     <img class="container"  *ngFor="let image of publicidad" [src]="image.productos.imagen" (click)="proveedor(image.productos.id)"/>

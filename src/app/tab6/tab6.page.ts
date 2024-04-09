@@ -59,10 +59,13 @@ export class Tab6Page implements OnInit {
     //private subscription4: Subscription,
   	) {
       //console.log('initStatus0');
-      this.initStatus();
+      //this.initStatus();
       console.log(this.router.url);
       this.objService.setruta(this.router.url);
 
+      this.objService.getInit().subscribe((data:any) => {
+        this.initStatus();
+      });
       this.objService.getTab2().subscribe((data:any) => {
   
         //alert('sss')
@@ -115,7 +118,8 @@ export class Tab6Page implements OnInit {
       this.isCliente = isClienteValue;
       this.changeDetector.detectChanges();
     });
-  
+    console.log('ngOnInit')
+    this.initStatus();
   }
   iniciar(){
      this.fuciones_generales.iniciar();
@@ -164,6 +168,11 @@ export class Tab6Page implements OnInit {
         this.show_notify = true;
       } else {
         this.show_notify = false;
+      }
+
+      let isSesion:any=this.storage.get('idRPSV24');
+      if (isSesion==''||isSesion==null) {
+        this.router.navigate(['/login-proveedor']);
       }
     //}); 
     /*this.subscription2 = this.refresh.formRefreshSource2$.subscribe((msg:any) => {

@@ -5,6 +5,8 @@ import { NavController, ToastController } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { ObjetcserviceService } from './objetcservice.service';
 
+import { Storage } from '@ionic/storage';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,10 +18,11 @@ export class GeneralService {
   };
   latLng:any;
   tipo_empresa:any;
-  
+  private storagecliente= new Storage();
   constructor(public storage: StorageService,private objService: ObjetcserviceService,private toastController: ToastController, public userService: UserService,public navCtrl: NavController, ) { 
 
     this.iniciar();
+    this.storagecliente.create();
   }
 
   iniciar(){
@@ -79,7 +82,7 @@ export class GeneralService {
       data => {
         //console.log(data);
         if(data==-1){
-          this.presentToast('Estas fuera del rango de alcance de Service24.');
+          //this.presentToast('Estas fuera del rango de alcance de Service24.');
           this.zona={
             id:-1,
             nombre:'No estas en una area de Service24'
@@ -192,6 +195,13 @@ export class GeneralService {
     console.log(data);
     this.userRPSV24=JSON.stringify(data);
     localStorage.setItem('userRPSV24',this.userRPSV24);
+  }
+
+  set(key:any, value:any) {
+    this.storagecliente.set(key, value);
+  }
+  setObject(key:any, value:any) {
+    this.storagecliente.set(key, JSON.stringify(value));
   }
 
 }

@@ -1,6 +1,10 @@
 ion-content{
 	--background: var(--ion-color-secondary);
 }
+.header-border{
+	border-bottom: 1px solid #DAE2E7;
+  }
+  
 .nuevo-header{
 	color:black;
 }
@@ -20,8 +24,8 @@ h2{
     margin-top: 70px;
 	}
 	h2{
-		margin: 60px 0px 0px 20px;
-    font-family: "Gilroy-ExtraBold";
+		margin: 80px 0px 0px 20px;
+    font-family: "gilroy-semibold";
     font-size: 34px;
     color: black;
 	}
@@ -37,7 +41,7 @@ h2{
 border: 1px solid #DAE2E7 !important;
 padding: 0px 10px 0px 10px !important;
 height: 44px;
-border-radius: 5px;
+border-radius: 10px;
 }
 .nuevo-input-password{
 	border-top: 1px solid #DAE2E7 !important;
@@ -45,8 +49,8 @@ border-radius: 5px;
 	border-left: 1px solid #DAE2E7 !important;
 	padding: 0px 0px 0px 10px !important;
 	height: 44px !important;
-	border-top-left-radius: 5px; 
-	border-bottom-left-radius: 5px;  
+	border-top-left-radius: 10px; 
+	border-bottom-left-radius: 10px;  
   }
   .nuevo-input-password2{
 	border-top: 1px solid #DAE2E7 !important;
@@ -54,12 +58,12 @@ border-radius: 5px;
 	border-right: 1px solid #DAE2E7 !important;
 	padding: 0px 10px 0px 10px !important;
 	height: 42px !important;
-	border-top-right-radius: 5px; 
-	border-bottom-right-radius: 5px;  
+	border-top-right-radius: 10px; 
+	border-bottom-right-radius: 10px;  
 	margin: 0px;
   }
 .nuevo-boton{
-	border-radius: 6px;
+	border-radius: 10px;
 	background: var(--primary-400, #FD682A) !important;
 	margin: 0px 20px 0px 20px;
 	color: white;
@@ -99,7 +103,7 @@ border-radius: 5px;
 	color: black;
   }
 .item-input{
-	--border-radius: 3px;
+	--border-radius: 10px;
 	color: #4D4D4D;
 	margin-bottom: 15px;
 }

@@ -98,7 +98,7 @@ export class ListServicesPage implements OnInit {
   addService(){
 	console.log(this.restricciones.servicios,this.services.length);
 	if (this.restricciones.servicios>this.services.length) {
-		this.navCtrl.navigateForward('add-service');
+		this.navCtrl.navigateForward('proveedor/add-service');
 	}else{
 		this.presentToast('Solo puedes agregar '+this.restricciones.servicios+', aumenta tu plan para más servicios.');
 	}
@@ -107,7 +107,7 @@ export class ListServicesPage implements OnInit {
 
   editService(item:any){
   	this.objService.setExtras(item);
-  	this.navCtrl.navigateForward('edit-service');
+  	this.navCtrl.navigateForward('proveedor/edit-service');
   }
 
   async presentActionSheet(item:any) {

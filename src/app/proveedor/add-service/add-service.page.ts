@@ -724,7 +724,7 @@ export class AddServicePage implements OnInit {
 										this.dismiss();
 										this.presentToast1('¡Servicio añadido con éxito! Te notificaremos cuando éste sea aprobado');
 										//this.navCtrl.pop();
-										this.navCtrl.navigateRoot('');
+										this.navCtrl.navigateRoot('/tabs/tab6');
 									},
 									msg => {
 									this.dismiss();

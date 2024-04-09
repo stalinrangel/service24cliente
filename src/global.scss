@@ -38,7 +38,25 @@ ion-toolbar .sc-ion-searchbar-ios-h {
 *{
   color: black;
 }
+//gilroy
+@font-face {
+  font-family: 'gilroy-bold';
+  src: url('/assets/fonts/GilroyFont/Gilroy-Bold.ttf');
+};
+@font-face {
+  font-family: 'gilroy-extrabold';
+  src: url('/assets/fonts/GilroyFont/Gilroy-ExtraBold.ttf');
+};
+@font-face {
+  font-family: 'gilroy-light';
+  src: url('/assets/fonts/GilroyFont/Gilroy-Light.ttf');
+};
+@font-face {
+  font-family: 'gilroy-semibold';
+  src: url('/assets/fonts/GilroyFont/Gilroy-SemiBold.ttf');
+};
 
+//-----
 @font-face {
   font-family: 'Gilroy-Light';
   src: url('/assets/fonts/Gilroy/Gilroy-Light.otf');

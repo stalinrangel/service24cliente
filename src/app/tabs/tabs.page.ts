@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/services/storage/storage.service';
 import { UserService } from 'src/services/user/user.service';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tabs',
@@ -17,7 +18,7 @@ export class TabsPage {
 	public subscription: any;
 	public isCliente:any=true;
 	public cliente:any='Modo Cliente';
-	constructor(private changeDetector: ChangeDetectorRef,private platform: Platform,public navCtrl: NavController, public router: Router,private userService: UserService,private objService: ObjectserviceService,private storage: StorageService){
+	constructor(private translate: TranslateService,private changeDetector: ChangeDetectorRef,private platform: Platform,public navCtrl: NavController, public router: Router,private userService: UserService,private objService: ObjectserviceService,private storage: StorageService){
 
 	this.isCliente=localStorage.getItem('isCliente');
 	this.objService.isCliente$.subscribe((isClienteValue: boolean) => {

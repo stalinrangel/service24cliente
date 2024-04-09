@@ -16,6 +16,7 @@ import {BackgroundGeolocationPlugin} from "@capacitor-community/background-geolo
 import { registerPlugin, Plugin } from '@capacitor/core';
 const BackgroundGeolocation = registerPlugin<BackgroundGeolocationPlugin>("BackgroundGeolocation");
 import { Geolocation, GeolocationPluginPermissions, PermissionStatus } from '@capacitor/geolocation';
+import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 
 
 @Component({
@@ -52,9 +53,11 @@ export class LoginProveedorPage implements OnInit {
     private builder: FormBuilder, 
     public alertController: AlertController, 
     public storage: StorageService,
+    public storagecliente: StorageService,
     public auth: AuthService, 
     private toastController: ToastController,
     private objService: ObjetcserviceService,
+    private objService2: ObjectserviceService,
     private platform: Platform,
     public modalController: ModalController,
     private noticationService: NotificationsService,
@@ -166,13 +169,20 @@ export class LoginProveedorPage implements OnInit {
     this.funciones_generales.set_idRPSV24(data.user.repartidor.id);
     this.storage.setObject('userRPSV24', data.user);
     this.funciones_generales.set_userRPSV24(data.user)
+    this.funciones_generales.set('TUSV24',data.token);
+    this.funciones_generales.setObject('userSV24', data.user);
     this.presentToast('Inicio de sesión exitoso. Espere unos segundos...');
+    setTimeout(() => {
+      this.objService2.setcerrarSesion(true);
+    }, 500);
     setTimeout(() => {
       //self.funciones_generales.iniciar();
       this.noticationService.registrar_token();
     }, 6000);
     setTimeout(() => {
-      this.nav.navigateRoot('/tabs/tab1');
+      this.nav.navigateRoot('/tabs/tab6');
+      this.objService.setInit('setInit');
+      this.objService2.updateIsCliente(true);
     }, 2500);
   }
   //LOGIN Apple
@@ -248,9 +258,10 @@ export class LoginProveedorPage implements OnInit {
   
   home(){
     this.nav.navigateRoot('/tabs/tab1');
+    this.objService2.updateIsCliente(false);
   }
   register(){
-  	this.nav.navigateForward('register');
+  	this.nav.navigateForward('register-proveedor');
   }
 
   resetPassword(){

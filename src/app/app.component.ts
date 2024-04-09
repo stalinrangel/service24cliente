@@ -5,7 +5,7 @@ import { GeneralService } from './services/general.service';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { App, AppState, URLOpenListenerEvent } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { ModalComponent } from './modal.componet';
 import { Router } from '@angular/router';
 
@@ -24,11 +24,21 @@ export class AppComponent {
               private modalCtrl: ModalController,
               private zone: NgZone,
               private router: Router,
+              private platform: Platform
                     
     ) {
     translate.setDefaultLang('es');
     translate.use('es');
-    this.splash();
+    this.platform.ready().then(async () => {
+      //SplashScreen.hide();
+      await SplashScreen.show({
+        showDuration: 3500,
+        autoHide: false,
+      });
+      setTimeout(async () => {
+        await SplashScreen.hide();
+      }, 3500); 
+    });
     //this.openModal();
     this.initializeApp();
   }
@@ -41,7 +51,7 @@ export class AppComponent {
                Capacitor.isNativePlatform() && SplashScreen.hide();
             }
           }
-      })*/
+      })
 
       await SplashScreen.show({
         showDuration: 2500,
@@ -50,9 +60,7 @@ export class AppComponent {
 
       setTimeout(async () => {
         await SplashScreen.hide();
-      }, 2500);  
-
-      
+      }, 2500);  */
       
   }
 
@@ -73,6 +81,7 @@ export class AppComponent {
   }
 
   initializeApp() {
+    
     App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
         this.zone.run(() => {
             // Example url: https://beerswift.app/tabs/tab2

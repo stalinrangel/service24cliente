@@ -37,7 +37,7 @@ export class SearchFilterPage implements OnInit {
   public loading!: HTMLIonLoadingElement;
   public zone: any;
   public show_notify: boolean = false;
-
+  public populares:any=[];
   constructor(
     private nav: NavController,
     private storageService: StorageService,
@@ -61,6 +61,20 @@ export class SearchFilterPage implements OnInit {
   ngOnInit() {
     
     this.geolocate();
+    this.catService.getPopulares().subscribe(
+      data => {
+        console.log(data.categorias)  
+        this.populares=data.categorias;
+        setTimeout(() => {
+          this.showpopulares=true;
+        }, 1000);
+        
+      },
+      msg => { 
+        console.log(msg)  
+      }
+    );
+    
   }
   async geolocate(){
     this.presentLoading();
@@ -136,7 +150,7 @@ export class SearchFilterPage implements OnInit {
       this.loadItems();
     });
   }
-
+  
   initOrder(){
     //this.storage.getObject('ZONESV24').then(items => {
      // if (items != '' && items != null) {
@@ -149,8 +163,10 @@ export class SearchFilterPage implements OnInit {
         console.log(zona)
         this.item = [];
         let self=this;
+        
         this.catService.getProviders(zona.id).subscribe(
           data => {
+        
             //self.loading.dismiss();
             console.log(data)
             this.datos = data.productos;
@@ -193,19 +209,22 @@ export class SearchFilterPage implements OnInit {
         );
       //}
    // });
+      
   }
+  public showpopulares:boolean=false;
   setFilteredItems2() {
     console.log('2')
    }
   setFilteredItems() {
     this.searching = true;
     this.item = this.datos;
+    console.log(this.datos)
     let val = this.searchTerm;
     if (val && val.trim() != '') {
       console.log(this.datos)
       if (this.datos.length > 0) {
         this.zoneN.run(()=>{
-          this.item = this.item.filter((item: { nombre: string; nombre1: string; descripcion: string; descripcion1: string; establecimiento: { nombre: string; nombre1: string; direccion: string; direccion1: string; }; subcategoria: { nombre: string; nombre1: string; categoria: { nombre: string; nombre1: string; }; }; }) => {
+          this.item = this.item.filter((item: { nombre: string; nombre1: string; descripcion: string; descripcion1: string; establecimiento: { nombre: string; nombre1: string; direccion: string; direccion1: string; };categoria: { nombre: string; }; subcategoria: { nombre: string; nombre1: string; categoria: { nombre: string; nombre1: string; }; }; }) => {
             if (item.nombre) {
               item.nombre1 = this.removeDiacritics(item.nombre);
             } else {
@@ -496,7 +515,7 @@ export class SearchFilterPage implements OnInit {
   tipo="normal";
   get filteredItems() {
     //return this.chats;
-    //console.log(this.datos);
+
     if(this.tipo=="normal"){
       if (this.datos==false) {
         return [];
@@ -504,8 +523,8 @@ export class SearchFilterPage implements OnInit {
         return [];
       }else{
         const searchTextNormalized = this.normalizeText(this.searchText);
-        return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase() === this.searchText.toLowerCase() || this.normalizeText(item.categoria).toLowerCase() === this.searchText.toLowerCase() || this.normalizeText(item.subcategoria).toLowerCase() === this.searchText.toLowerCase()))
-        .concat(this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())) && !((this.normalizeText(item.nombre).toLowerCase() === this.searchText.toLowerCase()) || (this.normalizeText(item.categoria).toLowerCase() === this.searchText.toLowerCase()) || (this.normalizeText(item.subcategoria).toLowerCase() === this.searchText.toLowerCase()))))
+        return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase() === searchTextNormalized.toLowerCase() || this.normalizeText(item.categoria).toLowerCase() === searchTextNormalized.toLowerCase() || this.normalizeText(item.subcategoria).toLowerCase() === searchTextNormalized.toLowerCase()))
+        .concat(this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(searchTextNormalized.toLowerCase())) && !((this.normalizeText(item.nombre).toLowerCase() === searchTextNormalized.toLowerCase()) || (this.normalizeText(item.categoria).toLowerCase() === searchTextNormalized.toLowerCase()) || (this.normalizeText(item.subcategoria).toLowerCase() === searchTextNormalized.toLowerCase()))))
         .sort((a:any, b:any) => {
           const nameA = this.normalizeText(a.nombre).toLowerCase();
           const nameB = this.normalizeText(b.nombre).toLowerCase();
@@ -514,25 +533,27 @@ export class SearchFilterPage implements OnInit {
           const subcategoryA = this.normalizeText(a.subcategoria).toLowerCase();
           const subcategoryB = this.normalizeText(b.subcategoria).toLowerCase();
 
-          const exactMatchA = (nameA === this.searchText.toLowerCase() || categoryA === this.searchText.toLowerCase() || subcategoryA === this.searchText.toLowerCase());
-          const exactMatchB = (nameB === this.searchText.toLowerCase() || categoryB === this.searchText.toLowerCase() || subcategoryB === this.searchText.toLowerCase());
+          const exactMatchA = (nameA === searchTextNormalized.toLowerCase() || categoryA === searchTextNormalized.toLowerCase() || subcategoryA === searchTextNormalized.toLowerCase());
+          const exactMatchB = (nameB === searchTextNormalized.toLowerCase() || categoryB === searchTextNormalized.toLowerCase() || subcategoryB === searchTextNormalized.toLowerCase());
 
           if (exactMatchA && !exactMatchB) {
               return -1;
           } else if (!exactMatchA && exactMatchB) {
               return 1;
           } else {
-              return nameA.includes(this.searchText.toLowerCase()) || categoryA.includes(this.searchText.toLowerCase()) || subcategoryA.includes(this.searchText.toLowerCase()) ? -1 : 1;
+              return nameA.includes(searchTextNormalized.toLowerCase()) || categoryA.includes(searchTextNormalized.toLowerCase()) || subcategoryA.includes(searchTextNormalized.toLowerCase()) ? -1 : 1;
           }
       });
       }
     }else if(this.tipo=="cercano"){
-      return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
+      const searchTextNormalized = this.normalizeText(this.searchText);
+      return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(searchTextNormalized.toLowerCase())))
         .sort((a:any, b:any) => {
           return a.distance - b.distance;
         });
     }else if(this.tipo=="calificaciones"){
-      return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
+      const searchTextNormalized = this.normalizeText(this.searchText);
+      return this.datos.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(searchTextNormalized.toLowerCase())))
         .sort((a:any, b:any) => {
           return b.promedio_calificacion - a.promedio_calificacion;
         });
@@ -542,19 +563,21 @@ export class SearchFilterPage implements OnInit {
   }
 
   normalizeText(text: string) {
+    //console.log(text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()); 
     return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
   get filteredItems2() {
     //return this.chats;
     //console.log(this.datos);
+    const searchTextNormalized = this.normalizeText(this.searchText);
     if(this.tipo=="normal"){
       if (this.datos2==false) {
         return [];
       }else if(this.searchText==""){
         return [];
       }else{
-        return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase() === this.searchText.toLowerCase() || this.normalizeText(item.categoria).toLowerCase() === this.searchText.toLowerCase() || this.normalizeText(item.subcategoria).toLowerCase() === this.searchText.toLowerCase()))
-        .concat(this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())) && !((this.normalizeText(item.nombre).toLowerCase() === this.searchText.toLowerCase()) || (this.normalizeText(item.categoria).toLowerCase() === this.searchText.toLowerCase()) || (this.normalizeText(item.subcategoria).toLowerCase() === this.searchText.toLowerCase()))))
+        return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase() === searchTextNormalized.toLowerCase() || this.normalizeText(item.categoria).toLowerCase() === searchTextNormalized.toLowerCase() || this.normalizeText(item.subcategoria).toLowerCase() === searchTextNormalized.toLowerCase()))
+        .concat(this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(searchTextNormalized.toLowerCase())) && !((this.normalizeText(item.nombre).toLowerCase() === searchTextNormalized.toLowerCase()) || (this.normalizeText(item.categoria).toLowerCase() === searchTextNormalized.toLowerCase()) || (this.normalizeText(item.subcategoria).toLowerCase() === searchTextNormalized.toLowerCase()))))
         .sort((a:any, b:any) => {
           const nameA = this.normalizeText(a.nombre).toLowerCase();
           const nameB = this.normalizeText(b.nombre).toLowerCase();
@@ -563,25 +586,25 @@ export class SearchFilterPage implements OnInit {
           const subcategoryA = this.normalizeText(a.subcategoria).toLowerCase();
           const subcategoryB = this.normalizeText(b.subcategoria).toLowerCase();
 
-          const exactMatchA = (nameA === this.searchText.toLowerCase() || categoryA === this.searchText.toLowerCase() || subcategoryA === this.searchText.toLowerCase());
-          const exactMatchB = (nameB === this.searchText.toLowerCase() || categoryB === this.searchText.toLowerCase() || subcategoryB === this.searchText.toLowerCase());
+          const exactMatchA = (nameA === searchTextNormalized.toLowerCase() || categoryA === searchTextNormalized.toLowerCase() || subcategoryA === searchTextNormalized.toLowerCase());
+          const exactMatchB = (nameB === searchTextNormalized.toLowerCase() || categoryB === searchTextNormalized.toLowerCase() || subcategoryB === searchTextNormalized.toLowerCase());
 
           if (exactMatchA && !exactMatchB) {
               return -1;
           } else if (!exactMatchA && exactMatchB) {
               return 1;
           } else {
-              return nameA.includes(this.searchText.toLowerCase()) || categoryA.includes(this.searchText.toLowerCase()) || subcategoryA.includes(this.searchText.toLowerCase()) ? -1 : 1;
+              return nameA.includes(searchTextNormalized.toLowerCase()) || categoryA.includes(searchTextNormalized.toLowerCase()) || subcategoryA.includes(searchTextNormalized.toLowerCase()) ? -1 : 1;
           }
       });
       }
     }else if(this.tipo=="cercano"){
-      return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
+      return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(searchTextNormalized.toLowerCase())))
         .sort((a:any, b:any) => {
           return a.distance - b.distance;
         });
     }else if(this.tipo=="calificaciones"){
-      return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(this.searchText.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(this.searchText.toLowerCase())))
+      return this.datos2.filter((item:any) => (this.normalizeText(item.nombre).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.categoria).toLowerCase().includes(searchTextNormalized.toLowerCase()) || this.normalizeText(item.subcategoria).toLowerCase().includes(searchTextNormalized.toLowerCase())))
         .sort((a:any, b:any) => {
           return b.promedio_calificacion - a.promedio_calificacion;
         });
@@ -605,6 +628,10 @@ export class SearchFilterPage implements OnInit {
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
+  }
+
+  selecPopular(item:any){
+    this.searchText=item;
   }
 
 }

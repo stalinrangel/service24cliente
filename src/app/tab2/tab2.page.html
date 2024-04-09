@@ -5,8 +5,8 @@
     </ion-title>
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
-      	<div class="icon-bagde" *ngIf="show_notify"></div><span style="color: white; background-color: red; border-radius: 100px; position: relative; left: 10px; top: 5px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
-        <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
+		<div class="icon-bagde" *ngIf="show_notify" ></div><span style="background-color: #F5FBFF; color: white; padding: 1px 3px 1px 3px; font-size: 11px; background-color: red; border-radius: 100px; position: relative; left: 36px; top: -10px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
+        <img src="../../assets/service24/notification.svg" alt="">
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

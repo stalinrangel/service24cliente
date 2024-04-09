@@ -72,4 +72,8 @@ export class CategoriesService {
     return this.http.get(`${environment.api}horarios/`+id);
   }
 
+  getPopulares(): Observable<any>{
+    return this.http.get(`${environment.api}categorias/populares`);
+  }
+
 }

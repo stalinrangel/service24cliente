@@ -49,7 +49,7 @@ export class GeneralService {
       data => {
         //console.log(data);
         if(data==-1){
-          this.presentToast('Estas fuera del rango de alcance de Service24.');
+          //this.presentToast('Estas fuera del rango de alcance de Service24.');
           this.zona={
             id:-1,
             nombre:'No estas en una area de Service24'

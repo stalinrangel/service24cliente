@@ -1,0 +1,41 @@
+
+
+<ion-content >
+		<swiper-container
+		  #swiper
+		  (afterinit)="swiperReady()"
+		  (slidechange)="swiperSlideChanged($event)"
+		  [loop]="true"
+		  [pagination]="true"
+		>
+		  <swiper-slide class="slide-1">
+            
+            <img style="width: 100%;" src="../../assets/service24/comencemos.svg" alt="" >
+            <div class="fixed-image-container2">
+                <img class="boton" src="../../assets/service24/comencemos_boton.svg" alt="" (click)="cancel();visto()">
+            </div>
+            
+          </swiper-slide>
+		  <swiper-slide class="slide-2">
+            
+            <img class="imge" src="../../assets/service24/comencemos2.svg" alt="" >
+            <div class="fixed-image-container">
+                <img class="boton" src="../../assets/service24/comencemos_boton.svg" alt="" (click)="cancel();visto()">
+            </div>
+	      </swiper-slide>
+		  <swiper-slide class="slide-2">
+            
+            <img class="imge" src="../../assets/service24/comencemos3.svg" alt="" >
+            <div class="fixed-image-container">
+                <img class="boton" src="../../assets/service24/comencemos_boton.svg" alt="" (click)="cancel();visto()">
+            </div>
+	      </swiper-slide>
+		  <swiper-slide class="slide-2">
+            
+            <img class="imge" src="../../assets/service24/comencemos4.svg" alt="" >
+            <div class="fixed-image-container">
+                <img class="boton" src="../../assets/service24/comencemos_boton.svg" alt="" (click)="cancel();visto()">
+            </div>
+	      </swiper-slide>
+		</swiper-container>
+</ion-content>

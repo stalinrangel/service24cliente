@@ -197,4 +197,14 @@ export class ObjetcserviceService {
 	getBack(): Subject<any> {
 		return this.back;
 	}
+
+	//--trabaja con notificaciones 
+	private init = new Subject<any>();
+	setInit(data: any) {
+		console.log(data)
+		this.init.next(data);
+	}
+	getInit(): Subject<any> {
+		return this.init;
+	}
 }

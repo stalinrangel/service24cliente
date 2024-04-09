@@ -106,7 +106,10 @@ export class LoginPage implements OnInit {
                 this.router.navigate
                 //this.events.publish('userAuthSV24', 'userSV'); 
                 
-                this.router.navigate(['/tabs/tab1']);       
+                this.router.navigate(['/tabs/tab1']);  
+                setTimeout(() => {
+                  this.objService.setcerrarSesion(true);
+                }, 500);    
                 //this.nav.pop();
                 this.loading.dismiss();
               } else {

@@ -21,6 +21,8 @@ import { Router } from '@angular/router';
 import { GeneralService } from '../services/general.service';
 import { Swiper } from 'swiper';
 import { SwiperOptions } from 'swiper/types';
+import { ComencemosComponent } from './comencemos.componet';
+import { TipousuarioComponent } from './tipousuario.componet';
 
 register();
 
@@ -60,7 +62,9 @@ export class Tab1Page {
   public empty: boolean = false;
   public show_notify: boolean = false;
 
+  public isLogin=false;
   constructor(
+  
   	private nav: NavController,
   	private catService: CategoriesService,
     private storage: StorageService, 
@@ -85,10 +89,8 @@ export class Tab1Page {
   ) {
 
     
-    
-   
-  
-  
+    this.isLoginCheck();
+    this.comencemos();
 
     this.objService.getNotify().subscribe((data:any) => {
       let items:any=this.storage.getObject('userRPSV24');
@@ -160,6 +162,10 @@ export class Tab1Page {
       this.isCliente = isClienteValue;
       this.changeDetector.detectChanges();
     });
+    this.objService.getcerrarSesion().subscribe((data:any) => {
+      console.log(data)
+      this.isLoginCheck();
+    });
   }
   iniciar(){
     this.funciones_generales.iniciar();
@@ -187,7 +193,27 @@ export class Tab1Page {
     //this.isCliente=true;
   }
 
+  isLoginCheck(){
+    this.storage.getObject('userSV24').then(items => {
+      let user:any=items;
+      console.log(user)
+      if (user==undefined||user=='') {
+        console.log(false)
+          this.isLogin=false;
+          this.usuario={
+            nombre:''
+          };
+      }else{
+        console.log(true)
+        this.isLogin=true;
+        this.usuario = items;
+    }
+    });
+  }
+
   ionViewWillEnter() {
+    
+    
     //this.isCliente=true;
     this.vistos=0;
     this.getZone();
@@ -601,5 +627,44 @@ export class Tab1Page {
     console.log(this.isCliente)
 		
 	}
+
+  login(){
+		this.nav.navigateForward('login');
+	}
+
+  async comencemos() {
+    let visto=localStorage.getItem('comencemos');
+    setTimeout(async () => {
+      if (visto!='1') {
+        const modal = await this.modalController.create({
+          component: ComencemosComponent,
+        });
+        modal.present();
+
+        const { data, role } = await modal.onWillDismiss();
+
+        if (role === 'confirm') {
+          //this.message = `Hello, ${data}!`;
+        }
+      }
+    }, 1000);  
+
+  }
+  async tipousuario() {
+    setTimeout(async () => {
+      const modal = await this.modalController.create({
+        component: TipousuarioComponent,
+      });
+      modal.present();
+
+      const { data, role } = await modal.onWillDismiss();
+
+      if (role === 'confirm') {
+        //this.message = `Hello, ${data}!`;
+      }
+    }, 400);  
+
+  }
+
 }
 

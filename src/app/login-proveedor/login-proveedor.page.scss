@@ -2,6 +2,19 @@ ion-content{
 	/*--background: url("/assets/Background_03.png") no-repeat center center / cover;
   background: url("/assets/Background_03.png") no-repeat center center / cover;*/
 }
+.header-border{
+  border-bottom: 1px solid #DAE2E7;
+  padding: 6px 6px 6px 12px;
+}
+
+input[type="checkbox"] {
+  border: 2px solid #DAE2E7 !important;
+}
+
+input[type="checkbox"]::before {
+  
+  border: 2px solid #00ff00; /* Cambia el color del borde aquí */
+}
 .content-img{
 	text-align: left;
 	img{
@@ -11,17 +24,39 @@ ion-content{
     margin-top: 70px;
 	}
 	h2{
-		margin: 60px 0px 0px 20px;
+		margin: 80px 0px 0px 20px;
     font-family: "Gilroy-ExtraBold";
     font-size: 34px;
     color: black;
 	}
 }
+.nuevo-input-password{
+  border-top: 1px solid #DAE2E7 !important;
+  border-bottom: 1px solid #DAE2E7 !important;
+  border-left: 1px solid #DAE2E7 !important;
+  border-right: 0px solid #DAE2E7 !important;
+  padding: 0px 0px 0px 10px !important;
+  height: 44px !important;
+  border-top-left-radius: 10px; 
+  border-bottom-left-radius: 10px; 
+  width: 100%; 
+}
+.nuevo-input-password2{
+  border-top: 1px solid #DAE2E7 !important;
+  border-bottom: 1px solid #DAE2E7 !important;
+  border-right: 1px solid #DAE2E7 !important;
+  padding: 0px 10px 0px 10px !important;
+  height: 43px !important;
+  border-top-right-radius: 10px; 
+  border-bottom-right-radius: 10px;  
+  margin: 0px;
+}
 .nuevo-input{
   border: 1px solid #DAE2E7 !important;
   padding: 0px 10px 0px 10px !important;
-  height: 44px;
-  border-radius: 5px;
+  height: 44px !important;
+  border-radius: 10px;
+  width: 100%;
 }
 .nuevo-debajo-input{
   margin-top: -13px;
@@ -32,21 +67,23 @@ ion-content{
 }
 .nuevo-recordar{
   display: flex;
-  flex-direction: row;
-  color: black;
-  font-family: Inter-Medium;
-  font-size: 13px;
-  padding-left: 20px;
-  margin: auto;
+    flex-direction: row;
+    justify-content: right;
+    align-items: start;
+    color: black;
+    font-family: Inter-Medium;
+    font-size: 14px;
+    padding-left: 20px;
+    margin: 0;
 }
 .nuevo-olvido{
-  color: black;
+  color: var(--neutral-300, #7E8389);
   font-family: Inter-Medium;
   font-size: 14px;
   padding-right: 20px;
 }
 .nuevo-boton{
-  border-radius: 6px;
+  border-radius: 10px;
   background: var(--primary-400, #FD682A) !important;
   margin: 0px 20px 0px 20px;
   color: white;
@@ -60,7 +97,14 @@ ion-content{
   font-size: 15px;
   color: var(--neutral-300, #7E8389);
   margin-right: 5px;
-  line-height: 18px;
+  line-height: 0px;
+}
+.notienescuenta{
+  font-family: Inter-Medium;
+  font-size: 15px;
+  color: var(--neutral-300, #7E8389);
+  margin-right: 5px;
+  line-height: 21px;
 }
 .registrate{
   font-family: Inter-Bold;
@@ -72,29 +116,37 @@ ion-content{
 	z-index: 999;
 	font-size: 22px;
 }
-.nuevo-input-password{
-  border-top: 1px solid #DAE2E7 !important;
-  border-bottom: 1px solid #DAE2E7 !important;
-  border-left: 1px solid #DAE2E7 !important;
-  padding: 0px 0px 0px 10px !important;
-  height: 44px;
-  border-top-left-radius: 5px; 
-  border-bottom-left-radius: 5px;  
-}
-.nuevo-input-password2{
-  border-top: 1px solid #DAE2E7 !important;
-  border-bottom: 1px solid #DAE2E7 !important;
-  border-right: 1px solid #DAE2E7 !important;
-  padding: 0px 10px 0px 10px !important;
-  height: 42px !important;
-  border-top-right-radius: 5px; 
-  border-bottom-right-radius: 5px;  
-  margin: 0px;
-}
+
 .item-input{
-	--border-radius: 3px;
+	border-radius: 10px;
 	color: #4D4D4D;
 	margin-bottom: 9px;
+}
+h2{
+  color:rgb(0, 0, 0) ;
+}
+p{
+  color:rgb(0, 0, 0) ;
+}
+.content-img{
+	text-align: left;
+	img{
+		height: 15px;
+    display: block;
+    margin: 0px 0px 0px 20px;
+    margin-top: 70px;
+	}
+	h2{
+		margin: 80px 0px 0px 20px;
+    font-family: "gilroy-semibold";
+    font-size: 34px;
+    color: black;
+	}
+}
+.item-input{
+  border-radius: 10px;
+	color: #4D4D4D;
+	margin-bottom: 20px;
 }
 .sc-ion-input-md-h, .sc-ion-input-ios-h{
 	font-family: "Muli-Regular";
@@ -126,7 +178,7 @@ ion-content{
 }
 .btn-facebook{
 	--background: #4469b0;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
   display: flex;
   align-items: center;
 }
@@ -158,25 +210,13 @@ ion-icon {
   background-size: contain;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  width: 1em;
-  height: 1em;
-  font-size: 20px !important;
-  position: absolute;
-  left: 15px;
-  background-image: url('/assets/icon/google.svg');
-  color: transparent;
-  top: 13px;
-}
-.icon-apple {
-  background-size: contain;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
+  background: transparent;
   width: 1em;
   height: 1em;
   font-size: 20px !important;
   position: absolute;
   left: 14px;
-  background-image: url('/assets/icon/mac.svg');
+  background-image: url('/assets/icon/google.svg');
   color: transparent;
   top: 13px;
 }
@@ -185,9 +225,17 @@ p{
 }
 .icon-back{
   position: absolute;
-  top: 20px;
+  top: 40px;
   left: 10px;
 }
-.sc-ion-buttons-md-s .button-clear, .sc-ion-buttons-md-s .button-clear{
+.sc-ion-buttons-md-s .button-clear, .sc-ion-buttons-ios-s .button-clear{
   --color: #ffffff;
+}
+
+ion-checkbox {
+  --size: 16px;
+}
+ion-checkbox::part(container) {
+  border-radius: 4px;
+  border: 1.5px solid #DAE2E7;
 }

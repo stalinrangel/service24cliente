@@ -5,7 +5,7 @@ import { StorageService } from '../../services/storage/storage.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
-
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-notifications',
@@ -31,7 +31,7 @@ export class NotificationsComponent  implements OnInit {
     public userService: UserService, 
     private storage: StorageService, 
     private objService: ObjectserviceService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
     //public events: Events
   ) { 
     /*this.events.subscribe('prov:notify', msg => {
@@ -81,6 +81,7 @@ export class NotificationsComponent  implements OnInit {
         console.log(data)
         this.datos1 = data;
         this.notifications = this.datos1.Notificaciones_generales;
+        let fecha;
         for (let i = 0; i < this.notifications.length; i++) {
           if (this.notifications[i].data) {
             this.notifications[i].data2=JSON.parse(this.notifications[i].data);
@@ -90,7 +91,9 @@ export class NotificationsComponent  implements OnInit {
             }
            
           }
-          
+          //console.log(this.notifications[i]);
+          fecha=new Date(this.notifications[i].created_at);
+          this.notifications[i].fechaf=format(fecha, 'DD/MM/YYYY');
           
         }
         console.log(this.notifications)

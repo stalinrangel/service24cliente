@@ -7,12 +7,12 @@
     <ion-title class="ion-text-capitalize ion-text-center">
       {{ 'SEARCH.title' | translate }}
     </ion-title>
-    <ion-buttons slot="end" (click)="viewNotification()">
+    <!--ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
         <div class="icon-bagde" *ngIf="show_notify"></div>
         <ion-icon name="notifications-outline" style="font-size: 25px;"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons-->
   </ion-toolbar>
   
   <div class="header" id="search">
@@ -24,6 +24,17 @@
 </ion-header>
 
 <ion-content>
+  <div *ngIf="showpopulares" style="display: ruby-text;" >
+    <div *ngFor="let p of populares" >
+      <div *ngIf="searchText==''" style=" margin: 6px;display: inline-flex; border: 1px solid #DAE2E7;border-radius: 4px;padding: 4px;justify-content: center;align-items: center;" (click)="selecPopular(p.nombre)">
+        <div style="display: flex;justify-content: center;align-items: center;">
+          <img src="{{p.imagen}}" alt="" style="width: 25px;height: 25px;margin-right: 5px;">
+        <p style="color:#7E8389; font-family: Inter-medium; font-size: 12px;">{{ p.nombre }}</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
   <ion-list>
     <div *ngFor="let item of filteredItems" (click)="setProvider(item)" class="cuadro-azul" [ngStyle]="{'background': item.plan.tipo_plan === 'PREMIUM' ? '#ffd1be' : ''}">
       <div class="label1">
