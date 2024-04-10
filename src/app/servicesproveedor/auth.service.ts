@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable, from } from 'rxjs';
+import { Observable, from, throwError } from 'rxjs';
 //import { StorageService } from './storage.service';
 import '@capacitor-community/http';
 import { Plugins } from '@capacitor/core';
@@ -85,6 +85,14 @@ export class AuthService {
     // or...
     // const response = await Http.request({ ...options, method: 'GET' })
   }*/
+
+  
+  loginSocial(credentials: { email: null; }): Observable<any> {
+    console.log(credentials)
+    //this.doGet();
+    //this.get(`${environment.api}login/repartidores`);
+    return this.http.post(`${environment.api}login/repartidores`, credentials)
+  }
 }
 
 

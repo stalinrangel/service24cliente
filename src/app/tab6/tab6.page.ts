@@ -100,6 +100,7 @@ export class Tab6Page implements OnInit {
     /*this.ga.trackView('Home')
     .then(() => {})
     .catch(e => console.log(e));*/
+    console.log(this.storage.get('userSV24'))
     console.log(this.storage.get('idRPSV24'))
     let repartidor:any=this.storage.get('idRPSV24');
     let isSesion:any=this.storage.get('idRPSV24');

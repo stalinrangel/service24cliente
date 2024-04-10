@@ -17,7 +17,10 @@ import { registerPlugin, Plugin } from '@capacitor/core';
 const BackgroundGeolocation = registerPlugin<BackgroundGeolocationPlugin>("BackgroundGeolocation");
 import { Geolocation, GeolocationPluginPermissions, PermissionStatus } from '@capacitor/geolocation';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
-
+import { initializeApp } from "@firebase/app";
+import { GoogleAuthProvider, User, getAuth, onAuthStateChanged, signInWithCredential, signInWithRedirect } from "@firebase/auth";
+import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login-proveedor',
@@ -46,6 +49,7 @@ export class LoginProveedorPage implements OnInit {
   public subscription: any;
   public btnApple: boolean = false;
   recordarme=false;
+  firebase: any;
 
   constructor(
     public nav: NavController, 
@@ -63,6 +67,12 @@ export class LoginProveedorPage implements OnInit {
     private noticationService: NotificationsService,
     public funciones_generales: GeneralService
   ) {
+    this.firebase = initializeApp(environment.firebaseConfig);
+    GoogleAuth.initialize({
+      clientId: '233380787537-rb13b0bgnjv1jltfjl77hm0euqc51685.apps.googleusercontent.com',
+      scopes: ['profile', 'email'],
+      grantOfflineAccess: true,
+    });
   }
 
   ngOnInit() {
@@ -77,6 +87,9 @@ export class LoginProveedorPage implements OnInit {
       this.btnApple = true;
     }
     //this.preguntar();
+    let usr:any=localStorage.getItem('userSV24');
+    usr=JSON.parse(usr);
+    console.log(usr)
     
   }
 
@@ -163,6 +176,7 @@ export class LoginProveedorPage implements OnInit {
     }, 1000);  
   }
   data(data:any){
+    console.log(data)
     this.storage.set('TRPSV24',data.token);
     this.funciones_generales.set_TRPSV24(data.token);
     this.storage.set('idRPSV24',data.user.repartidor.id);
@@ -275,6 +289,41 @@ export class LoginProveedorPage implements OnInit {
   togglePasswordMode1() {   
     this.password_type1 = this.password_type1 === 'text' ? 'password' : 'text';
   }  
+
+  async loginViaGoogle() {
+    this.presentLoading();
+    try {
+        const user = await GoogleAuth.signIn();
+        console.log(user)
+        if (user) {
+          let credentials:any={
+            email:null
+          }
+          credentials.email=user.email;
+          console.log(credentials)
+          let self=this;
+          this.auth.loginSocial(credentials).subscribe({
+            next(data: any){
+              console.log(data);
+              self.loading.dismiss();
+              if (data) {              
+                self.data(data);
+              }else {
+                self.loading.dismiss();
+                self.presentToast("Accesso Denegado.");
+              }
+            },error(err: any){
+              console.log(err)
+              self.presentToast('Datos inválidos.');
+            }
+          });
+        }   
+      } catch (error) {
+          console.log(error);
+          this.presentToast("Ha ocurrido un error al iniciar sesion con Google.");
+          this.loading.dismiss();
+        }
+  }
 
   /*async openTutorialPopover() {
     const modal = await this.modalController.create({

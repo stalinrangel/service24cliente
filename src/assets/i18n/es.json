@@ -108,8 +108,8 @@
         "login": "Iniciar Sesión",
         "forgot": "Olvidaste la contraseña?",
         "o": "o",
-        "facebook": "Iniciar Sesión con Facebook",
-        "google": "Iniciar Sesión con Google",
+        "facebook": "Iniciar sesión con Facebook",
+        "google": "Iniciar sesión con Google",
         "signin": "Registrarse"  
     },
     "REGISTER": {

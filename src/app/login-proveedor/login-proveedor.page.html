@@ -35,7 +35,10 @@
 			</div>
 		</div>
 		
-		<button expand="block" class="ion-text-capitalize nuevo-boton" (click)="login()">Iniciar Sesión</button>
+		<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+			<button expand="block" class="ion-text-capitalize nuevo-boton" (click)="login()">Iniciar Sesión</button>
+			<ion-button expand="block" class="ion-text-capitalize btn-google" (click)="loginViaGoogle()"><ion-icon class="icon-google" name="arrow-dropup" ></ion-icon> Iniciar sesión con Google </ion-button>
+		</div>
 		<!--div class="or-spacer">
 			<div class="mask"></div>
 			<span>ó</span>

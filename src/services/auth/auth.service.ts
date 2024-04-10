@@ -28,6 +28,7 @@ export class AuthService {
             console.log(data);
             this.storage.set('TUSV24',this.usuario.token);
             this.storage.setObject('userSV24', this.usuario.user);
+            localStorage.setItem('userSV24', JSON.stringify(this.usuario.user));
             setTimeout(() => {
               this.noticationService.registrar_token();
             }, 6000);
@@ -53,8 +54,12 @@ export class AuthService {
         .then(
           data => {
             this.usuario = data;
+            
             this.storage.set('TUSV24',this.usuario.token);
             this.storage.setObject('userSV24', this.usuario.user);
+            setTimeout(() => {
+              this.noticationService.registrar_token();
+            }, 6000);
             observer.next(true);
             observer.complete();
           },

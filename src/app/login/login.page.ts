@@ -8,6 +8,10 @@ import { StorageService } from '../../services/storage/storage.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ObjectserviceService } from '../../services/objetcservice/objectservice.service';
 import { Router } from '@angular/router';
+import { initializeApp } from "@firebase/app";
+import { GoogleAuthProvider, User, getAuth, onAuthStateChanged, signInWithCredential, signInWithRedirect } from "@firebase/auth";
+import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +37,7 @@ export class LoginPage implements OnInit {
     tipo_registro: 0,
     token_notificacion: null
   };
+  firebase: any;
 
   constructor(
     public nav: NavController, 
@@ -49,8 +54,15 @@ export class LoginPage implements OnInit {
     //public events: Events,
     private router: Router,
   ) {
-  }
+    this.firebase = initializeApp(environment.firebaseConfig);
+    GoogleAuth.initialize({
+      clientId: '233380787537-rb13b0bgnjv1jltfjl77hm0euqc51685.apps.googleusercontent.com',
+      scopes: ['profile', 'email'],
+      grantOfflineAccess: true,
+    });
 
+  }
+  
   ngOnInit() {
     this.initForm();
   }
@@ -103,7 +115,7 @@ export class LoginPage implements OnInit {
               if (allowed) {
                 console.log('exito')
                
-                this.router.navigate
+                //this.router.navigate
                 //this.events.publish('userAuthSV24', 'userSV'); 
                 
                 this.router.navigate(['/tabs/tab1']);  
@@ -127,6 +139,44 @@ export class LoginPage implements OnInit {
         this.presentToast("Por favor, verifica los datos.");
       }
     }, 1000);  
+  }
+
+  async loginViaGoogle() {
+    this.presentLoading();
+    try {
+        const user = await GoogleAuth.signIn();
+        console.log(user)
+        if (user) {
+          let credentials:any={
+            email:null
+          }
+          credentials.email=user.email;
+          console.log(credentials)
+          this.auth.loginSocial(credentials).subscribe((allowed: any) => {
+            if (allowed) {
+              this.loading.dismiss();
+              this.router.navigate(['/tabs/tab1']);  
+                setTimeout(() => {
+                  this.objService.setcerrarSesion(true);
+                }, 500); 
+            } else {
+              this.loading.dismiss();
+              this.presentToast("Accesso Denegado.");
+            }
+          },
+          (error: { error: any; }) => {
+            this.loading.dismiss();
+            console.log(error)
+            this.presentToast("Usuario no registrado!");
+            //this.objService.setExtras(this.apiuser);
+            //this.nav.navigateForward('confirm-info');
+          });
+        }   
+    } catch (error) {
+        console.log(error);
+        this.presentToast("Ha ocurrido un error al iniciar sesion con Google.");
+        this.loading.dismiss();
+    }
   }
 
   // LOGIN FACEBOOK
