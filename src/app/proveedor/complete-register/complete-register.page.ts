@@ -1693,7 +1693,7 @@ export class CompleteRegisterPage implements OnInit {
 	}
 
 	back1(){
-		this.navCtrl.navigateForward('/tabs/tab3');	
+		this.navCtrl.navigateForward('/tabs/tab8');	
 	}
 
 	capitalizeFirstLetter(string:any) {
@@ -3048,7 +3048,7 @@ export class CompleteRegisterPage implements OnInit {
 										this.storage.setObject('userRPSV24',items);
 										this.funciones_generales.iniciar();
 										setTimeout(()=>{
-											this.navCtrl.navigateRoot('tabs/tab3');
+											this.navCtrl.navigateRoot('tabs/tab8');
 										},1300);		
 									}
 								
@@ -3074,7 +3074,7 @@ export class CompleteRegisterPage implements OnInit {
 										this.storage.setObject('userRPSV24',items);
 										this.funciones_generales.iniciar();
 										setTimeout(()=>{
-											this.navCtrl.navigateRoot('tabs/tab3');
+											this.navCtrl.navigateRoot('tabs/tab8');
 										},1300);	
 									}
 								
@@ -3112,7 +3112,7 @@ export class CompleteRegisterPage implements OnInit {
 										this.storage.setObject('userRPSV24',items);
 										this.funciones_generales.iniciar();
 										setTimeout(()=>{
-											this.navCtrl.navigateRoot('tabs/tab3');
+											this.navCtrl.navigateRoot('tabs/tab8');
 										},1300);		
 									}
 								
@@ -3138,7 +3138,7 @@ export class CompleteRegisterPage implements OnInit {
 										this.storage.setObject('userRPSV24',items);
 										this.funciones_generales.iniciar();
 										setTimeout(()=>{
-											this.navCtrl.navigateRoot('tabs/tab3');
+											this.navCtrl.navigateRoot('tabs/tab8');
 										},1300);		
 									}
 								
@@ -3521,6 +3521,10 @@ export class CompleteRegisterPage implements OnInit {
 		console.log(id)
 		//const index = this.swiperInstance.getSlideIndex(`#${id}`);
 		this.swiperInstance.slideTo(id);
+	}
+
+	enviarRegistro(){
+		this.actualiza=0;
 	}
 
 }

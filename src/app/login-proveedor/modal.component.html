@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button color="medium" (click)="cancel()"></ion-button>
+      </ion-buttons>
+      <ion-title></ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="confirm()" [strong]="true">Cerrar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <div style="height: 80%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        
+        <div>
+            <img src="../assets/service24/pronto.svg" alt="">
+        </div><br><br>
+        <div><br>
+          <p style="text-align: center; color: var(--neutral-400, #141518); font-family: Gilroy-ExtraBold; font-size: 24px; font-style: normal; font-weight: 700; line-height: normal; margin: auto;">
+            ¿Te gustaría formar parte de nuestro equipo de proveedores de servicios? Haz clic aquí para unirte.
+          </p>
+        </div><br>
+        <ion-button expand="block" class="ion-text-capitalize btn-init" style="color: white; font-weight: bold;" (click)="change()">Conviérteme en proveedor <!--ion-icon style="padding-left: 10px; color: white; font-weight: bold;" name="cloud-download-outline"></ion-icon--></ion-button>
+
+        
+    </div>
+  </ion-content>
+
+  

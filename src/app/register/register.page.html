@@ -37,8 +37,12 @@
 		<!--ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.zona}">
 			<ion-input mode="ios" type="text" formControlName="zona" placeholder="{{ 'REGISTER.zona' | translate }}" readonly (click)="selectZone()"></ion-input>
 		</ion-item-->
-		<ion-button mode="ios" expand="block" color="primary" class="ion-text-capitalize btn-init btn-register" (click)="register()">
-		{{ 'REGISTER.register' | translate }}</ion-button>
+		
+		<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+			<ion-button mode="ios" expand="block" color="primary" class="ion-text-capitalize btn-init btn-register" (click)="register()">
+				{{ 'REGISTER.register' | translate }}</ion-button>
+			<ion-button expand="block" class="ion-text-capitalize btn-google" (click)="loginViaGoogle()"><ion-icon class="icon-google" name="arrow-dropup" ></ion-icon> Registrarse con Google</ion-button>
+		</div>
 		
 		<!--p class="ion-text-center link-login" (click)="login()">{{ 'REGISTER.login' | translate }}</p-->
 		<div style="display: flex; justify-content: center;">

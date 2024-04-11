@@ -11,6 +11,11 @@ import { AuthService } from '../servicesproveedor/auth.service';
 //import { VerifyNumberPage } from '../verify-number/verify-number.page';
 //import { RefreshService } from '../../services/refresh/refresh.service';
 import { GeneralService } from '../servicesproveedor/general.service';
+import { initializeApp } from "@firebase/app";
+import { GoogleAuthProvider, User, getAuth, onAuthStateChanged, signInWithCredential, signInWithRedirect } from "@firebase/auth";
+import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
+import { environment } from '../../environments/environment';
+import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 
 @Component({
   selector: 'app-register-proveedor',
@@ -41,7 +46,7 @@ export class RegisterProveedorPage implements OnInit {
     //{pais: 4, codigo: '+54', value:'+54'}
   ];
   public registerUserForm:FormGroup= new FormGroup({});
-
+  firebase: any;
 	constructor(
     public navCtrl: NavController, 
     private auth: AuthService, 
@@ -53,10 +58,16 @@ export class RegisterProveedorPage implements OnInit {
     //public refresh: RefreshService,
     //private oneSignal: OneSignal,
     public modalController: ModalController,
-    private GeneralService: GeneralService
+    private GeneralService: GeneralService,
+    private objService: ObjectserviceService,
     
   ) {	  
-    
+    this.firebase = initializeApp(environment.firebaseConfig);
+    GoogleAuth.initialize({
+      clientId: '233380787537-rb13b0bgnjv1jltfjl77hm0euqc51685.apps.googleusercontent.com',
+      scopes: ['profile', 'email'],
+      grantOfflineAccess: true,
+    });
 	}
 
 	ngOnInit() {
@@ -307,5 +318,57 @@ export class RegisterProveedorPage implements OnInit {
   terms(){
 		this.navCtrl.navigateForward('terms-conditions');
 	}
-
+  async loginViaGoogle() {
+    this.presentLoading();
+    try {
+        const user = await GoogleAuth.signIn();
+        console.log(user)
+        if (user) {
+          let credentials:any={
+            email:null,
+            nombre:null,
+            imagen:null,
+            confirmado:'no',
+            tipo_registro:2
+          }
+          credentials.email=user.email;
+          credentials.nombre=user.name;
+          credentials.imagen=user.imageUrl;
+          console.log(credentials)
+          this.registerSocial(credentials);
+          
+        }   
+      } catch (error) {
+          console.log(error);
+          this.presentToast("Ha ocurrido un error al iniciar sesion con Google.");
+          this.loading.dismiss();
+        }
+  }
+  registerSocial(credentials:any){
+    let self=this;
+    
+    this.auth.register(credentials).subscribe({
+      next(data){
+        console.log(data);
+        if (data) {
+          
+          //self.navCtrl.navigateRoot('/login');
+          setTimeout(() => {
+            self.navCtrl.navigateRoot(['login-proveedor']); 
+            self.objService.setLoginProveedor(credentials.email);
+          }, 1500); 
+          self.presentToast('¡Registrado con éxito!');
+          //self.loading.dismiss();
+        }
+      },error(err){
+          console.log(err)
+          setTimeout(() => {
+            self.navCtrl.navigateRoot(['login-proveedor']); 
+            self.objService.setLoginProveedor(credentials.email);
+          }, 1500); 
+          //self.loading.dismiss();
+          self.presentToast(err.error.error);
+      }
+      });
+  }
 }

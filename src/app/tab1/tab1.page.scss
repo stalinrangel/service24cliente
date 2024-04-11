@@ -1,3 +1,7 @@
+.header-border{
+    border-bottom: 1px solid #DAE2E7;
+    padding: 6px 6px 6px 12px;
+}
 .promo-title{
     color: var(--neutral-400, #141518);
     font-family: Inter-Medium;
@@ -180,7 +184,7 @@ line-height: normal;
 }
 .btn-search{
     background-color: #FD682A !important;
-    margin: 0px 0px 7px 0px;
+    margin: 4px 0px 0px 0px;
     border-radius: 8px;
     position: relative;
     bottom: 5px;

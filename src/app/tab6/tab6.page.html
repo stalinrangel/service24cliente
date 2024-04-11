@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header >
   
-  <ion-toolbar class="nuevo-header" mode="md">
+  <ion-toolbar class="nuevo-header header-border" mode="md">
     <ion-title *ngIf="status == 0" class="ion-text-capitalize ion-text-center">
       Inactivo
     </ion-title>
@@ -27,7 +27,7 @@
       <p *ngIf="active">Activo</p>
     </ion-title>
     <ion-title *ngIf="status != 1 && status != 2" style="padding-left: 20px; text-align: left;">
-      <p>Service 24</p>
+      <img src="../../assets/service24/logo-rojo.svg" alt="" >
     </ion-title>
     <ion-buttons slot="end" *ngIf="status == 1 || status == 2">
       <ion-button>
@@ -144,8 +144,12 @@
     <p class="text-complete">Para recibir solicitudes debe completar su perfil y realizar un registro previo.</p>
     <ion-button expand="block" class="ion-text-capitalize btn-init" (click)="completeRegister()">Comencemos</ion-button>
   </div>
-  <div *ngIf="status == 4">
-    <p class="text-complete">Su perfil se encuentra en revisión.</p>
+  <div *ngIf="status == 4" style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+    <br>
+    <img src="../../assets/service24/agregarservicio.svg" alt="" style="width: 100%; margin-top: 10px; height: 45vh; ">
+    <br>
+    <ion-button expand="block" class="ion-text-capitalize btn-init" (click)="agregarservicio()">Agregar Servicio</ion-button>
+    <ion-button expand="block" class="ion-text-capitalize btn-init2" (click)="mejorarplan()">Mejora tu plan</ion-button>
   </div>
   </ion-infinite-scroll>
 </ion-content>

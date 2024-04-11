@@ -99,6 +99,14 @@ ion-refresher{
 	width: 90%;
   margin: auto;
   margin-top: -20px;
+  color: white;
+}
+.btn-init2{
+	--background: white;
+	width: 90%;
+  color: black;
+  border: 1px solid #DAE2E7;
+  border-radius: 10px;
 }
 .text-complete{
 	color: #000;
@@ -154,4 +162,9 @@ ion-refresher{
   align-items: center;
   padding: 0px 10px 0px 17px;
   color: #141518;
+}
+
+.header-border{
+  border-bottom: 1px solid #DAE2E7;
+  padding: 6px 6px 6px 12px;
 }

@@ -213,7 +213,7 @@ select option[disabled]:checked {
     display: inline-flex;
     align-items: center;
     background-color: #FD682A;
-    color: #fff;
+    color: #fff !important;
     padding: 6px 8px;
     width: 100%;
     justify-content: center;

@@ -399,7 +399,8 @@ export class Tab3Page {
     this.encurso = 0;
     this.finalizado = 0;
 		this.band_chatSupport = false;	
-	
+	this.navCtrl.navigateForward('/tabs/tab1');
+	localStorage.setItem('userSV24', '');
 	setTimeout(() => {
 		this.objService.setcerrarSesion(true);
 		this.storage.getObject('userSV24').then(items => {

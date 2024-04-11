@@ -14,7 +14,7 @@
   </ion-toolbar>
   
 </ion-header>
-<div class="modo">
+<div class="modo" [hidden]="!isLogin">
   <ion-toggle [(ngModel)]="isCliente" (ionChange)="changeRol($event)"></ion-toggle>
   <p style="margin: 0 0px 0 9px;">Modo proveedor</p>
 </div>

@@ -101,6 +101,7 @@ export class Tab8Page  {
 			let items:any=this.storage.getObject('userRPSV24');
 				if (items != '' && items != null) {
 				  console.log('tab3')
+				  console.log(items)
 				  this.usuario = items;
 				  this.promedio_calificacion = this.usuario.promedio_calificacion;
 				}
@@ -399,8 +400,13 @@ export class Tab8Page  {
 					      this.promedio_calificacion = 0;
 					      this.storage.remove('formLocalRSV24');
 					      this.locationTracker.stopT();
-					      this.navCtrl.navigateRoot('login-proveedor');
-						  this.objService2.setcerrarSesion(true);
+						  localStorage.setItem('userSV24', '');
+					      this.navCtrl.navigateRoot('tabs/tab1');
+						  setTimeout(() => {
+							this.objService2.setcerrarSesion(true);
+						  }, 1000); 
+						  
+						  
 					    },
 					    msg => {
 					      if(msg.status == 400 || msg.status == 401){ 
@@ -414,8 +420,11 @@ export class Tab8Page  {
 						      this.promedio_calificacion = 0;
 						      this.storage.remove('formLocalRSV24');
 						      this.locationTracker.stopT();
-						      this.navCtrl.navigateRoot('login-proveedor');
-							  this.objService2.setcerrarSesion(true);
+							  localStorage.setItem('userSV24', '');
+						      this.navCtrl.navigateRoot('tabs/tab1');
+							  setTimeout(() => {
+								this.objService2.setcerrarSesion(true);
+							  }, 1000); 
 					      }
 					    });
 		  			}

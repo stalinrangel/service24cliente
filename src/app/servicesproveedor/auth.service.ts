@@ -89,9 +89,11 @@ export class AuthService {
   
   loginSocial(credentials: { email: null; }): Observable<any> {
     console.log(credentials)
-    //this.doGet();
-    //this.get(`${environment.api}login/repartidores`);
     return this.http.post(`${environment.api}login/repartidores`, credentials)
+  }
+  change(credentials: { email: null; }): Observable<any> {
+    console.log(credentials)
+    return this.http.post(`${environment.api}change`, credentials)
   }
 }
 

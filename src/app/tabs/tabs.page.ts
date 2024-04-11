@@ -18,6 +18,7 @@ export class TabsPage {
 	public subscription: any;
 	public isCliente:any=true;
 	public cliente:any='Modo Cliente';
+	isLogin=false;
 	constructor(private translate: TranslateService,private changeDetector: ChangeDetectorRef,private platform: Platform,public navCtrl: NavController, public router: Router,private userService: UserService,private objService: ObjectserviceService,private storage: StorageService){
 
 	this.isCliente=localStorage.getItem('isCliente');
@@ -26,9 +27,31 @@ export class TabsPage {
 		this.isCliente = isClienteValue;
 		this.changeDetector.detectChanges();
 	  });
-	
+	this.objService.getcerrarSesion().subscribe((data:any) => {
+	console.log(data)
+	this.isLoginCheck();
+	});
+	this.isLoginCheck();
 
 	}
+
+	isLoginCheck(){
+		this.storage.getObject('userSV24').then(items => {
+		  let user:any=items;
+		  console.log(user)
+		  if (user==undefined||user=='') {
+			console.log(false)
+			  this.isLogin=false;
+			  this.usuario={
+				nombre:''
+			  };
+		  }else{
+			console.log(true)
+			this.isLogin=true;
+			this.usuario = items;
+		}
+		});
+	  }
 
 	changeRol(){
 		if (this.isCliente) {

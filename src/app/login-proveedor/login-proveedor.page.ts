@@ -21,6 +21,7 @@ import { initializeApp } from "@firebase/app";
 import { GoogleAuthProvider, User, getAuth, onAuthStateChanged, signInWithCredential, signInWithRedirect } from "@firebase/auth";
 import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
 import { environment } from '../../environments/environment';
+import { ModalComponent } from './modal.componet';
 
 @Component({
   selector: 'app-login-proveedor',
@@ -65,7 +66,8 @@ export class LoginProveedorPage implements OnInit {
     private platform: Platform,
     public modalController: ModalController,
     private noticationService: NotificationsService,
-    public funciones_generales: GeneralService
+    public funciones_generales: GeneralService,
+    
   ) {
     this.firebase = initializeApp(environment.firebaseConfig);
     GoogleAuth.initialize({
@@ -73,6 +75,8 @@ export class LoginProveedorPage implements OnInit {
       scopes: ['profile', 'email'],
       grantOfflineAccess: true,
     });
+    
+		
   }
 
   ngOnInit() {
@@ -88,9 +92,39 @@ export class LoginProveedorPage implements OnInit {
     }
     //this.preguntar();
     let usr:any=localStorage.getItem('userSV24');
-    usr=JSON.parse(usr);
-    console.log(usr)
+    console.log(usr);
+    if (usr!=''&&usr!=null) {
+      usr=JSON.parse(usr);
+      if (usr.tipo_usuario==2) {
+        this.openModal();
+      }
+    }
+
     
+    this.objService2.getLoginProveedor().subscribe((data:any) => {
+      console.log(data)
+			this.loginExterno(data);
+		});
+    
+    
+    
+  }
+
+  openModal(){
+    setTimeout(async () => {
+
+        const modal = await this.modalController.create({
+          component: ModalComponent,
+        });
+        modal.present();
+
+        const { data, role } = await modal.onWillDismiss();
+
+        if (role === 'confirm') {
+          //this.message = `Hello, ${data}!`;
+        }
+
+    }, 1000);  
   }
 
   async haypermisos(){
@@ -305,11 +339,11 @@ export class LoginProveedorPage implements OnInit {
           this.auth.loginSocial(credentials).subscribe({
             next(data: any){
               console.log(data);
-              self.loading.dismiss();
+              //self.loading.dismiss();
               if (data) {              
                 self.data(data);
               }else {
-                self.loading.dismiss();
+               // self.loading.dismiss();
                 self.presentToast("Accesso Denegado.");
               }
             },error(err: any){
@@ -323,6 +357,28 @@ export class LoginProveedorPage implements OnInit {
           this.presentToast("Ha ocurrido un error al iniciar sesion con Google.");
           this.loading.dismiss();
         }
+  }
+
+  loginExterno(email:any){
+    let credentials:any={
+      email:email
+    }
+    let self=this;
+          this.auth.loginSocial(credentials).subscribe({
+            next(data: any){
+              console.log(data);
+              //self.loading.dismiss();
+              if (data) {              
+                self.data(data);
+              }else {
+                //self.loading.dismiss();
+                self.presentToast("Accesso Denegado.");
+              }
+            },error(err: any){
+              console.log(err)
+              self.presentToast('Datos inválidos.');
+            }
+          });
   }
 
   /*async openTutorialPopover() {

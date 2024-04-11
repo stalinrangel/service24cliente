@@ -6,6 +6,12 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 //import { OneSignal } from '@ionic-native/onesignal/ngx';
 //import { ZonesRegisterPage } from '../zones-register/zones-register.page';
+import { initializeApp } from "@firebase/app";
+import { GoogleAuthProvider, User, getAuth, onAuthStateChanged, signInWithCredential, signInWithRedirect } from "@firebase/auth";
+import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
+import { environment } from '../../environments/environment';
+import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
+
 
 @Component({
   selector: 'app-register',
@@ -27,6 +33,7 @@ export class RegisterPage implements OnInit {
     'rpassword': '',
     'zona': ''
   };
+  firebase: any;
 
 	constructor(
     public navCtrl: NavController, 
@@ -39,8 +46,15 @@ export class RegisterPage implements OnInit {
    // public event: Events,
     //private oneSignal: OneSignal,
     public modalController: ModalController,
-    private router: Router
+    private router: Router,
+    private objService2: ObjectserviceService,
   ) {	  
+    this.firebase = initializeApp(environment.firebaseConfig);
+    GoogleAuth.initialize({
+      clientId: '233380787537-rb13b0bgnjv1jltfjl77hm0euqc51685.apps.googleusercontent.com',
+      scopes: ['profile', 'email'],
+      grantOfflineAccess: true,
+    });
 	}
 
 	ngOnInit() {
@@ -225,4 +239,59 @@ export class RegisterPage implements OnInit {
   terms(){
 		this.navCtrl.navigateForward('terms-conditions');
 	}
+
+  async loginViaGoogle() {
+    this.presentLoading();
+    try {
+        const user = await GoogleAuth.signIn();
+        console.log(user)
+        if (user) {
+          let credentials:any={
+            email:null,
+            nombre:null,
+            imagen:null,
+            confirmado:'no',
+            tipo_registro:2,
+            tipo_usuario:2
+          }
+          credentials.email=user.email;
+          credentials.nombre=user.name;
+          credentials.imagen=user.imageUrl;
+          console.log(credentials)
+          this.registerSocial(credentials);
+          
+        }   
+      } catch (error) {
+          console.log(error);
+          this.presentToast("Ha ocurrido un error al iniciar sesion con Google.");
+          this.loading.dismiss();
+        }
+  }
+  registerSocial(credentials:any){
+    let self=this;
+    
+    this.auth.register(credentials).subscribe({
+      next(data: any){
+        console.log(data);
+        if (data) {
+          
+          //self.navCtrl.navigateRoot('/login');
+          setTimeout(() => {
+            self.navCtrl.navigateRoot(['login']); 
+            self.objService2.setLoginCliente(credentials.email);
+          }, 1500); 
+          self.presentToast('¡Registrado con éxito!');
+          //self.loading.dismiss();
+        }
+      },error(err: { error: { error: any; }; }){
+          console.log(err)
+          setTimeout(() => {
+            self.navCtrl.navigateRoot(['login']); 
+            self.objService2.setLoginCliente(credentials.email);
+          }, 1500); 
+          //self.loading.dismiss();
+          self.presentToast(err.error.error);
+      }
+      });
+  }
 }

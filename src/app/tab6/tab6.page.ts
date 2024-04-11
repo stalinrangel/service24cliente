@@ -498,4 +498,10 @@ export class Tab6Page implements OnInit {
     this.navCtrl.navigateRoot('/tabs/tab1');
 		
 	}
+  agregarservicio(){
+    this.router.navigate(['/proveedor/list-services']);
+  }
+  mejorarplan(){
+    this.router.navigate(['/proveedor/planes']);
+  }
 }

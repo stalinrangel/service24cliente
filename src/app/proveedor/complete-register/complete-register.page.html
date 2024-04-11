@@ -150,7 +150,7 @@
 					</ion-popover>
 				</ion-item>
 				<ion-item lines="none" class="item1" id="hover-trigger">
-					<ion-input  placeholder="Casa, piso, etc" [(ngModel)]="direccion_exacta" class="area-info" rows="3" cols="20" class="area-info2 ion-text-capitalize" (ionBlur)="changeItem(52)"></ion-input>
+					<ion-input style="font-family: 'Inter-Medium';" placeholder="Casa, piso, etc" [(ngModel)]="direccion_exacta" class="area-info" rows="3" cols="20" class="area-info2 ion-text-capitalize" (ionBlur)="changeItem(52)"></ion-input>
 
 					<ion-popover trigger="hover-trigger" triggerAction="hover">
 						<ng-template>
@@ -198,8 +198,8 @@
 					
 				<div class="content-chip" *ngIf="idiomas.length > 0">
 					<div class="chip-item" *ngFor="let item of idiomas">
-						<p>{{item.nombre}}</p>
-						<ion-icon name="close" (click)="deleteLanguage(item)"></ion-icon>
+						<p style="color: white;">{{item.nombre}}</p>
+						<ion-icon style="color: white;" name="close" (click)="deleteLanguage(item)"></ion-icon>
 					</div>
 				</div>
 				<ion-radio-group formControlName="urgencias" (ionBlur)="changeItem(29)">
@@ -596,6 +596,7 @@
 				<!--ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" style="margin-right: 15px" (click)="back1()">Atras</ion-button-->
 				<div style="display: flex;">
 					<ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1()">Guardar</ion-button>
+					<ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1();enviarRegistro()">Guardar y enviar</ion-button>
 				</div>
 				<br><br> <br><br>
 			</div>

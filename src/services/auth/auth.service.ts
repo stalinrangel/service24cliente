@@ -33,7 +33,7 @@ export class AuthService {
               this.noticationService.registrar_token();
             }, 6000);
             
-            observer.next(true);
+            observer.next(this.usuario);
             observer.complete();
           },
           msg => {
@@ -42,6 +42,11 @@ export class AuthService {
           }); 
       });
     }
+  }
+
+  loginSocialProveedor(credentials: { email: null; }): Observable<any> {
+    console.log(credentials)
+    return this.http.post(`${environment.api}login/repartidores`, credentials)
   }
 
   public loginSocial(credentials: { email: null; }) {
@@ -57,10 +62,11 @@ export class AuthService {
             
             this.storage.set('TUSV24',this.usuario.token);
             this.storage.setObject('userSV24', this.usuario.user);
+            localStorage.setItem('userSV24', JSON.stringify(this.usuario.user));
             setTimeout(() => {
               this.noticationService.registrar_token();
             }, 6000);
-            observer.next(true);
+            observer.next(this.usuario);
             observer.complete();
           },
           msg => {

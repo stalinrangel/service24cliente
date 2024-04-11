@@ -12,7 +12,8 @@
   </div>
   <div class="en-x" id="enx">
       <div class="notiene" *ngIf="filteredItems.length == 0">
-          <p>Aún no tienes chats en tus pedidos.</p>
+        <img src="../../assets/service24/nohaymensajesmuneco.svg" alt="" style="width: 100%; margin-top: 10px; height: 50%;">
+        <img src="../../assets/service24/nohaymensajes.svg" alt="" style="width: 70%; height: 25%; ">
       </div>
       <div *ngFor="let chat of filteredItems; let i = index" class="person" (click)="getChat(chat)">
           <img [src]="chat.usuario.imagen" alt="">

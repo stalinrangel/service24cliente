@@ -10,7 +10,15 @@ const config: CapacitorConfig = {
   plugins: {
     PushNotifications: {
       presentationOptions: ["badge", "sound"],
-    },/*
+    },GoogleAuth: {
+      scopes: [
+        "profile",
+        "email"
+      ],
+      serverClientId: "233380787537-rb13b0bgnjv1jltfjl77hm0euqc51685.apps.googleusercontent.com",
+      forceCodeForRefreshToken: true
+    },
+    /*
     SplashScreen: {
       launchShowDuration: 4000,
       launchAutoHide: false,
@@ -28,6 +36,7 @@ const config: CapacitorConfig = {
       useDialog: true,
     },*/
   },
+  
 };
 
 export default config;

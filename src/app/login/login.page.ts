@@ -53,6 +53,7 @@ export class LoginPage implements OnInit {
     //private googlePlus: GooglePlus,
     //public events: Events,
     private router: Router,
+    
   ) {
     this.firebase = initializeApp(environment.firebaseConfig);
     GoogleAuth.initialize({
@@ -60,6 +61,11 @@ export class LoginPage implements OnInit {
       scopes: ['profile', 'email'],
       grantOfflineAccess: true,
     });
+
+    this.objService.getLoginCliente().subscribe((data:any) => {
+      console.log(data)
+			this.loginExterno(data);
+		});
 
   }
   
@@ -113,15 +119,26 @@ export class LoginPage implements OnInit {
             //this.loginUserForm.patchValue({token_notificacion: ids.userId});
             this.auth.login(this.loginUserForm.value).subscribe((allowed: any) => {
               if (allowed) {
-                console.log('exito')
+                console.log(allowed)
                
                 //this.router.navigate
                 //this.events.publish('userAuthSV24', 'userSV'); 
+
+                if (allowed.user.tipo_usuario==3) {
+                  this.router.navigate(['login-proveedor']); 
+                  setTimeout(() => {
+                    this.objService.setLoginProveedor(allowed.user.email);
+                  }, 1500); 
+                  
+		
+                }else{
+                  this.router.navigate(['/tabs/tab1']);  
+                  setTimeout(() => {
+                    this.objService.setcerrarSesion(true);
+                  }, 500);    
+                }
                 
-                this.router.navigate(['/tabs/tab1']);  
-                setTimeout(() => {
-                  this.objService.setcerrarSesion(true);
-                }, 500);    
+                
                 //this.nav.pop();
                 this.loading.dismiss();
               } else {
@@ -142,6 +159,7 @@ export class LoginPage implements OnInit {
   }
 
   async loginViaGoogle() {
+    localStorage.clear();
     this.presentLoading();
     try {
         const user = await GoogleAuth.signIn();
@@ -154,11 +172,21 @@ export class LoginPage implements OnInit {
           console.log(credentials)
           this.auth.loginSocial(credentials).subscribe((allowed: any) => {
             if (allowed) {
+              console.log(allowed)
               this.loading.dismiss();
-              this.router.navigate(['/tabs/tab1']);  
+              if (allowed.user.tipo_usuario==3) {
+                this.router.navigate(['login-proveedor']); 
+                setTimeout(() => {
+                  this.objService.setLoginProveedor(allowed.user.email);
+                }, 1500); 
+                
+  
+              }else{
+                this.router.navigate(['/tabs/tab1']);  
                 setTimeout(() => {
                   this.objService.setcerrarSesion(true);
-                }, 500); 
+                }, 500);    
+              }
             } else {
               this.loading.dismiss();
               this.presentToast("Accesso Denegado.");
@@ -320,6 +348,32 @@ export class LoginPage implements OnInit {
   togglePasswordMode1() {   
     this.password_type1 = this.password_type1 === 'text' ? 'password' : 'text';
   } 
+
+  loginExterno(email:any){
+    let credentials:any={
+      email:email
+    }
+    let self=this;
+    this.auth.loginSocial(credentials).subscribe((allowed: any) => {
+      if (allowed) {
+        //this.loading.dismiss();
+        this.router.navigate(['/tabs/tab1']);  
+          setTimeout(() => {
+            this.objService.setcerrarSesion(true);
+          }, 500); 
+      } else {
+        //this.loading.dismiss();
+        this.presentToast("Accesso Denegado.");
+      }
+    },
+    (error: { error: any; }) => {
+      //this.loading.dismiss();
+      console.log(error)
+      this.presentToast("Usuario no registrado!");
+      //this.objService.setExtras(this.apiuser);
+      //this.nav.navigateForward('confirm-info');
+    });
+  }
   
   
 }

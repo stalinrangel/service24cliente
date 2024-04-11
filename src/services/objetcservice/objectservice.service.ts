@@ -203,4 +203,23 @@ export class ObjectserviceService {
 		return this.notify;
 	}
 
+	//--trabaja con loginProveedor 
+	private loginProveedor = new Subject<any>();
+	setLoginProveedor(data: any) {
+		console.log(data)
+		this.loginProveedor.next(data);
+	}
+	getLoginProveedor(): Subject<any> {
+		return this.loginProveedor;
+	}
+
+	private loginCliente = new Subject<any>();
+	setLoginCliente(data: any) {
+		console.log(data)
+		this.loginCliente.next(data);
+	}
+	getLoginCliente(): Subject<any> {
+		return this.loginCliente;
+	}
+
 }

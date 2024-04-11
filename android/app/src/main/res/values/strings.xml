@@ -4,4 +4,5 @@
     <string name="title_activity_main">Service24</string>
     <string name="package_name">cliente.service24.app</string>
     <string name="custom_url_scheme">cliente.service24.app</string>
+    <string name="server_client_id">233380787537-rb13b0bgnjv1jltfjl77hm0euqc51685.apps.googleusercontent.com</string>
 </resources>

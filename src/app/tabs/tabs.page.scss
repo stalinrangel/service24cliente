@@ -62,10 +62,12 @@
       &[class*="solicitud"] {
           background: url("/assets/icon/nuevo_icono_servicios_off.svg") no-repeat 50% 50%;
           background-size: auto;
+          
       }
       .tab-selected &[class*="solicitud"] {
           background: url("/assets/icon/nuevo_icono_servicios_on.svg") no-repeat 50% 50%;
           background-size: auto;
+          width: 100% !important;
           /*position: relative;
           top: 5px;*/
       }

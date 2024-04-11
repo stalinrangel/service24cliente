@@ -121,6 +121,7 @@ border-radius: 10px;
     border-color: rgba(255, 255, 255, 0.20);
     border-style: solid;
     border-radius: 3px;
+	width: 90%;
 }
 .link-login{
 	margin-top: 40px;
@@ -139,3 +140,33 @@ border-radius: 10px;
 .sc-ion-buttons-md-s .button-clear, .sc-ion-buttons-ios-s .button-clear{
   --color: #000;
 }
+
+.btn-google{
+	border: 1px solid #DAE2E7 !important;
+	border-radius: 10px;
+	  --background: #fff;
+	  /* color: #4469b0; */
+	  display: flex;
+	  align-items: center;
+	  font-family: Inter-Bold;
+	  margin-top: 10px;
+	  justify-content: center;
+	  width: 90%;
+	  height: 44px;
+	  font-size: 15px;
+  }
+  .icon-google {
+	background-size: contain;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background: transparent;
+	/*width: 1em;
+	height: 1em;
+	font-size: 20px !important;
+	position: absolute;*/
+	left: 14px;
+	background-image: url('/assets/icon/google.svg');
+	color: transparent;
+	top: 13px;
+	margin-right: 5px;
+  }

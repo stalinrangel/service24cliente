@@ -95,8 +95,8 @@
 			  </ion-list-header>
 				<div class="content-chip" *ngIf="selecZones.length > 0">
 					<div class="chip-item" *ngFor="let item of selecZones">
-						<p>{{item.nombre}}</p>
-						<ion-icon name="close" (click)="deleteLanguage(item)"></ion-icon>
+						<p style="color: white;">{{item.nombre}}</p>
+						<ion-icon style="color: white;" name="close" (click)="deleteLanguage(item)"></ion-icon>
 					</div>
 				</div>
 				<div class="content-chip" *ngIf="selecZones.length == 0">
