@@ -10,7 +10,7 @@
 <ion-content>
 	<div class="content-img" (click)="home()">
 		<!--img src="../../assets/service24/logo-rojo.svg"-->
-		<h2>Inicio proveedores</h2>
+		<h2>{{ 'LOGIN.start' | translate }}</h2>
 	</div>
 	<form [formGroup]="loginUserForm" class="padding-space" style="padding: 20px 0px 20px 0px;">
 		<ion-item lines="none" class="item-input">
@@ -28,16 +28,16 @@
 		<div class="nuevo-debajo-input">
 			<div class="nuevo-recordar">
 				<ion-checkbox mode="md" name="recordarme" (click)="recordar()" formControlName="recordarme" style="height: 22px;"></ion-checkbox>
-				<p class="nuevo-recordar" style="padding-left: 5px;" >Recordarme</p>
+				<p class="nuevo-recordar" style="padding-left: 5px;" >{{ 'LOGIN.recordar' | translate }}</p>
 			</div>
 			<div class="nuevo-olvido">
-				<p class="nuevo-olvido" (click)="resetPassword()">¿Olvidaste la contraseña?</p>
+				<p class="nuevo-olvido" (click)="resetPassword()">{{ 'LOGIN.forgot' | translate }}</p>
 			</div>
 		</div>
 		
 		<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-			<button expand="block" class="ion-text-capitalize nuevo-boton" (click)="login()">Iniciar Sesión</button>
-			<ion-button expand="block" class="ion-text-capitalize btn-google" (click)="loginViaGoogle()"><ion-icon class="icon-google" name="arrow-dropup" ></ion-icon> Iniciar sesión con Google </ion-button>
+			<button expand="block" class="ion-text-capitalize nuevo-boton" (click)="login()">{{ 'LOGIN.login' | translate }}</button>
+			<ion-button expand="block" class="ion-text-capitalize btn-google" (click)="loginViaGoogle()"><ion-icon class="icon-google" name="arrow-dropup" ></ion-icon> {{ 'LOGIN.google' | translate }} </ion-button>
 		</div>
 		<!--div class="or-spacer">
 			<div class="mask"></div>
@@ -50,8 +50,8 @@
 		<!--ion-button expand="block" class="btn-init btn-google" (click)="loginApple()" style="margin-bottom: 10px;color: #000;text-transform: initial;" *ngIf="btnApple"><ion-icon class="icon-apple" name="arrow-dropup" slot="start"></ion-icon> Iniciar sesión con Apple</ion-button>
 		<ion-button expand="block" class="btn-init btn-google" (click)="doGoogleLogin()" style="color: #000;text-transform: initial;"><ion-icon class="icon-google" name="arrow-dropup" slot="start"></ion-icon> Iniciar sesión con Google</ion-button-->
 		<div style="display: flex; justify-content: center; margin-top: 11px;">
-			<p class="notienescuenta">¿No tienes cuenta?</p>
-			<p class="ion-text-center registrate" (click)="register()">Registrarte aquí</p>
+			<p class="notienescuenta">{{ 'LOGIN.nocuenta' | translate }}</p>
+			<p class="ion-text-center registrate" (click)="register()">{{ 'LOGIN.signin' | translate }}</p>
 		</div>
 			
 	</form>

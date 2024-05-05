@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CodepasswordPageRoutingModule } from './codepassword-routing.module';
 
 import { CodepasswordPage } from './codepassword.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     IonicModule,
     CodepasswordPageRoutingModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    TranslateModule
   ],
   declarations: [CodepasswordPage]
 })

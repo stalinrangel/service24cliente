@@ -8,13 +8,14 @@ import { Tab8PageRoutingModule } from './tab8-routing.module';
 
 import { Tab8Page } from './tab8.page';
 import { IonRatingStarsModule } from 'ion-rating-stars';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    Tab8PageRoutingModule, ReactiveFormsModule,IonRatingStarsModule
+    Tab8PageRoutingModule, ReactiveFormsModule,IonRatingStarsModule,TranslateModule
   ],
   declarations: [Tab8Page]
 })

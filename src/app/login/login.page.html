@@ -15,18 +15,18 @@
 	</div> 
 	<form [formGroup]="loginUserForm" class="padding-space" style="padding: 20px 0px 20px 0px;">
 		<ion-item lines="none" class="item-input">
-			<ion-input class="nuevo-input" mode="ios" type="email" formControlName="email" placeholder="Correo electrónico"></ion-input>
+			<ion-input class="nuevo-input" mode="ios" type="email" formControlName="email" placeholder="{{ 'LOGIN.email' | translate }}"></ion-input>
 			
 		</ion-item>
 		<ion-item lines="none" class="item-input">
-			<ion-input class="nuevo-input-password" [type]="password_type1" mode="ios" type="password" formControlName="password" ></ion-input>
+			<ion-input class="nuevo-input-password" [type]="password_type1" mode="ios" type="password" formControlName="password" placeholder="{{ 'LOGIN.password' | translate }}"></ion-input>
 			<ion-icon slot="end" name="eye-off-outline" class="icon-eye nuevo-input-password2" *ngIf="password_type1 == 'password'" (click)="togglePasswordMode1()"></ion-icon>
 			<ion-icon slot="end" name="eye-outline" class="icon-eye nuevo-input-password2" *ngIf="password_type1 == 'text'" (click)="togglePasswordMode1()"></ion-icon>
 		</ion-item>
 		<div class="nuevo-debajo-input">
 			<div class="nuevo-recordar">
 				<ion-checkbox mode="md" name="recordarme" (click)="recordar()" formControlName="recordarme" style="height: 22px;"></ion-checkbox>
-				<p class="nuevo-recordar" style="padding-left: 5px;" >Recordarme</p>
+				<p class="nuevo-recordar" style="padding-left: 5px;" >{{ 'LOGIN.recordar' | translate }}</p>
 			</div>
 			<div class="nuevo-olvido">
 				<p class="notienes" style="margin-top: 10px;" (click)="resetPassword()">{{ 'LOGIN.forgot' | translate }}</p>
@@ -50,7 +50,7 @@
 		<p class="ion-text-center" (click)="register()">{{ 'LOGIN.signin' | translate }}</p-->
       <!--p class="ion-text-center" (click)="register()">{{ 'LOGIN.signin' | translate }}</p-->
 	  <div style="display: flex; justify-content: center; margin-top: 11px;">
-		<p class="notienescuenta">¿No tienes cuenta?</p>
+		<p class="notienescuenta">{{ 'LOGIN.nocuenta' | translate }}</p>
 		<p class="ion-text-center registrate" (click)="register()">{{ 'LOGIN.signin' | translate }}</p>
 	</div>
 	</form>

@@ -10,33 +10,33 @@
 	
 	<div class="content-img">
 		<!--img src="../../assets/service24/logo-rojo.svg"-->
-		<h2>Registro</h2>
+		<h2>{{ 'REGISTER.registry' | translate }}</h2>
 	</div>
 	<div style="margin-top: 20px;">
-		<p class="llega">Llega a una gran audiencia administrando de una manera sencilla</p>
+		<!--p class="llega">Llega a una gran audiencia administrando de una manera sencilla</p-->
 	</div>
 	<form [formGroup]="registerUserForm" class="padding-space" style="padding: 20px 0px 20px 0px;">
 		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.nombre}">
-			<ion-input type="text" formControlName="nombre" class="ion-text-capitalize nuevo-input" placeholder="Nombre"></ion-input>
+			<ion-input type="text" formControlName="nombre" class="ion-text-capitalize nuevo-input" placeholder="{{ 'REGISTER.name' | translate }}"></ion-input>
 		</ion-item>
 		<ion-item lines="none" class="item-input" >
 			<ion-select style="width: 93px;min-height: 44px;" formControlName="code" mode="md" cancelText="Cancelar" class="select-input nuevo-input">
 			  	<ion-select-option  *ngFor="let item of codes" [value]="item.value">{{item.codigo}}</ion-select-option>
 			</ion-select>
-			<ion-input type="tel" class="nuevo-input" formControlName="telefono" placeholder="Teléfono (opcional)"></ion-input>
+			<ion-input type="tel" class="nuevo-input" formControlName="telefono" placeholder="{{ 'REGISTER.phone' | translate }}"></ion-input>
 		</ion-item>
 		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.email}">
-			<ion-input class="nuevo-input" type="email" formControlName="email" placeholder="Correo electrónico" (keydown.space)="$event.preventDefault();"></ion-input>
+			<ion-input class="nuevo-input" type="email" formControlName="email" placeholder="{{ 'REGISTER.email' | translate }}" (keydown.space)="$event.preventDefault();"></ion-input>
 		</ion-item>
 		
 		<ion-item lines="none" class="item-input " [ngClass]="{'danger': formErrors.password}">
-			<ion-input class="nuevo-input-password" [type]="password_type1" formControlName="password" placeholder="Contraseña"></ion-input>
+			<ion-input class="nuevo-input-password" [type]="password_type1" formControlName="password" placeholder="{{ 'REGISTER.password' | translate }}"></ion-input>
 			<ion-icon slot="end" name="eye-off" class="icon-eye nuevo-input-password2" *ngIf="password_type1 == 'password'" (click)="togglePasswordMode1()"></ion-icon>
 			<ion-icon slot="end" name="eye" class="icon-eye nuevo-input-password2" *ngIf="password_type1 == 'text'" (click)="togglePasswordMode1()"></ion-icon>
 		</ion-item>
 		
 		<ion-item lines="none" class="item-input" [ngClass]="{'danger': formErrors.rpassword}">
-			<ion-input class="nuevo-input-password" [type]="password_type2" formControlName="rpassword" placeholder="Confirmar Contraseña"></ion-input>
+			<ion-input class="nuevo-input-password" [type]="password_type2" formControlName="rpassword" placeholder="{{ 'REGISTER.rpassword' | translate }}"></ion-input>
 			<ion-icon slot="end" name="eye-off" class="icon-eye nuevo-input-password2" *ngIf="password_type2 == 'password'" (click)="togglePasswordMode2()"></ion-icon>
 			<ion-icon slot="end" name="eye" class="icon-eye nuevo-input-password2" *ngIf="password_type2 == 'text'" (click)="togglePasswordMode2()"></ion-icon>
 		</ion-item>
@@ -44,17 +44,17 @@
 		Registrarse</ion-button-->
 		
 		<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-			<button expand="block" class="ion-text-capitalize nuevo-boton" (click)="verifyNumber()">Registrarse</button>
-			<ion-button expand="block" class="ion-text-capitalize btn-google" (click)="loginViaGoogle()"><ion-icon class="icon-google" name="arrow-dropup" ></ion-icon> Registrarse con Google </ion-button>
+			<button expand="block" class="ion-text-capitalize nuevo-boton" (click)="verifyNumber()">{{ 'REGISTER.register' | translate }}</button>
+			<ion-button expand="block" class="ion-text-capitalize btn-google" (click)="loginViaGoogle()"><ion-icon class="icon-google" name="arrow-dropup" ></ion-icon> {{ 'REGISTER.google' | translate }} </ion-button>
 		</div>
 		<!--p class="ion-text-center link-login" (click)="login()">Registrarse</p-->
 		<div style="display: flex; justify-content: center;margin: 5px;align-items: center;">
-			<p class="notienes">¿Ya estás registrado?</p>
-			<p class="ion-text-center registrate" (click)="login()">Iniciar sesión</p>
+			<p class="notienes">{{ 'REGISTER.yaregistrado' | translate }}</p>
+			<p class="ion-text-center registrate" (click)="login()">{{ 'REGISTER.iniciasesion' | translate }}</p>
 		</div>
 		<div style="display: flex; justify-content: center; flex-direction: column; text-align: center;" (click)="terms()">
-			<p class="acepta">Al registrarte, aceptas nuestros</p>
-			<p class="acepta2" >términos y condiciones</p>
+			<p class="acepta">{{ 'REGISTER.alregistrarse' | translate }}</p>
+			<p class="acepta2" >{{ 'REGISTER.terminos' | translate }}</p>
 		</div>
 	</form>
 </ion-content>

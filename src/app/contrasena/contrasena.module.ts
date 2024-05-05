@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ContrasenaPageRoutingModule } from './contrasena-routing.module';
 
 import { ContrasenaPage } from './contrasena.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ContrasenaPage } from './contrasena.page';
     FormsModule,
     IonicModule,
     ContrasenaPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [ContrasenaPage]
 })

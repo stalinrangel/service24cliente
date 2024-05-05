@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar class="nuevo-header" color="secondary" mode="md">
     <ion-title class="ion-text-capitalize " style="text-align: center;position: relative; left: 1.7rem;">
-      Perfil
+		{{ 'PROFILE.title' | translate }}
     </ion-title>
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
@@ -31,17 +31,17 @@
 			</div>
 		</div>
 		<div style="text-align: center; display: flex; justify-content: center; align-items: center;margin: auto;">
-			<p *ngIf="pedidos==0">No tienes <br>solicitudes</p>
-			<p *ngIf="pedidos!=0">Tienes {{pedidos}}<br>solicitudes</p>
+			<p *ngIf="pedidos==0">{{ 'PROFILE.tienes' | translate }} <br>{{ 'PROFILE.solicitudes' | translate }}</p>
+			<p *ngIf="pedidos!=0">{{ 'PROFILE.notienes' | translate }} {{pedidos}}<br>{{ 'PROFILE.solicitudes' | translate }}</p>
 		</div>
 	</div>
 	<div style="margin: 0px 20px 0px 20px;">
 		<ion-segment [(ngModel)]="type" value="track"  >
 			<ion-segment-button value="track" mode="md">
-			  <ion-label>Descripción</ion-label>
+			  <ion-label>{{ 'PROFILE.descripcion' | translate }}</ion-label>
 			</ion-segment-button>
 			<ion-segment-button value="start" mode="md">
-			  <ion-label>Calificaciones</ion-label>
+			  <ion-label>{{ 'PROFILE.calificaciones' | translate }}</ion-label>
 			</ion-segment-button>
 		</ion-segment>
 	</div>
@@ -53,41 +53,41 @@
 			<!--p><span>Zonas que atiende:</span> Allbrook, Bella Vista</p-->
 			<p class="title-services"><b>Servicios</b></p>
 			<p *ngFor="let item of services" class="item-services">- {{item.nombre}}</p>
-			<p *ngIf="services.length == 0" class="item-services">Aún no tienes servicios asociados.</p>
+			<p *ngIf="services.length == 0" class="item-services">{{ 'PROFILE.aunnotienes' | translate }}</p>
 		</div>
 		<div *ngIf="status == 3">
-			<p class="text-complete">Información del perfil</p>
-			<ion-button expand="block" class="ion-text-capitalize btn-init" (click)="completeRegister()">Completar Perfil</ion-button>
+			<p class="text-complete">{{ 'PROFILE.title' | translate }}</p>
+			<ion-button expand="block" class="ion-text-capitalize btn-init" (click)="completeRegister()">{{ 'PROFILE.completar' | translate }}</ion-button>
 		</div>
 		<div *ngIf="status == 4">
-			<p class="text-complete"><span>¡Felicidades!</span><br>Solicitud de registro enviada</p>
-			<ion-button expand="block" class="btn-init" style="text-transform: initial;" (click)="listService()">¡Inicia agregando tus servicios!</ion-button>
+			<p class="text-complete"><br>{{ 'PROFILE.solicitudderegistro' | translate }}</p>
+			<ion-button expand="block" class="btn-init" style="text-transform: initial;" (click)="listService()">{{ 'PROFILE.iniciaagregando' | translate }}</ion-button>
 			<br>
-			<ion-button expand="block" class="btn-init" style="text-transform: initial;" (click)="registro()">Información del registro</ion-button>
+			<ion-button expand="block" class="btn-init" style="text-transform: initial;" (click)="registro()">{{ 'PROFILE.informaciondelregistro' | translate }}</ion-button>
 		</div>
 		<ion-list class="list-menu">
 			<ion-item lines="full" (click)="editProfile()">
 		      <ion-label class="nuevo-label">
-		        <p class="title-menu"><ion-icon name="person" class="icon-build"></ion-icon> Perfil</p>
+		        <p class="title-menu"><ion-icon name="person" class="icon-build"></ion-icon> {{ 'PROFILE.title' | translate }}</p>
 				<ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 		      </ion-label>
 		    </ion-item>
 			<ion-item lines="full" (click)="goFilter()">
 				<ion-label class="nuevo-label">
-					<p class="title-menu"><ion-icon name="filter-circle-outline" class="icon-build"></ion-icon> Cambiar de zona</p>
+					<p class="title-menu"><ion-icon name="filter-circle-outline" class="icon-build"></ion-icon> {{ 'PROFILE.cambiarzona' | translate }}</p>
 					<ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 				</ion-label>
 			</ion-item>
 			<ion-item lines="full" (click)="listService()" *ngIf="status == 1 || status == 2 || status == 4">
 		      <ion-label class="nuevo-label">
-		        <p class="title-menu"><ion-icon name="build" class="icon-build"></ion-icon> Gestión de Servicios</p>
+		        <p class="title-menu"><ion-icon name="build" class="icon-build"></ion-icon> {{ 'PROFILE.gestiondeservicios' | translate }}</p>
 				<ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 		      </ion-label>
 		    </ion-item>
 			
 		    <ion-item lines="full" (click)="support()">
 		      <ion-label class="nuevo-label">
-		        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-support"></ion-icon> Soporte</p>
+		        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-support"></ion-icon> {{ 'PROFILE.support' | translate }}</p>
 				<ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 		      </ion-label>
 		    </ion-item>
@@ -98,43 +98,43 @@
 		    </ion-item-->
 			<ion-item lines="full" (click)="planes()">
 				<ion-label class="nuevo-label">
-				  <p class="title-menu"><ion-icon name="construct" class="icon-build"></ion-icon> Planes</p>
+				  <p class="title-menu"><ion-icon name="construct" class="icon-build"></ion-icon> {{ 'PROFILE.Planes' | translate }}</p>
 				  <ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 				</ion-label>
 			</ion-item>
 		    <ion-item lines="full" (click)="payment()" *ngIf="status == 1 || status == 2">
 		      <ion-label class="nuevo-label">
-		        <p class="title-menu"><ion-icon name="briefcase" class="icon-build"></ion-icon> Métodos de pagos</p>
+		        <p class="title-menu"><ion-icon name="briefcase" class="icon-build"></ion-icon> {{ 'PROFILE.metododepago' | translate }}</p>
 				<ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 		      </ion-label>
 		    </ion-item>
 		    <ion-item lines="full" (click)="contrat()" *ngIf="status == 1 || status == 2 || status == 4">
 		      <ion-label class="nuevo-label">
-		        <p class="title-menu"><ion-icon name="clipboard" class="icon-build"></ion-icon> Contrato</p>
+		        <p class="title-menu"><ion-icon name="clipboard" class="icon-build"></ion-icon> {{ 'PROFILE.contact' | translate }}</p>
 				<ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 		      </ion-label>
 		    </ion-item>
 		    <ion-item lines="full" (click)="policy()">
 		      <ion-label class="nuevo-label">
-		        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-privacity"></ion-icon> Avisos de Privacidad</p>
+		        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-privacity"></ion-icon> {{ 'PROFILE.privacy' | translate }}</p>
 				<ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 		      </ion-label>
 		    </ion-item>
 		    <ion-item lines="full" (click)="terms()">
 		      <ion-label class="nuevo-label">
-		        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-terms"></ion-icon> Términos y Condiciones</p>
+		        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-terms"></ion-icon> {{ 'PROFILE.terms' | translate }}</p>
 				<ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 		      </ion-label>
 		    </ion-item>
 		    <ion-item lines="full" (click)="presentAlert()">
 		      <ion-label class="nuevo-label">
-		        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-contact2"></ion-icon> Contacto</p>
+		        <p class="title-menu"><ion-icon name="arrow-dropup" class="custom-contact2"></ion-icon> {{ 'PROFILE.contact' | translate }}</p>
 				<ion-icon name="chevron-forward-outline" style="width: 20px;height: 20px;"></ion-icon>
 		      </ion-label>
 		    </ion-item>
 		    <ion-item lines="none" class="ion-text-center item-login" (click)="presentConfirm()">
 		      <ion-label>
-		        <p>Cerrar Sesión</p>
+		        <p>{{ 'PROFILE.logout' | translate }}</p>
 		      </ion-label>
 		    </ion-item>
 		</ion-list>

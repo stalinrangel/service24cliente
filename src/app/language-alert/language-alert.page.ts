@@ -23,6 +23,7 @@ export class LanguageAlertPage implements OnInit {
   }
  
   select(lng:any) {
+    console.log(lng);
     this.languageService.setLanguage(lng);
     this.modalController.dismiss();
   }

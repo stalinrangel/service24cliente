@@ -8,6 +8,9 @@
         "btn2": "Formulario de Solicitud"
     },
     "HOME": {
+        "hola":"Hola",
+        "modo":"Modo proveedor",
+        "serviciosporcategoria":"Servicios por categoria",
         "title": "Service24",
         "search": "Plomería, Apertura de puerta...",
         "zone": "No estas en una zona habilitada",
@@ -30,7 +33,8 @@
     },
     "CATEGORY": {
         "title": "Categorías",
-        "search": "Plomería, Apertura de puerta..."
+        "search": "Plomería, Apertura de puerta...",
+        "empresa": "Empresas"
     },
     "SUPPLIERS": {
         "title": "Proveedores",
@@ -38,7 +42,8 @@
         "result": "Resultado",
         "results": "Resultados",
         "empty": "No hay proveedores disponibles por el momento.",
-        "miles": "millas"
+        "miles": "millas",
+        "disponible":"Disponible"
     },
     "DETAILSUPPLIERS": {
         "title": "Proveedor",
@@ -101,7 +106,22 @@
         "required": "Debes iniciar sesión para comunicarte con nuestro soporte.",
         "yes": "Si",
         "user": "Usuario",
-        "tutorial": "Guía de Uso"
+        "tutorial": "Guía de Uso",
+        "notienes": "No tienes",
+        "solicitudes": "solicitudes",
+        "tienes": "Tienes",
+        "cambiarzona": "Cambiar zona",
+        "contrato": "Contrato",
+        "gestiondeservicios":"Gestión de servicios",
+        "metododepago": "Método de pago",
+        "description":"Descripción",
+        "calificaciones":"Calificaciones",
+        "aunnotienes":"Aún no tienes servicios asociados.",
+        "completar":"Completar Perfil",
+        "solicitudderegistro":"Solicitud de registro enviada",
+        "iniciaagregando":"¡Inicia agregando tus servicios!",
+        "informaciondelregistro":"Información del registro",
+        "Planes":"Planes"
     },
     "LOGIN": {
         "start": "Inicio",
@@ -110,7 +130,11 @@
         "o": "o",
         "facebook": "Iniciar sesión con Facebook",
         "google": "Iniciar sesión con Google",
-        "signin": "Registrarse"  
+        "signin": "Registrarse",
+        "recordar": "Recordar",
+        "nocuenta":"¿No tienes cuenta?",
+        "email":"Correo",
+        "password":"Contraseña"
     },
     "REGISTER": {
         "registry": "Registro",
@@ -121,7 +145,25 @@
         "phone": "Teléfono",
         "password": "Contraseña",
         "rpassword": "Confirmar Contraseña",
-        "zona": "Elige a que Zona Perteneces"
+        "zona": "Elige a que Zona Perteneces",
+        "google":"Registrarse con Google",
+        "yaregistrado":"¿Ya estás registrado?",
+        "iniciasesion":"Iniciar Sesión",
+        "alregistrarse":"Al registrarte, aceptas nuestros ",
+        "terminos":"términos y condiciones"
+    },
+    "RECUPERAR": {
+        "recuperar": "Recuperar contraseña",
+        "email": "Correo Electrónico",
+        "generar": "Generar código",
+        "verificar": "Verificar código recibido",
+        "ingrese": "Ingrese el código que se te fue enviado",
+        "codigo": "Código de verificación",
+        "solicitar": "Solicitar nuevo codigo",
+        "nueva": "Ingrese su nueva contraseña",
+        "password": "Contraseña",
+        "rpassword": "Confirmar Contraseña",
+        "actualizar": "Atualizar contraseña"
     },
     "FORM": {
         "w1": "¿Qué estas buscando?",
@@ -177,5 +219,58 @@
         "fin": "Trabajo finalizado",
         "cancel": "Cancelar Solicitud",
         "califi": "Calificar Solicitud"
-    }  
+    },
+    "COMPLETARPERFIL":{
+        "title": "Completar perfil",
+        "rellena": "Rellena el siguiente formulario con tu información de contacto",
+        "tipodeproveedor": "Tipo de proveedor",
+        "servicios": "Servicios",
+        "comercios": "Comercios",
+        "datospersonales": "Datos personales:",
+        "datosdelaempresa": "Datos de la empresa:",
+        "name": "Nombre",
+        "id": "Cedula o pasaporte",
+        "rut":"RUT",
+        "respresentatelegal":"Cedula o pasaporte de Representante legal",
+        "sexo": "Sexo",
+        "nacionalidad": "Nacionalidad",
+        "phone":"Teléfono",
+        "email":"Correo Electrónico",
+        "direccion":"Dirección",
+        "casa": "Casa, Piso, Etc...",
+        "siguiente":"Siguiente",
+        "fememino":"Femenino",
+        "masculino":"Masculino",
+        "cancelar":"Cancelar",
+        "ok":"Ok",
+        "indicanos":"Indicanos el idioma y tu disponibilidad",
+        "formacion":"Formación",
+        "idiomas":"Idiomas:",
+        "disponibilidadUrgencias":"Disponibilidad para atender urgencias?",
+        "si":"Si",
+        "no":"No",
+        "factuas":"Puede dar al cliente facturas?",
+        "bachiller":"Bachiller",
+        "tecnico":"Técnico",
+        "ingeniero":"Ingeniero",
+        "universitario":"Universitario",
+        "formacionrapida":"Formación rapida",
+        "agregaidioma":"Agrega idioma",
+        "espanol":"Espanol",
+        "frances":"Francés",
+        "ingles":"Ingles",
+        "portugues":"Portugues",
+        "otro":"Otro",
+        "necesitamosinformaciondetuidentidad":"Necesitamos información de tu identidad, para ello es necesario que cargues los siguientes documentos",
+        "logoempresas":"Logo de empresa o servicio",
+        "subirArchivo":"Subir Archivo",
+        "cedulaopasaporte":"Cedula o pasaporte",
+        "confidencial":"Confidencial no se compartirá con el usuario.",
+        "comprobantedomicilio":"Comprobante de domicilio",
+        "finalmente":"Finalmente! elige un plan de servicios con el que podrás obtener un sin fin de beneficios.",
+        "planesdeservicios":"Planes de servicios:",
+        "basico":"BÁSICO",
+        "guardar":"Guardar",
+        "enviar":"Guardar y enviar"
+    }
 }

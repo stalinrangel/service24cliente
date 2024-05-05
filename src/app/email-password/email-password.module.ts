@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { EmailPasswordPageRoutingModule } from './email-password-routing.module';
 
 import { EmailPasswordPage } from './email-password.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     EmailPasswordPageRoutingModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
+    TranslateModule
   ],
   declarations: [EmailPasswordPage]
 })

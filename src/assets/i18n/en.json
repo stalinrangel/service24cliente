@@ -8,6 +8,9 @@
         "btn2": "Application form"
     },
     "HOME": {
+        "hola":"Hi",
+        "modo":"Provider mode",
+        "serviciosporcategoria":"Services by category",
         "title": "Service24",
         "search": "Plumbing, Door opening...",
         "zone": "You are not in an enabled zone",
@@ -30,7 +33,8 @@
     },
     "CATEGORY": {
         "title": "Categories",
-        "search": "Plumbing, Door opening..."
+        "search": "Plumbing, Door opening...",
+        "empresa": "Companies"
     },
     "SUPPLIERS": {
         "title": "Providers",
@@ -38,7 +42,8 @@
         "result": "Result",
         "results": "Results",
         "empty": "There are no providers available at the moment.",
-        "miles": "miles"
+        "miles": "miles",
+        "disponible":"Available"
     },
     "DETAILSUPPLIERS": {
         "title": "Provider",
@@ -101,7 +106,22 @@
         "required": "You must login to communicate with our support.",
         "yes": "Yes",
         "user": "User",
-        "tutorial": "User Guide"
+        "tutorial": "User Guide",
+        "notienes": "You don't have",
+        "solicitudes": "requests",
+        "tienes": "You have",
+        "cambiarzona": "Change zone",
+        "contrato": "Contract",
+        "gestiondeservicios":"Service management",
+        "metododepago": "Payment method",
+        "description":"Description",
+        "calificaciones":"Ratings",
+        "aunnotienes":"You do not have associated services yet.",
+        "completar":"Complete Profile",
+        "solicitudderegistro":"Registration request sent",
+        "iniciaagregando":"Start adding your services!",
+        "informaciondelregistro":"Registration information",
+        "Planes":"Plans"
     },
     "LOGIN": {
         "start": "Log In",
@@ -110,7 +130,11 @@
         "o": "or",
         "facebook": "Login with Facebook",
         "google": "Login with Google",
-        "signin": "Sign In"  
+        "signin": "Sign In",
+        "recordar": "Remember",
+        "nocuenta":"Are you already registered?",
+        "email":"Email",
+        "password":"Password"
     },
     "REGISTER": {
         "registry": "Registry",
@@ -121,8 +145,26 @@
         "phone": "Phone",
         "password": "Password",
         "rpassword": "Confirm Password",
-        "zona": "Choose to which zone you belong"
+        "zona": "Choose to which zone you belong",
+        "google":"Register with Google",
+        "yaregistrado":"Are you already registered? ",
+        "iniciasesion":"Sing in",
+        "alregistrarse":"By registering you accept our ",
+        "terminos":"terms and conditions."
     },
+    "RECUPERAR": {
+        "recuperar": "Recover password",
+        "generar": "Generate code",
+        "email": "Email",
+        "verificar": "Check the received code",
+        "ingrese": "Enter the code that was sent to you",
+        "codigo": "Verification code",
+        "solicitar": "Request new code",
+        "nueva": "Enter your new password",
+        "password": "Password",
+        "rpassword": "Confirm Password",
+        "actualizar": "Update password"
+        },
     "FORM": {
         "w1": "What are you looking for?",
         "w2": "When you need it?",
@@ -177,5 +219,58 @@
         "fin": "Finish Request",
         "cancel": "Cancel request",
         "califi": "Rate Request"
-    }     
+    },
+    "COMPLETARPERFIL":{
+        "title": "Complete profile",
+        "rellena": "Fill out the following form with your contact information",
+        "tipodeproveedor": "Supplier type",
+        "servicios": "Services",
+        "comercios": "Businesses",
+        "datospersonales": "Personal data:",
+        "datosdelaempresa": "Company data:",
+        "name": "Name",
+        "id": "ID or passport",
+        "rut":"RUT",
+        "respresentatelegal":"Cedula or passport of Legal Representative",
+        "sexo": "Gender",
+        "nacionalidad": "Nationality",
+        "phone":"Phone",
+        "email":"Email",
+        "direccion":"Direction",
+        "casa": "House, Apartment, Etc...",
+        "siguiente":"Next",
+        "fememino":"Women",
+        "masculino":"Man",
+        "cancelar":"Cancel",
+        "ok":"Ok",
+        "indicanos":"Indicate the language and your availability",
+        "formacion":"Training",
+        "idiomas":"Languages:",
+        "disponibilidadUrgencias":"Availability to attend to emergencies?",
+        "si":"Yes",
+        "no":"No",
+        "factuas":"Can you give the client invoices?",
+        "bachiller":"Bachelor",
+        "tecnico":"Technician",
+        "ingeniero":"Engineer",
+        "universitario":"University",
+        "formacionrapida":"Quick training",
+        "agregaidioma":"Add language",
+        "espanol":"Spanish",
+        "frances":"French",
+        "ingles":"English",
+        "portugues":"Portuguese",
+        "otro":"Other",
+        "necesitamosinformaciondetuidentidad":"We need information about your identity, for this it is necessary that you upload the following documents",
+        "logoempresas":"Company or service logo",
+        "subirArchivo":"Upload File",
+        "cedulaopasaporte":"ID or passport",
+        "confidencial":"Confidential will not be shared with the user.",
+        "comprobantedomicilio":"Proof of address",
+        "finalmente":"Finally! choose a service plan with which you can obtain endless benefits.",
+        "planesdeservicios":"Service plans:",
+        "basico":"BASIC",
+        "guardar":"Save",
+        "enviar":"Guardar y send"
+    }   
 }

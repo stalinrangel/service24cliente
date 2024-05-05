@@ -6,21 +6,21 @@
     </ion-buttons>
 	<div class="content-img">
 		<img src="../../assets/service24/logo-rojo.svg">
-		<h2 style="color:black !important">Ingrese su nueva clave</h2>
+		<h2 style="color:black !important">{{ 'RECUPERAR.nueva' | translate }}</h2>
 	</div>
 	<br><br>
 	<form [formGroup]="registerUserForm" class="padding-space" style="margin: 0 1.5rem 0 1.5rem;">
 		<ion-item lines="none" class="item-input nuevo-input" [ngClass]="{'danger': formErrors.password}">
-			<ion-input [type]="password_type1" formControlName="password" placeholder="Contraseña"></ion-input>
+			<ion-input [type]="password_type1" formControlName="password" placeholder="{{ 'RECUPERAR.password' | translate }}"></ion-input>
 			<ion-icon slot="end" md="md-eye-off" ios="md-eye-off" class="icon-eye" *ngIf="password_type1 == 'password'" (click)="togglePasswordMode1()"></ion-icon>
 			<ion-icon slot="end" md="md-eye" ios="md-eye" class="icon-eye" *ngIf="password_type1 == 'text'" (click)="togglePasswordMode1()"></ion-icon>
 		</ion-item>
 		<ion-item lines="none" class="item-input nuevo-input" [ngClass]="{'danger': formErrors.rpassword}">
-			<ion-input [type]="password_type2" formControlName="rpassword" placeholder="Confirmar Contraseña" (keydown.space)="$event.preventDefault();"></ion-input>
+			<ion-input [type]="password_type2" formControlName="rpassword" placeholder="{{ 'RECUPERAR.rpassword' | translate }}" (keydown.space)="$event.preventDefault();"></ion-input>
 			<ion-icon slot="end" md="md-eye-off" ios="md-eye-off" class="icon-eye" *ngIf="password_type2 == 'password'" (click)="togglePasswordMode2()"></ion-icon>
 			<ion-icon slot="end" md="md-eye" ios="md-eye" class="icon-eye" *ngIf="password_type2 == 'text'" (click)="togglePasswordMode2()"></ion-icon>
 		</ion-item>
 		<ion-button expand="block" color="primary" class="ion-text-capitalize btn-init btn-register" (click)="updatePassword()">
-		Actualizar Contraseña</ion-button>	
+			{{ 'RECUPERAR.actualizar' | translate }}</ion-button>	
 	</form>
 </ion-content>

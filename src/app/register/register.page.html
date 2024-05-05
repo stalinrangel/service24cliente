@@ -41,17 +41,17 @@
 		<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
 			<ion-button mode="ios" expand="block" color="primary" class="ion-text-capitalize btn-init btn-register" (click)="register()">
 				{{ 'REGISTER.register' | translate }}</ion-button>
-			<ion-button expand="block" class="ion-text-capitalize btn-google" (click)="loginViaGoogle()"><ion-icon class="icon-google" name="arrow-dropup" ></ion-icon> Registrarse con Google</ion-button>
+			<ion-button expand="block" class="ion-text-capitalize btn-google" (click)="loginViaGoogle()"><ion-icon class="icon-google" name="arrow-dropup" ></ion-icon> {{ 'REGISTER.google' | translate }}</ion-button>
 		</div>
 		
 		<!--p class="ion-text-center link-login" (click)="login()">{{ 'REGISTER.login' | translate }}</p-->
 		<div style="display: flex; justify-content: center;">
-			<p class="notienes">¿Ya estás registrado?</p>
-			<p class="ion-text-center registrate" (click)="login()">{{ 'REGISTER.login' | translate }}</p>
+			<p class="notienes">{{ 'REGISTER.yaregistrado' | translate }}</p>
+			<p class="ion-text-center registrate" (click)="login()">{{ 'REGISTER.iniciasesion' | translate }}</p>
 		</div>
 		<div style="display: flex; justify-content: center; flex-direction: column; text-align: center;" (click)="terms()">
-			<p class="acepta">Al registrarte, aceptas nuestros</p>
-			<p class="acepta2" >términos y condiciones</p>
+			<p class="acepta">{{ 'REGISTER.alregistrarse' | translate }}</p>
+			<p class="acepta2" >{{ 'REGISTER.terminos' | translate }}</p>
 		</div>
 	</form>
 </ion-content>

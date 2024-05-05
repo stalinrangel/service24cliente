@@ -231,12 +231,23 @@ export class Tab1Page {
       }
     });
     this.geolocate();
+
+    this.languages = this.languageService.getLan();
+    console.log(this.languages);
+    if (this.languages == 'undefined'||this.languages == '') {
+      this.languages = 'es';
+      console.log(this.languages);
+    } 
+
   }
 
   ionViewDidLoad(){
+
     this.languages = this.languageService.getLan();
-    if (this.languages == 'undefined') {
+    console.log(this.languages);
+    if (this.languages == 'undefined'||this.languages == '') {
       this.languages = 'es';
+      console.log(this.languages);
     } 
   }
   publicidad:any;

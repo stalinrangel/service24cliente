@@ -16,15 +16,15 @@
 </ion-header>
 <div class="modo" [hidden]="!isLogin">
   <ion-toggle [(ngModel)]="isCliente" (ionChange)="changeRol($event)"></ion-toggle>
-  <p style="margin: 0 0px 0 9px;">Modo proveedor</p>
+  <p style="margin: 0 0px 0 9px;">{{ 'HOME.modo' | translate }}</p>
 </div>
 
 <ion-content >
   
   <div class="presentacion">
     
-    <h2 class="hola" style="margin-top: 15px;">Hola 👋 {{usuario.nombre}}!</h2>
-    <p class="felices">Felices de poder ayudarte</p>
+    <h2 class="hola" style="margin-top: 15px;">{{ 'HOME.hola' | translate }} 👋 {{usuario.nombre}}!</h2>
+    <!--p class="felices">Felices de poder ayudarte</p-->
       
   </div>
   <div style="margin: 0px 20px;">
@@ -92,7 +92,7 @@
   
   <div class="presentacion">
 
-    <h2 class="porcategoria">Servicios por categoría</h2>
+    <h2 class="porcategoria">{{ 'HOME.serviciosporcategoria' | translate }}</h2>
   </div>
   <div style="margin: auto; width: 90%;">
     <div *ngIf="items" class="row" >
@@ -103,6 +103,7 @@
             <div >
               <p class="letricas" *ngIf="languages == 'es'">{{item.nombre}}  <!--ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon--></p>
               <p class="letricas" *ngIf="languages == 'en'">{{item.ingles}}  <!--ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon--></p>
+              <p class="letricas" *ngIf="languages == 'po'">{{item.portugues}}  <!--ion-icon name="arrow-dropup" class="custom-arrow icon-arrow"></ion-icon--></p>
             </div>
             <div class="triangle"></div>
             <div class="title-2"></div>  
