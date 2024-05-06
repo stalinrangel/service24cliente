@@ -243,6 +243,8 @@
         "masculino":"Masculino",
         "cancelar":"Cancelar",
         "ok":"Ok",
+        "brindarte":"Para brindarte un mejor servicio, requerimos tu ubicación para conocer la distancia a la que te encuentras de los clientes que puedan realizar pedidos. Esta información no será compartida con los clientes.",
+        "complemento":"Por favor, agrega un complemento a la dirección de tu ubicación, por ejemplo, el nombre del edificio y el número de oficina, como 'Edificio Bolívar, Oficina 2-3'.",
         "indicanos":"Indicanos el idioma y tu disponibilidad",
         "formacion":"Formación",
         "idiomas":"Idiomas:",
@@ -272,5 +274,11 @@
         "basico":"BÁSICO",
         "guardar":"Guardar",
         "enviar":"Guardar y enviar"
+    },
+    "PLANES":{
+        "title": "Planes",
+        "planesdeservicios": "Planes de servicios",
+        "seleccionar": "Seleccionar",
+        "seleccionarplan": "Seleccionar plan"
     }
 }

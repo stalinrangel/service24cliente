@@ -9,6 +9,7 @@ import { AuthService } from '../../servicesproveedor/auth.service';
 import { UserService } from '../../servicesproveedor/user.service';
 import { StorageService } from '../../servicesproveedor/storage.service';
 import { GeneralService } from '../../servicesproveedor/general.service';
+import { LanguageService } from 'src/services/language/language.service';
 
 @Component({
   selector: 'app-planes',
@@ -24,11 +25,12 @@ export class PlanesPage implements OnInit {
   repartidor:any;
   nuevo_plan:any;
   data2:any
-  public select_plan: any = '';
+  public select_plan: any;
 	public estado = { 
 	    plan: '',
 	    token: null
 	};
+  public languages: any = '';
   constructor(
     public navCtrl: NavController,  
     private alertController: AlertController, 
@@ -38,7 +40,8 @@ export class PlanesPage implements OnInit {
     public userService: UserService, 
     public storage: StorageService, 
     private objService: ObjetcserviceService,
-    public funciones_generales: GeneralService
+    public funciones_generales: GeneralService,
+    private languageService: LanguageService
   ) {
     this.plan=this.funciones_generales.getPlan();
     this.repartidor=this.funciones_generales.getRepartidor();
@@ -47,6 +50,10 @@ export class PlanesPage implements OnInit {
 
   ngOnInit() {
     this.getPlans();
+    this.languages = this.languageService.getLan();
+    if (this.languages == 'undefined' || this.languages == '') {
+      this.languages = 'es';
+    }
   }
 
   getPlans(){
@@ -61,6 +68,8 @@ export class PlanesPage implements OnInit {
 					       		this.plans = this.data2.Planes;
 					       		for (var i = 0; i < this.plans.length; ++i) {
 					       			this.plans[i].descripcion = JSON.parse(this.plans[i].descripcion);
+                       this.plans[i].descripcion_ingles = JSON.parse(this.plans[i].descripcion_ingles);
+                       this.plans[i].descripcion_portugues = JSON.parse(this.plans[i].descripcion_portugues);
 					       			this.plans[i].show = false; 
                       console.log(this.plans[i].id,this.plan.id);
                       if (this.plans[i].id==this.plan.id) {

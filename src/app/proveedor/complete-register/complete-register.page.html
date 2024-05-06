@@ -5,7 +5,7 @@
         </ion-back-button>
 	</ion-buttons>
     <ion-title class="ion-text-capitalize ion-text-center">
-      Completar Perfil
+		{{ 'COMPLETARPERFIL.title' | translate }}
     </ion-title>
     <!--ion-buttons slot="end" class="icon-notify">
       <ion-button>
@@ -23,22 +23,22 @@
 				<img src="../../assets/service24/p3.svg" (click)="goToSlide(2)"alt="">
 				<img src="../../assets/service24/p4.svg" (click)="goToSlide(3)"alt="">
 			</div>
-	      	<p class="title-text">Rellena el siguiente formulario con tu información de contacto</p>
+	      	<p class="title-text">{{ 'COMPLETARPERFIL.rellena' | translate }}</p>
 	      	<ion-radio-group class="radio-group" [(ngModel)]="typeUser" (ionChange)="changeType()">
 			    <ion-list-header>
-			      <ion-label class="text-slide">Tipo de Proveedor:</ion-label>
+			      <ion-label class="text-slide">{{ 'COMPLETARPERFIL.tipodeproveedor' | translate }}</ion-label>
 			    </ion-list-header>
 			    <ion-grid class="ion-no-padding">
 				  <ion-row class="ion-no-padding">
 				    <ion-col class="ion-no-padding">
 					    <ion-item lines="none">
-					      <ion-label class="label-radio">Servicios</ion-label>
+					      <ion-label class="label-radio">{{ 'COMPLETARPERFIL.servicios' | translate }}</ion-label>
 					      <ion-radio slot="end" color="primary" mode="md" class="icon-radio" value="1" (click)="setTipo('1')"></ion-radio>
 					    </ion-item>
 				    </ion-col>
 				    <ion-col class="ion-no-padding">
 				    	<ion-item lines="none">
-					      <ion-label class="label-radio">Comercios</ion-label>
+					      <ion-label class="label-radio">{{ 'COMPLETARPERFIL.comercios' | translate }}</ion-label>
 					      <ion-radio slot="end" color="primary" mode="md" class="icon-radio" value="2" (click)="setTipo('2')"></ion-radio>
 					    </ion-item>
 				    </ion-col>
@@ -46,27 +46,27 @@
 				</ion-grid>
 	  		</ion-radio-group>
 		    <form [formGroup]="data1ProfileForm" class="padding-space2" [hidden]="typeUser == '2'">
-		    	<p class="text-slide">Datos Personales:</p>
+		    	<p class="text-slide">{{ 'COMPLETARPERFIL.datospersonales' | translate }}</p>
 				<ion-item lines="none" class="item1">
 					<!--ion-label class="text-label" position="stacked">Nompre Completo:</ion-label-->
-					<ion-input type="text" formControlName="nombre" placeholder="Nombre Completo" class="item-info3 ion-text-capitalize" (ionBlur)="changeItem(1)" [ngClass]="{'danger': formErrors.nombre}"></ion-input>
+					<ion-input type="text" formControlName="nombre" placeholder="{{ 'COMPLETARPERFIL.name' | translate }}" class="item-info3 ion-text-capitalize" (ionBlur)="changeItem(1)" [ngClass]="{'danger': formErrors.nombre}"></ion-input>
 				</ion-item>
 
 				<ion-item lines="none" class="item1" id="cedula">
-					<ion-input type="text" formControlName="cedula" placeholder="Cédula o Pasaporte" class="item-info3" (ionBlur)="changeItem(2)" [ngClass]="{'danger': formErrors.cedula}"></ion-input>
+					<ion-input type="text" formControlName="cedula" placeholder="{{ 'COMPLETARPERFIL.id' | translate }}" class="item-info3" (ionBlur)="changeItem(2)" [ngClass]="{'danger': formErrors.cedula}"></ion-input>
 				</ion-item>
 				
-				<ion-toast trigger="cedula" [duration]="3000" message="Este dato es confidencial no se compartirá a los usuarios" [buttons]="toastButtons" class="custom-toast" ></ion-toast>
+				<ion-toast trigger="cedula" [duration]="3000" message="{{ 'COMPLETARPERFIL.confidencial' | translate }}" [buttons]="toastButtons" class="custom-toast" ></ion-toast>
 				
 				<ion-item lines="none" class="item1">
-					<ion-select formControlName="sexo" mode="md" placeholder="Sexo" cancelText="Cancelar" class="select-input" (ionBlur)="changeItem(3)" [ngClass]="{'danger': formErrors.sexo}">
-					  	<ion-select-option value="Masculino">Masculino</ion-select-option>
-	      				<ion-select-option value="Femenino">Femenino</ion-select-option>
+					<ion-select formControlName="sexo" mode="md" placeholder="{{ 'COMPLETARPERFIL.sexo' | translate }}" cancelText="{{ 'COMPLETARPERFIL.cancelar' | translate }}" class="select-input" (ionBlur)="changeItem(3)" [ngClass]="{'danger': formErrors.sexo}">
+					  	<ion-select-option value="Masculino">{{ 'COMPLETARPERFIL.masculino' | translate }}</ion-select-option>
+	      				<ion-select-option value="Femenino">{{ 'COMPLETARPERFIL.fememino' | translate }}</ion-select-option>
 					</ion-select>
 				</ion-item>
 
 				<ion-item lines="none" class="item1">
-					<ion-input type="text" formControlName="nacionalidad" placeholder="Nacionalidad" class="item-info3 ion-text-capitalize" (ionBlur)="changeItem(4)" [ngClass]="{'danger': formErrors.nacionalidad}"></ion-input>
+					<ion-input type="text" formControlName="nacionalidad" placeholder="{{ 'COMPLETARPERFIL.nacionalidad' | translate }}" class="item-info3 ion-text-capitalize" (ionBlur)="changeItem(4)" [ngClass]="{'danger': formErrors.nacionalidad}"></ion-input>
 				</ion-item>
 
 				
@@ -80,20 +80,20 @@
 				</ion-item>
 
 				<ion-item lines="none" class="item1">
-					<ion-input type="tel" formControlName="telefono" placeholder="Número de Teléfono" class="item-info3" (ionBlur)="changeItem(7)" [ngClass]="{'danger': formErrors.telefono}"></ion-input>
+					<ion-input type="tel" formControlName="telefono" placeholder="{{ 'COMPLETARPERFIL.phone' | translate }}" class="item-info3" (ionBlur)="changeItem(7)" [ngClass]="{'danger': formErrors.telefono}"></ion-input>
 				</ion-item>
 
 				<ion-item lines="none" class="item1">
-					<ion-input type="email" formControlName="email" placeholder="Correo Electrónico" class="item-info3" (ionBlur)="changeItem(8)" [ngClass]="{'danger': formErrors.email}"></ion-input>
+					<ion-input type="email" formControlName="email" placeholder="{{ 'COMPLETARPERFIL.email' | translate }}" class="item-info3" (ionBlur)="changeItem(8)" [ngClass]="{'danger': formErrors.email}"></ion-input>
 				</ion-item>
 				<!--ion-button expand="block" color="primary" class="ion-text-capitalize btn-init" style="margin-top: 15px;" (click)="next1()">
 				Siguiente</ion-button-->
 			</form>
 			<form [formGroup]="data1CompanyForm" class="padding-space2" [hidden]="typeUser == '1'">
-		    	<p class="text-slide">Datos de la Empresa:</p>
+		    	<p class="text-slide">{{ 'COMPLETARPERFIL.datosdelaempresa' | translate }}</p>
 
 				<ion-item lines="none" class="item1">
-					<ion-input type="text" formControlName="nombre" placeholder="Nombre de Empresa" class="item-info3 ion-text-capitalize" (ionBlur)="changeItem(9)" [ngClass]="{'danger': formErrors.nombre}"></ion-input>
+					<ion-input type="text" formControlName="nombre" placeholder="{{ 'COMPLETARPERFIL.nombre' | translate }}" class="item-info3 ion-text-capitalize" (ionBlur)="changeItem(9)" [ngClass]="{'danger': formErrors.nombre}"></ion-input>
 				</ion-item>
 
 				<ion-item lines="none" class="item1">
@@ -118,19 +118,19 @@
 				</div-->
 
 				<ion-item lines="none" class="item1">
-					<ion-input type="tel" formControlName="telefono" placeholder="Número de Teléfono" class="item-info3" (ionBlur)="changeItem(12)" [ngClass]="{'danger': formErrors.telefono}"></ion-input>
+					<ion-input type="tel" formControlName="telefono" placeholder="{{ 'COMPLETARPERFIL.phone' | translate }}" class="item-info3" (ionBlur)="changeItem(12)" [ngClass]="{'danger': formErrors.telefono}"></ion-input>
 				</ion-item>
 
 				<ion-item lines="none" class="item1">
-					<ion-input type="email" formControlName="email" placeholder="Correo Electrónico" class="item-info3" (ionBlur)="changeItem(13)" [ngClass]="{'danger': formErrors.email}"></ion-input>
+					<ion-input type="email" formControlName="email" placeholder="{{ 'COMPLETARPERFIL.email' | translate }}" class="item-info3" (ionBlur)="changeItem(13)" [ngClass]="{'danger': formErrors.email}"></ion-input>
 				</ion-item>
 
 				<ion-item lines="none" class="item1">
-					<ion-input type="text" formControlName="contacto_nombre" placeholder="Nombre de Representante Legal" class="item-info3 ion-text-capitalize" (ionBlur)="changeItem(14)" [ngClass]="{'danger': formErrors.contacto_nombre}"></ion-input>
+					<ion-input type="text" formControlName="contacto_nombre" placeholder="{{ 'COMPLETARPERFIL.respresentatelegal' | translate }}" class="item-info3 ion-text-capitalize" (ionBlur)="changeItem(14)" [ngClass]="{'danger': formErrors.contacto_nombre}"></ion-input>
 				</ion-item>
 
 				<ion-item lines="none" class="item1">
-					<ion-input type="text" formControlName="contacto_cedula" placeholder="Cédula o Pasaporte de Representante legal" class="item-info3" (ionBlur)="changeItem(15)" [ngClass]="{'danger': formErrors.contacto_cedula}"></ion-input>
+					<ion-input type="text" formControlName="contacto_cedula" placeholder="{{ 'COMPLETARPERFIL.id' | translate }}" class="item-info3" (ionBlur)="changeItem(15)" [ngClass]="{'danger': formErrors.contacto_cedula}"></ion-input>
 				</ion-item>
 
 				<ion-item lines="none" class="item1">
@@ -140,12 +140,12 @@
 			</form>
 			<div class="padding-space2">
 				<ion-item lines="none" class="item1" id="hover-trigger2">
-					<input id="pac-input" class="input-info" style="width: 100%; border: 0px;" [(ngModel)]="direccion" type="text" placeholder="Dirección" (blur)="ver(0)" />
+					<input id="pac-input" class="input-info" style="width: 100%; border: 0px;" [(ngModel)]="direccion" type="text" placeholder="{{ 'COMPLETARPERFIL.direccion' | translate }}" (blur)="ver(0)" />
 					<!--ion-textarea placeholder="Dirección" formControlName="direccion" class="area-info" rows="3" cols="20" class="area-info2" (ionBlur)="changeItem(5)" [ngClass]="{'danger': formErrors.direccion}"></ion-textarea-->
 					<!--ion-icon slot="end" name="arrow-dropup" class="custom-map"></ion-icon-->
 					<ion-popover trigger="hover-trigger2" triggerAction="hover">
 						<ng-template>
-							<ion-content class="ion-padding" > <p style="color:black !important">Para brindarte un mejor servicio, requerimos tu ubicación para conocer la distancia a la que te encuentras de los clientes que puedan realizar pedidos. Esta información no será compartida con los clientes.</p> </ion-content>
+							<ion-content class="ion-padding" > <p style="color:black !important">{{ 'COMPLETARPERFIL.direccion' | translate }}</p> </ion-content>
 						</ng-template>
 					</ion-popover>
 				</ion-item>
@@ -154,7 +154,7 @@
 
 					<ion-popover trigger="hover-trigger" triggerAction="hover">
 						<ng-template>
-							<ion-content class="ion-padding" > <p style="color:black !important">Por favor, agrega un complemento a la dirección de tu ubicación, por ejemplo, el nombre del edificio y el número de oficina, como 'Edificio Bolívar, Oficina 2-3'.</p> </ion-content>
+							<ion-content class="ion-padding" > <p style="color:black !important">{{ 'COMPLETARPERFIL.complemento' | translate }}</p> </ion-content>
 						</ng-template>
 					</ion-popover>
 				</ion-item>
@@ -164,7 +164,7 @@
 					<div id="map"></div>
 				</div>
 			</div>
-			<button expand="block" class="nuevo-boton" (click)="next();setlocal1()">Siguiente</button>
+			<button expand="block" class="nuevo-boton" (click)="next();setlocal1()">{{ 'COMPLETARPERFIL.siguiente' | translate }}</button>
 	    </swiper-slide>
 		<swiper-slide >
 			<div style="display: flex;justify-content: center;">
@@ -173,7 +173,7 @@
 				<img src="../../assets/service24/p3.svg" (click)="goToSlide(2)"alt="">
 				<img src="../../assets/service24/p4.svg" (click)="goToSlide(3)"alt="">
 			</div>
-			<p class="title-text">Indícanos tu horario disponible e idiomas en el que podrás ofrecer tus servicios.</p>
+			<p class="title-text">{{ 'COMPLETARPERFIL.indicanos' | translate }}</p>
 			<form [formGroup]="data2ProfileForm" class="padding-space2">
 				<!--p class="text-slide" [hidden]="typeUser == '2'">Formación:</p-->
 
@@ -181,15 +181,15 @@
 					<!--ion-label slot="start" class="label-select" [hidden]="data2ProfileForm.value.formacion != ''">
 						<span>Formación</span>
 					</ion-label-->
-					<ion-select formControlName="formacion" placeholder="Formaciòn" mode="md" class="select-input" cancelText="Cancelar" (ionBlur)="changeItem(18)" style="width: 100% !important;">
+					<ion-select formControlName="formacion" placeholder="{{ 'COMPLETARPERFIL.formacion' | translate }}" mode="md" class="select-input" cancelText="{{ 'COMPLETARPERFIL.cancelar' | translate }}" (ionBlur)="changeItem(18)" style="width: 100% !important;">
 					  <ion-select-option [value]="item.nombre" *ngFor="let item of preparate">{{item.nombre}}</ion-select-option>
 					</ion-select>
 				</ion-item>
 
-				<p class="text-slide">Idiomas:</p>
+				<p class="text-slide">{{ 'COMPLETARPERFIL.idiomas' | translate }}</p>
 				<ion-item lines="none" class="item1" [ngClass]="{'danger': formErrors.idioma}" >
-					<ion-label slot="start" class="label-select" [hidden]="data2ProfileForm.value.idioma != ''">Agregar idioma</ion-label>
-					<ion-select formControlName="idioma" mode="md" class="select-input" cancelText="Cancelar" multiple="true" (ionBlur)="changeItem(28)">
+					<ion-label slot="start" class="label-select" [hidden]="data2ProfileForm.value.idioma != ''">{{ 'COMPLETARPERFIL.agregaidioma' | translate }}</ion-label>
+					<ion-select formControlName="idioma" mode="md" class="select-input" cancelText="{{ 'COMPLETARPERFIL.cancelar' | translate }}" multiple="true" (ionBlur)="changeItem(28)">
 					  <ion-select-option [value]="item" *ngFor="let item of languages">{{item.nombre}}</ion-select-option>
 					</ion-select>
 				</ion-item>
@@ -204,19 +204,19 @@
 				</div>
 				<ion-radio-group formControlName="urgencias" (ionBlur)="changeItem(29)">
 				    <ion-list-header class="ion-no-padding header-radio">
-				      <ion-label class="text-slide">Disponibilidad para atender urgencias?</ion-label>
+				      <ion-label class="text-slide">{{ 'COMPLETARPERFIL.disponibilidadUrgencias' | translate }}</ion-label>
 				    </ion-list-header>
 				    <ion-grid class="ion-no-padding">
 					  <ion-row class="ion-no-padding">
 					    <ion-col size="4" class="ion-no-padding">
 						    <ion-item lines="none">
-						      <ion-label class="label-radio">Sí</ion-label>
+						      <ion-label class="label-radio">{{ 'COMPLETARPERFIL.si' | translate }}</ion-label>
 						      <ion-radio slot="end" color="primary" mode="md" class="icon-radio" value="Si"></ion-radio>
 						    </ion-item>
 					    </ion-col>
 					    <ion-col size="4" class="ion-no-padding">
 					    	<ion-item lines="none">
-						      <ion-label class="label-radio">No</ion-label>
+						      <ion-label class="label-radio">{{ 'COMPLETARPERFIL.no' | translate }}</ion-label>
 						      <ion-radio slot="end" color="primary" mode="md" class="icon-radio" value="No"></ion-radio>
 						    </ion-item>
 					    </ion-col>
@@ -225,19 +225,19 @@
 					</ion-radio-group>
 					<ion-radio-group formControlName="factura" (ionBlur)="changeItem(30)">
 				    <ion-list-header class="ion-no-padding header-radio">
-				      <ion-label class="text-slide">Puede dar al cliente facturas por los servicios?</ion-label>
+				      <ion-label class="text-slide">{{ 'COMPLETARPERFIL.factuas' | translate }}</ion-label>
 				    </ion-list-header>
 				    <ion-grid class="ion-no-padding">
 					  <ion-row class="ion-no-padding">
 					    <ion-col size="4" class="ion-no-padding">
 						    <ion-item lines="none">
-						      <ion-label class="label-radio">Sí</ion-label>
+						      <ion-label class="label-radio">{{ 'COMPLETARPERFIL.si' | translate }}</ion-label>
 						      <ion-radio slot="end" color="primary" mode="md" class="icon-radio" value="Si"></ion-radio>
 						    </ion-item>
 					    </ion-col>
 					    <ion-col size="4" class="ion-no-padding">
 					    	<ion-item lines="none">
-						      <ion-label class="label-radio">No</ion-label>
+						      <ion-label class="label-radio">{{ 'COMPLETARPERFIL.no' | translate }}</ion-label>
 						      <ion-radio slot="end" color="primary" mode="md" class="icon-radio" value="No"></ion-radio>
 						    </ion-item>
 					    </ion-col>
@@ -245,7 +245,7 @@
 					</ion-grid>
 					</ion-radio-group>
 					<br>
-					<button expand="block" class="nuevo-boton" (click)="next()">Siguiente</button>
+					<button expand="block" class="nuevo-boton" (click)="next()">{{ 'COMPLETARPERFIL.next' | translate }}</button>
 				<!--ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" style="margin-right: 15px" (click)="back()">Atras</ion-button>
 				<ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="next2()">
 				Siguiente</ion-button-->
@@ -369,12 +369,12 @@
 				<img src="../../assets/service24/p3a.svg" (click)="goToSlide(2)"alt="">
 				<img src="../../assets/service24/p4.svg" (click)="goToSlide(3)"alt="">
 			</div>
-			<p class="title-text">Necesitamos información de tu identidad, para ello es necesario que cargues los siguientes documentos.</p>
+			<p class="title-text">{{ 'COMPLETARPERFIL.necesitamosinformaciondetuidentidad' | translate }}</p>
 			<div style="width: 100%;">
 
 			<ion-card class="card-document" (click)="presentActionSheet(1)">
 				
-					<p class="text-slide" [ngClass]="{'text_red': up_logo}">Logo de Empresa o Servicio</p>
+					<p class="text-slide" [ngClass]="{'text_red': up_logo}">{{ 'COMPLETARPERFIL.logoempresas' | translate }}</p>
 				<div>
 					<ion-icon name="image" class="icon-img" *ngIf="formLocal.logo==''"></ion-icon>
 					<div *ngIf="formLocal.logo!=''">
@@ -386,7 +386,7 @@
 					<ion-icon slot="start" name="arrow-dropup" class="custom1-cancelar" *ngIf="progressText1 > 0 && progressText1 < 100"></ion-icon>
 					<ion-icon slot="start" name="arrow-dropup" class="custom1-loaded" *ngIf="progressText1 == 100"></ion-icon>
 					<div class="content-progress">
-						<p class="text-upload" *ngIf="progressText1 == 0">Subir Archivo</p>
+						<p class="text-upload" *ngIf="progressText1 == 0">{{ 'COMPLETARPERFIL.subirArchivo' | translate }}</p>
 						<p class="text-upload2" *ngIf="progressText1 > 0 && progressText1 < 100">Cargando Archivo</p>
 						<p class="text-upload2" *ngIf="progressText1 == 100">Archivo Cargado</p>
 						<p class="text-progress" *ngIf="progressText1 > 0">{{progressText1}}%</p>
@@ -396,10 +396,10 @@
 			</ion-card>
 
 			<ion-card class="card-document" (click)="presentActionSheet(2)">
-				<p class="text-slide" *ngIf="typeUser == '1'" [ngClass]="{'text_red': up_cedula}">Cédula o Pasaporte</p>
-				<p class="text-slide" *ngIf="typeUser == '2' && formLocal.pais_id == '2'" [ngClass]="{'text_red': up_operaciones}">Aviso de Operaciones</p>
+				<p class="text-slide" *ngIf="typeUser == '1'" [ngClass]="{'text_red': up_cedula}">{{ 'COMPLETARPERFIL.id' | translate }}</p>
+				<p class="text-slide" *ngIf="typeUser == '2' && formLocal.pais_id == '2'" [ngClass]="{'text_red': up_operaciones}">Tarjeta de RUT</p>
 				<p class="text-slide" *ngIf="typeUser == '2' && formLocal.pais_id != '2'" [ngClass]="{'text_red': up_operaciones}">Tarjeta de RUT</p>
-				<p style="color: red; font-size: 10px;">(Confidencial no se compartirá con los usuarios)</p>
+				<p style="color: red; font-size: 10px;">{{ 'COMPLETARPERFIL.confidencial' | translate }}</p>
 				<div>
 					<ion-icon name="finger-print" class="icon-img" *ngIf="formLocal.pasaporteP=='' && typeUser == '1'"></ion-icon>
 					<ion-icon name="document-text-outline" class="icon-img" *ngIf="formLocal.operaciones=='' && typeUser == '2'"></ion-icon>
@@ -415,7 +415,7 @@
 					<ion-icon slot="start" name="arrow-dropup" class="custom1-cancelar" *ngIf="progressText2 > 0 && progressText2 < 100"></ion-icon>
 					<ion-icon slot="start" name="arrow-dropup" class="custom1-loaded" *ngIf="progressText2 == 100"></ion-icon>
 					<div class="content-progress">
-						<p class="text-upload" *ngIf="progressText2 == 0">Subir Archivo</p>
+						<p class="text-upload" *ngIf="progressText2 == 0">{{ 'COMPLETARPERFIL.subirArchivo' | translate }}</p>
 						<p class="text-upload2" *ngIf="progressText2 > 0 && progressText2 < 100">Cargando Archivo</p>
 						<p class="text-upload2" *ngIf="progressText2 == 100">Archivo Cargado</p>
 						<p class="text-progress" *ngIf="progressText2 > 0">{{progressText2}}%</p>
@@ -499,8 +499,8 @@
 
 			<ion-card class="card-document" *ngIf="typeUser == '1'" (click)="presentActionSheet(6)">
 				<p class="text-slide" *ngIf="typeUser == '1' && formLocal.pais_id != '1'" [ngClass]="{'text_red': up_recibo}">Recibo de Servicio</p>
-				<p class="text-slide" *ngIf="typeUser == '1' && formLocal.pais_id == '1'" [ngClass]="{'text_red': up_recibo}">Comprobante de Domicilio</p>
-				<p style="color: red; font-size: 10px;">(Confidencial no se compartirá con los usuarios)</p>
+				<p class="text-slide" *ngIf="typeUser == '1' && formLocal.pais_id == '1'" [ngClass]="{'text_red': up_recibo}">{{ 'COMPLETARPERFIL.comprobantedomicilio' | translate }}</p>
+				<p style="color: red; font-size: 10px;">{{ 'COMPLETARPERFIL.confidencial' | translate }}</p>
 				<ion-icon name="document-text-outline" class="icon-img" *ngIf="formLocal.recibo_servicio==''"></ion-icon>
 				<div *ngIf="formLocal.recibo_servicio!=''">
 					<img src="{{formLocal.recibo_servicio}}" class="img-card">
@@ -510,7 +510,7 @@
 					<ion-icon slot="start" name="arrow-dropup" class="custom1-cancelar" *ngIf="progressText6 > 0 && progressText6 < 100"></ion-icon>
 					<ion-icon slot="start" name="arrow-dropup" class="custom1-loaded" *ngIf="progressText6 == 100"></ion-icon>
 					<div class="content-progress">
-						<p class="text-upload" *ngIf="progressText6 == 0">Subir Archivo</p>
+						<p class="text-upload" *ngIf="progressText6 == 0">{{ 'COMPLETARPERFIL.subirArchivo' | translate }}</p>
 						<p class="text-upload2" *ngIf="progressText6 > 0 && progressText6 < 100">Cargando Archivo</p>
 						<p class="text-upload2" *ngIf="progressText6 == 100">Archivo Cargado</p>
 						<p class="text-progress" *ngIf="progressText6 > 0">{{progressText6}}%</p>
@@ -524,7 +524,7 @@
 			<!--ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1()">
 			Enviar</ion-button-->
 			</div>
-			<button expand="block" class="nuevo-boton" (click)="next()">Siguiente</button>
+			<button expand="block" class="nuevo-boton" (click)="next()">{{ 'COMPLETARPERFIL.siguiente' | translate }}</button>
 		</swiper-slide>
 		<!--swiper-slide>
 			<p class="title-text">Rellene el siguiente formulario para completar su pre-registro.</p>
@@ -562,14 +562,14 @@
 				<img src="../../assets/service24/p3b.svg" (click)="goToSlide(2)"alt="">
 				<img src="../../assets/service24/p4b.svg" (click)="goToSlide(3)"alt="">
 			</div>
-			<p class="title-text">Finalmente! elige un plan de servicios con el que podrás obtener un sin fin de beneficios.</p>
+			<p class="title-text">{{ 'COMPLETARPERFIL.finalmente' | translate }}</p>
 
 			<div class="padding-space2">
-				<p class="text-slide">Planes de servicios:</p>
+				<p class="text-slide">{{ 'COMPLETARPERFIL.planesdeservicios' | translate }}</p>
 
 				<div class="content-target">
 					<ion-card class="target-plan" *ngFor="let plan of plans" [ngClass]="{'select-target': select_plan == plan.id}" (click)="selectPlan(plan)">
-						<p class="item-recom" *ngIf="plan.recomendado == 1"><ion-icon name="ribbon"></ion-icon> Recomendado</p>
+						<p class="item-recom" *ngIf="plan.recomendado == 1"><ion-icon name="ribbon"></ion-icon> </p>
 						<div (click)="selectPlan(plan)">
 							<p class="name-plan">{{plan.tipo_plan}}</p>
 							<p class="price-plan" [ngClass]="{'discount': plan.descuento != 0}">${{plan.costo}}</p>
@@ -595,8 +595,8 @@
 				<br><br>
 				<!--ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" style="margin-right: 15px" (click)="back1()">Atras</ion-button-->
 				<div style="display: flex;">
-					<ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1()">Guardar</ion-button>
-					<ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1();enviarRegistro()">Guardar y enviar</ion-button>
+					<ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1()">{{ 'COMPLETARPERFIL.guardar' | translate }}</ion-button>
+					<ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1();enviarRegistro()">{{ 'COMPLETARPERFIL.enviar' | translate }}</ion-button>
 				</div>
 				<br><br> <br><br>
 			</div>

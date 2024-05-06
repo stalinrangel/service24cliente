@@ -5,7 +5,7 @@
         </ion-back-button>
        </ion-buttons>
      <ion-title style="    position: relative;left: -20px;" class="ion-text-capitalize ion-text-center" mode="md">
-      Planes
+        {{ 'PLANES.title' | translate }}
      </ion-title>
      <!--ion-buttons slot="end" class="icon-notify">
       <ion-button>
@@ -16,15 +16,19 @@
 </ion-header>
 <ion-content>
   <div class="padding-space2">
-  <p class="text-slide">Planes de servicios:</p>
+  <p class="text-slide">{{ 'PLANES.planesdeservicios' | translate }}</p>
 
   <div class="content-target">
       <ion-card class="target-plan" *ngFor="let plan of plans" [ngClass]="{'select-target': select_plan == plan.id}" (click)="selectPlan(plan)">
-          <p class="item-recom" *ngIf="plan.recomendado == 1"><ion-icon name="ribbon"></ion-icon> Recomendado</p>
+          <p class="item-recom" *ngIf="plan.recomendado == 1"><ion-icon name="ribbon"></ion-icon> </p>
           <div (click)="selectPlan(plan)">
-              <p class="name-plan">{{plan.tipo_plan}}</p>
+              <p class="name-plan" *ngIf="languages == 'es'">{{plan.tipo_plan}}</p>
+              <p class="name-plan" *ngIf="languages == 'en'">{{plan.tipo_plan_ingles}}</p>
+              <p class="name-plan" *ngIf="languages == 'po'">{{plan.tipo_plan_portugues}}</p>
               <p class="price-plan" [ngClass]="{'discount': plan.descuento != 0}">${{plan.costo}}</p>
-              <p class="price-plan" *ngIf="plan.descuento != 0">{{plan.descuento}}</p>
+              <p class="price-plan" *ngIf="plan.descuento != 0 && languages == 'es'">{{plan.descuento}}</p>
+              <p class="price-plan" *ngIf="plan.descuento != 0 && languages == 'en'">{{plan.descuento_ingles}}</p>
+              <p class="price-plan" *ngIf="plan.descuento != 0 && languages == 'po'">{{plan.descuento_portugues}}</p>
           </div>
           <div class="icon-target" (click)="plan.show = !plan.show">
               <ion-icon name="chevron-down-outline" class="icon-price" [hidden]="plan.show"></ion-icon>
@@ -32,21 +36,40 @@
           </div>
           <div [ngClass]="{'hiddenDes': !plan.show}" class="content-desplan">
               <div class="overlay" *ngIf="!plan.show" (click)="plan.show = !plan.show"></div>
-              <div class="item-descP" *ngFor="let item of plan.descripcion" (click)="plan.show = !plan.show">
-                  <ion-icon name="checkmark" class="icon-checkP"></ion-icon>
-                  <p>
-                      {{item.descripcion}}
-                  </p>
+              <div *ngIf="languages == 'es'">
+                <div class="item-descP"  *ngFor="let item of plan.descripcion" (click)="plan.show = !plan.show">
+                    <ion-icon name="checkmark" class="icon-checkP"></ion-icon>
+                      <p >
+                          {{item.descripcion}}
+                      </p>
+                </div>
               </div>
+              <div *ngIf="languages == 'en'">
+                <div class="item-descP"  *ngFor="let item of plan.descripcion_ingles" (click)="plan.show = !plan.show">
+                    <ion-icon name="checkmark" class="icon-checkP"></ion-icon>
+                      <p >
+                          {{item.descripcion}}
+                      </p>
+                </div>
+              </div>
+            <div *ngIf="languages == 'po'" >
+                <div class="item-descP" *ngFor="let item of plan.descripcion_portugues" (click)="plan.show = !plan.show">
+                    <ion-icon name="checkmark" class="icon-checkP"></ion-icon>
+                      <p >
+                          {{item.descripcion}}
+                      </p>
+                </div>
+            </div>
+            
               <ion-button expand="block" color="primary" class="ion-text-capitalize btn-init" style="margin-top: 20px;width: 70%;" (click)="selectPlan(plan)">
-              Seleccionar</ion-button>
+                {{ 'PLANES.seleccionar' | translate }}</ion-button>
           </div>
       </ion-card>
   </div>
   <br><br>
   <!--ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" style="margin-right: 15px" (click)="back1()">Atras</ion-button-->
   <div style="display: flex;">
-      <ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1()">Seleccionar plan</ion-button>
+      <ion-button expand="block" color="primary" class="ion-text-capitalize btn-init2" (click)="presentConfirm1()">{{ 'PLANES.seleccionarplan' | translate }}</ion-button>
   </div>
   <br><br> <br><br>
   </div>

@@ -271,6 +271,15 @@
         "planesdeservicios":"Service plans:",
         "basico":"BASIC",
         "guardar":"Save",
-        "enviar":"Guardar y send"
-    }   
+        "enviar":"Save y send",
+        "brindarte":"To provide you with a better service, we require your location to know the distance you are from customers who can place orders. This information will not be shared with customers.",
+        "complemento":"Please add a complement to your location address, for example, the building name and office number, such as 'Edificio Bolívar, Office 2-3'"
+        
+    },
+    "PLANES":{
+        "title": "Plans",
+        "planesdeservicios": "Service plans",
+        "seleccionar": "Select",
+        "seleccionarplan": "Select plan"
+    }
 }

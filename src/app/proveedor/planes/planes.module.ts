@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { PlanesPageRoutingModule } from './planes-routing.module';
 
 import { PlanesPage } from './planes.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlanesPageRoutingModule
+    PlanesPageRoutingModule, TranslateModule
   ],
   declarations: [PlanesPage]
 })

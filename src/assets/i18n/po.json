@@ -271,6 +271,14 @@
         "planesdeservicios":"Planos de serviço:",
         "basico":"BÁSICO",
         "guardar":"Salvar",
-        "enviar":"Salvar e enviar"
-    }
+        "enviar":"Salvar e enviar",
+        "brindarte":"Para lhe fornecer um melhor serviço, solicitamos que sua localização saiba a distância que você está dos clientes que podem fazer pedidos. Esta informação não será compartilhada com os clientes.",
+        "complemento":"Por favor, adicione um complemento ao seu endereço de localização, por exemplo, o nome do prédio e o número do escritório, como 'Edificio Bolívar, Office 2-3'."
+        
+    },"PLANES":{
+        "title": "Planos",
+        "planesdeservicios": "Planos de serviço",
+        "seleccionar": "Selecionar",
+        "seleccionarplan": "Selecionar plano"
+        }
 }
