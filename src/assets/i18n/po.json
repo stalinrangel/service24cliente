@@ -280,5 +280,18 @@
         "planesdeservicios": "Planos de serviço",
         "seleccionar": "Selecionar",
         "seleccionarplan": "Selecionar plano"
-        }
+    },
+    "TAB6":{
+        "hola":"Olá",
+        "pararecibir":"Para receber solicitações você deve completar seu perfil registrando-se previamente.",
+        "contacta":"Entre em contato com nossa equipe de atendimento ao cliente para ajudá-lo a completar seu cadastro ou qualquer outra dúvida.",
+        "llega":" Alcance um público maior.",
+        "contrata":"Contratar publicidade ",
+        "desactivado":"Seu perfil está desativado pela administração.",
+        "agregarservicio":"Adicionar serviços",
+        "mejorarplan":"Melhore seu plano",
+        "inactivo":"Inativo",
+        "completa":"Complete seu perfil",
+        "revision":"Em revisão"
+    }
 }

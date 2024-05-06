@@ -281,5 +281,18 @@
         "planesdeservicios": "Service plans",
         "seleccionar": "Select",
         "seleccionarplan": "Select plan"
+    },
+    "TAB6":{
+        "hola":"Hi",
+        "pararecibir":"To receive requests you must complete your profile by registering in advance.",
+        "contacta":"Contact our customer service team to help you complete your registration or any other questions.",
+        "llega":" Reach a larger audience.",
+        "contrata":"Hire advertising ",
+        "desactivado":"Your profile is deactivated by administration.",
+        "agregarservicio":"Add services",
+        "mejorarplan":"Improve your plan",
+        "inactivo":"Inactive",
+        "completa":"Complete your Profile",
+        "revision":"Under Review"
     }
 }

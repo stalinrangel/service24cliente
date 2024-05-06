@@ -3,6 +3,15 @@ ion-title {
     font-family: "Montserrat-Bold";
     font-size: 18px;
 }
+.hola{
+  color: var(--neutral-400, #141518);
+  font-family: Gilroy-ExtraBold;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 0px;
+}
 .naranja{
   background: #FD682A;
 }
@@ -168,3 +177,68 @@ ion-refresher{
   border-bottom: 1px solid #DAE2E7;
   padding: 6px 6px 6px 12px;
 }
+
+.comencemos{
+  text-align: center;
+  height: 45vh;
+  margin-top: 3vh; 
+  border: 1px solid #7E8389; 
+  border-radius: 8px; 
+  margin: 10px 20px 10px 20px;
+}
+.comencemos2{
+  text-align: center;
+  min-height: 11vh;
+  margin-top: 1vh; 
+  border: 1px solid #7E8389; 
+  border-radius: 8px; 
+  margin: 10px 20px 10px 20px;
+}
+
+.comencemos-interno{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.comencemos-p{
+  color: #7E8389;
+  font-size: 15px;
+  font-family: 'Inter-Light';
+  margin-top: 15px;
+  width: 70%;
+}
+
+.comencemos-p2{
+  color: #7E8389;
+  font-size: 15px;
+  font-family: 'Inter-Light';
+  width: 100%;
+  text-align: justify;
+  margin-bottom: 0px;
+  padding-right:4px;
+}
+
+.comencemos-p3{
+  color: black;
+  font-size: 16px;
+  font-family: 'Inter-Medium';
+  width: 100%;
+  text-align: left;
+  margin-bottom: 0px;
+  padding-right:4px;
+  font-weight: bold;
+  margin-left: 46px;
+}
+
+.comencemos3{
+  text-align: center;
+  min-height: 10vh;
+  margin-top: 1vh; 
+  border: 1px solid #7E8389; 
+  border-radius: 8px; 
+  margin: 10px 20px 10px 20px;
+}
+

@@ -36,6 +36,8 @@ export class Tab6Page implements OnInit {
   public show_notify: boolean = false;
   public deNotifi:any;
 
+  //public usuario:any;
+
   constructor(
   	public navCtrl: NavController, 
   	public refresh: RefreshService,
@@ -100,7 +102,10 @@ export class Tab6Page implements OnInit {
     /*this.ga.trackView('Home')
     .then(() => {})
     .catch(e => console.log(e));*/
-    console.log(this.storage.get('userSV24'))
+    //let usr:any=this.storage.get('userSV24');
+    //this.usuario=JSON.parse(usr);
+
+    console.log(this.usuario)
     console.log(this.storage.get('idRPSV24'))
     let repartidor:any=this.storage.get('idRPSV24');
     let isSesion:any=this.storage.get('idRPSV24');

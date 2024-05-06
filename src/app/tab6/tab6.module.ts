@@ -8,6 +8,7 @@ import { Tab6PageRoutingModule } from './tab6-routing.module';
 
 import { Tab6Page } from './tab6.page';
 import { ExploreContainerComponent } from '../explore-container-proveedor/explore-container.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ExploreContainerComponent } from '../explore-container-proveedor/explor
     IonicModule,
     Tab6PageRoutingModule,
     ExploreContainerComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [Tab6Page],
 })
