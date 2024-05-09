@@ -10,6 +10,35 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+  <div style="height: 100%; margin: 20px 20px; ">
+    <img style="width: 100%;" src="../../assets/service24/login_mujer.svg" alt="" (click)="cliente()">
+    <div style="text-align: center; border: 1px solid #DAE2E7; border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;" (click)="cliente()">
+      <p style="margin-top: 10px; margin-left: 10px; font-size: 20px; font-family: 'Gilroy-ExtraBold';">{{ 'LOGIN.contrata' | translate }}</p>
+      <p style="color: #7E8389; margin-left: 10px;">{{ 'LOGIN.encontra' | translate }}</p>
+      <button style="color: white; background-color: #FD682A; width: 80%; height: 40px; border-radius: 6px; margin-bottom: 10px;">{{ 'LOGIN.buscar' | translate }}</button>
+    </div>
+    <p style="margin-top: 15px; margin-left: 0px; font-size: 20px; font-family: 'Gilroy-ExtraBold';">{{ 'LOGIN.sosproveedor' | translate }}</p>
+
+    <div (click)="proveedor()" style="width: 100%; text-align: center; min-height: 10vh; margin-top: 1vh; border: 1px solid #DAE2E7; border-radius: 8px; margin: 0px 20px 10px 0px;">
+      <ion-grid style="padding: 0;">
+        <ion-row style="padding: 0;">
+        <ion-col size="5" style="padding: 0;">
+          <img src="../../assets/service24/login_proveedor.svg" alt="" style="width: 100%;">
+        </ion-col>
+        <ion-col style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 0 5px 0 5px;">
+          <p style="color: black; font-size: 15px; font-family: 'Inter-Medium'; width: 100%; text-align: left; margin-bottom: 0px; padding-right:4px; font-weight: bold; margin-left: 46px; margin-right: 10px;">
+          {{ 'LOGIN.llega' | translate }}
+          </p>
+          <div style="display: flex; justify-content: center; align-items: center;">
+          <p  style="color: black; font-size: 14px;color: #000; font-size: 12px; font-family: 'Inter-Light'; width: 100%; text-align: justify; margin-bottom: 0px; padding-right:30px;">{{ 'LOGIN.sumate' | translate }}<ion-icon name="arrow-forward-outline"></ion-icon></p>
+          
+          </div>
+          
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
   <div style="height: 100%;">
     <img style="width: 100%;" src="../../assets/service24/tipousuariocliente.svg" alt="" (click)="cliente()">
     <br>

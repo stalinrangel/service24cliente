@@ -298,7 +298,11 @@ const routes: Routes = [
   {
     path: 'proveedor/chat-password',
     loadChildren: () => import('./proveedor/chat-password/chat-password.module').then( m => m.ChatPasswordPageModule)
+  },  {
+    path: 'soporte',
+    loadChildren: () => import('./soporte/soporte.module').then( m => m.SoportePageModule)
   }
+
 
 
 

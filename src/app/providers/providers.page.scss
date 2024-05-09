@@ -196,7 +196,8 @@ font-size: 22px;
   align-items: flex-start;
   gap: 10px;
   border-radius: 15px;
-  background:#F5FBFF;
+  /*background:#F5FBFF;*/
+  border: 1px solid #DAE2E7;
 }
 .label1{
   display: flex;
@@ -212,24 +213,24 @@ font-size: 22px;
 
 .title-menu{
   font-family: ('Inter-Bold');
-  color: #666666;
+  color: black;
   display: flex;
-  font-size: 15px;
+  font-size: 16px;
   margin: 0px;
 }
 .sub-title{
   color: var(--neutral-300, #7E8389);
   text-align: left;
   font-family: Inter-Medium;
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 .imagen{
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
 }
 
 .label2{
@@ -238,7 +239,7 @@ font-size: 22px;
   justify-content: space-between;
   width: 100%;
   margin: 4px 0px;
-  border-bottom: 1px solid #DAEEFF;
+  /*border-bottom: 1px solid #DAEEFF;*/
   padding-bottom: 6px;
 }
 p{

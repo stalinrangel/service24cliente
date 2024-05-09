@@ -10,7 +10,7 @@
     </ion-title>
     <ion-buttons slot="end" (click)="viewNotification()">
       <ion-button>
-		<div class="icon-bagde" *ngIf="show_notify" ></div><span style="background-color: #F5FBFF; color: white; padding: 1px 3px 1px 3px; font-size: 11px; background-color: red; border-radius: 100px; position: relative; left: 36px; top: -10px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
+		<div class="icon-bagde" *ngIf="show_notify" ></div><span style="height: 48px; background-color: #F5FBFF; color: white; padding: 1px 3px 1px 3px; font-size: 11px; background-color: red; border-radius: 100px; position: relative; left: 36px; top: -10px; z-index: 10;" *ngIf="vistos>0">{{vistos}}</span>
         <img src="../../assets/service24/notification.svg" alt="">
       </ion-button>
     </ion-buttons>
@@ -18,8 +18,19 @@
 </ion-header>
 
 <ion-content>
-	<br>
-	<div class="content-profile" >
+	<div class="perfil1">
+		<img src="{{usuario.imagen}}" (click)="editProfile()" class="imagen_perfil">
+		<p class="pperfil">{{usuario.nombre}}</p>
+	</div>
+
+	<div style="margin: 20px 20px 10px 20px;">
+		<button style="background-color: black; color: white; display: flex; justify-content: center; align-items: center; width: 100%; border-radius: 6px; height: 48px;">
+			<img src="../../assets/service24/icon_cambiar.svg" alt="">
+			<p style="font-family: Inter-SemiBold; color: white;  margin: 0;">&nbsp;{{ 'PROFILE.modoproveedor' | translate }}</p>
+		</button>
+	</div>
+
+	<div class="content-profile" *ngIf="false" >
 		<!--div class="content-profile" [ngStyle]="{'background': 'linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(' + usuario.imagen + ') center center / cover no-repeat'}" -->
 			<div style="display: flex; flex-direction: column; text-align: center; justify-content: center; align-items: center;margin: auto;">
 				<img src="{{usuario.imagen}}" (click)="editProfile()">

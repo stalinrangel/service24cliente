@@ -677,5 +677,7 @@ export class Tab1Page {
 
   }
 
+  openModal(){}
+
 }
 

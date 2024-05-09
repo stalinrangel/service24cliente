@@ -28,7 +28,8 @@ import { ObjectserviceService } from 'src/services/objetcservice/objectservice.s
   styleUrls: ['./tab8.page.scss'],
 })
 export class Tab8Page  {
-
+	public active: boolean = true;
+	
   public usuario = {
 		id: '',
 		nombre: 'Usuario',
@@ -129,6 +130,11 @@ export class Tab8Page  {
 	}
 
 	ionViewWillEnter() { 
+		this.zone=this.funciones_generales.getZone();
+		this.objService2.get_zona().subscribe((data:any) => {
+			//console.log(data)
+			this.zone=data;
+		});  
 		this.vistos=0;
 		this.getZone();
 		this.objService.getUser().subscribe((data:any) => {
@@ -648,5 +654,49 @@ export class Tab8Page  {
 			
 		});
 		return await modal.present();
+	}
+	private estado:any={
+		activo:1
+	}
+	changeStatus(){
+		//this.presentLoading();
+	  if (true) {
+		//this.status = 0;
+	  } else {
+		//this.active = !this.active;
+		if (this.active) {
+		  this.estado.activo = 1;
+		} else {
+		  this.estado.activo = 2;
+		}
+		let items=this.storage.get('idRPSV24');
+		if (items) {
+		  let items2=this.storage.get('TRPSV24');
+			  if (items2) {
+				this.userService.setStatus(items,items2,items2).subscribe(
+				  data => {
+				  this.datos = data;
+				  if (this.datos.repartidor.activo == 1) {
+					this.active = true;
+					//this.presentToast('Servicio Activado');
+					//this.getOrders();
+				  } else {
+					this.active = false;
+					//this.presentToast('Servicio Desactivado');
+				  }
+				},
+				msg => {
+				  //this.loading.dismiss();
+				  if(msg.status == 400 || msg.status == 401){ 
+					this.storage.set('TRPSV24','');
+					//this.presentToast(msg.error.error + ', Por favor inicia sesión de nuevo');
+					this.navCtrl.navigateRoot('login-proveedor');
+				  }
+				});
+			  }
+		   // });
+		  }
+		//});
+	  }
 	}
 }

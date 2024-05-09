@@ -16,7 +16,8 @@
 </ion-header>
 
 <ion-content>
-	
+
+		
 	<!--div class="content-profile" [ngStyle]="{'background': 'linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(' + imagen + ') center center / cover no-repeat'}">
 		<ion-icon md="md-heart" ios="md-heart" class="icon-star1" [class.filled1]="(select == true)" (click)="addFavorite()" *ngIf="usuario.id != ''"></ion-icon>
 		<img src="{{imagen}}" >
@@ -35,7 +36,93 @@
 			</ion-rating-stars>
 		</div>
 	</div-->
-	<div  class="cuadro-azul">
+
+	
+	<div class="pimagen">
+		<ion-icon *ngIf="!this.select" name="heart-outline" class="pfav" style="color: black;" (click)="addFavorite()"></ion-icon>
+		<ion-icon *ngIf="this.select" name="heart" class="pfav" style="color: black;" (click)="addFavorite()"></ion-icon>
+		<img class="pportada" src="{{imagen}}" (click)="openPreview(imagen)">
+	</div>
+	<div class="ptitle">
+		<div style="display: flex; flex-direction: row; justify-content: space-between;">
+			<p class="ptitle-menu" *ngIf="data">{{data.nombre}}</p>
+			<img src="../../assets/service24/icon_trespuntos.svg" alt="">
+		</div>
+        <p class="psub-title" *ngIf="data">{{data.establecimiento.nombre}}</p>
+		<div style="display: flex;flex-direction: row; justify-content: start;margin-right: 5px;"><p style="color: #FD682A;font-size: 14px;">{{promedio}}</p><img src="../../assets/service24/star.svg" alt="" style="width: 20px; height: 20px;position: relative;top: 3px;"></div>
+	</div>
+
+	<div class="pdireccion">
+		<div class="pdireccion1">
+			<img src="../../assets/service24/icon_pos.svg" alt="" style="height: 18px;">
+		</div>
+		<div class="pdireccion2" *ngIf="data">
+			{{data.establecimiento.direccion}}
+		</div>
+		<div class="pdireccion3">
+			<img src="../../assets/service24/mapadetail.svg" alt="">
+		</div>
+	</div>
+
+	<div class="pdescrip" *ngIf="data">
+		<p class="pdescripcion">{{ 'DETAILSUPPLIERS.description' | translate }}</p>
+		<p  *ngIf="data"> {{data.descripcion}}</p>
+
+			<p [hidden]="data.establecimiento.usuario.repartidor.registro.tipo == 2"><span>{{ 'DETAILSUPPLIERS.Training' | translate }}</span> {{data.establecimiento.usuario.repartidor.registro.formacion}}</p>
+			<p><span>{{ 'DETAILSUPPLIERS.years' | translate }}</span> {{data.anos_experiencia}} {{ 'DETAILSUPPLIERS.year' | translate }}</p>
+			<p><span>{{ 'DETAILSUPPLIERS.suitability' | translate }}</span> {{data.idoneidad}}</p>
+			<!--p><span>Disponibilidad:</span> Lunes a Sábado 9:00 a 7:00 PM</p-->
+			<p><span>{{ 'DETAILSUPPLIERS.language' | translate }}</span> {{idiomas}}</p>
+			<!--p><span>Zonas que atiende:</span> Allbrook, Bella Vista</p-->
+			<p><span>{{ 'DETAILSUPPLIERS.emergencies' | translate }}</span> {{data.establecimiento.usuario.repartidor.registro.urgencias}}</p>
+			<p><span>{{ 'DETAILSUPPLIERS.invoices' | translate }}</span> {{data.establecimiento.usuario.repartidor.registro.factura}}</p>
+			
+	</div>
+
+	<div class="pbotones">
+		<div class="plista">
+			<div class="pitem">
+				<img class="pimg" src="../../assets/service24/icon_servicios.svg" alt="" style="height: 18px;">
+				<p class="pboton">Servicios</p>
+			</div>
+			<img src="../../assets/service24/icon_flechader.svg" alt="" style="height: 28px;">
+		</div>
+		<div class="plista">
+			<div class="pitem">
+				<img class="pimg" src="../../assets/service24/icon_disponibilidad.svg" alt="" style="height: 18px;">
+				<p class="pboton">{{ 'DETAILSUPPLIERS.history' | translate }}</p>
+			</div>
+			<img src="../../assets/service24/icon_flechader.svg" alt="" style="height: 28px;">
+		</div>
+		<div class="plista">
+			<div class="pitem">
+				<img class="pimg" src="../../assets/service24/icon_pos2.svg" alt="" style="height: 18px;">
+				<p class="pboton">Ubicación</p>
+			</div>
+			<img src="../../assets/service24/icon_flechader.svg" alt="" style="height: 28px;">
+		</div>
+		<div class="plista">
+			<div class="pitem">
+				<img class="pimg" src="../../assets/service24/icon_estrella.svg" alt="" style="height: 18px;">
+				<p class="pboton">{{ 'DETAILSUPPLIERS.ratings' | translate }}</p>
+			</div>
+			<img src="../../assets/service24/icon_flechader.svg" alt="" style="height: 28px;">
+		</div>
+		<div class="plista">
+			<div class="pitem">
+				<img class="pimg" src="../../assets/service24/icon_imagen.svg" alt="" style="height: 18px;">
+				<p class="pboton">{{ 'DETAILSUPPLIERS.photo' | translate }}</p>
+			</div>
+			<img src="../../assets/service24/icon_flechader.svg" alt="" style="height: 28px;">
+		</div>
+	</div>
+
+	<div style="margin: 0px 20px;">
+		<ion-button expand="block" class="ion-text-capitalize btn-init" style="border-radius: 6px !important; font-size: 18px;" (click)="setOrder()">{{ 'DETAILSUPPLIERS.create' | translate }}</ion-button>
+		<ion-button expand="block" class=" btn-init2" style="border-radius: 6px !important; font-size: 18px;" (click)="home()">{{ 'DETAILSUPPLIERS.home' | translate }}</ion-button>
+	</div>
+
+	<div  class="cuadro-azul" *ngIf="false">
 		<div class="label0" >
 			<ion-icon *ngIf="!this.select" name="heart-outline" class="fav1" style="color: white;" (click)="addFavorite()"></ion-icon>
 			<ion-icon *ngIf="this.select" name="heart" class="fav1" style="color: white;" (click)="addFavorite()"></ion-icon>
@@ -61,7 +148,7 @@
           <p class="new-address" *ngIf="data"> {{data.establecimiento.direccion}}</p>
         </div>
   	</div>
-	<div style="margin: 0px 20px; width: 100%; text-align: center;">
+	<div style="margin: 0px 20px; width: 100%; text-align: center;" *ngIf="false">
 		<ion-segment [(ngModel)]="type" value="track" >
 			<ion-segment-button value="track" mode="md">
 			<ion-label>{{ 'DETAILSUPPLIERS.description' | translate }}</ion-label>
@@ -77,7 +164,7 @@
 			</ion-segment-button>
 		</ion-segment>
 	</div>
-	<div class="content-infoP" *ngIf="type == 'track'">
+	<div class="content-infoP" *ngIf="type == 'track'" [hidden]="true">
 		<div *ngIf="data" style="margin: 0px 10px;">
 			<!--p class="address"><ion-icon name="arrow-dropup" class="custom1-map"></ion-icon> {{data.establecimiento.direccion}}</p>
 			<p>{{data.descripcion}}</p>

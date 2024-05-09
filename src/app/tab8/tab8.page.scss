@@ -256,3 +256,88 @@ ion-icon {
   font-size: 10px;
   font-family: "Muli-Regular";
 }
+
+.perfil1{
+  margin: 20px;
+  line-height: 1;
+  
+}
+.hola{
+  font-family: 'gilroy-bold'
+}
+
+.perfil2{
+  text-align: center;
+  min-height: 85px;
+  margin-top: 3vh; 
+  border: 1px solid #DAE2E7; 
+  border-radius: 8px; 
+  margin: 30px 20px 10px 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.perfil3{
+  
+  
+}
+
+.comencemos3{
+  text-align: center;
+  min-height: 10vh;
+  margin-top: 1vh; 
+  border: 1px solid #DAE2E7; 
+  border-radius: 8px; 
+  margin: 20px 20px 10px 20px;
+}
+
+.comencemos-p2{
+  color: #7E8389;
+  font-size: 15px;
+  font-family: 'Inter-Light';
+  width: 100%;
+  text-align: justify;
+  margin-bottom: 0px;
+  padding-right:4px;
+}
+
+.comencemos-p3{
+  color: black;
+  font-size: 16px;
+  font-family: 'Inter-Medium';
+  width: 100%;
+  text-align: left;
+  margin-bottom: 0px;
+  padding-right:4px;
+  font-weight: bold;
+  margin-left: 46px;
+}
+
+.pperfil{
+  font-family: inter-SemiBold;
+  font-size: 11px;
+  margin-top: 7px;
+  color: #000;
+}
+
+.cuadro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #DAE2E7;
+  border-radius: 8px;
+  padding-top: 20px;
+}
+
+row{
+  margin: 0;
+  padding: 0;
+}
+col{
+  margin: 0;
+  padding: 0;
+}
+
+.iconperfil{
+  height: 30px;
+}

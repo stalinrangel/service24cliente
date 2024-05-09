@@ -121,7 +121,8 @@
         "solicitudderegistro":"Solicitação de registro enviada",
         "iniciaagregando":"Comece a adicionar seus serviços!",
         "informaciondelregistro":"Informações cadastrais",
-        "Planes":"Planos"
+        "Planes":"Planos",
+        "modoproveedor":"Mudar para modo provedor"
     },
     "LOGIN": {
         "start": "Início",
@@ -134,7 +135,13 @@
         "recordar": "Lembrar",
         "nocuenta":"Você não tem uma conta?",
         "email":"Correio eletrônico",
-        "password":"Senha"
+        "password":"Senha",
+        "contrata":"Contrate serviços instantaneamente",
+        "encontra":"Encontre o pessoal mais qualificado de acordo com suas necessidades.",
+        "buscar":"Pesquisar agora",
+        "sosproveedor":"Você é um provedor de serviços?",
+        "llega":"Alcance um grande público.",
+        "sumate":"Inscreva-se no Service24"
     },
     "REGISTER": {
         "registry": "Cadastre-se",
@@ -293,5 +300,46 @@
         "inactivo":"Inativo",
         "completa":"Complete seu perfil",
         "revision":"Em revisão"
+    },
+    "TAB8":{
+        "hola":"Olá",
+        "ultima":"Última atividade",
+        "activo":"Ativo",
+        "inactivo":"Inativo",
+        "missolicitudes":"Meus serviços",
+        "zona":"Alterar zona",
+        "servicios":"Meus serviços",
+        "plan":"Melhorar o plano",
+        "pago":"Métodos de pagamento",
+        "llega":" Alcance um público maior.",
+        "contrata":"Contratar publicidade ",
+        "modo":"Modo cliente"
+    },
+    "SOPORTE":{
+        "title":"Soporte",
+        "soportetecnico":"Soporte técnico",
+        "noencontraras":"¿No encontrás la respuesta que estás buscando? Contactá a nuestro equipo de servicio al cliente",
+        "whatsapp":"Contáctese por Whatsapp",
+        "correo":"Contáctese via correo electronico",
+        "frecuentes":"Preguntas frecuentes",
+        "pregunta1":"O QUE É SERVIÇO24?",
+        "r11":"Service24 é um aplicativo que conecta prestadores de serviços e empresas aos clientes. Oferecemos mais de 200 itens nos quais o seu certamente estará! Damos-lhe acesso a uma grande base de clientes que procurarão o seu serviço e poderão contactá-lo imediatamente. Também temos um sistema de qualificação que o ajudará a ser mais procurado em sua área. Você também poderá oferecer seu serviço nas áreas que escolher, para que possa focar nos locais onde tem interesse em crescer! Você poderá direcionar tudo isso do seu celular em tempo real e de uma forma muito simples. Cadastre-se! Teremos prazer em aconselhá-lo a descobrir qual plano se adapta às suas necessidades.",
+        "pregunta2":"COMO POSSO REGISTRAR-ME COMO FORNECEDOR NO SERVIÇO 24?",
+        "r22":"Selecione o botão “Cadastre-se aqui”, ele solicitará uma série de informações que você deverá preencher para começar a criar seu usuário. Ao finalizar, clique em “Cadastre-se”.",
+        "r23":"Em seguida, você será direcionado para a tela principal do Service24 e deverá criar seu perfil para poder receber solicitações do serviço que deseja prestar. Lembre-se de preencher o máximo de informações possível para tornar seu perfil mais atrativo para os clientes!",
+        "r24":"Clique em “Vamos começar” e preencha o formulário.",
+        "r25":"¡Certifique-se de preencher todos os campos para que seu perfil seja efetivo e aprovado rapidamente no painel de controle!",
+        "pregunta3":"COMO ADICIONAR UM SERVIÇO?",
+        "r31":"Após completar o registo de utilizador e ter seleccionado o plano que pretende aderir, no seu perfil poderá encontrar o botão que diz “Comece a adicionar os seus serviços!”, carregue nele e depois vá em “Adicionar Serviço”. Será apresentado um formulário e uma lista de categorias dentro das quais deverá procurar aquela que melhor se adapta às características do seu serviço. Não tenha pressa para selecioná-lo, é assim que os clientes poderão encontrar você! Preencha o formulário fornecendo-nos os seus dados sobre o serviço que pretende prestar e clique em “Adicionar Serviço”.",
+        "pregunta4":"POR QUE MEU PERFIL NÃO FOI APROVADO NO MOMENTO?",
+        "r41":"Después de completar el registro, nuestro equipo de soporte revisará su perfil. Aquí comprobaremos si tus datos son correctos para habilitar el perfil. Si algún dato no es correcto o detectamos algún elemento faltante, nos pondremos en contacto contigo para ayudarte a resolverlo.",
+        "pregunta5":"COMO ESCOLHER UM PLANO?",
+        "r51":"Depois de concluir o registro, seu perfil será analisado por nossa equipe de suporte. Aqui verificaremos se seus dados estão corretos para habilitar o perfil. Caso alguma informação não esteja correta ou detectemos algum elemento faltante, entraremos em contato para ajudá-lo a resolvê-lo.",
+        "pregunta6":"COMO PAGAR MEU PLANO?",
+        "r61":"No momento do seu cadastro inicial você terá a opção de escolher qual plano deseja participar de acordo com suas características. Caso você não tenha escolhido no início ou queira alterar seu plano, você pode acessar seu perfil e selecionar “Planos”. Lá você encontrará as opções disponíveis e os recursos que ela oferece. Até dia 1 de janeiro não lhe será solicitado qualquer meio de pagamento. Lembrar! Na fase de lançamento, o Service24 oferece serviço gratuito em qualquer um de seus planos até 1o de janeiro de 2024! Para os usuários que se cadastrarem até 1o de janeiro, temos uma promoção de 50% de desconto para todo o ano de 2024 que você pode aproveitar!",
+        "pregunta7":"¿CÓMO PUEDO CAMBIAR EL ÁREA EN LA QUE ME REGISTRO Y PRESENTE? ",
+        "r71":"Você deve inserir seu perfil e selecionar a opção “Alterar área”.",
+        "maspreguntas":"PARA PERGUNTAS MAIS ESPECÍFICAS ",
+        "r8":"Para dúvidas mais específicas e/ou para se comunicar com o Suporte você pode entrar em contato via e-mail em info@service24.app, ou entrar em contato por Whatsapp em 092925959 e teremos o maior prazer em contatá-lo"
     }
 }

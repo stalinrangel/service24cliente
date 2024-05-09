@@ -2,13 +2,14 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 
 import { IonicModule, ModalController,NavController,Platform } from '@ionic/angular';
 import { Browser } from '@capacitor/browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modal-example',
   templateUrl: 'tipousuario.component.html',
   standalone:true,
   imports: [
-    IonicModule
+    IonicModule,TranslateModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

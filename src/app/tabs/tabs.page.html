@@ -1,3 +1,15 @@
+
+  <ion-modal #modal trigger="open-modal" [initialBreakpoint]="0.25" [breakpoints]="[0, 0.25, 0.5, 0.75]">
+    <ng-template>
+      <ion-content>
+        <div style="margin-top: 60px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <img src="../../assets/service24/icon_prohibido.svg" alt="">
+          <p style="font-size: 20px; font-family: Gilroy-ExtraBold;">{{ 'LOGIN.necesitas' | translate }}</p>
+          <p style="font-size: 15px; color:#7E8389">{{ 'LOGIN.presiona' | translate }}</p>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 <!--ion-tabs>
 
   <ion-tab-bar slot="bottom">
@@ -18,6 +30,7 @@
   </ion-tab-bar>
 
 </ion-tabs-->
+
 
 <ion-tabs mode="ios" tabsHighlight="false" (ionTabsDidChange)="setTab($event)" >
   <div class="menu" *ngIf="!isCliente" [hidden]="!isLogin">
@@ -50,6 +63,38 @@
       </ion-tab-button>
     </ion-tab-bar>
   </div>
+
+  <div class="menu" *ngIf="!isCliente" [hidden]="isLogin" id="open-modal" >
+    <ion-tab-bar slot="bottom" class="nuevo_tab">
+      <ion-tab-button >
+        <ion-icon name="arrow-dropup" class="custom-inicio"></ion-icon>
+        <ion-label class="bullet-icon" >{{ 'TAB.inicio' | translate }}</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button >
+        <ion-icon name="arrow-dropup" class="custom-solicitud" style="width: 24px; height: 24px;" *ngIf="currentTab != 'tab2'"></ion-icon>
+        <ion-icon name="arrow-dropup" class="custom-solicitud"  *ngIf="currentTab == 'tab2'"></ion-icon>
+        <ion-label class="bullet-icon" style="bottom: -2px;" *ngIf="currentTab != 'tab2'">{{ 'TAB.servicios' | translate }}</ion-label>
+        <ion-label class="bullet-icon" *ngIf="currentTab == 'tab2'">{{ 'TAB.servicios' | translate }}</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button >
+        <ion-icon name="arrow-dropup" class="custom-chat"></ion-icon>
+        <ion-label class="bullet-icon" >{{ 'TAB.mensaje' | translate }}</ion-label>
+      </ion-tab-button>
+
+      <!--ion-tab-button tab="tab5" >
+        <ion-icon name="arrow-dropup" class="custom-ayuda"></ion-icon>
+        <ion-label class="bullet-icon" *ngIf="currentTab == 'tab5'"></ion-label>
+      </ion-tab-button-->
+
+      <ion-tab-button >
+        <ion-icon name="arrow-dropup" class="custom-perfil"></ion-icon>
+        <ion-label class="bullet-icon" >{{ 'TAB.perfil' | translate }}</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </div>
+  
   <div class="menu" *ngIf="isCliente">
     <ion-tab-bar slot="bottom" class="nuevo_tab">
       <ion-tab-button tab="tab6">

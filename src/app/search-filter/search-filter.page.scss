@@ -185,7 +185,8 @@ ion-thumbnail{
     align-items: flex-start;
     gap: 10px;
     border-radius: 15px;
-    background:#F5FBFF;
+    /* background: #F5FBFF; */
+    border: 1px solid #DAE2E7;
   }
   .label1{
     display: flex;
@@ -200,8 +201,8 @@ ion-thumbnail{
   }
   
   .title-menu{
-    font-family: ('Inter-Bold');
-    color: #666666;
+    font-family: ('Inter-SemiBold');
+    color: #000;
     display: flex;
     font-size: 15px;
     margin: 0px;

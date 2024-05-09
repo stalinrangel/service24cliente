@@ -36,7 +36,8 @@
     </div>
   </div>
   <ion-list>
-    <div *ngFor="let item of filteredItems" (click)="setProvider(item)" class="cuadro-azul" [ngStyle]="{'background': item.plan.tipo_plan === 'PREMIUM' ? '#ffd1be' : ''}">
+    <!--div *ngFor="let item of filteredItems" (click)="setProvider(item)" class="cuadro-azul" [ngStyle]="{'background': item.plan.tipo_plan === 'PREMIUM' ? '#ffd1be' : ''}"-->
+    <div *ngFor="let item of filteredItems" (click)="setProvider(item)" class="cuadro-azul" >
       <div class="label1">
         <div class="nuevo-label">
           <p class="title-menu">{{item.nombre}}</p>
@@ -56,9 +57,9 @@
           <ion-icon name="heart-outline" class="fav"></ion-icon>
         </div>
       </div>
-      <div style="display: flex;">
-        <!--p class="new-address"> {{item.establecimiento.direccion}}</p-->
-        <ion-icon name="locate" style="margin-right: 3px;"></ion-icon><p class="new-address">{{item.distance}} km</p>
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <p class="new-address"> <img src="../../assets/service24/icon_pos.svg" alt="" style="height: 18px;">{{item.zonas2[0].nombre}}</p>
+        <p class="new-address"><ion-icon name="locate" style="margin-right: 3px;"></ion-icon>{{item.distance}} km</p>
       </div>
     </div>
   </ion-list>
@@ -67,7 +68,8 @@
     <b>Resultados fuera de tu zona busqueda:</b>
   </div>
   <ion-list>
-    <div *ngFor="let item of filteredItems2" (click)="setProvider(item)" class="cuadro-azul" [ngStyle]="{'background': item.plan.tipo_plan === 'PREMIUM' ? '#ffd1be' : ''}">
+    <!--div *ngFor="let item of filteredItems2" (click)="setProvider(item)" class="cuadro-azul" [ngStyle]="{'background': item.plan.tipo_plan === 'PREMIUM' ? '#ffd1be' : ''}"-->
+    <div *ngFor="let item of filteredItems2" (click)="setProvider(item)" class="cuadro-azul" >
       <div class="label1">
         <div class="nuevo-label">
           <p class="title-menu">{{item.nombre}}</p>
@@ -87,9 +89,10 @@
           <ion-icon name="heart-outline" class="fav"></ion-icon>
         </div>
       </div>
-      <div style="display: flex;">
+      <div style="display: flex; justify-content: space-between; width: 100%;">
         <!--p class="new-address"> {{item.establecimiento.direccion}}</p-->
-        <ion-icon name="locate" style="margin-right: 3px;"></ion-icon><p class="new-address">{{item.distance}} km</p>
+        <p class="new-address"> {{item.zonas2[0].nombre}}</p>
+        <ion-icon name="locate" style="margin-right: 3px;"></ion-icon><p class="new-address"><ion-icon name="locate" style="margin-right: 3px;"></ion-icon>{{item.distance}} km</p>
       </div>
     </div>
   </ion-list>

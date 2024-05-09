@@ -432,3 +432,91 @@ border-radius: 50%;
   .ddd{
     padding: 0 !important;
   }
+
+  .pimagen{
+    margin: 20px 20px 0px 20px;
+    height: 200px;
+  }
+  .pportada{
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+  }
+  .pfav{
+    position: absolute;
+    top: 40px;
+    right: 45px;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 100px;
+  }
+  .ptitle{
+    margin: 10px 20px 0px 20px;
+    line-height: 2;
+  }
+  .psub-title{
+    color: var(--neutral-300, #7E8389);
+    text-align: left;
+    font-family: Inter-Medium;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .ptitle-menu{
+    font-family: Gilroy-Semibold;
+    font-size: 22px;
+    color: black;
+  }
+  .pdireccion{
+    border-top: 1px solid #DAE2E7;
+    border-bottom: 1px solid #DAE2E7;
+    margin: 20px 20px;
+    display: flex;
+    width: 100%;
+    padding: 20px 0px;
+  }
+  .pdireccion1{
+    width: 5%;
+    
+  }
+  .pdireccion2{
+    width: 65%;
+  }
+  .pdireccion3{
+    width: 30%;
+  }
+.pdescrip{
+  margin: 20px 20px;
+}
+.pdescripcion{
+  font-family: Gilroy-SemiBold;
+  font-size: 19px;
+  color: #000;
+  margin-bottom: 20px;
+}
+.pbotones{
+  margin: 0px 20px;
+}
+.plista{
+  border-bottom: 1px solid #DAE2E7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+}
+.pboton{
+  font-size: Inter-Medium;
+  font-size: 18px;
+  margin-left: 20px;
+  color: black;
+}
+.pimg{
+  position: relative;
+    top: 3px;
+}
+.pitem{
+  display: flex; justify-content: start; padding-left: 20px;
+}

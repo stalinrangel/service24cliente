@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar class="nuevo-header" color="secondary" mode="md">
+  	<ion-buttons slot="start" class="icon-notify" (click)="atras()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize ion-text-center">
+      {{ 'SOPORTE.title' | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <p class="ptitle">{{ 'SOPORTE.soportetecnico' | translate }}</p>
+  <p class="psubtitle">{{ 'SOPORTE.noencontraras' | translate }}</p>
+
+  <div class="cuadros">
+    <div class="marco">
+      <div class="cuadro" (click)="support()">
+        <img src="../../assets/service24/icon_whatsapp.svg" alt="" class="iconp">
+        <p class="pcuadro">{{ 'SOPORTE.whatsapp' | translate }}</p>
+      </div>
+    </div>
+    <div class="marco">
+      <div class="cuadro" (click)="callClient()">
+        <img src="../../assets/service24/icon_correo.svg" alt="" class="iconp">
+        <p class="pcuadro">{{ 'SOPORTE.correo' | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <p class="ptitle" style="margin-top: 2px;">{{ 'SOPORTE.frecuentes' | translate }}</p>
+
+  <ion-accordion-group style="margin-left: 20px; margin-right: 20px;">
+    <ion-accordion value="first">
+      <ion-item slot="header" >
+        <ion-label>{{ 'SOPORTE.pregunta1' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p style="text-align: justify;">{{ 'SOPORTE.r11' | translate }}</p>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" >
+        <ion-label>{{ 'SOPORTE.pregunta2' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p style="text-align: justify;">{{ 'SOPORTE.r22' | translate }}</p>
+        <p style="text-align: justify;">{{ 'SOPORTE.r23' | translate }}</p>
+        <p style="text-align: justify;">{{ 'SOPORTE.r23' | translate }}</p>
+        <p style="text-align: justify;">{{ 'SOPORTE.r25' | translate }}</p>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header">
+        <ion-label>{{ 'SOPORTE.pregunta3' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p style="text-align: justify;">{{ 'SOPORTE.r31' | translate }}</p>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="cuatro">
+      <ion-item slot="header">
+        <ion-label>{{ 'SOPORTE.pregunta4' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content"> 
+        <p style="text-align: justify;">{{ 'SOPORTE.r41' | translate }}</p>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="cinco">
+      <ion-item slot="header">
+        <ion-label>{{ 'SOPORTE.pregunta5' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p style="text-align: justify;">{{ 'SOPORTE.r51' | translate }}</p>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="seis">
+      <ion-item slot="header">
+        <ion-label>{{ 'SOPORTE.pregunta6' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p style="text-align: justify;">{{ 'SOPORTE.r61' | translate }}</p>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="siete">
+      <ion-item slot="header">
+        <ion-label>{{ 'SOPORTE.pregunta7' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content"> 
+        <p style="text-align: justify;">{{ 'SOPORTE.r71' | translate }}</p>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+</ion-content>
