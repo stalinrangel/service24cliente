@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, ElementRef, ViewChild } from '@angular/core';
 
-import { IonicModule, ModalController,Platform } from '@ionic/angular';
+import { IonicModule, ModalController,NavController,Platform } from '@ionic/angular';
 import { Browser } from '@capacitor/browser';
 import { TipousuarioComponent } from './tipousuario.componet';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,7 +29,7 @@ export class ComencemosComponent {
 
   name: string='';
 
-  constructor(private translate: TranslateService,private modalCtrl: ModalController,private platform: Platform) {}
+  constructor(private translate: TranslateService,private modalCtrl: ModalController,private platform: Platform,private navCtrl:NavController) {}
 
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
@@ -106,5 +106,9 @@ export class ComencemosComponent {
  
   goPrev() {
     this.swiper?.slidePrev();
+  }
+
+  login_proveedor(){
+    this.navCtrl.navigateForward('/login-proveedor');
   }
 }

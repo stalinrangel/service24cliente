@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()"></ion-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  
+  <div *ngFor="let item of servicios" class="cuadro-azul" >
+    <div class="label1">
+      <div class="nuevo-label">
+        <p class="title-menu">{{item.nombre}}</p>
+        <p class="sub-title" style="font-weight: bold;">{{item.subcategoria.nombre}}</p>
+
+       
+      </div>
+      <img src="{{item.imagen}}" class="imagen">
+      
+    </div>
+    
+    
+  </div>
+  
+</ion-content>
+

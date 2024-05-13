@@ -22,7 +22,7 @@ import { GeneralService } from '../services/general.service';
 import { Swiper } from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { ComencemosComponent } from './comencemos.componet';
-import { TipousuarioComponent } from './tipousuario.componet';
+import { TipousuarioComponent } from '../tabs/tipousuario.componet';
 
 register();
 
@@ -646,7 +646,8 @@ export class Tab1Page {
   async comencemos() {
     let visto=localStorage.getItem('comencemos');
     setTimeout(async () => {
-      if (visto!='1') {
+      //if (visto!='1') {
+        if (false) {
         const modal = await this.modalController.create({
           component: ComencemosComponent,
         });

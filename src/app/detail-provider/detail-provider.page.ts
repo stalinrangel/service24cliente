@@ -9,6 +9,10 @@ import { Swiper } from 'swiper';
 import { ImageModalPage } from '../image-modal/image-modal.page';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Clipboard } from '@capacitor/clipboard';
+import { FotosComponent } from './fotos.componet';
+import { HorarioComponent } from './horario.componet';
+import { CalificacionesComponent } from './calificaciones.componet';
+import { ServiciosComponent } from './servicios.componet';
 
 register();
 
@@ -374,5 +378,88 @@ export class DetailProviderPage implements OnInit {
 		}
 	}
 
+  async photos() {
+		setTimeout(async () => {
+		  const modal = await this.modalController.create({
+			component: FotosComponent,
+      componentProps: {
+        fotos: this.fotos
+      }
+		  });
+		  modal.present();
+	
+		  const { data, role } = await modal.onWillDismiss();
+	
+		  if (role === 'confirm') {
+			//this.message = `Hello, ${data}!`;
+		  }
+		}, 400);  
+	
+	  }
+
+    async horarios() {
+      setTimeout(async () => {
+        const modal = await this.modalController.create({
+        component: HorarioComponent,
+        componentProps: {
+          horario: this.horario
+        }
+        });
+        modal.present();
+    
+        const { data, role } = await modal.onWillDismiss();
+    
+        if (role === 'confirm') {
+        //this.message = `Hello, ${data}!`;
+        }
+      }, 400);  
+    
+      }
+
+    async califi() {
+      setTimeout(async () => {
+        const modal = await this.modalController.create({
+        component: CalificacionesComponent,
+        componentProps: {
+          calificaciones: this.calificaciones
+        }
+        });
+        modal.present();
+    
+        const { data, role } = await modal.onWillDismiss();
+    
+        if (role === 'confirm') {
+        //this.message = `Hello, ${data}!`;
+        }
+      }, 400);  
+    
+      }
+
+      async servi() {
+        setTimeout(async () => {
+          const modal = await this.modalController.create({
+          component: ServiciosComponent,
+          componentProps: {
+            servicios: this.datos.producto.servicios
+          }
+          });
+          modal.present();
+      
+          const { data, role } = await modal.onWillDismiss();
+      
+          if (role === 'confirm') {
+          //this.message = `Hello, ${data}!`;
+          }
+        }, 400);  
+      
+        }
+
+      abrirGoogleMaps() {
+        console.log(this.datos.producto);
+        let latitud=this.datos.producto.establecimiento.lat;
+        let longitud=this.datos.producto.establecimiento.lng;
+        window.open(`https://www.google.com/maps?q=${latitud},${longitud}`, '_system');
+      }
+    
 }
 

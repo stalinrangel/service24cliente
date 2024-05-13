@@ -81,6 +81,7 @@ line-height: normal;
     font-weight: 700;
     line-height: normal;
     margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .cuadrando{
@@ -118,7 +119,7 @@ line-height: normal;
 .presentacion{
     display: flex;
     flex-direction: column;
-    margin: 0px 20px 12px 20px;
+    margin: 0px 20px 12px 10px;
 }
 .hola{
     color: var(--neutral-400, #141518);
@@ -144,6 +145,7 @@ line-height: normal;
     border: 1px solid #DAE2E7 !important;
     padding: 0px 2px 0px 10px !important;
     height: 55px;
+    max-height: 55px;
     border-radius: 11px;
   }
 .category-card{
@@ -184,7 +186,7 @@ line-height: normal;
 }
 .btn-search{
     background-color: #FD682A !important;
-    margin: 4px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     border-radius: 8px;
     position: relative;
     bottom: 5px;

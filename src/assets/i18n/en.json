@@ -12,7 +12,7 @@
         "modo":"Provider mode",
         "serviciosporcategoria":"Services by category",
         "title": "Service24",
-        "search": "Plumbing, Door opening...",
+        "search": "Search for services",
         "zone": "You are not in an enabled zone",
         "empty": "There are no categories enabled in your location"
     },
@@ -61,7 +61,9 @@
         "home":"Go to home",
         "empty":"The Supplier does not have qualifications yet.",
         "year": "year",
-        "history":"History"
+        "history":"History",
+        "servicios":"Services",
+        "ubicacion":"Location"
     },
     "ORDER": {
         "title": "Create Request",
@@ -122,7 +124,8 @@
         "iniciaagregando":"Start adding your services!",
         "informaciondelregistro":"Registration information",
         "Planes":"Plans",
-        "modoproveedor":"Switch to provider mode"
+        "modoproveedor":"Switch to provider mode",
+        "modocliente":"Cambiar a modo cliente"
     },
     "LOGIN": {
         "start": "Log In",
@@ -323,24 +326,24 @@
         "whatsapp":"Contact by Whatsapp",
         "correo":"Contact via email",
         "frecuentes":"Frequently asked questions",
-        "pregunta1":"WHAT IS SERVICE24?",
+        "pregunta1":"What is Service24?",
         "r11":"Service24 is an application that connects service providers and companies with customers. We offer over 200 items that yours is sure to be in! We give you access to a large customer base who will look for your service and can contact you immediately. We also have a qualification system that will help you be more sought after in your area. You will also be able to offer your service in the areas you choose, so you can focus on the places where you are interested in growing! You will be able to direct all of this from your cell phone in real time and in a very simple way. Register! We will be happy to advise you to find out which plan suits your needs.",
-        "pregunta2":"HOW CAN I REGISTER AS A 24 SERVICE SUPPLIER?",
+        "pregunta2":"How can i register as a Service24 supplier?",
         "r22":"Select the “Register here” button, it will ask for a series of information that you must fill in to start creating your username. When finished, click “Register”.",
         "r23":"You will then be directed to the Service24 main screen and must create your profile to be able to receive requests for the service you want to provide. Remember to fill in as much information as possible to make your profile more attractive to customers!",
         "r24":"Click on “Let’s get started” and fill out the form.",
         "r25":"Make sure to fill out all the fields so that your profile is effective and quickly approved in the control panel!",
-        "pregunta3":"HOW TO ADD A SERVICE?",
+        "pregunta3":"How to add a service?",
         "r31":"After completing user registration and selecting the plan you want to join, on your profile you will find the button that says “Start adding your services!”, click on it and then go to “Add Service”. You will be presented with a form and a list of categories within which you must search for the one that best suits the characteristics of your service. Don't be in a rush to select it, this is how customers will be able to find you! Complete the form, providing us with your details about the service you wish to provide and click on “Add Service”.",
-        "pregunta4":"WHY HAS MY PROFILE NOT BEEN APPROVED AT THE MOMENT?",
+        "pregunta4":"Why has my profile not been approved at the moment?",
         "r41":"After completing registration, your profile will be reviewed by our support team. Here we will check if your data is correct to enable the profile. If any information is not correct or we detect a missing element, we will contact you to help you resolve it.",
-        "pregunta5":"HOW TO CHOOSE A PLAN?",
+        "pregunta5":"How to choose at plan?",
         "r51":"When you register initially, you will have the option to choose which plan you want to participate in according to your characteristics. If you did not choose at the beginning or want to change your plan, you can access your profile and select “Plans”. There you will find the available options and the features it offers. Until January 1st, you will not be asked for any means of payment. To remember! In the launch phase, Service24 offers free service on any of its plans until January 1, 2024! For users who register by January 1st, we have a 50% discount promotion for the entire year 2024 that you can take advantage of!",
-        "pregunta6":"HOW DO I PAY FOR MY PLAN?",
+        "pregunta6":"How do i pay for my plan?",
         "r61":"From January 1st, there will be several payment options. From the app, selecting the plan that you think is most suitable for you, our App will take you to your Mercado Pago account and you can pay with the card you want! If you don't have an account, Mercado Pago gives you the option to pay in the same way even if you don't have an associated account. You can pay by credit card, debit card or through billing networks.",
-        "pregunta7":"HOW CAN I CHANGE THE AREA IN WHICH I REGISTER AND PRESENT? ",
+        "pregunta7":"How can i change the area in which i register and present? ",
         "r71":"You must enter your profile and select the “Change area” option. There you will find the area in which it is currently available and the one you want to change!",
-        "maspreguntas":"FOR MORE SPECIFIC QUESTIONS",
+        "maspreguntas":"FOr more specific questions",
         "r8":"For more specific questions and/or to communicate with Support you can contact us via email at info@service24.app, or contact us via Whatsapp on 092925959 and we will be happy to contact you!"
     }
 }

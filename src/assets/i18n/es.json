@@ -12,7 +12,7 @@
         "modo":"Modo proveedor",
         "serviciosporcategoria":"Servicios por categoria",
         "title": "Service24",
-        "search": "Plomería, Apertura de puerta...",
+        "search": "Buscar servicios",
         "zone": "No estas en una zona habilitada",
         "empty": "No hay categorías habilitadas en tu ubicación"
     },
@@ -61,7 +61,9 @@
         "home": "Ir al inicio",
         "empty": "El Proveedor aún no tiene calificaciones.",
         "year": "año(s)",
-        "history":"Horario"
+        "history":"Horario",
+        "servicios":"Servicios",
+        "ubicacion":"Ubicación"
     },
     "ORDER": {
         "title": "Crear Solicitud",
@@ -122,7 +124,8 @@
         "iniciaagregando":"¡Inicia agregando tus servicios!",
         "informaciondelregistro":"Información del registro",
         "Planes":"Planes",
-        "modoproveedor":"Cambiar a modo proveedores"
+        "modoproveedor":"Cambiar a modo proveedores",
+        "modocliente":"Cambiar a modo cliente"
     },
     "LOGIN": {
         "start": "Inicio",
@@ -324,25 +327,25 @@
         "whatsapp":"Contáctese por Whatsapp",
         "correo":"Contáctese via correo electronico",
         "frecuentes":"Preguntas frecuentes",
-        "pregunta1":"¿QUÉ ES SERVICIO24?",
+        "pregunta1":"¿Qué es Service24?",
         "r11":"Service24 es una aplicación que conecta proveedores de servicios y empresas con clientes. ¡Ofrecemos más de 200 artículos en los que seguramente estará el suyo! Le damos acceso a una gran base de clientes que buscarán su servicio y podrán contactarlo de inmediato. También contamos con un sistema de calificación que te ayudará a ser más buscado en tu área. ¡También podrás ofrecer tu servicio en las áreas que elijas, para que puedas concentrarte en los lugares donde te interesa crecer! Todo esto podrás dirigirlo desde tu celular en tiempo real y de una forma muy sencilla. ¡Registro! Estaremos encantados de asesorarte para saber qué plan se adapta a tus necesidades. ¿CÓMO DESCARGO LA APLICACIÓN? Puedes encontrar la aplicación en Play Store si tienes Android o en App Store si tienes un iPhone.",
-        "pregunta2":"¿CÓMO PUEDO REGISTRARME COMO PROVEEDOR EN SERVICIO 24?",
+        "pregunta2":"¿Cómo puedo registrarme es Service24 como proveedor?",
         "r21":"Descarga la aplicación “Atendimento 24 Proveedores” en tu celular.",
         "r22":"Selecciona el botón “Registrarse aquí”, te pedirá una serie de datos que deberás completar para comenzar a crear tu nombre de usuario. Cuando termine, haga clic en 'Registrarse'.",
         "r23":"Luego será dirigido a la pantalla principal de Service24 y deberá crear su perfil para poder recibir solicitudes del servicio que desea brindar. ¡Recuerde completar la mayor cantidad de información posible para que su perfil sea más atractivo para los clientes!",
         "r24":"Haga clic en “Comencemos” y complete el formulario.",
         "r25":"¡Asegúrate de completar todos los campos para que tu perfil sea efectivo y aprobado rápidamente en el panel de control!",
-        "pregunta3":"¿CÓMO AGREGAR UN SERVICIO?",
+        "pregunta3":"¿Cómo agregar un servicio?",
         "r31":"Luego de completar el registro de usuario y seleccionar el plan al que deseas unirte, en tu perfil encontrarás el botón que dice “¡Comienza a agregar tus servicios!”, haz clic en él y luego ve a “Agregar Servicio”. Se te presentará un formulario y un listado de categorías dentro de las cuales deberás buscar la que mejor se adapte a las características de tu servicio. ¡No tengas prisa por seleccionarlo, así es como los clientes podrán encontrarte! Complete el formulario, proporcionándonos sus datos sobre el servicio que desea brindar y haga clic en “Agregar Servicio”.",
-        "pregunta4":"¿POR QUÉ MI PERFIL NO HA SIDO APROBADO EN EL MOMENTO?",
+        "pregunta4":"¿Por qué mi perfil no ha sido aprobado?",
         "r41":"Después de completar el registro, nuestro equipo de soporte revisará su perfil. Aquí comprobaremos si tus datos son correctos para habilitar el perfil. Si algún dato no es correcto o detectamos algún elemento faltante, nos pondremos en contacto contigo para ayudarte a resolverlo.",
-        "pregunta5":"¿CÓMO ELEGIR UN PLAN?",
+        "pregunta5":"¿Cómo puedo agregar un servicio?",
         "r51":"Al registrarte inicialmente tendrás la opción de elegir en qué plan quieres participar según tus características. Si no elegiste al principio o quieres cambiar tu plan, puedes acceder a tu perfil y seleccionar “Planes”. Allí encontrarás las opciones disponibles y las características que ofrece. Hasta el 1 de enero no se te solicitará ningún medio de pago. ¡Recordar! ¡En fase de lanzamiento, Service24 ofrece servicio gratuito en cualquiera de sus planes hasta el 1 de enero de 2024! Para los usuarios que se registren antes del 1 de enero, ¡tenemos una promoción del 50% de descuento para todo el año 2024 que pueden aprovechar! ",
-        "pregunta6":"¿CÓMO PAGO MI PLAN?",
+        "pregunta6":"¿Cómo pago mi plan?",
         "r61":"A partir del 1 de enero habrá varias opciones de pago. Desde la app, seleccionando el plan que creas más adecuado para ti, nuestra App te llevará a tu cuenta de Mercado Pago y podrás pagar con la tarjeta que quieras! Si no tienes una cuenta, Mercado Pago te da la opción de pagar de la misma forma aunque no tengas una cuenta asociada. Puedes pagar con tarjeta de crédito, tarjeta de débito o mediante redes de facturación.",
-        "pregunta7":"¿CÓMO PUEDO CAMBIAR EL ÁREA EN LA QUE ME REGISTRO Y PRESENTE? ",
+        "pregunta7":"¿Cómo puedo cambiar el area en donde me registre ",
         "r71":"Debes ingresar a tu perfil y seleccionar la opción “Cambiar área”. ¡Allí encontrarás la zona en la que está disponible actualmente y la que deseas cambiar! PARA PREGUNTAS MÁS ESPECÍFICAS Para preguntas más específicas y/o para comunicarse con Soporte puede contactarnos por correo electrónico a info@service24.app, o contactarnos vía Whatsapp al 092925959 y estaremos encantados de comunicarnos con usted.",
-        "maspreguntas":"PARA PREGUNTAS MÁS ESPECÍFICAS ",
+        "maspreguntas":"Para preguntas mas espeficicas ",
         "r8":"For more specific questions and/or to communicate with Support you can contact us via email at info@service24.app, or contact us via Whatsapp on 092925959 and we will be happy to contact you!"
     }
 }

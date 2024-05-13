@@ -509,4 +509,7 @@ export class Tab6Page implements OnInit {
   mejorarplan(){
     this.router.navigate(['/proveedor/planes']);
   }
+  soporte(){
+    this.router.navigate(['/soporte']);
+  }
 }

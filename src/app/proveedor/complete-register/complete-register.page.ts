@@ -30,6 +30,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { register } from 'swiper/element/bundle';
 import { Swiper } from "swiper";
 import { GeneralService } from '../../servicesproveedor/general.service';
+import { LanguageService } from 'src/services/language/language.service';
 
 register();
 declare var google:any;
@@ -295,6 +296,7 @@ export class CompleteRegisterPage implements OnInit {
 	public up_foto2: boolean = false;
 	public up_fotoP: boolean = false;
 	public up_fotoE: boolean = false;
+	public languages2:any = 'es';
 	//private subscription1: Subscription;
 	//private subscription2: Subscription;
 	@ViewChild(IonContent) content!: IonContent;
@@ -314,6 +316,7 @@ export class CompleteRegisterPage implements OnInit {
 	    private toastController: ToastController,
 	    public actionSheetController: ActionSheetController,
 	    private cdRef: ChangeDetectorRef,
+		private languageService: LanguageService,
 	    //private camera: Camera,
 	    //private filePath: FilePath,
 	    //private file: File,
@@ -325,6 +328,12 @@ export class CompleteRegisterPage implements OnInit {
 		public funciones_generales: GeneralService
 	    //private crop: Crop
 	) { 
+
+		this.languages2 = this.languageService.getLan();
+		if (this.languages2 == 'undefined' || this.languages2 == '') {
+		this.languages2 = 'es';
+		}
+
 		this.data1ProfileForm = this.builder.group({
 			nombre: ['', [Validators.required]],
 			cedula: [''],
@@ -2742,6 +2751,8 @@ export class CompleteRegisterPage implements OnInit {
 					       		this.plans = this.data2.Planes;
 					       		for (var i = 0; i < this.plans.length; ++i) {
 					       			this.plans[i].descripcion = JSON.parse(this.plans[i].descripcion);
+									this.plans[i].descripcion_ingles = JSON.parse(this.plans[i].descripcion_ingles);
+									this.plans[i].descripcion_portugues = JSON.parse(this.plans[i].descripcion_portugues);
 					       			this.plans[i].show = false; 
 					       		}
 					        },
@@ -3526,6 +3537,8 @@ export class CompleteRegisterPage implements OnInit {
 	enviarRegistro(){
 		this.actualiza=0;
 	}
+
+	
 
 }
 

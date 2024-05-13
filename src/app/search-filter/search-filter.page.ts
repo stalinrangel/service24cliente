@@ -184,6 +184,13 @@ export class SearchFilterPage implements OnInit {
                 //alert(this.datos[i])
 
               }
+              try {
+                if (this.datos[i].zonas2.length==0) {
+                  this.datos[i].zonas2=[{'nombre':'Sin zona'}]
+                }
+              } catch (error) {
+                
+              }
               
 
             }
@@ -196,6 +203,13 @@ export class SearchFilterPage implements OnInit {
               } catch (error) {
                 console.log(this.datos2[i])
                 //alert(this.datos2[i])
+              }
+              try {
+                if (this.datos2[i].zonas2.length==0) {
+                  this.datos2[i].zonas2=[{'nombre':'Sin zona'}]
+                }
+              } catch (error) {
+                
               }
               
 

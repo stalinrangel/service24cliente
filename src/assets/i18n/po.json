@@ -12,7 +12,7 @@
         "modo":"Modo provedor",
         "serviciosporcategoria":"Serviços por categoria",
         "title": "Service24",
-        "search": "Encanamento, abertura de porta...",
+        "search": "Pesquisar serviços",
         "zone": "Você não está em uma área autorizada",
         "empty": "Não há categorias ativadas na sua localização"
     },
@@ -61,7 +61,9 @@
         "home": "Vá para casa",
         "empty": "O Provedor ainda não possui classificações.",
         "year": "ano(s)",
-        "history":"Programação"
+        "history":"Programação",
+        "servicios":"Serviços",
+        "ubicacion":"Localização"
     },
     "ORDER": {
         "title": "Criar solicitação",
@@ -122,7 +124,8 @@
         "iniciaagregando":"Comece a adicionar seus serviços!",
         "informaciondelregistro":"Informações cadastrais",
         "Planes":"Planos",
-        "modoproveedor":"Mudar para modo provedor"
+        "modoproveedor":"Mudar para modo provedor",
+        "modocliente":"Cambiar a modo cliente"
     },
     "LOGIN": {
         "start": "Início",
@@ -288,6 +291,20 @@
         "seleccionar": "Selecionar",
         "seleccionarplan": "Selecionar plano"
     },
+    "TAB8":{
+        "hola":"Olá",
+        "ultima":"Última atividade",
+        "activo":"Ativo",
+        "inactivo":"Inativo",
+        "missolicitudes":"Meus serviços",
+        "zona":"Alterar zona",
+        "servicios":"Meus serviços",
+        "plan":"Melhorar o plano",
+        "pago":"Métodos de pagamento",
+        "llega":"Alcance um público maior.",
+        "contrata":"Contratar publicidade ",
+        "modo":"Modo cliente"
+    },
     "TAB6":{
         "hola":"Olá",
         "pararecibir":"Para receber solicitações você deve completar seu perfil registrando-se previamente.",
@@ -301,7 +318,7 @@
         "completa":"Complete seu perfil",
         "revision":"Em revisão"
     },
-    "TAB8":{
+    "modo":{
         "hola":"Olá",
         "ultima":"Última atividade",
         "activo":"Ativo",
@@ -316,12 +333,12 @@
         "modo":"Modo cliente"
     },
     "SOPORTE":{
-        "title":"Soporte",
-        "soportetecnico":"Soporte técnico",
-        "noencontraras":"¿No encontrás la respuesta que estás buscando? Contactá a nuestro equipo de servicio al cliente",
-        "whatsapp":"Contáctese por Whatsapp",
-        "correo":"Contáctese via correo electronico",
-        "frecuentes":"Preguntas frecuentes",
+        "title":"Suporte",
+        "soportetecnico":"Suporte técnico",
+        "noencontraras":"Não encontra a resposta que procura? Entre em contato com nossa equipe de atendimento ao cliente",
+        "whatsapp":"Contato por Whatsapp",
+        "correo":"Contato por e-mail",
+        "frecuentes":"Perguntas frequentes",
         "pregunta1":"O QUE É SERVIÇO24?",
         "r11":"Service24 é um aplicativo que conecta prestadores de serviços e empresas aos clientes. Oferecemos mais de 200 itens nos quais o seu certamente estará! Damos-lhe acesso a uma grande base de clientes que procurarão o seu serviço e poderão contactá-lo imediatamente. Também temos um sistema de qualificação que o ajudará a ser mais procurado em sua área. Você também poderá oferecer seu serviço nas áreas que escolher, para que possa focar nos locais onde tem interesse em crescer! Você poderá direcionar tudo isso do seu celular em tempo real e de uma forma muito simples. Cadastre-se! Teremos prazer em aconselhá-lo a descobrir qual plano se adapta às suas necessidades.",
         "pregunta2":"COMO POSSO REGISTRAR-ME COMO FORNECEDOR NO SERVIÇO 24?",

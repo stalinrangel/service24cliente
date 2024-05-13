@@ -1,10 +1,12 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { IonTabs, Platform, NavController } from '@ionic/angular';
+import { IonTabs, Platform, NavController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/services/storage/storage.service';
 import { UserService } from 'src/services/user/user.service';
 import { ObjectserviceService } from 'src/services/objetcservice/objectservice.service';
 import { TranslateService } from '@ngx-translate/core';
+import { TipousuarioComponent } from './tipousuario.componet';
+import { ComencemosComponent } from '../tab1/comencemos.componet';
 
 @Component({
   selector: 'app-tabs',
@@ -19,7 +21,16 @@ export class TabsPage {
 	public isCliente:any=true;
 	public cliente:any='Modo Cliente';
 	isLogin=false;
-	constructor(private translate: TranslateService,private changeDetector: ChangeDetectorRef,private platform: Platform,public navCtrl: NavController, public router: Router,private userService: UserService,private objService: ObjectserviceService,private storage: StorageService){
+	constructor(
+		private translate: TranslateService,
+		private changeDetector: ChangeDetectorRef,
+		private platform: Platform,
+		public navCtrl: NavController, 
+		public router: Router,
+		private userService: UserService,
+		private objService: ObjectserviceService,
+		private storage: StorageService,
+		public modalController: ModalController,){
 
 	this.isCliente=localStorage.getItem('isCliente');
 	this.objService.isCliente$.subscribe((isClienteValue: boolean) => {
@@ -92,6 +103,22 @@ export class TabsPage {
 	    }   
 	}
 
+	async tipousuario() {
+		setTimeout(async () => {
+		  const modal = await this.modalController.create({
+			component: TipousuarioComponent,
+		  });
+		  modal.present();
+	
+		  const { data, role } = await modal.onWillDismiss();
+	
+		  if (role === 'confirm') {
+			//this.message = `Hello, ${data}!`;
+		  }
+		}, 400);  
+	
+	  }
+
 	public chat_support = {
 		admin_id: '',
 		chat_id: '',
@@ -154,6 +181,8 @@ export class TabsPage {
 		//this.objService.setsoporte({});
 		//console.log('support')
 	}
+
+	
 
 }
 

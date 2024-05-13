@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary" mode="md">
     <ion-title class="ion-text-capitalize " >
-      <img src="../../assets/service24/logo-rojo.svg" alt="" >
+      <img src="../../assets/service24/service24black.svg" alt="" >
     </ion-title>
     
     <ion-buttons slot="end" (click)="viewNotification()" style="width: 57px">
@@ -14,32 +14,44 @@
   </ion-toolbar>
   
 </ion-header>
-<div class="modo" [hidden]="!isLogin">
+<!--div class="modo" [hidden]="!isLogin">
   <ion-toggle [(ngModel)]="isCliente" (ionChange)="changeRol($event)"></ion-toggle>
   <p style="margin: 0 0px 0 9px;">{{ 'HOME.modo' | translate }}</p>
-</div>
+</div-->
 
 <ion-content >
   
-  <div class="presentacion">
+  <div class="presentacion" >
     
-    <h2 class="hola" style="margin-top: 15px;">{{ 'HOME.hola' | translate }} 👋 {{usuario.nombre}}!</h2>
+    <h2 class="hola" style="margin-top: 20px;" [hidden]="!isLogin">{{ 'HOME.hola' | translate }} 👋 {{usuario.nombre}}!</h2>
     <!--p class="felices">Felices de poder ayudarte</p-->
       
   </div>
-  <div style="margin: 0px 20px;">
-    <div class="zona">
+  <div style="margin: 0px 20px;margin-bottom: 5px;">
+    <!--div class="zona">
       <p class="pzona" (click)="goFilter()">{{zone.nombre}} <ion-icon name="filter-circle-outline"></ion-icon></p>
+    </div-->
+    <div style="display: flex; justify-content: space-between; flex-direction: row; width: 100%;">
+      <div class="nuevo-input" style="display: flex; justify-content: space-between; align-items: center; width: 85%; margin-right: 5px;padding-right: 5px !important;" (click)="setSearch()">
+        <input style="color: white !important; border: 0;" type="text" placeholder="{{ 'HOME.search' | translate }}"  >
+        <img src="../../assets/service24/boton_search.svg" alt="">
+      </div>
+      <div class="nuevo-input" style="display: flex; justify-content: center; align-items: center; width: 15%; padding: 0px !important;">
+        <img src="../../assets/service24/icon_search.svg" alt="">
+      </div>
     </div>
-    <ion-toolbar class=" nuevo-input" style="color: white !important;">
-      <!--ion-searchbar placeholder="{{ 'HOME.search' | translate }}" color="secundary" mode="ios"(ionFocus)="setSearch()"id="input"></ion-searchbar-->
-      <ion-input style="color: white !important;" type="text" placeholder="{{ 'HOME.search' | translate }}"  (ionFocus)="setSearch()"></ion-input>
+    
+    
+    <!--ion-toolbar class=" nuevo-input" style="color: white !important;">
+      <ion-searchbar placeholder="{{ 'HOME.search' | translate }}" color="secundary" mode="ios"(ionFocus)="setSearch()"id="input"></ion-searchbar>
+      <!--ion-input style="color: white !important;" type="text" placeholder="{{ 'HOME.search' | translate }}"  (ionFocus)="setSearch()"></ion-input>
+      <input style="color: white !important;" type="text" placeholder="{{ 'HOME.search' | translate }}"  (ionFocus)="setSearch()">
       <ion-buttons slot="end" >
         <ion-button color="primary" class="btn-search" (click)="setSearch()">
           <ion-icon name="search-outline" style="color: white !important;"></ion-icon>
         </ion-button>
       </ion-buttons>
-    </ion-toolbar>
+    </ion-toolbar-->
   </div>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -94,7 +106,7 @@
 
     <h2 class="porcategoria">{{ 'HOME.serviciosporcategoria' | translate }}</h2>
   </div>
-  <div style="margin: auto; width: 90%;">
+  <div style="margin: auto; width: 90%; margin-bottom: 0px;">
     <div *ngIf="items" class="row" >
       <div class="col-md-4 cuadro" *ngFor="let item of items; let i = index" (click)="setCategory(item)" >
         <div class="cuadrando">

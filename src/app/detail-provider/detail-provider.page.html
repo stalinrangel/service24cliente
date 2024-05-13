@@ -80,35 +80,35 @@
 	</div>
 
 	<div class="pbotones">
-		<div class="plista">
+		<div class="plista" (click)="servi()">
 			<div class="pitem">
 				<img class="pimg" src="../../assets/service24/icon_servicios.svg" alt="" style="height: 18px;">
-				<p class="pboton">Servicios</p>
+				<p class="pboton">{{ 'DETAILSUPPLIERS.servicios' | translate }}</p>
 			</div>
 			<img src="../../assets/service24/icon_flechader.svg" alt="" style="height: 28px;">
 		</div>
-		<div class="plista">
+		<div class="plista" (click)="horarios()">
 			<div class="pitem">
 				<img class="pimg" src="../../assets/service24/icon_disponibilidad.svg" alt="" style="height: 18px;">
 				<p class="pboton">{{ 'DETAILSUPPLIERS.history' | translate }}</p>
 			</div>
 			<img src="../../assets/service24/icon_flechader.svg" alt="" style="height: 28px;">
 		</div>
-		<div class="plista">
+		<div class="plista" (click)="abrirGoogleMaps()">
 			<div class="pitem">
 				<img class="pimg" src="../../assets/service24/icon_pos2.svg" alt="" style="height: 18px;">
-				<p class="pboton">Ubicación</p>
+				<p class="pboton">{{ 'DETAILSUPPLIERS.ubicacion' | translate }}</p>
 			</div>
 			<img src="../../assets/service24/icon_flechader.svg" alt="" style="height: 28px;">
 		</div>
-		<div class="plista">
+		<div class="plista" (click)="califi()">
 			<div class="pitem">
 				<img class="pimg" src="../../assets/service24/icon_estrella.svg" alt="" style="height: 18px;">
 				<p class="pboton">{{ 'DETAILSUPPLIERS.ratings' | translate }}</p>
 			</div>
 			<img src="../../assets/service24/icon_flechader.svg" alt="" style="height: 28px;">
 		</div>
-		<div class="plista">
+		<div class="plista" (click)="photos()">
 			<div class="pitem">
 				<img class="pimg" src="../../assets/service24/icon_imagen.svg" alt="" style="height: 18px;">
 				<p class="pboton">{{ 'DETAILSUPPLIERS.photo' | translate }}</p>
@@ -276,7 +276,7 @@
 				</ion-item>	
 	
 				
-			</div>
+		</div>
 	</div>
 	<div class="content-infoP" *ngIf="type == 'history'">
 		<div *ngIf="calificaciones">

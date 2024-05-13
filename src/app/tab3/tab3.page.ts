@@ -513,7 +513,8 @@ export class Tab3Page {
 	}
 
 	async support(){
-		let url ='https://service24.app/FAQ/';
+		this.navCtrl.navigateRoot('/soporte');
+		/*let url ='https://service24.app/FAQ/';
 		await Browser.open({ url: url});
 		/*if (this.band_chatSupport) {		
 			this.objService.setExtras(this.chat_support);
@@ -622,4 +623,16 @@ export class Tab3Page {
 		  }
 		}
 	  }
+
+	  changeRol(){
+    
+		//this.isCliente=e.detail.checked;
+	
+		this.objService.updateIsCliente(true);
+		this.navCtrl.navigateRoot('/tabs/tab6');
+		//console.log(this.isCliente)
+			
+	  }
+
+	  
 }

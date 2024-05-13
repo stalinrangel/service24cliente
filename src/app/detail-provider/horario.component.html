@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()"></ion-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  
+  <div style="margin: 5px;">
+    <p class="text-slide">Disponibilidad:</p>
+      <ion-item class="item-days"  style="border: 1px solid var(--secondary-violet-medium, #DAE2E7);border-top-left-radius:10px;border-top-right-radius:10px">
+        <!--ion-toggle color="primary" mode="md" formControlName="lunes" (click)="changeDay('lunes')"></ion-toggle-->
+        
+        <button class="day-active" *ngIf="horario.lunes"  >Lunes</button>
+        <button class="day-desactive" *ngIf="!horario.lunes"  >Lunes</button>
+        <div style="flex: 1; text-align: center;">
+          <p class="text-g" style="margin-bottom: 10px;">Horario:</p>
+          <div class="content-fhour">					
+            <ion-input  mode="ios" [(ngModel)]="horario.lunes_i" class="area-info ddd" (ionBlur)="setDay('lunes')" disabled></ion-input>
+            <span class="text-g"> a </span>
+            <ion-input  mode="ios" [(ngModel)]="horario.lunes_f" class="area-info ddd" (ionBlur)="setDay('lunes')" disabled></ion-input>
+          </div>
+        </div>
+      </ion-item>
+      <ion-item class="item-days" style="padding-top: 10px;    border-bottom: 1px solid var(--secondary-violet-medium, #DAE2E7);border-left: 1px solid var(--secondary-violet-medium, #DAE2E7); border-right: 1px solid var(--secondary-violet-medium, #DAE2E7);" >
+
+        <button class="day-active" *ngIf="horario.martes" (click)="disabledDay('martes')">Martes</button>
+        <button class="day-desactive" *ngIf="!horario.martes" (click)="availableDay('martes')">Martes</button>
+        <div class="align-hour">
+          <ion-input  mode="ios" [(ngModel)]="horario.martes_i" class="area-info ddd" (ionBlur)="setDay('martes')" disabled></ion-input>
+          <span class="text-g"> a </span>
+          <ion-input  mode="ios" [(ngModel)]="horario.martes_f" class="area-info ddd" (ionBlur)="setDay('martes')" disabled></ion-input>
+        </div>
+      </ion-item>
+      <ion-item class="item-days" style=" padding-top: 10px;   border-bottom: 1px solid var(--secondary-violet-medium, #DAE2E7);border-left: 1px solid var(--secondary-violet-medium, #DAE2E7); border-right: 1px solid var(--secondary-violet-medium, #DAE2E7);">
+
+        <button class="day-active" *ngIf="horario.miercoles" (click)="disabledDay('miercoles')">Miércoles</button>
+        <button class="day-desactive" *ngIf="!horario.miercoles" (click)="availableDay('miercoles')">Miércoles</button>
+        <div class="align-hour">
+          <ion-input  mode="ios" [(ngModel)]="horario.miercoles_i" class="area-info ddd" (ionBlur)="setDay('miercoles')" disabled></ion-input>
+          <span class="text-g"> a </span>
+          <ion-input  mode="ios" [(ngModel)]="horario.miercoles_f" class="area-info ddd" (ionBlur)="setDay('miercoles')" disabled></ion-input>
+        </div>
+      </ion-item>
+      <ion-item class="item-days" style=" padding-top: 10px;   border-bottom: 1px solid var(--secondary-violet-medium, #DAE2E7);border-left: 1px solid var(--secondary-violet-medium, #DAE2E7); border-right: 1px solid var(--secondary-violet-medium, #DAE2E7);">
+        
+        <button class="day-active" *ngIf="horario.jueves" (click)="disabledDay('jueves')">Jueves</button>
+        <button class="day-desactive" *ngIf="!horario.jueves" (click)="availableDay('jueves')">Jueves</button>
+        <div class="align-hour">
+          <ion-input  mode="ios" [(ngModel)]="horario.jueves_i" class="area-info ddd" (ionBlur)="setDay('jueves')" disabled></ion-input>
+          <span class="text-g"> a </span>
+          <ion-input  mode="ios" [(ngModel)]="horario.jueves_f" class="area-info ddd" (ionBlur)="setDay('jueves')" disabled></ion-input>
+        </div>
+      </ion-item>
+      <ion-item class="item-days" style=" padding-top: 10px;   border-bottom: 1px solid var(--secondary-violet-medium, #DAE2E7);border-left: 1px solid var(--secondary-violet-medium, #DAE2E7); border-right: 1px solid var(--secondary-violet-medium, #DAE2E7);">
+        
+        <button class="day-active" *ngIf="horario.viernes" (click)="disabledDay('viernes')">Viernes</button>
+        <button class="day-desactive" *ngIf="!horario.viernes" (click)="availableDay('viernes')">Viernes</button>
+        <div class="align-hour">
+          <ion-input  mode="ios" [(ngModel)]="horario.viernes_i" class="area-info ddd" (ionBlur)="setDay('viernes')" disabled></ion-input>
+          <span class="text-g"> a </span>
+          <ion-input  mode="ios" [(ngModel)]="horario.viernes_f" class="area-info ddd" (ionBlur)="setDay('viernes')" disabled></ion-input>
+        </div>
+      </ion-item>
+      <ion-item class="item-days" style="padding-top: 10px;border-left: 1px solid var(--secondary-violet-medium, #DAE2E7); border-right: 1px solid var(--secondary-violet-medium, #DAE2E7);">
+      
+        <button class="day-active" *ngIf="horario.sabado" (click)="disabledDay('sabado')">Sábado</button>
+        <button class="day-desactive" *ngIf="!horario.sabado" (click)="availableDay('sabado')">Sábado</button>
+        <div class="align-hour">
+          <ion-input  mode="ios" [(ngModel)]="horario.sabado_i" class="area-info ddd" (ionBlur)="setDay('sabado')" disabled></ion-input>
+          <span class="text-g"> a </span>
+          <ion-input  mode="ios" [(ngModel)]="horario.sabado_f" class="area-info ddd" (ionBlur)="setDay('sabado')" disabled></ion-input>
+        </div>
+      </ion-item>
+      <ion-item class="item-days" style="padding-top: 10px;border: 1px solid var(--secondary-violet-medium, #DAE2E7);border-bottom-left-radius:10px;border-bottom-right-radius:10px">
+        
+        <button class="day-active" *ngIf="horario.domingo" (click)="disabledDay('domingo')">Domingo</button>
+        <button class="day-desactive" *ngIf="!horario.domingo" (click)="availableDay('domingo')">Domingo</button>
+        <div class="align-hour">
+          <ion-input  mode="ios" [(ngModel)]="horario.domingo_i" class="area-info ddd" (ionBlur)="setDay('domingo')" disabled></ion-input>
+          <span class="text-g"> a </span>
+          <ion-input  mode="ios" [(ngModel)]="horario.domingo_f" class="area-info ddd" (ionBlur)="setDay('domingo')" disabled></ion-input>
+        </div>
+      </ion-item>	
+
+      
+    </div>
+  
+</ion-content>
+

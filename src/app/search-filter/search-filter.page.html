@@ -44,7 +44,6 @@
           <p class="sub-title" style="font-weight: bold;">{{item.categoria}}-{{item.subcategoria}}</p>
           <p class="sub-title">Proveedor: {{item.establecimiento.nombre}}</p>
          
-          
         </div>
         <img *ngIf="item.establecimiento.usuario != null" src="{{item.imagen}}" class="imagen">
         <img *ngIf="item.establecimiento.usuario == null" src="{{item.imagen}}" class="imagen">
@@ -58,7 +57,7 @@
         </div>
       </div>
       <div style="display: flex; justify-content: space-between; width: 100%;">
-        <p class="new-address"> <img src="../../assets/service24/icon_pos.svg" alt="" style="height: 18px;">{{item.zonas2[0].nombre}}</p>
+        <p class="new-address" *ngIf="item.zonas2!=[]"> <img src="../../assets/service24/icon_pos.svg" alt="" style="height: 18px;">{{item.zonas2[0].nombre}}</p>
         <p class="new-address"><ion-icon name="locate" style="margin-right: 3px;"></ion-icon>{{item.distance}} km</p>
       </div>
     </div>
@@ -90,9 +89,8 @@
         </div>
       </div>
       <div style="display: flex; justify-content: space-between; width: 100%;">
-        <!--p class="new-address"> {{item.establecimiento.direccion}}</p-->
-        <p class="new-address"> {{item.zonas2[0].nombre}}</p>
-        <ion-icon name="locate" style="margin-right: 3px;"></ion-icon><p class="new-address"><ion-icon name="locate" style="margin-right: 3px;"></ion-icon>{{item.distance}} km</p>
+        <p class="new-address" *ngIf="item.zonas2[0].nombre!=null"> <img src="../../assets/service24/icon_pos.svg" alt="" style="height: 18px;" >{{item.zonas2[0].nombre}}</p>
+        <p class="new-address"><ion-icon name="locate" style="margin-right: 3px;"></ion-icon>{{item.distance}} km</p>
       </div>
     </div>
   </ion-list>

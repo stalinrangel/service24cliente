@@ -85,7 +85,7 @@ export class Tab8Page  {
 		public locationTracker: LocationTrackerService,
 		private noticationService: NotificationsService,
 		private router: Router,
-		private funciones_generales: GeneralService
+		private funciones_generales: GeneralService,
 	) {
 		console.log(this.router.url);
     	this.objService.setruta(this.router.url); 
@@ -699,4 +699,14 @@ export class Tab8Page  {
 		//});
 	  }
 	}
+
+	changeRol(){
+    
+		//this.isCliente=e.detail.checked;
+	
+		this.objService2.updateIsCliente(false);
+		this.navCtrl.navigateRoot('/tabs/tab1');
+		//console.log(this.isCliente)
+			
+		}
 }

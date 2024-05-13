@@ -6,6 +6,15 @@
     //bottom: 25px;
     width: 100%;
 }
+ion-modal {
+    --height: 50%; /* Establece la altura del modal al 50% de la pantalla */
+    --border-radius: 0; /* Elimina el borde redondeado del modal si es necesario */
+    --top: auto; /* Elimina el posicionamiento superior para que empiece desde abajo */
+    --bottom: 0; /* Alinea el modal en la parte inferior de la pantalla */
+    --border-radius: 8px !important;
+    border-radius: 8px !important;
+  }
+  
 .nuevo_tab {
     border: 1.5px solid var(--neutral-200, #DAE2E7);
     //border-radius: 50px;
@@ -117,5 +126,7 @@
         background: url("/assets/icon/nuevo_icono_ayuda_on.svg") no-repeat 50% 50%;
         background-size: auto;
     }
+
+    
   }
   

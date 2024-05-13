@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()"></ion-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div *ngIf="calificaciones">
+    <div class="conten-item" *ngFor="let item of calificaciones;let even = even"  [style.background]="even? '#FFFFFF' : '#F2F2F2'">
+      <ion-item lines="none" no-padding>
+        <ion-thumbnail slot="start">
+          <img src="{{item.usuario.imagen}}">
+        </ion-thumbnail>
+          <ion-label class="label-item">
+            <!--ion-icon slot="icon-only" md="ios-star" ios="ios-star" *ngFor="let current of [1, 2, 3, 4, 5]; let i = index" class="icon-star2" [ngClass]="{'filled': i < item.puntaje}"></ion-icon-->
+            <ion-rating-stars
+            public Calification = {
+            [rating]="item.puntaje"
+            [color]="'darkgrey'"
+            [filledColor]="'orange'"
+            [margin]="2"
+            [size]="20"
+            [disabled]="true"
+            [opacity]="0.5">
+          </ion-rating-stars>
+          <p class="product-item">{{item.producto.nombre}}</p>
+            <p class="comment-item">{{item.usuario.nombre}} - <i>{{item.comentario}}</i></p>
+          </ion-label>
+          <!--p slot="end" class="date-item">{{item.created_at }}</p-->
+      </ion-item>
+    </div>
+    <p *ngIf="calificaciones.length == 0" class="text-empty">{{ 'DETAILSUPPLIERS.empty' | translate }}</p>
+  </div>
+  <div *ngIf="!calificaciones">
+    <div class="conten-item">
+      <ion-item lines="none">
+        <ion-label class="label-item">
+            <ion-skeleton-text animated style="width: 70px;"></ion-skeleton-text>
+            <p class="user-item"><ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text></p>
+            <p class="comment-item"><ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text></p>
+          </ion-label>
+          <p slot="end" class="date-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+      </ion-item>
+    </div>
+    <div class="conten-item" style="background-color: #f2f2f2f2;">
+      <ion-item lines="none">
+          <ion-label class="label-item">
+            <ion-skeleton-text animated style="width: 70px;"></ion-skeleton-text>
+            <p class="user-item"><ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text></p>
+            <p class="comment-item"><ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text></p>
+          </ion-label>
+          <p slot="end" class="date-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+      </ion-item>
+    </div>
+    <div class="conten-item">
+      <ion-item lines="none">
+          <ion-label class="label-item">
+            <ion-skeleton-text animated style="width: 70px;"></ion-skeleton-text>
+            <p class="user-item"><ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text></p>
+            <p class="comment-item"><ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text></p>
+          </ion-label>
+          <p slot="end" class="date-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+      </ion-item>
+    </div>
+    <div class="conten-item" style="background-color: #f2f2f2f2;">
+      <ion-item lines="none">
+          <ion-label class="label-item">
+            <ion-skeleton-text animated style="width: 70px;"></ion-skeleton-text>
+            <p class="user-item"><ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text></p>
+            <p class="comment-item"><ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text></p>
+          </ion-label>
+          <p slot="end" class="date-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+      </ion-item>
+    </div>
+    <div class="conten-item">
+      <ion-item lines="none">
+          <ion-label class="label-item">
+            <ion-skeleton-text animated style="width: 70px;"></ion-skeleton-text>
+            <p class="user-item"><ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text></p>
+            <p class="comment-item"><ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text></p>
+          </ion-label>
+          <p slot="end" class="date-item"><ion-skeleton-text animated style="width: 55px;"></ion-skeleton-text></p>
+      </ion-item>
+    </div>
+  </div>
+  
+</ion-content>
+

@@ -1,12 +1,14 @@
 
-  <ion-modal #modal trigger="open-modal" [initialBreakpoint]="0.35" [breakpoints]="[0, 0.25, 0.5, 0.75]">
+  <ion-modal #modal trigger="open-modal"  style="    border-radius: 36px;">
     <ng-template>
       <ion-content>
+        <img src="../../assets/service24/icon_x.svg" alt="" style="position: absolute; top: 20px; right: 20px; cursor: pointer;" (click)="modal.dismiss()" >
         <div style="text-align: center; margin-top: 60px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          
           <img src="../../assets/service24/icon_prohibido.svg" alt="">
           <p style="line-height:25px;margin: 5px 20px; font-size: 22px; font-family: Gilroy-SemiBold;">{{ 'LOGIN.necesitas' | translate }}</p>
           <p style="margin: 10px 20px; font-size: 16px; color:#7E8389">{{ 'LOGIN.presiona' | translate }}</p>
-          <button style="margin-top: 10px; border-radius: 6px; height: 40px; color: white; background-color: black; width: 80%;">{{ 'LOGIN.login' | translate }}</button>
+          <button (click)="tipousuario();modal.dismiss()" style="margin-top: 10px; border-radius: 6px; height: 40px; color: white; background-color: black; width: 80%;">{{ 'LOGIN.login' | translate }}</button>
         </div>
       </ion-content>
     </ng-template>
