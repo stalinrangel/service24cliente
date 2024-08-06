@@ -24,7 +24,7 @@ export class AppComponent {
               private modalCtrl: ModalController,
               private zone: NgZone,
               private router: Router,
-              private platform: Platform
+              private platform: Platform,
                     
     ) {
     translate.setDefaultLang('es');

@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "233380787537-opnh4kmrlvat1mljo74opnoja10qodd4.apps.googleusercontent.com",
+          "client_id": "233380787537-rb13b0bgnjv1jltfjl77hm0euqc51685.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +29,13 @@
             {
               "client_id": "233380787537-opnh4kmrlvat1mljo74opnoja10qodd4.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "233380787537-8ld7e449ja05jmilvj7r92v4pu9nq1lb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "cliente.service24.app"
+              }
             }
           ]
         }

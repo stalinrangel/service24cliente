@@ -22,6 +22,14 @@
           "splashImmersive": true,
           "layoutName": "launch_screen",
           "useDialog": true
+        },
+        "GoogleAuth": {
+          "scopes": [
+            "profile",
+            "email"
+          ],
+          "serverClientId": "233380787537-rb13b0bgnjv1jltfjl77hm0euqc51685.apps.googleusercontent.com",
+          "forceCodeForRefreshToken": true
         }
       }
   }
